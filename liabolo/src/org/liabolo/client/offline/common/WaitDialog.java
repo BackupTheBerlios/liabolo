@@ -33,7 +33,7 @@ import javax.swing.JWindow;
 import org.liabolo.client.offline.Gui;
 
 /**
- * @author Jurij Henne and Maxim Bauer
+ * @author Jurij Henne,Maxim Bauer
  *
  * This is an implementation of a "Loading.."(or just "please wait") dialog. It pops up, when the GUI invokes some 
  * backend operations, like search or similar. 

@@ -38,7 +38,7 @@ import org.liabolo.client.offline.common.*;
 import org.liabolo.common.Logger;
 
 /**
- * @author Admin
+ * @author Jurij Henne
  *
  * An implementation of the  info dialog
  */

@@ -62,7 +62,9 @@ import org.liabolo.client.offline.forms.MetadataSearchForm;
 import org.liabolo.client.offline.forms.TreeForm;
 import org.liabolo.common.*;
 
-
+/**
+ *@author Jurij Henne
+ */
 public class Menu extends JMenuBar implements ActionListener, WindowListener {
 
 	/** Available global connections for connect with connect-button */

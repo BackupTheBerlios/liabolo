@@ -42,7 +42,7 @@ import org.liabolo.client.offline.forms.DefaultForm;
 
 
 /**
- * @author Admin
+ * @author Jurij Henne
  *
  * An implementation of default dialog type, that can be inherited by all other custom dialogs.
  * Default dialog can contain only one component with selectable items.

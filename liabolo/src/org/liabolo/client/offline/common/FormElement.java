@@ -33,7 +33,9 @@ import javax.swing.JToggleButton;
 import javax.swing.JToggleButton.ToggleButtonModel;
 
 import org.liabolo.client.offline.Gui;
-
+/**
+ *@author Jurij Henne, Maxim Bauer
+ */
 public class FormElement {
 		
 	/**

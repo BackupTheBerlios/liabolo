@@ -51,7 +51,7 @@ import org.liabolo.exception.ServiceNotAvailableException;
 /**
  * @author Maxim Bauer
  *
- * This class implements the editor for the meta data. 
+ * This class implements the editor for the meta data types. 
  * Here the pre-defined Mediatypes can be changed.
  */
 public class MediaTypesEditor extends DefaultForm implements ActionListener, KeyListener {

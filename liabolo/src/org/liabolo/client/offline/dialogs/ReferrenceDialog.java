@@ -40,7 +40,7 @@ import org.liabolo.common.Configurator;
 import org.liabolo.common.TextItem;
 
 /**
- * @author Admin
+ * @author Jurij Henne
  *
  * This is an implementation of an upstreamed "add referrence"-dialog. This dialog will be called from
  * "add new metadata"-form only. The user can add referrence by
