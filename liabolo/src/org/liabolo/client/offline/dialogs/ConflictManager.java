@@ -1,8 +1,22 @@
 /*
- * Created on 05.08.2004
- *
- * To change the template for this generated file go to
- * Window>Preferences>Java>Code Generation>Code and Comments
+ * Created on 15.01.2004
+ * 
+ * Copyright (c) Projektgruppe P30 Uni Oldenburg Germany
+ * 
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * this program; see the file COPYING. If not, write to the Free Software
+ * Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ *  
  */
 package org.liabolo.client.offline.dialogs;
 
@@ -31,10 +45,10 @@ import org.liabolo.common.TextItem;
 import org.liabolo.exception.ServiceNotAvailableException;
 
 /**
- * @author Admin
+ * @author Jurij Henne
  *
- * To change the template for this generated type comment go to
- * Window>Preferences>Java>Code Generation>Code and Comments
+ * This class displays all conflict caused by commit(see local repository) actions. 
+ * The user can decide, which version(global or local) should be taken over.
  */
 public class ConflictManager extends DefaultDialog implements ActionListener {
 
@@ -42,7 +56,10 @@ public class ConflictManager extends DefaultDialog implements ActionListener {
 	private List conflictItems = new ArrayList();
 	private int selectedMergingSet;
 
-
+/**
+ * Creates new conflict manager
+ * @param conflictItems
+ */
 	public ConflictManager(Collection conflictItems) 
 	{	
 		super("Conflict Manager");
@@ -51,7 +68,7 @@ public class ConflictManager extends DefaultDialog implements ActionListener {
 		addContentPanel();
 	}
 
-	
+	/** Inherited */
 	public void addContentPanel() 
 	{		
 		int border=5;
@@ -127,6 +144,12 @@ public class ConflictManager extends DefaultDialog implements ActionListener {
 
 
 	}
+	
+	/** 
+	 * Displays a panel for the  local/global view of the conflict items
+	 * @param content string-formed attributes of a conflict item
+	 * @return scrollPane
+	 */
 	private JScrollPane getDefaultViewPane(String content)
 	{
 		JEditorPane output = new JEditorPane();
@@ -142,6 +165,12 @@ public class ConflictManager extends DefaultDialog implements ActionListener {
 		return scrollPane;
 	}
 	
+	/**
+	 * Sets  the correct labels for each attribute of metadata set and returns string-formed content
+	 * @param outputText String, where attributes should be written into
+	 * @param set metadata set, that should be processed
+	 * @return string-formed content of the processed metadata set
+	 */
 	private String setDataFields(String outputText, MetaData set)
 	{
 		String type = set.getDc_type();
@@ -188,6 +217,12 @@ public class ConflictManager extends DefaultDialog implements ActionListener {
 		// TODO	 System.out.println("OUTPUT:"+outputText);
 		return outputText;
 	}
+	
+	/** 
+	 * Returns a panel for the  local view of the conflict items
+	 * 
+	 * @return scrollPane
+	 */
 	private JScrollPane getLocalView()
 	{		
 		String outputText = "<html><h2>Lokaler Datensatz: </h2><p font size=\"1\">";
@@ -197,15 +232,20 @@ public class ConflictManager extends DefaultDialog implements ActionListener {
 		return getDefaultViewPane(outputText);
 	}
 	
+	/** 
+	 * Returns a panel for the  global view of the conflict items
+	 * 
+	 * @return scrollPane
+	 */
 	private JScrollPane getGlobalView()
 	{		
 		String outputText = "<html><h2>Globaler Datensatz: </h2><p font size=\"1\">";
 		outputText = setDataFields(outputText, ((MergingData)conflictItems.get(selectedMergingSet)).getGlobal().getMetaData());
 		outputText = outputText.concat("<br></p></html>");
-	// TODO	System.out.println("OUTPUTFINAL:"+outputText);
 		
 		return getDefaultViewPane(outputText);
 	}
+	
 	
 	public void actionPerformed(ActionEvent e) 
 	{
