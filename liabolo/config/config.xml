@@ -74,4 +74,7 @@
     <property name="defaultMainHome" value="home"/>
     <property name="defaultRootCollection" value="db"/>
   </category>
+  <category name="amazon">
+      <property name="AmazonSubScriptionId" value="YOUR KEY HERE"/>
+  </category>
 </properties>
