@@ -608,11 +608,11 @@ public class MetadataForm extends DefaultForm implements ActionListener, KeyList
                 case 2:
                     metaData.setDc_publisher(act_field);
                     break;
-                    //case 3: String dateInput = date_year.getText();
-                    //		metaData.setDc_date(MetaData.convertDate(dateInput)); break;
-                case 3:
-                    metaData.setDc_date(MetaData.convertDate(act_field));
-                    break;
+                    case 3: String dateInput = date_year.getText();
+                    		metaData.setDc_date(MetaData.convertDate(dateInput)); break;
+                //case 3:
+                   // metaData.setDc_date(MetaData.convertDate(act_field));
+                    //break;
                 case 4:
                     metaData.setDc_relation(act_field);
                     break;
