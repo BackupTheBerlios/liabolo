@@ -1,8 +1,22 @@
 /*
- * Created on 20.02.2004
+ * Created on 15.01.2004
  *
- * To change the template for this generated file go to
- * Window>Preferences>Java>Code Generation>Code and Comments
+ * Copyright (c) Projektgruppe P30 Uni Oldenburg Germany
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; see the file COPYING.  If not, write to
+ * the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+ *
+ *
  */
 package org.liabolo.client.offline.forms;
 
@@ -33,13 +47,29 @@ import org.liabolo.client.offline.common.WaitDialog;
 import org.liabolo.common.Configurator;
 import org.liabolo.common.IndividualList;
 
+/**
+ * @author Jurij Henne
+ *
+ * This is an impementation of  "add new ind. list" and "edit ind. list" forms. The user can add new ind.list to database.
+ * The same class is used to edit existing ind.lists. 
+ */
+
 public class ListForm extends DefaultForm implements  ActionListener, KeyListener
 {
+	/** Description of the ind.list. Usually its just the name of the ind.list*/
 	private JTextField listName;
+	/** Description of the ind.list.*/
 	private JTextArea listDescription;
+	/** Instance of ind.list, that should be edit */
 	private IndividualList editedList;
+	/** Row of the  "browse list" table, that should be edit. Used for update purposes. See also BrowseList.java. */
 	private int editedRow;
 
+	/**
+	 * Creates a new "add new ind.list"-form 
+	 * @param newListIndex specifies a unique 'position' of  the form in form holder-array 
+	 * @param formLocation Location of the form on application desktop
+	 */
 	public ListForm(int newListIndex, Point formLocation)
 	{
 		super(newListIndex, Gui.lang.getString("add_list"),"images/mylists.png");
@@ -48,6 +78,13 @@ public class ListForm extends DefaultForm implements  ActionListener, KeyListene
 		this.addFormFrame(formLocation);
 	}
 	
+	/**
+	 * Creates a new "editlist"-form. 
+	 * @param newListIndex specifies a unique 'position' of  the form in form holder-array 
+	 * @param editedList Instance of the IndividualList object, that should be edit.
+	 * @param row Row of the  "browse branch" table, that should be edit
+	 * @param formLocation Location of the form on application desktop
+	 */
 	public ListForm(int newListIndex, IndividualList editedList, int row,  Point formLocation)
 	{
 		super(newListIndex, Gui.lang.getString("edit_list"),"images/edit.png");
@@ -59,6 +96,7 @@ public class ListForm extends DefaultForm implements  ActionListener, KeyListene
 		this.addFormFrame(formLocation);
 	}
 	
+	/** Implemetation of inherited method. Returns the layouted  content panel of the form */
 	public JPanel showFormContent()
 	{	
 		JPanel root = getRootPanel(); //inherited		
@@ -131,6 +169,10 @@ public class ListForm extends DefaultForm implements  ActionListener, KeyListene
 		return root;
 	}
 	
+	/**
+	 * Saves new or edited ind.list to database
+	 *
+	 */
 	private void saveForm()
 	{
 		boolean ok = false;
@@ -176,6 +218,10 @@ public class ListForm extends DefaultForm implements  ActionListener, KeyListene
 		}
 	}
 	
+	/**
+	 * Takes care of user input errors. It is only a dummy and not proper implemented yet
+	 * @return
+	 */
 	private boolean legalInput()
 	{
 		if(listName.getText().equals(""))
@@ -187,6 +233,7 @@ public class ListForm extends DefaultForm implements  ActionListener, KeyListene
 			return true;	
 	}
 	
+	/** Invoked when an action occurs. */
 	public void actionPerformed(ActionEvent e) 
 	{
 		String actionCmd = e.getActionCommand();
