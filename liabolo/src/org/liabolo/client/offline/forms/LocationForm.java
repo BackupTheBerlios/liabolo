@@ -1,8 +1,22 @@
 /*
- * Created on 20.02.2004
+ * Created on 15.01.2004
  *
- * To change the template for this generated file go to
- * Window>Preferences>Java>Code Generation>Code and Comments
+ * Copyright (c) Projektgruppe P30 Uni Oldenburg Germany
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; see the file COPYING.  If not, write to
+ * the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+ *
+ *
  */
 package org.liabolo.client.offline.forms;
 
@@ -20,9 +34,7 @@ import java.beans.PropertyVetoException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -35,14 +47,28 @@ import org.liabolo.client.offline.common.WaitDialog;
 import org.liabolo.common.Configurator;
 import org.liabolo.common.Location;
 
+/**
+ * @author Jurij Henne
+ *
+ * This is an impementation of  "add new location" and "edit location" forms. The user can add new location to database.
+ * The same class is used to edit existing locations. 
+ */
+
 public class LocationForm extends DefaultForm implements ActionListener, KeyListener
 {
+	/** Description of the location. Usually its just the name of the location*/
+    private JTextField locationName;
+    /** Description of the location. */
+    private JTextArea locationDescription;
+    /** Instance of location, that should be edit */
+    private Location editedLocation;
 
-	private JTextField locationName;
-	private JTextArea locationDescription;
-	private Location editedLocation;
-
-	public LocationForm(int  locationIndex, Point formLocation)
+    /**
+	 * Creates a new "add new location"-form 
+	 * @param locationIndex specifies a unique 'position' of  the form in form holder-array 
+	 * @param formLocation Location of the form on application desktop
+	 */
+    public LocationForm(int  locationIndex, Point formLocation)
 	{
 		super(locationIndex, Gui.lang.getString("add_location"),"images/location.png");
 		this.locationName = new JTextField(25);
@@ -50,6 +76,12 @@ public class LocationForm extends DefaultForm implements ActionListener, KeyList
 		this.addFormFrame(formLocation);
 	}
 	
+    /**
+	 * Creates a new "editbranch"-form. Note: the abreviation of a branch can not be changed
+	 * @param locationIndex specifies a unique 'position' of  the form in form holder-array 
+	 * @param editedLocation Instance of the location object, that should be edit.
+	 * @param formLocation Location of the form on application desktop
+	 */
 	public LocationForm(int locationIndex, Location editedLocation, Point formLocation)
 	{
 		super(locationIndex, Gui.lang.getString("edit_location"),"images/edit.png");
@@ -60,7 +92,8 @@ public class LocationForm extends DefaultForm implements ActionListener, KeyList
 		this.addFormFrame(formLocation);
 	}
 
-	public JPanel showFormContent()
+	/** Implemetation of inherited method. Returns the layouted  content panel of the form */
+    public JPanel showFormContent()
 	{	
 		JPanel root = getRootPanel(); //inherited		
 		
@@ -130,7 +163,11 @@ public class LocationForm extends DefaultForm implements ActionListener, KeyList
 		return root;
 	}
 	
-	private void saveForm()
+    /**
+	 * Saves new or edited location to database
+	 *
+	 */
+    private void saveForm()
 	{
 		boolean ok = false;
 		if(legalInput())
@@ -178,6 +215,10 @@ public class LocationForm extends DefaultForm implements ActionListener, KeyList
 		}
 	}
 	
+    /**
+	 * Takes care of user input errors. It is only a dummy and not proper implemented yet
+	 * @return
+	 */
 	private boolean legalInput()
 	{
 		if(locationName.getText().equals(""))
@@ -189,6 +230,7 @@ public class LocationForm extends DefaultForm implements ActionListener, KeyList
 			return true;	
 	}
 	
+	/** Invoked when an action occurs. */
 	public void actionPerformed(ActionEvent e) 
 	{
 		String actionCmd = e.getActionCommand();
