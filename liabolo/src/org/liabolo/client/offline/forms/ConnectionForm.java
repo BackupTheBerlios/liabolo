@@ -1,5 +1,5 @@
 /*
- * Created on 15.01.2004 by Easy (Stefan Willer)
+ * Created on 15.01.2004
  * 
  * Copyright (c) Projektgruppe P30 Uni Oldenburg Germany
  * 
@@ -47,22 +47,22 @@ import org.liabolo.common.Connection;
 /**
  * @author Jurij Henne
  *
- * This is an impementation of  "add new connection" and "edit branch" forms. 
+ * This is an impementation of  "add new connection" and "edit connection" forms. 
  * The user can add new connection to config file.
  * The same class is used to edit existing connection. 
  */
 
 public class ConnectionForm extends DefaultForm implements ActionListener, KeyListener {
 
-	/** Necessary input fields */
+	/** Necessary input field */
 	private JTextField connName;
-	/** Necessary input fields */
+	/** Necessary input field */
 	private JTextField connDB_uri;
-	/** Necessary input fields */
+	/** Necessary input field */
 	private JTextField connUser;
-	/** Necessary input fields */
+	/** Necessary input field */
 	private JTextField connPass;
-	/** Necessary input fields */
+	/** Necessary input field */
 	private JTextField connDriver;
 	/** Indicates if the new connection should be action on connect */
 	private JCheckBox active;

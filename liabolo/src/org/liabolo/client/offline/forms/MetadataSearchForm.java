@@ -1,8 +1,22 @@
 /*
- * Created on 08.03.2004
- *
- * To change the template for this generated file go to
- * Window>Preferences>Java>Code Generation>Code and Comments
+ * Created on 15.01.2004
+ * 
+ * Copyright (c) Projektgruppe P30 Uni Oldenburg Germany
+ * 
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * this program; see the file COPYING. If not, write to the Free Software
+ * Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ *  
  */
 package org.liabolo.client.offline.forms;
 
@@ -53,7 +67,7 @@ import org.liabolo.common.MetaData;
 
 public class MetadataSearchForm extends DefaultForm implements ActionListener,ChangeListener, ListSelectionListener, KeyListener
 {
-
+	/** Panel for swithing between different search-modes */
 	private JTabbedPane tabbedPane;
 	private int selectedIndex;
     private JCheckBox creatorCB;
@@ -64,6 +78,7 @@ public class MetadataSearchForm extends DefaultForm implements ActionListener,Ch
 	/** Available branches as multiple interval selection list */
 	private JList branches;
 	private JCheckBox selectAll;
+	/** Input field for search string */
     private JTextField searchString = new JTextField(20);
 
     

@@ -1,5 +1,5 @@
 /*
- * Created on 15.01.2004 by Easy (Stefan Willer)
+ * Created on 15.01.2004
  *
  * Copyright (c) Projektgruppe P30 Uni Oldenburg Germany
  *

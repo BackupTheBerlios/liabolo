@@ -1,3 +1,23 @@
+/*
+ * Created on 15.01.2004
+ *
+ * Copyright (c) Projektgruppe P30 Uni Oldenburg Germany
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; see the file COPYING.  If not, write to
+ * the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+ *
+ *
+ */
 package org.liabolo.client.offline.forms;
 
 import info.clearthought.layout.TableLayout;
@@ -47,7 +67,7 @@ import org.liabolo.common.Configurator;
 /**
  * @author Jurij Henne
  *
- * This is an impementation of  "browse branches" - form. The user gets a full, scrollable list of available branches
+ * This is an impementation of  "browse branches" - form. The user gets a  scrollable list of available branches
  * and can perform some usefull actions on selected entries.
  */
 public class BrowseBranch extends DefaultForm implements ActionListener, KeyListener, MouseListener {

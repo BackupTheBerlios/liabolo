@@ -1,8 +1,22 @@
 /*
- * Created on 28.05.2004
- *
- * To change the template for this generated file go to
- * Window>Preferences>Java>Code Generation>Code and Comments
+ * Created on 15.01.2004
+ * 
+ * Copyright (c) Projektgruppe P30 Uni Oldenburg Germany
+ * 
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * this program; see the file COPYING. If not, write to the Free Software
+ * Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ *  
  */
 package org.liabolo.client.offline.forms;
 
@@ -42,6 +56,14 @@ import org.liabolo.common.Branch;
 import org.liabolo.common.ExcelSheet;
 import org.liabolo.exception.ImportFailureException;
 import org.liabolo.repository.Library;
+
+/**
+ * @author Jurij Henne
+ *
+ * Implementation of the import form. The user can import his excel-files into local
+ * database.
+ * 
+ */
 
 public class ImportForm extends DefaultForm implements ActionListener 
 {	

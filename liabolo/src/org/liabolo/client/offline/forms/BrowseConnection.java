@@ -1,8 +1,22 @@
 /*
- * Created on 02.06.2004
+ * Created on 15.01.2004
  *
- * To change the template for this generated file go to
- * Window>Preferences>Java>Code Generation>Code and Comments
+ * Copyright (c) Projektgruppe P30 Uni Oldenburg Germany
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; see the file COPYING.  If not, write to
+ * the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+ *
+ *
  */
 package org.liabolo.client.offline.forms;
 
@@ -48,10 +62,10 @@ import org.liabolo.common.Configurator;
 import org.liabolo.common.Connection;
 
 /**
- * @author Admin
+ * @author Jurij Henne
  *
- * To change the template for this generated type comment go to
- * Window>Preferences>Java>Code Generation>Code and Comments
+ * This is an impementation of  "browse connection" - form. The user gets a  scrollable list of available connections
+ * and can perform some usefull actions on selected entries.
  */
 public class BrowseConnection extends DefaultForm implements ActionListener, KeyListener, MouseListener {
 
