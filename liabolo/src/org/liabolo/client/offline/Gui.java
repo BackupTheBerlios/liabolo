@@ -79,6 +79,8 @@ public class Gui extends JFrame{
 	public static boolean showConfirmations;
 	/** Indicates if toolbar should be shown.*/
 	public static boolean showToolbar;
+	/** Instance of the property object */
+	//private static Properties guiProperty = new Properties();
 	/** Path to config file */
     public static String configMainDir;
 	/** Path to log file */
@@ -87,7 +89,6 @@ public class Gui extends JFrame{
     public static String language;
     /** Indicates if the automatic connections in preferences is selected*/
     public static boolean connect;
-    /** Indicates if the automatic update in preferences is selected*/
     public static boolean automaticUpdate;
     
     //private static Object [] myConnections;
