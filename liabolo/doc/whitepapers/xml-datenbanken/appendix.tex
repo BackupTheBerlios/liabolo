@@ -1,0 +1,30 @@
+\chapter{Erklärung spezieller Dokumente}
+\label{appendix}
+Die folgenden Listings zeigen den Aufbau von Basisdokumente in Liabolo.
+
+\section{Standorte}
+	Standorte werden in Liabolo getrennt verwaltet und in den jeweiligen Medientypen referenziert, wobei die Referenzierung manuell aufgelöst wird und somit nciht konsistenzerhaltend ist. Daher ist in Liabolo1.0 die Möglichkeit des Entfernens von Standorten unterdrückt.\\
+	
+	Standorte werden durch einen Namen und zugehörige Beschreibung in Listing (\ref{lst:locationsDesc})spezifiziert.
+	\lstinputlisting[style=xml,title=Beschreibung der Standorte, label=lst:locationsDesc,caption=Beschreibung derStandorte]{listings/locations.xml}
+
+\section{Individuallisten}
+	Individuallisten ermöglichen dem Benutzer eine Übersicht und schnellen Zugriff auf thematisch eng verwandte Dokumente, wie z.B. die Literatur, die für eine Diplomarbeit verwendet wird. Listing (ref{lst:indlistDesc}) besitzt einen Namen mit zugehöriger Beschreibung und für jeden Medieneintrag ebenfalls neben dem Namen eine Beschreibung(z.B. wofür die Literatur eingesetzt wird).
+	\lstinputlisting[style=xml,title=Aufbau einer Individualliste, label=lst:indlistDesc,caption=Aufbau einer Individualliste]{listings/indlist.xml}
+
+\section{Medientypen}
+Für jeden Medientyp, wird in der Datenbank ein XML-Dokument mit dem Namen des Medientypen angelegt. Ein Medientyp enthält eine Anzahl an Metadaten, die aus der Menge aller verfügbaren Metadaten, die Liabolo bereitstellt ausgewählt werden kann. Jeder Metadaten-Eintrag verfügt über die Attribute\\
+\begin{itemize}
+	\item{name: Der benutzerdefinierte Name des Metadateneintrages}
+	\item{desc: Die zugehörige Beschreibung}
+	\item{DCid: Das Mapping auf einen Basis-Metadaten-Typ, welche von Liabolo vorgegeben werden. Damit soll die Möglichkeit offen gehalten werden, daß z.B. mehrere Autoren eines Buches angezeigt werden, sie sich jeddoch immer auf den Basistyp 'author' beziehen}
+	\item{type: Gibt an, ob es sich um eine Textzeile, einen Textbereich, etc. handelt. Wird zur Darstellung in der Gui benötigt.}
+\end{itemize}
+mit denen ein Eintrag näher spezifiziert werden kann.\\
+Listing (\ref{lst:bookDesc}) zeigt die Struktur eines Buches auf.
+	\lstinputlisting[style=xml,title=Aufbau einer Buchbeschreibung, label=lst:bookDesc,caption=Aufbau einer Buchbeschreibung]{listings/book.xml}
+
+\newpage
+\section{Branches}
+Das Listing(\ref{lst:branchesDesc}) zeigt alle verfügbaren branches mit deren Beschreibung auf.
+	\lstinputlisting[style=xml,title=Beschreibung der verfügbaren Branches, label=lst:branchesDesc,caption=Beschreibung der verfügbaren Branches, firstline=1, lastline=20 ]{listings/branches.xml}

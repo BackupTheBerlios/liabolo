@@ -1,0 +1,199 @@
+\section{Signaturbildung}%Thorsten  
+\index{Signaturbildung}
+\subsection{Signaturbildung im Bibliothekswesen}
+
+Im Bibliothekswesen bezeichnet die Signatur \index{Signatur} den Standort eines Buches \index{Buch} in der \index{Bibliothek} 
+Bibliothek \cite{signatur_begriff}.
+Eine solche Signatur ist eineindeutig: es gibt f\"ur \textit{jedes} Exemplar eines Buches eine
+eindeutige Signatur, selbst wenn von dem Buch mehrere identische Kopien existieren.
+
+Zur Bildung einer solchen Signatur gibt es verschiedene Ans\"atze; an dieser Stelle
+sollen zwei grob beschrieben werden: die Signaturbildung anhand der \textit{Bremer Systematik} \index{Bremer Systematik}und der 
+\textit{Regensburger Verbundklassifikation}. \index{Regensburger Verbundklassifikation}
+
+\subsubsection{Bremer Systematik}
+
+Die Bremer Systematik oder auch Bremer Fachsystematik kommt zum einen (nat\"urlich) an
+der Staats- und Universit\"atsbibliothek Bremen, aber auch an der hiesigen Bibliothek der
+Carl von Ossietzky Universit\"at Oldenburg zum Einsatz. Anhand der Fachsystematik wird
+die Signatur gebildet, indem ein K\"urzel des Fachs als zentrales Element in die Signatur
+\"ubernommen wird. Die Bremer Fachsystematik ist online zu finden unter \cite{fachsystematik}.
+An der Bibliothek der Universit\"at Oldenburg wird die Signatur mit Hilfe der Systematik wie
+folgt gebildet:
+
+\begin{itemize}
+
+\item drei Buchstaben, die das Fach angeben (``Fachzuweisung''),
+\item einer Zahlenkombination, die die Systemstelle (bzw. das Fachgebiet)
+    innerhalb des Faches angibt (``systematische Notation'') und
+\item einer ``Aufstellungsnummer'', bestehend aus zwei Buchstaben und vier Ziffern.
+
+\end{itemize}
+
+\noindent \textbf{Beispiel:} Bsp: inf 724 CK 5213 
+
+
+
+\subsubsection{Regensburger Verbundklassifikation}
+
+Als Studenten der Carl von Ossietzky Universit\"at war es f\"ur uns naheliegend, die Bremer Systematik
+zu verwenden. Dennoch wurde im Vorfeld auch die Signaturbildung anhand der Regensburger Verbundklassifikation 
+betrachtet, die der Vollst\"andigkeit halber hier kurz beschrieben wird. 
+Eine Online-Version der Klassifikation findet sich unter \cite{rvk}.
+Die Signatur besteht aus \cite{sig_regensburg}:
+\begin{itemize}
+\item einem Lokalkennzeichen (2-3 Ziffern), gefolgt von einem Schr\"agstrich ('/'),
+\item einer Systemstelle (2 Grobuchstaben + mehrstellige Zahl), die sich anhand der Klassifikation ergibt
+\item und einem individualisierenden Element (Cluster-Sanborn-Notation bzw. 
+   Erscheinungsjahr, ggf. noch Auflage, Band, Exemplar).
+\end{itemize}
+
+\noindent \textbf{Beispiel:} 17/GE 4001 B724 (9) -2 +3
+
+\subsection{Signaturbildung im Projekt}
+
+\subsubsection{Allgemeines}
+
+Als Signatur zur Kennzeichnung der verschiedenen Exemplare des
+Bibliotheksbestand orientieren wir uns an der sogenannten "'Bremer Systematik"',
+indem wir die von ihr verwendeten Fachk\"urzel (bzw. Fachzuweisungen) 
+als Voreinstellung f\"ur die Kategorien \index{Kategorie}anbieten.
+Die von uns verwendete Signatur setzt sich wie folgt zusammen:
+
+\begin{itemize}
+
+    \item drei Buchstaben, die das Fach angeben ("'Fachzuweisung"'),
+
+    \item gefolgt von einem Unterstrich ("'\_"'),
+    
+    \item und einer laufenden Nummer von 1 bis 999999999, die hexadezimal dargestellt wird, also
+      bis 2540BE3FF. Durch die hexadezimale Darstellung soll die Lesbarkeit der Nummer 
+      erh\"oht werden.
+    
+\end{itemize}
+
+
+
+
+\subsubsection{Algorithmus zur Signaturbildung} \index{Signaturbildung}
+    
+    \begin{enumerate}
+        
+        
+          
+        \item Bestimme das Fachgebiet \index{Fachgebiet} anhand der Bremer Systematik (oder sonstiger zur
+          Verf\"ugung stehenden Kategorien) in Form eines
+          K\"urzels aus drei Kleinbuchstaben
+
+        \item H\"ange einen Unterstrich an das K\"urzel an
+        
+        
+        \item Bestimme die fortlaufende Nummer des Gesamtbestandes wie folgt:
+          \begin{itemize}
+            
+          \item Die erste Nummer des Bestands ist 000000001.
+          
+          \item Die letzte verwendete Nummer (die dem System bekannt sein muss) wird um
+              eins erh\"oht und an die bisherige Signatur angef\"ugt.
+          
+          \end{itemize}
+
+   \end{enumerate}
+\textit {Hinweis:} Konsequenz des obigen Algorithmus ist, dass jedes Objekt der Datenbank 
+eine eigene Signatur erh\"alt, also z.B. B\"ucher, die mit mehreren Exemplaren im Bestand
+vorhanden sind, besitzen jeweils eine individuelle Signatur.
+
+\subsection{URI, URN}
+
+\subsubsection{Was sind URIs, URLs und URNs?}
+
+URI \index{URI} ist die Abk\"urzung f\"ur \textit{Uniform Resource Identifier}. Ein URI ist eine kompakte
+Zeichenkette zur Identifizierung einer abstrakten oder physikalischen Ressource \cite{rfc2396}.
+Eine Ressource \index{Ressource} kann alles sein, was einen Namen hat oder beschrieben werden kann, z.B. Dokumente, 
+Bilder oder ein Service.
+Weiterhin versteht man unter URI den Oberbegriff f\"ur die Unterarten \textit{Uniform Resource Locator}(URL)
+und \textit{Uniform Resource Name}(URN). 
+
+URLs \index{URI} identifizieren eine Ressource \"uber den Ort (im WWW), an dem sie zu
+finden ist, nicht \"uber einen Namen oder Attribute \cite{rfc2396}. Sie stellen also 
+gewisserma{\ss}en einen Zeiger auf die Ressource dar.
+
+URNs \index{URN} sollen als best\"andige, ortsunabh\"angige Bezeichner f\"ur Ressourcen dienen \cite{rfc2141}. Eine URN
+bezeichnet eine Ressource eindeutig, d.h. ist sie mehrfach im Netz vertreten, besitzt sie immer
+denselben URN, wo hingegen sie mehrere unterschiedliche URLs hat.
+
+\subsubsection{Syntax}
+
+\paragraph{Uniform Resource Identifier}
+
+Die komplette Syntax von URIs ist im \index{Request for Comment} 'Request for Comment' (RFC) 2396 \cite{rfc2396} angegeben. 
+An dieser Stelle wird
+nur ansatzweise auf einige wichtige Merkmale eingegangen.
+
+\begin{itemize}
+
+\item Grunds\"atzlich sind nur Zeichen des US-ASCII Zeichensatzes erlaubt. Davon abweichende Zeichen k\"onnen
+  mit Hilfe des ``Escape''-Zeichens '\%' benutzt werden.
+
+\item Jeder URI beginnt mit dem Namen eines Schemas, bestehend aus einer Zeichenfolge, die mit ':' abschliesst, 
+z.B. ``http:'' oder ``ftp:''.
+
+\item Ein URI ist wie folgt aufgebaut (Auszug):
+
+  \begin{verbatim}
+    URI       = scheme ":" hier_part [ "?" query] 
+                ["#" fragment]
+    
+    hier_part = net_path | abs_path | rel_path
+    
+    net_path  = "//" authority [ abs_path ]
+    abs_path  = "/" path_segments
+    rel_path  = rel_segments [ abs_path ]
+
+    ...
+
+  \end{verbatim}
+
+\end{itemize}
+
+\noindent \textbf{Beispiel:} $\underbrace{foo}_{scheme}:\underbrace{//example.com:8042}_{authority}
+\underbrace{/over/there}_{path}?\underbrace{name=ferret}_{query}\#\underbrace{nose}_{fragment}$
+
+
+\paragraph{Uniform Resource Name}
+
+Alle URNs haben die gleiche Syntax \cite{rfc2141}:
+
+\begin{verbatim}
+
+  <URN> ::= "urn:" <NID> ":" <NSS>
+
+\end{verbatim}
+
+NID bedeutet \textit{Namespace Identifier}. Ein Namespace (Namensraum) ist eine Menge von einheitlichen
+Bezeichnern. Ein NID beginnt mit einem Buchstaben oder einer Zahl gefolgt von einer Folge aus 
+Buchstaben, Zahlen und dem '-' Zeichen. Gro{\ss} und Kleinschreibung wird nicht unterschieden.
+
+NSS bedeutet \textit{Namespace Specific String}. Er besteht aus Buchstaben, Zahlen, reservierten
+Zeichen ('\%', '/', '?', '\#') und weiteren Sonderzeichen\footnote{f\"ur Details siehe \cite{rfc2141}}.
+Bei den reservierten Zeichen ist zur Zeit nur '\%' gebr\"auchlich, die anderen wurden reserviert f\"ur
+eine zuk\"unftige Nutzung, sollen aber im Moment nicht benutzt werden.
+
+\noindent \textbf{Beispiel:} $\underbrace{urn}_{scheme}:\underbrace{example:animal:ferret:nose}_{path}$
+
+
+\subsection{Kategorisierung von Dokumenten}
+
+Eine Kategorie \index{Kategorie} besteht in \textit{Tooliban} aus einem (die Kategorie beschreibenden) Wort und einer
+aus diesem Wort abgeleiteten Abk\"urzung, die aus drei Kleinbuchstaben besteht und in die Signatur \index{Signatur}
+von Objekten \index{Objekt} aufgenommen wird, die dieser Kategorie zugeordnet werden. \textit{Tooliban} enth\"alt 
+eine vorgefertigte Liste von Kategorien. Diese Kategorien entsprechen den F\"achern und Fachk\"urzeln 
+der \index{Bremer Systematik} 'Bremer Systematik'. Zus\"atzlich gibt es noch eine Kategorie 'not available' f\"ur alle
+Objekte, die keiner Kategorie zugeordnet werden k\"onnen.
+
+Des Weitern ist es Personen mit administrativem Zugang zur Datenbank gestattet, weitere Kategorien 
+hinzuzuf\"ugen. Das Entfernen von Kategorien ist allerdings nur erlaubt, wenn noch kein Objekt (z.B. Buch)
+innerhalb dieser Kategorie erstellt wurde. Der Grund daf\"ur ist, dass nach der Erstellung eines 
+Eintrages eine Signatur gebildet wird, die das Kategorienk\"urzel beinhaltet. Um die Eineindeutigkeit
+der Signatur zu gew\"ahrleisten, ist ein Entfernen der Kategorie nicht mehr m\"oglich.
+

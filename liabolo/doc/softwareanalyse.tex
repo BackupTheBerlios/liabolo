@@ -1,0 +1,105 @@
+        \section{Analyse bestehender Softwaresysteme}
+            Folgende Produkte sind hinsichtlich der Wiederwendung untersucht worden. Bei allen Produkten handelt es sich um eine \index{Open-Source}Open-Source-Implementierung.         
+            \subsection{Dspace}%Stefan
+                DSpace ist eine Plattform zur Erfassung und Beschreibung von digitalen Arbeiten. Es unterstützt die Verteilung und das Retrieval der Ressourcen über das WWW. Zur Zeit wird es in der Version 1.1.1 unter \url{http://sourceforge.net/projects/dspace/} zur Verfügung gestellt und steht unter der \textit{BSD Open Source License}\index{BSD License}. Als Entwicklungssprache wird Java verwendet. Das Backend stellt eine Postgres-Datenbank dar.
+                    \subsubsection{Daten-Modell}
+                        \index{DSpace}DSpace unterstützt durch das Datenmodell die Struktur einer Organisation.   Ausgehend   von einer \textit{Community}, die eine Organisation darstellt, werden   zusammenhängende Ressourcen in einer \textit{Collection} vereinigt. Eine \textit{Collection} besteht wiederum aus einer Menge von \textit{Item}s, die die   Basis der Archivierung von Ressourcen darstellen. Die physikalische Zusammengehörigkeit einzelner \textit{BitStreams}, die ein \textit{Item} physikalisch widerspiegeln, wird mittels Bitstream-Bundles zusammengefasst. Ausserdem besitzt jeder \textit{BitStream} ein bestimmtes Format.
+                        \paragraph{\index{Dublin Core} Dublin Core}
+                            Jedes \textit{Item} ist mit einer Menge an Dublin-Core-Elementen assoziiert. Es gibt drei verschiedene Arten von Metadaten:\\
+                            \begin{itemize}
+                                \item{Deskriptive Metadaten:}
+                                    dienen der Beschreibung von Ressourcen (im eigentlichen Sinne
+                                    '\index{Dublin Core} Dublin Core')
+                                \item{Administrative Metadaten:}
+                                    Daten zur Authorisierung von Benutzer, etc.
+                                \item{Strukurelle Metadaten:}
+                                    Daten über Angehörigkeit zu Collections, etc.
+                            \end{itemize}
+                        \begin{figure*}[!hbt]
+                            \begin{center}
+                                \includegraphics[scale=0.7]{images/data-model.png}
+                            \end{center}
+                            \caption{Daten-Modell}
+                            \label{fig:dspace_data_model}
+                        \end{figure*}\par
+                \subsubsection{Authorisierung}
+                    Es gibt zwei verschiedene Benutzergruppen :\\
+                    \begin{enumerate}
+                        \item{Administrator:}
+                            Keine Einschränkungen.
+                        \item{Anonymous:}
+                            standardmäßig nur Lese-Zugriff.
+                    \end{enumerate}
+                    Es können Zugriffs-Policies für bestimmte Objekte angelegt werden. Somit ist es also möglich über bestimmte Collections hinweg, Zugriffsbestimmungen zu schaffen.
+                \subsubsection{Handles}
+                    Ein \index{Handle}Handle ist ein wesentliches Feature von DSpace, welches es ermöglicht für Objekte eine eindeutige speicher- und ortsunabhängige ID zu vergeben, damit z.B. Zitate nicht ihr Zielobjekt verfehlen - im Falle einer Umsturkturierung der Webseite, auf der das zitierte Dokument liegt.
+                \subsubsection{Such- und Browserdienste}
+                    Das Auffinden von Ressourcen kann in drei verschiedenen Wegen angegangen werden :\\
+                    \begin{enumerate}
+                        \item{Über eine externe Referenz(Handle)}
+                        \item{Über eine Stichwortsuche}
+                        \item{Browsen über Title, Datum und Author}
+                    \end{enumerate}
+                \subsubsection{OAI-Support}
+                    DSpace unterstützt das \index{OAI-PMH}OAI-PMH(Open Archives Protokoll for Metadata Harvesting), welches unter \url{http://www.openarchives.org/OAI/openarchivesprotocol.html}\cite{oai_pmh} zu einzusehen ist. Es dient der anwendungsunabhängigen Interoperabilität.
+                \subsubsection{OpenURL-Support}
+                    DSpace unterstützt das \index{OpenURL}OpenURL-Protokoll, welche Beschreibung unter \url{http://www.sfxit.com/OpenURL/} zu finden ist. Das OpenURL-Protokoll ist ein Protokoll für die Interoperabilität zwischen einer Informations-Ressource und einer Service-Komponente, die lokale Dienste in einer offenen Umgebung bereitstellt.\cite{openURL}
+                \subsubsection{Quelle:} \url {http://dspace.org}            
+            		\subsubsection{Fazit}
+            			Dspace ist ein fortgeschrittenes Produkt, das viele gewünschte Anforderungen schon beinhaltet. Weiterhin hat es sich im Einsatz bewährt(\url{https://dspace.mit.edu/index.jsp}). Anhand der Dokumentation jedoch schien die Umstellung der zu verwendenden Postgres-DB auf eine XML-Datenbank als Backend relativ kompliziert. Ausserdem würde sich eine recht hohe Einarbeitungszeit ergeben, die u.U. der Komplexität des anzugehenden Vorhabens nicht gerecht wird. Der entgültige Entschluß fiel letztlich gegen Dspace als Basis-Produkt.
+            \subsection{Greenstone}%Maxim
+                Greenstone ist ein Software-Bundle, welches für die Erstellung und Verbreitung der Bibliothekscollections verwendet wird. Mit diesem Programm k{\"o}nnen
+		Collections, die aus verschiedensten Dokumenten (B{\"u}cher, Artikel, Video, Audio) bestehen, erstellt und verwaltet werden. Eine gew{\"o}hnliche digitale Bibliothek, die mit Greenstone erstellt wurde, enth{\"a}lt mehrere Collections, die unterschiedlich organisiert sind, obwohl sie viel gemeinsam haben. Dar{\"u}ber hinaus k{\"o}nnen Collections leicht erg{\"a}nzt und umstrukturiert werden.
+                \subsubsection{Suche nach Informationen}
+                    Es existieren mehrere M{\"o}glichkeiten, wie die Suche nach Informationen gestaltet werden kann. Es kann nach einzelnen W{\"o}rtern, die entweder im gesamten
+		    Text oder in bestimmten Teilen enthalten sind gesucht werden, sowie auch nach Titel oder einer bestimmten Thematik. Die {\"a}u{\ss}ere Seite jeder Collection enth{\"a}lt eine kurze {\"U}bersicht und die Information {\"u}ber die Struktur der Collection. Greenstone unterst{\"u}tzt die Volltextsuche, sowie auch die Indexsuche anhand der Metadaten. Diese Index werden w{\"a}hrend des Aufbauen der Collection erstellt.
+                \subsubsection{Formate}
+                    Greenstone unterst{\"u}tzt viele verschiedene Formate, die mit Hilfe der Plugins in ein standardisiertes Format {\"u}bersetzt werden: XML. Die Plugins die
+		    Greenstone bereits enth{\"a}lt sind die zum {\"U}bersetzen von einfachem Text, HTML, DOC, PDF sowie Usenet und E-Mail. Dar{\"u}ber hinaus k{\"o}nnen auch neue Plugins erstellt werden.
+                \subsubsection{Multimedia und Mehrsprachigkeit}
+                    Die Collections k{\"o}nnen Text, Bilder, Video und Audio Dateien enthalten. Diese sind entweder durch Links oder Metadaten miteinander verbunden, was die M{\"o}glichkeit zur Volltextsuche erleichtert. Greenstone benutzt den Unicode, was f{\"u}r die richtige Verarbeitung und Darstellung der verschiedenen Sprachen erforderlich ist. Beim Arbeiten mit Collections, die in unterschiedlichen Sprachen verfasst sind, werden die einzelne Dokumente automatisch in der richtigen Sprache dargestellt.
+                    \paragraph{Quelle:} \url{http://www.greenstone.org/cgi-bin/library}      
+
+            \subsection{DLP - Distributed Library Project}%Jurij
+            Distributed Library Project (kurz DLP) \index{DLP - Distributed Lybrary Project} ist eine Austauschplattform f{\"u}r B{\"u}cher, Videos und Tondokumente. \cite{DLP02}
+              \subsubsection{Installation} 
+          Im Normalfall ist eine Installation nicht notwendig. Im Internet existieren bereits mehrere DLP-Knoten, die so genannten Nodes, die nach dem Anlegen eines Benutzerkontos vollen Zugriff auf die wichtigsten Funktionen der Plattform erlauben. Alternativ lässt sich die Plattform auch in Form eines komprimierten Archivs herunterladen, auf eigenem Host installieren und als weiteren Knoten betreiben. 
+         \subsubsection{Benutzung und Funktionen} Unabhängig davon, ob man einen eigenen  Knoten einrichtet oder sich bei einem bereits bestehendem anmeldet, stehen den Benutzer folgende Funktionen zur Verfügung \cite{DLP02}:
+\begin{itemize}
+	\item Medien katalogisieren\\
+		Hierbei lassen sich  Bücher, Videos und Musik per Formular in eigene Listen aufnehmen und verwalten.
+	\item Leselisten\\
+		Mit dieser Funktion lassen sich Bücher verwandter Thematik zusammenfassen. 
+	\item Status-Kontrolle\\
+		Hier werden alle ausgeliehenen und entliehenen Medien auf einer Seite zusammengefasst.
+	\item Suche nach neuen Medien\\
+		Suchmaske nach Medien, die innerhalb des vorgegebenen Zeitraumes neu hinzugekommen sind. Zusätzlich Auflistung aller neuen Mitglieder für denselben Zeitraum.
+	\item Profil bearbeiten\\
+		Hier lassen sich die bei der Anmeldung angelegte Profildaten jederzeit editieren.
+	\item Benutzer suchen\\
+		Es ist möglich nach Benutzern mit gleichen Interessen, in der näheren Umgebung oder nach einem zutreffenden Profil zu suchen.
+	\item Bücher suchen\\
+		Die Bücher lassen sich nach Autor, Titel und Besprechung suchen. Die genannten Attribute lassen sich auch einzeln anwenden. Darüber hinaus existiert ein Formular
+		für die erweiterte Suche, wo weitere Attribute wie Gebiet, Eigentümer und die Entfernung spezifiziert werden können. Die Browser- bzw. Suchergebnis-Ansicht listet
+		die Ergebnisse mit Angabe des Besitzers, Autor und Titel des Buches, Verfügbarkeitsstatus' sowie der geografischen Entfernung zum Buch.
+	\item Empfohlene Bücher\\
+		Diese Funktion versucht eine auf der eigenen Büchern basierte Liste der Interessen des Benutzers zu erstellen. Je mehr Bücher dieser verfügbar macht, desto
+		bessere Ergebnisse werden erzielt.
+	\item Videos und Musik suchen\\
+		Die Suche nach Audio und Video gestaltet sich ähnlich. Abhängig vom Medientyp stehen dann unterschiedliche Attributeingabefelder bereit.
+\end{itemize}
+ \subsubsection{Fazit}Die Oberfläche ist unkompliziert und aufgeräumt gehalten. Sie l{\"a}sst sich intuitiv bedienen, weil wirklich nur die grundlegendsten Funktionen
+ implementiert wurden. Leider existiert kein Offline-Client. Um die Bücher verwalten zu können bzw.  nach Medien suchen zu können, muss sich der Benutzer online befinden. DLP
+ implementiert keinen OAI-Protokoll. Die Suche nach DC-konformen Metadaten ist nicht möglich. Die Daten eines Knoten werden in einer eigenen relationalen Datenbank in Form von
+ Tabellen gehalten. Dabei sind die Datenbestände weitgehen unabhängig. Sowohl Anzahl der angemeldeten Benutzer als auch die Informationen über angemeldete Medien beziehen sich
+ jeweils nur auf den Knoten auf welchem der Benutzer gerade aktiv ist. Für jeden neuen Knoten ist eine weitere Registrierung notwendig. Somit wird es unmöglich, die
+ Zusammenfassung aller knotenübergreifenden Medien und Benutzer abzufragen.
+                         \begin{figure*}[!hbt]
+                            \begin{center}
+                                \includegraphics[scale=0.5]{images/dlp.png}
+                            \end{center}
+                            \caption{DLP-Oberfläche}
+                            \label{fig:dlp-desktop}
+                        \end{figure*}\par
+                        
+                \subparagraph{Quelle:} \url {http://www.thoughtcrime.org/software/dlp/}

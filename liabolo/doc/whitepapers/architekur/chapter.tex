@@ -1,0 +1,129 @@
+\chapter{Architektur}
+
+\section{Einleitung}
+\label{chap:introduction}
+Die Darstellung der Architektur von Liabolo soll in den folgenden Seiten aufgezeigt werden. Angefangen mit einer Grobarchitektur, in der wesentliche Ansätze konzeptionell vorgestellt werden, folgt die Erklärung der Einteilung in eine Paketstruktur. Abschliessend werden wichtige Klassen detailiert beschrieben und Hilfsklassen kurz angesprochen und in Zusammenhang gebracht. Insgesamt sollte dem Leser der Einstieg in die Entwicklung erleichtert bzw. das Verständnis der Zusammenhänge bewusst werden.
+
+%\section{Konzepte}
+
+%	\subsection{Thick-Client}
+%	\label{sec:thick_client}
+	
+%	\subsection{Dispatcher/Wrapper-Architekur}
+%	\label{sec:wrapper}
+	
+%		\subsubsection{Kapselung}
+%		\label{sec:kapselung}
+		
+%		\subsubsection{Clientaustauschbarkeit durch definierte Schnittstellen}
+%		\label{sec:schnittstellen}
+	
+%	\section{Externe Anpassungen durch Apache AXIS als Web-Services}
+%	\label{sec:axis}
+	
+\section{Grobarchitektur}
+	Liabolo zeichnet sich durch einen modularen Aufbau mit der Absicht der einfachen Weiterentwicklung aus. Es ist sowohl auf Eigenständigkeit als auch auf Integration bestehender Bibliotheken ausgelegt. Daher enthält Liabolo eine integrierte Datenbank, um u.a. als Home-Anwendung ohne Netzwerkzugang eine Literaturdatenbank darzustellen. Weiterhin ist es jedoch möglich mehrere Bibliotheken einzubinden, unabhängig von deren Datenhaltung. Als einzige Vorraussetzung an eine zu integrierende Bibliothek sind folgende Eigenschaften neben einer Implementierung der Bibliotheksschnittstelle(\textit{org.liabolo.repository.Library}) zu stellen:\\
+	\begin{itemize}
+		\item{Es sollte die Möglichkeit gegeben sein, eine strukturierte Einteilung der Bibliothekseinträge zu gewährleisten. Unter Liabolo werden hiermit branches bezeichnet, die eine Gliederung von Einträgen in Fachbereiche bewirken.}
+		\item{Standorte sollten zur Spezifizierung des aktuellen Bibiliothekseintrages berücksichtigt werden}
+		\item{Ein Benutzermanagement würde die Verteilung von Rechten vereinfachen(ist jedoch nicht zwingend notwendig, da in Liabolo1.0 nicht eingebunden)}
+	\end{itemize}
+	Die Darstellungslogik ist von der verarbeitenden Logik getrennt, um eine möglichst leichte Erstellung einer Oberfläche zu ermöglichen. In der Version Liabolo1.0 ist ein Java-Standalone-Client\cite{java} integriert und für die Zukunft eine Erstellung einer Web-Anwendung angedacht. Abbildung (\ref{fig:grobarchitektur}) veranschaulicht diese Grobarchitektur. Um bestehende Bibliotheken mit einer Liabolo-Schnittstelle on-the-fly einzubinden ist eine Registrierung angedacht, die jedoch noch nicht umgesetzt wurde. Diese Registrierung soll die Möglichkeit bieten über SOAP bestehende Einträge von öffentlichen Bibliotheken mit all den nötigen Verbindungsdaten abzufragen. Weiterhin sollte es möglich sein, neue Bibliotheken zu registrieren und somit für die Öffenlichkeit nutzbar zu machen. Eine Authentifizierung ist bisher nicht bedacht bzw. erwünscht.
+	
+		\begin{figure*}[!htb]
+				\begin{center}
+							\includegraphics[width=0.60\textwidth]{images/grobarchitektur.png}
+				\end{center}
+	\caption{Grobarchitektur des Liabolo-Systems}
+				\label{fig:grobarchitektur}
+		\end{figure*}\par  
+		
+\section{Paketstruktur}
+	Liabolo besteht aus einer Menge kleinerer Pakete, die dem Paket \textit{liabolo.org} untergeordnet sind. Die Einteilung soll folgende Struktur vermitteln:\\
+	 Die Darstellungssicht ist von der Logikschicht und der Datenhaltungsschicht gekapselt. Weiter werden Junit-Testklassen\cite{junit}, Ausnahmebehandlungen, Internationalisierung und Hilfsklassen gekapselt. Für die Zukunft ist ein Paket names \textit{registry} eingeplant, das eine Registrierung zur Integration von Bibliotheken in ein Netzwerk realisieren soll. Die wesentlichen drei Pakete, die dem MVC-Konzept\footnote{MVC: Model-View-Control: Einteilung der Architektur in Datenmodell, Logikschicht und Darstellungsschicht.Näheres siehe unter \url{http://en.wikipedia.org/wiki/MVC}} nachgeahmt sind, sind \textit{client}(View), \textit{service}(Control) und \textit{repository}(Model). Die Abb.(\ref{fig:paketstruktur}) zeigt alle Pakete in einem Zusammenhang.
+	\begin{figure*}[!ht]
+			\begin{center}
+						\includegraphics[width=0.90\textwidth]{images/paketstruktur.png}
+			\end{center}
+	\caption{Aufbau der Paketstruktur}
+			\label{fig:paketstruktur}
+	\end{figure*}\par  
+		
+\section{Feinarchitektur}
+	Der Abschnitt Feinentwurf beschäftigt sich mit der etwas detailiertern Betrachtung der entworfenen Klassen, wobei der Fokus auf Liabolo bestimmende Klassen gelegt wird. Der Vollständigkeit halber werden jedoch sämtliche Klassen kurz angesprochen.Es liegt zur Zeit eine 2-Tier-Architektur vor, die jedoch durch die sturkturelle Drei-Teilung mit vertrebarem Aufwand in eine 3-Tier-Architekur überführt werden kann.
+	\subsection{Frontend}
+		Die Feinarchitektur mit Klassenbeschreibung wird separat in dem Dokument \textit{GUI-Architektur} behandelt und kann daher nur verwiesen werden\cite{guiArchitektur}. Der Vollständigkeit halber wird der Abschnitt jedoch aufgeführt.
+	
+	\subsection{Backend}		
+		\subsubsection{org.liabolo.service.Dispatcher}
+			Die Klasse \textit{org.liabolo.service.Dispatcher} bildet die Schnittstelle der Darstellungsschicht zu den verschiedenen verbundenen Bibliotheken. Sie liefert als Schnittstelle clientseitig angepasst Methoden und delegiert diese Aufrufe an die spezifische Funktionalität der entsprechenden Bibliotheken(siehe Abb(\ref{fig:classBackend})). Der Dispatcher ist als Singleton\cite{designPattern} angedacht, so daß pro clientseitige Virtual Machine jeweils nur eine Dispatcher-Instanz existieren kann. Diese Instanz ist somit von der Darstellungsschicht völlig entkoppelt.\\
+	
+	\newpage
+		\begin{figure*}[!htb]
+				\begin{center}
+							\includegraphics[width=1.00\textwidth]{images/backendNoAss1.jpg}
+				\end{center}
+	\caption{Klassendiagramm des Backends ohne Assoziationen zu Hilfsklasssen}
+				\label{fig:classBackend}
+		\end{figure*}\par  
+
+			Es sollen nun wesentliche Funktionen im Kontext der Anwendung erklärt werden. Teilen wir zunächst die Funktionalität in Anwendunsszenarien und ordnen diesen die entsprechenden Funktionen zu:\\
+			\paragraph{Suchen}
+				Die Suchfunktionalität wird durch die Methoden\\
+				\begin{itemize}
+					\item{search(String xpath)}
+					\item{search(short[] types, String pattern)}
+					\item{search(String pattern)}
+				\end{itemize}
+				bereitgestellt. Wobei die erste Methode prinzipiell grenzenlose Suchmöglichkeiten über die Wahl eines XPATH-Ausdruckes darstellt, ist mit der zweite und dritten Methode die Möglichkeit gegeben ohne XPATH-Kenntnisse in den Metadaten-Properties\footnote{Metadaten-Property: Als Property werden die einzelnen Dublin Core Einträge eines Metadatensatzes betrachtet} nach einem bestimmten Pattern zu suchen. Die Metadaten-Properties werden - soweit erfordert - durch Kennzahlen spezifiziert, die in \textit{org.liabolo.common.MetaData} vorgegeben sind. Eine weitere Methode, die XQUERY-Anfragen verarbeitet ist für die Zukunft eingeplant.
+			\paragraph{Vearbeitung von Bibliothekseinträgen}
+				Bei der Verarbeitung von Bibliothekseinträgen(interne Bezeichnung ist 'LibItem') stehen Methoden zum Anlegen(addLibItem(LibItem item)), Editieren(editLibItem( LibItem item)) und Löschen(removeLibItem(LibItem item)) bereit. Das Editieren/Löschen eines LibItems in einer globalen Bibliothek kann natürlich nur im Online-Modus geschehen, wobei im Offline-Modus jedoch Operationen vorgemerkt werden können(siehe folgender Abschnitt bzw. Dokument \textit{Synchronisation und Replikation in Liabolo\cite{synchronisation}}).
+			\paragraph{Synchronisation/Replikation}
+				Die Synchronisation bzw. Replikation von Daten umfasst für gewöhnlich Methoden in der nun folgenden Reihenfolge:\\
+				\begin{enumerate}
+					\item{checkoutByBranch(Library lib, Branch branch) bzw. checkoutUnsortedLibItems(Library lib, Collection libitems)}
+					\item{editLibItem(LibItem item)}
+					\item{getEditedLibItemsFromReplicationRepository()}
+					\item{commitChangesForEditedLibItems()}
+					\item{resolveConlict\_LooseChanges() bzw. resolveConflict\_storeChanges()}
+				\end{enumerate}					
+				Weiterhin stehen Methoden zum Löschen(deleteReplicationRepository()) und zum Updaten(updateReplicationRepository()) des Replication Repositories \footnote{Replication Repository: Teilbereich der logischen Trennung von lokalen und globalen Daten im Client. Globale Daten werden als Kopien im Replication Repository abgelegt.} zur Verfügung. Ein Update bewirkt das Überschreiben des lokalen Replikates.
+			\paragraph{Datensicherung}
+				Die Datensicherung bzw. Wiederherstellung wird von den Methoden backup(String directory, String rootCollection) und restore(String directory, String rootCollection) getätigt.
+			\paragraph{Im-/Export von Bibliothekseinträgen}
+				Der Import beschränkt sich zur Zeit auf MS-Excel-Dokumente und wird in Liabolo1.0 über die Klasse \textit{org.liabolo.common.ExcelSheet} vorgenommen, wobei die Funktionalität in der Zukunft in den Dispatcher integriert und erweitert werden soll. Der Export wird über die Methode export() angeboten und ermöglicht über eine Bearbeitung einer xsl-Datei nahezu beliebige Export-Formate. Zur Zeit wird beispielhaft ein csv-Export\cite{csv} mitgeliefert.
+			\paragraph{Umgang mit Benutzereinstellungen, Individuallisten,Standorten, Branches und Kommunikationseinstellungen}
+				Die Verarbeitung obiger Kommunikationselemente geschieht weitestgehend über die Methoden addX(), editX() und removeX(), wobei das Erstellen und Löschen von Branches wegen möglicher Entstehung von Inkonsistenzen auf lokaler/globaler Ebene deaktiviert ist.
+			
+		\subsubsection{org.liabolo.repository.Library}
+			Das Interface Libary bildet das Kernstück des Backends, welches die Deklaration der zu implementierenden Funktionalität bestimmt. Durch eine Implementierung der Schnittstelle sind desweiteren keine Anforderungen an die Datenhaltung gestellt.
+		\subsubsection{org.liabolo.repository.XMLDB}
+			Die Klasse XMLDB als Implementierung des Interfaces Library stellt die notwendigen Methoden für die Anbindung aller Datenbanken, die die XML:DB\cite{xmldb} Api unterstützen bereit. Sie ist als abstrakte Klasse implementiert worden, da gewisse Funktionalität in Liabolo erwünscht, jedoch durch die XML:DB-API nicht vorgeschrieben wird. Ein User-Management wird nicht von allen Implementierungen angeboten, ist jedoch erwünscht. Um diese Funktionalität durch vordefinierte Methoden bereitzustellen, wurde XMLDB als abstrakt deklariert.
+		\subsubsection{org.liabolo.repository.Exist}
+			Die Klasse Exist implementiert diese erweiterte Funktionalität, die von der XML-Datenbank eXist zur Verfügung gestellt wird. In diesem Fall stellt sie ein Benutzermanagement bereit.
+		\subsubsection{org.liabolo.common.MetaData}
+			Alle LibItems besitzen ein MetaData-Objekt, welches die Metadaten (und die Zeitstempel zur Synchronisation) enthält.
+		\subsubsection{org.liabolo.common.Logger}
+			Der Logger ist für die Verarbeitung und Speicherung verschiedener Nachrichten erstellt worden, wobei zwischen Informationen, Fehlermeldungen und Debugmeldungen unterschieden werden kann. Je nach Grad eines Debug-Levels lassen sich Debugmeldungen verfeinern. Informationen und Fehlermeldungen werden im Gegensatz zu Debugmeldungen an die Darstellungsschickt weitergegeben.
+		\subsubsection{org.liabolo.common.Configurator}			
+			Der Configurator initialisiert alle umgebungsabhängigen Variablen und ist für die Internationalisierung zuständig.
+	\subsubsection{Weitere Klassen}
+		\begin{itemize}
+			\item{org.liabolo.common.LibItem : Java-Bean mit den Attributen MetaData und zugehörigem Dokument}		
+			\item{org.liabolo.common.MergingData : Java-Bean mit einer lokalen und globalen Instanz eines LibItems zur Konfliktlösung}
+			\item{org.liabolo.common.Authenticity : Java-Bean mit den Attributen Name und Passwort zur Authentifizierung in der Datenbank}
+			\item{org.liabolo.common.Signature* : Klassen zur Erstellung von Signaturen. Näheres im Dokument 'Signatur'.}
+			\item{org.liabolo.common.TextItem :  Klasse zur Spezifizierung und Internationalisierung von Datentypen für Metadaten-Properties\footnote{Metadaten-Property : Als Property werden die einzelnen Dublin-Core-Einträge eines Metadatensatzes betrachtet}}
+			\item{org.liabolo.common.XslExport : Klasse zur Erstellung eines Exportformates, welches für eine  XSL-Datei spezifiziert wurde.}
+		\end{itemize}
+
+%\chapter{Einsatzmöglichkeiten/Erweiterungen}
+	
+%	\section{Verteilte (heterogene) Datenbank}
+%	\label{sec:verteite_datenbank}
+	
+%		\subsubsection{Auslagerung der Wrapper-Funktionalität mittels SOAP}
+%		\label{sec:auslagerung_dispatcher}
+			
+%	\section{Java-Webstart}
+%	\label{sec:webstart}

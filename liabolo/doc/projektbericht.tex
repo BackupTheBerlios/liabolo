@@ -1,0 +1,33 @@
+% ------------------------------------------------------------------------
+% Latex - Vorlage **************************************
+% ------------------------------------------------------------------------
+% von: Stefan Willer
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[12pt,a4paper,titlepage,german,oneside]{book} %report, book, article
+%\documentclass[10pt,a4paper,titlepage,twoside]{book} %report, book, article
+
+
+\include{commands}
+\include{title}
+\begin{document}
+%% Dokument %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+%\include{abstract}
+\pagenumbering{Roman}
+\tableofcontents
+\newpage
+\setcounter{page}{1}
+\pagenumbering{arabic}
+\include{einfuehrung}
+\include{anforderungsdefinition}
+\include{entwurf}
+\include{implementierung}
+\include{ausblick}
+ 
+\bibliography{bibliography}
+\include{appendix}
+\printindex
+
+
+%% Ende %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}

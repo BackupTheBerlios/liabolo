@@ -1,0 +1,772 @@
+% use \chaptermark{}
+% to alter or adjust the chapter heading in the running head
+
+\chapter{Konzepte und Anforderungen}
+\label {chap:concepts}
+	
+	\section{Leistungsmerkmale}
+	\label{sec:features}
+	Liabolo ist eine Metadatenverwaltung. Bei der Erfassung Ihrer Dokumente haben Sie die Möglichkeit, alle Eigenschaften wie zum Beispiel Titel, Autor oder  Erscheinungsjahr einzugeben. Doch Liabolo bietet noch mehr als das einfache Anlegen von Informationen über Ihre Dokumente:
+	
+	\begin{itemize}
+	\item{Datensätze können jederzeit angelegt, bearbeitet oder gelöscht werden}
+	\item{Intuitive Bedienbarkeit durch grafische Benutzeroberfläche}
+	\item{Gemeinsame Nutzung einer Datenbank im Inter-/Intranet}
+	\item{Import von Excel-Tabellen Excel für die schnelle Übernahme bestehender Datensammlungen}
+	\item{Exportfunktion ausgewählter Daten für die Erstellung von Literaturverzeichnissen}
+	\item{Sicherungs-/Wiederherstellungsfunktion für die lokale Datenbank}
+	\item{Umfangreiche Online-Hilfe für die Unterstützung bei der täglichen Arbeit}
+	\item{Deutsche und englische Sprachunterstützung}
+	\end{itemize}
+	
+	\subsection{Lizenzmodell}
+	\label{license}
+	Liabolo ist Freie Software und wird unter der GPL lizensiert. Sie können Liabolo beliebig oft installieren und kopieren, ohne das Lizenzkosten entstehen. Weitere Informationen über die 'GNU General Public License' finden Sie im Internet unter \cite{gpl}.
+	
+	
+	\section{Systemanforderungen}
+	\label{sec:system-requirements}
+	\index{Systemanforderungen}
+	Liabolo wurde in der plattformunabhängigen Programmiersprache Java geschrieben. Java ist ein Produkt der Firma Sun Microsystems \cite{sun}.\index{Java}Die Systemvoraussetzung für den Einsatz von Liabolo ist die Installation einer Java Laufzeitumgebung (JRE) in der Version 1.4.2. Sie können diese Laufzeitumgebung kostenlos im Internet unter folgender Adresse herunterladen:
+	\url{http://java.sun.com/j2se/1.4.2/download.html}\\
+	Liabolo kann weiterhin überall dort eingesetzt werden, wo die Installation der Java Laufzeitumgebung gelingt:\\
+	Softwarevoraussetzungen:\\
+	 Windows 98 (SE)/NT/2000/2003/ME/XP, Solaris 7/8/9/64 Bit, Linux, MacOS, BSD\\
+	 
+	 Hardwarevoraussetzungen: bitte entnehmen Sie die Hardwarevoraussetzungen für die jeweiligen Architekturen den Installationsanweisungen für die entsprechende Plattform: http://java.sun.com/j2se/1.4.2/jre/install.html\\
+	 Liabolo wurde auf folgenden Betriebsystemen erfolgreich getestet: Windows 98 SE/2000/XP, Linux, MacOS und FreeBSD. Ob auf Ihrem Rechner eine geeignete Java-Installation vorliegt können Sie folgendermaßen überprüfen:
+	 \begin{itemize}
+	 \item{Öffnen Sie die Eingabeaufforderung/Console}
+	 \item{Geben Sie 'java -version' ein}
+	 \item{Überprüfen Sie die Bildschirmausgabe auf die Version der Java-Umgebung. Liabolo benötigt mindestens die Version 1.4.0}
+	 \item{Wenn der Aufruf eine Fehlermeldung erzeugt, ist keine Java-Laufzeitumgebung installiert}
+	 \end{itemize}
+	 
+	 Eine korrekte Installation von Java erzeugt z.B. folgende Ausgabe:
+	 \begin{verbatim}
+	$ java -version
+	java version "1.4.2-p6"
+	Java(TM) 2 Runtime Environment,
+	Standard Edition (build 1.4.2-p6-06_jan_2004_12_12)
+	Java HotSpot(TM) Client VM (build 1.4.2-p6-06_jan_2004_12_12, mixed mode)
+	 \end{verbatim}
+	 Die Lauffähigkeit von Liabolo mit älteren Versionen als 1.4.2 wurde nicht überprüft. Bitte verwenden sie eine aktuelle Version, wenn möglich.
+	 \section{Liabolo im Internet}
+	 Liabolo ist unter \url{http://www.liabolo.org} im Internet zu finden. Das Projekt wird weiterhin unter Berlios\footnote{http://developer.berlios.de/projects/liabolo/} gehostet, unter dieser Adresse können Sie auch Fehler melden oder Erweiterungen in eine Wunschliste eintragen. Das Berlios Projekt \cite{berlios}stellt für die Entwicklung Freier Software ein Internet-Portal zur Verfügung.
+	\section{Installationsanweisung}
+	\label{sec:installation}\index{Installation}
+	Dieser Abschnitt beschreibt die Installation von Liabolo, nachdem Sie die obigen Installationsvoraussetzungen erfüllt haben.
+	\begin{itemize}
+	\item{Laden Sie Liabolo aus dem Internet unter folgender Adresse herunter:
+	http://developer.berlios.de/projects/liabolo/}
+	\item{Die Datei heißt Liabolo-Vx.x.zip und zeigt an, das es sich um ein Archiv im ZIP-Format handelt.}
+	\item{Wechseln Sie mit dem Dateimanager in das Verzeichnis, in dem Sie Liabolo gespeichert haben}
+	\item{Entpacken Sie das Zip-Archiv in ein Verzeichnis Ihrer Wahl}
+	\item{Starten Sie Liabolo mit einem Klick auf 'start.bat' (Windows) oder 'start.sh' (Unix/Linux)}
+	\item{\underline{Hinweis für Unix/Linux:} sollte die Datei start.sh Liabolo nicht starten, so ist die Datei möglicherweise nicht als ausführbar gekennzeichnet. Öffnen Sie ein Terminal und wechseln Sie in das Verzeichnis, in dem sich die Datei 'start.sh' befindet. Geben Sie folgenden Befehl ein: 'chmod +x start.sh'}
+	\item{Liabolo sollte jetzt gestartet werden können}
+	\end{itemize}
+	\newpage             
+	\section{Funktionen}
+	\label{sec:functions}
+	Dieser Abschnitt beschreibt die Konzepte und Funktionen, die Liabolo verwendet, um eine sinnvolle Arbeit mit Metadaten zu ermöglichen. Eine detaillierte Beschreibung über die Bedienung der einzelnen Elemente finden Sie in Kap. \ref{sec:environment}.
+		
+		\subsection{Standort}
+		\label{sec:place}
+		\index{Standort}
+		Durch die Eingabe von Standorten können Sie festlegen, wo sich das jeweilige Dokument befindet. Dies kann ein Regal, aber auch ein elektronischer Link sein. Der Standort eines Dokumentes kann sich ändern, wenn z.B. ein Buch ausgeliehen wird. Daher können Sie mit Liabolo beliebig Standorte editieren, um auf unvorhergesehene Änderungen vorbereitet zu sein. Jedes Regal bietet leider nur endlichen Platz :-)\\
+			
+		
+		\begin{figure*}[!htb]
+                  \begin{center}
+                     \includegraphics[scale=0.5 ]{images/place.png}    
+                   \end{center}
+                   \caption{Die Standorte im Überblick}
+                   \label{fig:place}
+                \end{figure*}\par
+		Alle Informationen über die Arbeit mit Standorten entnehmen Sie bitte Kapitel \ref{sec:environment-place}. 
+		
+		\newpage 
+		\subsection{Individualliste}
+		\label{sec:individual-list}
+		\index{Individualliste}
+		Die Individualliste dient der Zusammenführung von Dokumenten, die für ein bestimmtes Projekt benötigt werden. Wenn Sie z.B. gerade an einer Diplomarbeit schreiben, können Sie alle Dokumente, die Sie referenzieren möchten, in einer Individualliste zusammenfassen.
+		\begin{figure*}[!htb]
+                  \begin{center}
+                    \includegraphics[scale=0.5]{images/indlist.png}
+                  \end{center}
+	          \caption{Die Individuallisten im Überblick}
+        	  \label{fig:indlist}
+                \end{figure*}\par
+		Alle Informationen über die Arbeit mit Individuallisten entnehmen Sie bitte Kapitel \ref{sec:environment-indlist}. 
+		
+		\newpage
+		\subsection{Fachbereich}
+		\label{sec:branch}
+		\index{Fachbereich}
+		 Durch die Eingabe von Fachbereichen können Sie festlegen, mit welchem Themenbereich sich das jeweilige Dokument befasst. Ein Themengebiet kann z.B die Biologie oder die Informatik sein. Fachbereiche können mit Liabolo angelegt oder bearbeitet werden. 
+		\begin{figure*}[!htb]
+                  \begin{center}
+                    \includegraphics[scale=0.5]{images/branch_list.png}
+                  \end{center}
+	          \caption{Übersicht über die Fachbereiche}
+        	  \label{fig:branch-list}
+               	\end{figure*}\par
+		Alle Informationen über die Arbeit mit Fachbereichen entnehmen Sie bitte Kapitel \ref{sec:environment-branch}. 
+		
+
+		\newpage
+		\subsection{Arbeitsumgebung}
+		\label{sec:work-environment}
+		\index{Arbeitsumgebung}
+		Die Arbeitsumgebung ermöglicht das schnelle Aufrufen von Dokumenten, die durch verschiedene Konzepte zusammengeführt sind. Bitte lesen Sie die entsprechenden Abschnitte der unterschiedlichen Konzepte: Meine Bibliothek (Kap. \ref{sec:environment-mybib}), Fachgebiete (Kap. \ref{sec:branch}), Standorte (Kap. \ref{sec:place}), Individualliste (Kap. \ref{sec:individual-list}) und Zwischenablage (Kap. \ref{sec:clipboard}).
+		 
+		\begin{figure*}[!htb]
+                  \begin{center}
+                    \includegraphics[scale=0.5]{images/environment.png}
+                  \end{center}
+	          \caption{Auswahlmöglichkeiten in der Arbeitsumgebung}
+        	  \label{fig:environment}
+               	\end{figure*}\par
+			\newpage
+			\subsubsection{Zwischenablage}
+			Die Zwischenablage ermöglicht das Arbeiten auf einer Datenbank im Netzwerk/Internet. 
+					
+			\begin{figure*}[!htb]
+	                  \begin{center}
+	                    \includegraphics[scale=0.5]{images/clipboard.png}
+	                  \end{center}
+		          \caption{Die Zwischenablage}
+	        	  \label{fig:clipboard}
+	               	\end{figure*}\par
+			Eine ausführliche Beschreibung der Zwischenablage finden Sie in Kapitel \ref{sec:clipboard}.
+			
+			
+		
+		\subsection{Trefferliste/Suchergebnisse}
+		\label{sec:hit-list}
+		\index{Trefferliste}
+		\index{Suchergebnisse}
+		Die Trefferliste zeigt die Dokumente an, die zu Ihrer Auswahl passen. Ob Sie ein Dokument suchen oder auf einen Fachbereich klicken, die Trefferliste zeigt die entsprechenden Einträge an. Mit diesem Fenster können Sie alle Aktionen wie 'Bearbeiten' oder 'Löschen' mit Dokumenten durchführen.
+		\begin{figure*}[!htb]
+                  \begin{center}
+                    \includegraphics[scale=0.5]{images/documents.png}
+                  \end{center}
+	          \caption{Das Ergebnis einer Suche in der Trefferliste}
+        	  \label{fig:documents}
+               	\end{figure*}\par
+		\underline{Hinweis:} Markieren Sie einen Eintrag durch einen Mausklick. Mehrere Einträge können Sie durch das Setzen von Haken vor den Einträgen markieren. Klicken Sie dazu in die Kästchen vor jedem Eintrag, den Sie für den nächsten Bearbeitungschritt brauchen. Unter der Liste haben Sie die Möglichkeit, alle Dokumente mit einem Mausklick zu markieren.
+		\begin{itemize}
+		\item{Klicken Sie auf 'Neu', um ein Dokument hinzuzufügen (S.\pageref{fig:data-add})}
+		\item{Klicken Sie auf 'Bearbeiten', um ein Dokument zu editieren. (S.\pageref{fig:file-edit})}
+		\item{Klicken Sie auf 'Entfernen', um die markierten Dokumente nach einer Rückfrage zu löschen.}
+		\item{Klicken Sie auf 'Zu Liste', um ein Dokument einer Individualliste hinzuzufügen. (S.\pageref{fig:indlist-add})}
+		\item{Klicken Sie auf 'Referenz', um ein Dokument hinzuzufügen, welches ein bestehendes Dokument referenziert (S.\pageref{fig:reference})}
+		\item{Klicken Sie auf 'Druckvorschau', um eine Druckansicht der gewählten Dokumente anzuzeigen (S.\pageref{fig:print-preview})}
+		\end{itemize}
+			\subsubsection{Dokument hinzufügen}
+			Unter diesem Menupunkt können Sie die aktuell verbundene Datenbank mit Metadaten füllen.
+			\begin{figure*}[!htb]
+	                  \begin{center}
+	                    \includegraphics[scale=0.5]{images/data_add.png}
+	                  \end{center}
+		          \caption{Eingabe von Metadaten}
+	        	  \label{fig:data-add}
+	               	\end{figure*}\par
+			Wählen Sie einen Medientyp aus, es werden nur die bereits definierten Medientypen angezeigt. Klicken Sie auf das Drop-Down Feld, um die Liste der bestehenden Dokumenttypen angezeigt zu bekommmen. Liabolo unterstützt zur Zeit die folgenden Medientypen:
+			\begin{itemize}
+			\item{Zeitschriftenartikel}
+			\item{Onlineartikel}
+			\item{Zeitschrift}
+			\item{Buchartikel}
+			\item{Buch}
+			\end{itemize} 
+			\underline{Hinweis:} Wenn Sie unsicher sind, welche Werte in welches Feld gehören, dann lassen Sie einfach den Mauszeiger auf dem leeren Feld stehen. Nach kurzer Zeit erscheint ein kleines Fenster mit einem Hilfetext.
+			Tragen Sie die Metadaten in die vorgegeben Felder ein
+			\underline{Hinweis:} es werden nur Felder angezeigt, die im Formulareditor freigeschaltet wurden.
+						
+			\newpage
+			\subsubsection{Dokument bearbeiten}
+			Unter diesem Menupunkt können Sie die bereits bestehende Dokumente bearbeiten.
+			\begin{figure*}[!htb]
+	                  \begin{center}
+	                    \includegraphics[scale=0.5]{images/file_edit.png}
+	                  \end{center}
+		          \caption{Bearbeitung von Metadaten}
+	        	  \label{fig:file-edit}
+	               	\end{figure*}\par
+			Klicken Sie das Feld an, welches Sie editieren möchten
+			\underline{Hinweis:} Wenn Sie unsicher sind, welche Werte in welches Feld gehören, dann lassen Sie einfach den Mauszeiger auf dem leeren Feld stehen. Nach kurzer Zeit erscheint ein kleines Fenster mit einem Hilfetext (Tool-Tip).
+			Bestätigen Sie Ihre Eingaben mit 'OK' oder brechen Sie die Bearbeitung ab
+			\underline{Hinweis:} es werden nur Felder angezeigt, die im Formulareditor freigeschaltet wurden.
+			Quelle: Durch einen Klick auf den Button 'Quelle' können Sie ein Dokument durch das aktuelle referenzieren.
+			\newpage
+			\subsubsection{Zu Liste hinzufügen}
+			Unter diesem Menupunkt können Sie Dokumente einer oder mehreren Individuallisten zuordnen. Mit dieser Funktion können Sie Dokumente zusammenführen, die Sie für ein Projekt (z.B. eine Diplomarbeit) benötigen. Diese zusammen gehörenden Dokumente werden in einer Individualliste gespeichert.
+			\begin{figure*}[!htb]
+	                  \begin{center}
+	                    \includegraphics[scale=0.5]{images/indlist_add.png}
+	                  \end{center}
+		          \caption{Auswahl der bestehenden Individuallisten}
+	        	  \label{fig:indlist-add}
+	               	\end{figure*}\par
+			Markieren Sie eine Individualliste, um das Dokument aufzunehmen
+			Mehrere Individuallisten können markiert werden, indem Sie beim Klicken die 'STRG'-Taste gedrückt halten
+			Durch einen Klick auf den Kasten 'Alle markieren' können Sie ein Dokument allen bestehenden Individuallisten zuordnen.
+			Bestätigen Sie Ihre Auswahl mit 'OK' oder verlassen Sie den Dialog durch 'Abbrechen'.
+			\newpage
+			\subsubsection{Referenz hinzufügen}
+			Sie haben sich entschieden, ein neues Dokument als Referenz einzugeben. Als Quelle oder Referenz werden Dokumente bezeichnet, die in einem besonderen Zusammenhang mit einem weiteren Dokument stehen. Beispiel: ein Artikel referenziert die Zeitschrift, in der er veröffentlicht wurde. Der erste Band einer Sammelreihe referenziert das Gesamtwerk als 'Quelle'. 
+			\begin{figure*}[!htb]
+	                  \begin{center}
+	                    \includegraphics[scale=0.5]{images/reference.png}
+	                  \end{center}
+		          \caption{Auswahl der bestehenden Individuallisten}
+	        	  \label{fig:reference}
+	               	\end{figure*}\par
+			\underline{Hinweis:} Das Feld neben dem Knopf 'Quelle' referenziert bereits das gewünschte Dokument. 
+				\newpage
+				\paragraph{Quelle}
+				\index{Quelle}
+				Als Quelle oder Referenz werden Dokumente bezeichnet, die in einem besonderen Zusammenhang mit einem weiteren Dokument stehen. Beispiel: ein Artikel referenziert die Zeitschrift, in der er veröffentlicht wurde. Der erste Band einer Sammelreihe referenziert das Gesamtwerk als 'Quelle'. Sie haben die Möglichkeit, eine in Ihrer Datenbank bestehende Quelle anzugeben, oder die Quelle ebenfalls neu einzutragen. Nach einem Klick auf den Knopf 'Quelle' öffnet Liabolo folgenden Dialog:
+				\begin{figure*}[!htb]
+		                  \begin{center}
+		                    \includegraphics[scale=0.5]{images/reference_add.png}
+		                  \end{center}
+			          \caption{Auswahl für die Referenzierung}
+		        	  \label{fig:reference-add}
+		               	\end{figure*}\par
+				\begin{itemize}
+				\item{Wählen Sie 'Suchen', um die Quelle in den bestehenden Datensätzen zu finden.(Kap. \ref{sec:file-search})}
+				\item{Wählen Sie 'Neu hinzufügen', um die Quelle als neuen Datensatz hinzuzufügen (S.\pageref{fig:reference-add})}
+				\item{Wählen Sie 'Abbrechen' um keine Quelle anzugeben}
+				\end{itemize}
+			\newpage
+			\subsubsection{Druckvorschau}
+			\index{Druckvorschau}
+			
+			Unter diesem Menupunkt wird eine Vorschau für das Drucken angezeigt. Es werden alle Dokumente gedruckt, die Sie markiert haben. 
+			\begin{figure*}[!htb]
+	                  \begin{center}
+	                    \includegraphics[scale=0.5]{images/print_preview.png}
+	                  \end{center}
+		          \caption{Die Druckvorschau}
+	        	  \label{fig:print-preview}
+	               	\end{figure*}\par
+			Klicken Sie auf 'Drucken', um die aktuelle Druckvorschau auf dem Drucker auszugeben oder verlassen Sie mit 'Abbrechen' den Dialog. \underline{Hinweis:} es werden nur Felder angezeigt, die im Formulareditor freigeschaltet wurden. 
+		\newpage
+		\subsection{Metadaten}
+		\label{sec:metadata}
+		\index{Metadaten}
+		Liabolo ist eine Metadatenverwaltung. Bei der Eingabe werden alle zugehörigen Informationen (z.B. Titel, Autor) über ein Dokument in einer Datenbank gespeichert. Liabolo unterstützt zur Zeit bis zu 15 Elemente für jedes Dokument, das Sie erfassen möchten. Die Elemente sind die Kernelemente des Dublin Core \index{Dublin Core}und erfüllen damit einen offenen Standard. Somit ist der Datenaustausch mit anderen Softwareprodukten problemlos möglich. Liabolo speichert die folgenden 15 Metadaten für jedes Objekt in der Datenbank: 
+		\begin{itemize}
+		\item{Title: Dokumentname}
+		\item{Creator: Verantwortlicher für den Dokumentinhalt}
+		\item{Subject: Thema und Schlüsselworte}
+		\item{Description: Inhaltsbeschreibung}
+		\item{Publisher: Verleger/Herausgeber}
+		\item{Contributor: Coautoren/Unterstützer}
+		\item{Date: Datum der Veröffentlichung}
+		\item{Type: Kategorie oder Genre}
+		\item{Format: Physikalischer oder digitaler Dokumenttyp}
+		\item{Identifier: Signatur oder URI}
+		\item{Source: Quelle oder ursprüngliches Gesamtwerk}
+		\item{Language: Sprache}
+		\item{Relation: Referenzierung}
+		\item{Coverage: Ablageort}
+		\item{Rights: Rechteinhaber}
+		\end{itemize}
+		Mit diesen Informationen lassen sich alle Arten von Dokumenten (Buch/Video/Musik) beschreiben. Weitere Informationen zum Dublin Core Standard finden Sie im Internet unter: \cite{dublincore}.
+		\newpage
+		\subsection{Zwischenablage}
+		\label{sec:clipboard}
+		Die Zwischenablage ermöglich das Arbeiten mit Dokumenten, die sich in entfernten Datenbanken befinden. Nachdem Sie die Verbindung hergestellt haben, werden in allen Trefferlisten auch die Inhalte der entfernten Datenbanken angezeigt. Durch die Zwischenablage sind Sie in der Lage, mit Dokumenten zu arbeiten, die sich nicht in Ihrer lokalen Datenbank befinden.\\
+		\underline{Beispiel:} auf einer bevorstehenden Zugreise möchten Sie an Ihrer Publikation weiter arbeiten. Sie benötigen allerdings Verweise auf Dokumente, die Sie nicht in ihrer lokalen Datenbank gespeichert haben. Mit Liabolo können Sie die fehlenden Dokumente aus entfernten Datenbanken in die Zwischenablage kopieren und den Rechner ausschalten. Wenn unterwegs dann keine Verbindung zum Netzwerk besteht, können Sie dennoch mit den Dokumenten in der Zwischenablage arbeiten.\\
+		\begin{figure*}[!htb]
+                  \begin{center}
+                    \includegraphics[scale=0.5]{images/clipboard.png}
+                  \end{center}
+	          \caption{Der Inhalt der Zwischenablage}
+        	  \label{fig:clipboard2}
+               	\end{figure*}\par
+		Alle Dokumente, die Sie in die Zwischablage kopiert haben, können Sie wie in Kapitel \ref{sec:hit-list} beschrieben, bearbeiten. Die Zwischenablage stellt somit eine Trefferliste da.
+		\newpage
+		\underline{Hinweis:} Sie können nur Einträge in die Zwischenablage kopieren, die sich in einer entfernten Datenbank befinden. Entfernte Objekte erkennen Sie an Ihrer Signatur, diese enden NICHT auf '@localhost'. Die Endung dieser Einträge gibt den Server an, auf dem das Dokument gespeichert ist. 
+		
+		\index{Signatur}
+		\begin{figure*}[!htb]
+                  \begin{center}
+                    \includegraphics[scale=0.5]{images/checkout.png}
+                  \end{center}
+	          \caption{Unterschiedliche Signaturen bei entfernten Datenbanken}
+        	  \label{fig:checkout2}
+               	\end{figure*}\par		
+		\underline{Hinweis:} Lokale Dokumente mit der Signaturendung '@localhost' werden  nicht in die Zwischenablage kopiert. Sie erhalten in der Statuszeile eine Fehlermeldung.
+		
+			
+\chapter{Bedienung}
+	In diesem Kapitel wird die Bedienung von Liabolo beschrieben. Sie finden alle Menupunkte erläutert, die Sie unter Liabolo mit der Maus anwählen können. Nach dem Start präsentiert Liabolo sich mit der eingeblendeten Statistik, die einen schnellen Zugriff auf die verschiedenen Funktionen bietet.
+	\index{Hauptbildschirm}
+	\begin{figure*}[!htb]
+          \begin{center}
+            \includegraphics[scale=0.5]{images/liabolo_mini_noob.png}
+          \end{center}
+          \caption{Der Hauptbildschirm}
+       	  \label{fig:main-screen}
+      	\end{figure*}\par		
+	\begin{itemize}
+	\item{Die Menuleiste \index{Menuleiste}ermöglicht den Zugriff auf alle Funktionen von Liabolo. Diese Funktionen werden auf den folgenden Seiten beschrieben.}
+	\item{Die Werkzeugleiste \index{Werkzeugleiste}am linken Bildschirmrand ermöglicht den schnellen Zugriff auf häufig benötigte Funktionen. \underline{Hinweis:} lassen Sie den Mauszeiger kurz auf den Symbolen ruhen, um eine Beschreibung zu erhalten.}
+	\item{Die Statusleiste \index{Statusleiste}am unteren Bildschirmrand gibt Erfolgs- oder Fehlermeldungen bei der Verwendung von verschiedenen Funktionen an.}
+	\end{itemize} 
+
+	
+	\newpage
+	\section{Datei}
+	\label{sec:file}
+	
+		\subsection{Neu}
+		\label{sec:file-new}
+		Unter diesem Menupunkt können Sie die aktuell verbundene Datenbank mit Metadaten füllen.
+
+		\begin{figure*}[!htb]
+                  \begin{center}
+                    \includegraphics[scale=0.5]{images/data_add.png}
+                  \end{center}
+	          \caption{Eingabe von Metadaten}
+        	  \label{fig:data_add}
+               	\end{figure*}\par
+
+		\begin{itemize}
+		\item{Wählen Sie einen Medientyp aus, es werden nur die bereits definierten Medientypen angezeigt.Klicken Sie auf das Drop-Down Feld, um die Liste der bestehenden Dokumenttypen angezeigt zu bekommmen.}
+		\item{\underline{Hinweis:} Wenn Sie unsicher sind, welche Werte in welches Feld gehören, dann lassen Sie einfach den Mauszeiger auf dem leeren Feld stehen. Nach kurzer Zeit erscheint ein kleines Fenster mit einem Hilfetext. Eine kurze Beschreibung der Schlüsselwörter finden Sie im Kapitel \ref{sec:metadata}.}
+		\item{Tragen Sie die Metadaten in die vorgegeben Felder ein}
+		\item{\underline{Hinweis:} es werden nur Felder angezeigt, die im Formulareditor freigeschaltet wurden.}
+		\end{itemize} 
+		
+		\newpage
+		\subsection{Importieren}
+		\label{sec:file-import}
+		\index{Import}
+		\index{Excel,Import}
+		Liabolo bietet die Möglichkeit, Excel-Tabellen zu importieren. Viele Anwender speichern Ihre Dokumente in einer Tabelle, um mit ihnen zu arbeiten. Die Tabellenkalkulation Excel ist in der Lage, viele verschiedene Dateiformate zu importieren. Weiterhin ist es mit freien Officepaketen wie Openoffice.org möglich, Excel Dokumente aus weiteren Formaten heraus zu erzeugen. Dadurch läßt sich die Formatvielfalt, die Liabolo importieren kann, noch erhöhen. Durch die Import Funktion für eine Excel-Tabelle lassen sich auf einfache Art und Weise bereits bestehende Daten in Liabolo importieren. Eine Tabelle, die Liabolo weiter verarbeiten kann, könnte so aussehen: 
+		\begin{figure*}[!htb]
+                  \begin{center}
+                    \includegraphics[scale=0.5]{images/sheet.png}
+                  \end{center}
+	          \caption{Beispiel für eine bestehende Tabelle}
+        	  \label{fig:sheet}
+               	\end{figure*}\par
+		Liabolo geht von einer zeilenorientierten Anordnung aus. Die Daten für jedes Dokument müssen nebeneinander angeordnet sein. Die Reihenfolge der Metadaten ist beliebig, Liabolo kann so konfiguriert werden, das die Eigenschaften der Dokumente den Feldern der Datenbank zugewiesen werden können. 
+		\underline{Hinweis:} Die Daten, die Sie importieren möchten, müssen sich auf der ersten Seite (Sheet 1) befinden. Tabellen auf anderen Seiten können nicht von Liabolo importiert werden. 
+		\newpage
+		Um die Daten einer Tabelle in Liabolo nutzen zu können, gehen Sie bitte folgendermaßen vor: klicken Sie auf 'Datei', dann 'Importieren'. Es erscheint ein Datei-Auswahl-Dialog. Navigieren Sie zur gewünschten Excel-Datei und öffnen Sie diese. Excel-Dateien haben die Endung '.xls'.
+		\begin{figure*}[!htb]
+                  \begin{center}
+                    \includegraphics[scale=0.5]{images/import.png}
+                  \end{center}
+	          \caption{Der Import-Dialog}
+        	  \label{fig:import}
+               	\end{figure*}\par
+		
+		Nach Ihrer Auswahl wird die Tabelle analysiert, einige Einstellungen müssen Sie allerdings noch selbst vornehmen, um eine einwandfreie Übernahme der Daten zu ermöglichen. Zu diesem Zweck erscheint ein Dialog, in dem Sie die Spalten aus Ihrer Tabelle den Feldern der Liabolo-Datenbank zuweisen können.
+		\newpage
+		\begin{figure*}[!htb]
+                  \begin{center}
+                    \includegraphics[scale=0.5]{images/assign.png}
+                  \end{center}
+	          \caption{Der Zuweisungsdialog}
+        	  \label{fig:assign}
+               	\end{figure*}\par
+		\begin{itemize}
+		\item{Links sehen Sie die Spalten aus Ihrer Tabelle. Blättern Sie mit den Knöpfen '<<' und '>>' durch den Datenbestand. Dies ermöglicht Ihnen die eindeutige Identifikation Ihrer Felder und eine komfortable Zuweisung für den Import.}
+		\item{In der mittleren Spalte 'Map' können durch das Setzen oder Entfernen von Haken entscheiden, welche Spalten Ihrer Tabelle importiert werden sollen. Es werden nur Felder importiert, die mit einem Haken markiert sind!}
+		\item{Klicken Sie jetzt nacheinander auf jede Zeile in der Spalte 'Ziel'. Weisen Sie jeder Zeile ein Feld aus der Liabolo-Datenbank zu. Doppelte oder ungültige Zuweisungen werden rot hinterlegt. Unlogische Zuweisungen wie die doppelte Auswahl eines Feldes sind somit nicht möglich. Felder, deren Zuweisung korrekt ist, werden nicht farblich hervorgehoben. Im obigen Beispiel wurde das Feld 'Format' doppelt zugewiesen und damit rot hinterlegt.}
+		\item{Weisen Sie die Felder solange zu, bis keine Felder mehr rot markiert sind.}
+		\item{Wählen Sie einen Medientyp unter 'Speichern als' aus, um die Dokumente zu klassifizieren. Alle Objekte Ihrer Tabelle werden diesem Medientyp zugewiesen.}
+		\item{Wählen Sie einen Fachbereich, in dem das Objekt gespeichert werden soll. Alle Elemente Ihrer Tabelle werden in diesem Fachbereich gespeichert.}
+		\item{Wählen Sie die Datenbank aus, in dem Ihre Dokumente gespeichert werden sollen, indem Sie auf das Feld neben 'Speichern in' klicken.
+		Bestätigen Sie den Import mit 'OK'.}
+		\end{itemize}
+		
+		\newpage
+		\subsection{Export}
+		\label{sec:file-export}
+		\index{Export}
+		Liabolo bietet die Möglichkeit, Ihre Daten in ein anderes Format zu konvertieren. Für diese Umwandlung wird die 'Extensible Stylesheet Language' (XSL) \cite{xsl} verwendet. Durch die Anpassung einer XSL-Datei sind Sie so in der Lage, nahezu beliebige Ausgabeformate selbst zu erzeugen. Liabolo unterstützt zur Zeit den Export in das CSV-Format ('Comma Separated Value'). \index{CSV-Format}Mit diesem Format können Sie sehr einfach Einträge exportieren, um diese für ein Literaturverzeichnis zu verwenden.
+		Liabolo exportiert die Individuallisten, die Sie aus dem nachfolgenden Dialog auswählen. Wenn Sie zusammengehörige Dokumente exportieren wollen, so sollten sich diese in einer Individualliste (siehe Kap. \ref{sec:individual-list}) befinden.
+		\begin{figure*}[!htb]
+                  \begin{center}
+                    \includegraphics[scale=0.5]{images/file_backup.png}
+                  \end{center}
+	          \caption{Export-Funktion für Individuallisten}
+        	  \label{fig:file-backup}
+               	\end{figure*}\par
+		
+		\begin{itemize}
+		\item{Klicken Sie auf Datei/Exportieren}
+		\item{Wählen Sie die Individualliste, deren Inhalt Sie exportieren möchten}
+		\item{Klicken Sie auf 'Exportieren', um zum Datei-Dialog zu gelangen}
+		\item{Geben Sie einen Dateinamen an, unter dem Liabolo die Metadaten speichern soll}
+		\end{itemize} 
+		
+		\newpage		
+		\subsection{Suche}
+		\label{sec:file-search}
+		\index{Suche}
+		
+		Liabolo bietet zwei Möglichkeiten, in der Datenbank zu suchen: Suchen und Blättern. Mit der Suchfunktion können Sie selbst ein Stichwort eingeben, nach welchem in der Datenbank gesucht werden soll. 
+		\begin{figure*}[!htb]
+                  \begin{center}
+                    \includegraphics[scale=0.5]{images/search.png}
+                  \end{center}
+	          \caption{Suchen}
+        	  \label{fig:search}
+               	\end{figure*}\par
+		\begin{itemize}
+		\item{Markieren Sie die Felder, in denen gesucht werden soll, mit einem Haken.}
+		\item{Geben Sie einen Suchbegriff ein.}
+		\item{Klicken Sie auf Senden, um die Suche zu starten.}
+		\item{Liabolo präsentiert eine Tabelle, in der alle Dokumente aufgeführt werden, die den Suchbegriff enthalten.}
+		\end{itemize} 
+		\newpage
+		Das Blättern ermöglicht das komfortable Surfen in den eingegebenen Daten. Liabolo gibt eine Liste der Fachbereiche aus.
+		\index{Blättern}
+		\begin{figure*}[!htb]
+                  \begin{center}
+                    \includegraphics[scale=0.5]{images/browse.png}
+                  \end{center}
+	          \caption{Blättern}
+        	  \label{fig:browse}
+               	\end{figure*}\par
+		Markieren Sie alle Fachbereiche, die angezeigt werden sollen. Markieren Sie einen Fachbereich mit der Maus. Halten Sie die STRG-Taste gedrückt, wenn Sie weitere Fachbereiche markieren möchten. Setzen Sie einen Haken vor 'Alle markieren', um alle Fachbereiche auszuwählen. Bestätigen Sie Ihre Auswahl mit Senden, Liabolo zeigt alle Dokumente an, die sich in den gewählten Fachbereichen befinden.
+		\newpage		
+		\subsection{Backup}
+		\index{Sicherung}
+		\index{Backup}
+		Die Sicherung von Daten ist die Grundvoraussetzung für beständiges Arbeiten und bewahrt häufig vor dem Verlust von Daten, Zeit und Nerven. Liabolo kann beliebig viele Sicherungen Ihrer Datenbank anlegen und diese natürlich auch wieder einspielen.
+			\subsubsection{Sicherung}
+			\label{sec:file-backup}
+			Mit diesem Menupunkt können Sie ihre lokale Datenbank auf der Festplatte oder einem anderen Medium sichern und auch wieder herstellen. \underline{Hinweis:} die Dialoge sehen sich sehr ähnlich, beachten Sie die beiden Registerkarten an der oberen Seite des Fensters.
+			\begin{figure*}[!htb]
+			\begin{center}
+			\includegraphics[scale=0.5]{images/backup.png}
+			\end{center}
+			\caption{Sicherung}
+			\label{fig:backup}
+			\end{figure*}\par
+			
+			\begin{itemize}
+			\item{Klicken Sie auf die Registerkarte 'Sichern' am oberen Fensterrand}
+			\item{Wählen Sie einen Ordner aus, in dem die Datenbank gespeichert werden soll. angezeigt.}
+			\item{Geben Sie einen Namen für die Sicherung ein}
+			\item{Bestätigen Sie Ihre Auswahl mit 'Save'}
+			\end{itemize} 
+			\underline{Hinweis:} Liabolo legt ein Verzeichnis mit dem Namen an, den Sie gewählt haben. In diesem Verzeichnis finden Sie ein Unterverzeichnis mit Namen: 'db'. In diesem Unterverzeichnis befindet sich die Datei: '\_\_contents\_\_.xml'. Diese Datei enthält alle Informationen über die Sicherung Ihrer Daten. Wenn Sie mehrere Sicherungen erstellen möchten, so speichern Sie die Datenbank in unterschiedlichen Verzeichnissen.
+			\subsubsection{Wiederherstellung}
+			\index{Wiederherstellung/Restore}
+			\begin{figure*}[!htb]
+			\begin{center}
+			\includegraphics[scale=0.5]{images/restore.png}
+			\end{center}
+			\caption{Wiederherstellung}
+			\label{fig:restore}
+			\end{figure*}\par
+			\begin{itemize}
+			\item{Klicken Sie auf die Registerkarte 'Wiederherstellen' am oberen Fensterrand}
+			\item{Wählen Sie einen Ordner aus, in dem sich die Sicherung der Datenbank befindet}
+			\item{Wählen Sie das Unterverzeichnis mit dem Namen 'db' aus}
+			\item{Wählen Sie die Datei '\_\_contents\_\_.xml' aus}
+			\item{Bestätigen Sie Ihre Auswahl mit 'Open'}
+			\end{itemize} 
+			\underline{Hinweis:} Liabolo spielt die gesicherten Daten wieder in die Datenbank ein. Sie müssen die Datei '\_\_contents\_\_.xml' auswählen, um eine Sicherung wieder herstellen zu können. Wenn Sie mehrere Sicherungen angelegt haben, so navigieren Sie bitte in das Verzeichnis, in dem sich die gewünschte Sicherung befindet. Der Dateiname unterschiedlicher Sicherungen ist jedoch immer gleich.
+						
+		\subsection{Beenden}
+		\label{sec:file-end}
+		Über diesen Punkt wird Liabolo nach einer Rückfrage beendet.
+				
+	\newpage			
+	\section{Umgebung}
+	\label{sec:environment}
+		\subsection{Meine Bibliothek}
+		\label{sec:environment-mybib}
+		\index{Statistik}
+		Mit dieser Funktion können Sie das Statistik-Fenster einblenden. Liabolo zeigt nach dem Start automatisch dieses Fenster an. Falls es einmal geschlossen ist, können Sie es zusätzlich auch durch ein Icon am linken Fensterrand aufrufen.
+		
+		Die Statistik dient einem schnellen Überblick über Ihre Daten. Sie können alle Standorte, Fachgebiete und Individuallisten sichtbar machen. Zusätzlich erhalten Sie die Anzahl der Einträge in den jeweiligen Kategorien ausgegeben. Nach dem Start von Liabolo wird automatisch die Statistik angezeigt.
+
+ 		
+		\begin{figure*}[!htb]
+                  \begin{center}
+                    \includegraphics[scale=0.5]{images/statistics.png}
+                  \end{center}
+	          \caption{Die Statistik im Überblick}
+        	  \label{fig:statistics}
+               	\end{figure*}\par
+		Klicken Sie auf die mit einem Plus '+' gekennzeichneten Ordner, um diese Teilbereiche zu öffnen. Mit einem Klick auf einen mit einem Minus '-' gekennzeichneten Ordner können Sie den Teilbaum wieder schließen, um Platz auf dem Bildschirm zu schaffen. Sie erhalten eine Liste mit allen gespeicherten Standorten, Fachgebieten und Individuallisten.
+		\newpage		
+		\subsection{Fachgebiete}
+		\label{sec:environment-branch}
+		\index{Fachgebiet}
+		Durch die Eingabe von Fachbereichen können Sie festlegen, mit welchem Themenbereich sich das jeweilige Dokument befasst. Ein Themengebiet kann z.B die Biologie oder die Informatik sein. Fachbereiche können mit Liabolo angelegt und bearbeitet werden.
+		\begin{figure*}[!htb]
+                  \begin{center}
+                    \includegraphics[scale=0.5]{images/branch_list.png}
+                  \end{center}
+	          \caption{Die Fachbereiche im Überblick}
+        	  \label{fig:branch-list2}
+               	\end{figure*}\par
+		\begin{itemize}
+		\item{Klicken Sie auf 'Neu', um einen Fachbereich hinzuzufügen. (S.:\pageref{fig:branch-add2})}
+		\item{Klicken Sie auf 'Inhalt', um die Dokumente anzuzeigen, die den markierten Fachbereichen zugeordnet sind. Sie erhalten die entsprechende Trefferliste (Kap.:\ref{sec:hit-list})}
+		\item{Klicken Sie auf 'Bearbeiten', um einen Fachbereich zu editieren. (S.:\pageref{fig:branch-edit2})}
+		\item{Klicken Sie auf '->Zwischenablage', um die Elemente der markierten Fachbereiche in die Zwischenablage zu kopieren. \underline{Hinweis:} es werden nur die Dokumente kopiert, die sich NICHT in der lokalen Datenbank befinden. (siehe Kap. \ref{sec:clipboard}, Zwischenablage)}
+		\end{itemize} 
+			\subsubsection{Fachbereich hinzufügen}
+			
+			Unter diesem Menupunkt können Sie selbst definierte Fachbereiche anlegen.
+			\begin{figure*}[!htb]
+                	  \begin{center}
+        	            \includegraphics[scale=0.5]{images/branch_add.png}
+	                  \end{center}
+		          \caption{Hinzufügen von Fachbereichen}
+	        	  \label{fig:branch-add2}
+	               	\end{figure*}\par
+			Geben Sie einen Namen und eine Kurzform für das Fachgebiet ein. Die Abkürzung muss aus GENAU drei Buchstaben bestehen und geht direkt in die Signatur ein. Bestätigen Sie Ihre Eingabe mit 'OK'.
+			\index{Signatur}
+			\subsubsection{Fachbereich bearbeiten}
+			
+			Unter diesem Menupunkt können Sie bereits angelegte Fachbereiche bearbeiten.
+			\begin{figure*}[!htb]
+                	  \begin{center}
+        	            \includegraphics[scale=0.5]{images/branch_edit.png}
+	                  \end{center}
+		          \caption{Bearbeiten von Fachbereichen}
+	        	  \label{fig:branch-edit2}
+	               	\end{figure*}\par
+			Ändern Sie den Namen für den Fachbereich und bestätigen Sie Ihre Eingabe mit OK oder brechen Sie die Bearbeitung ab. \underline{Hinweis:} Das Kürzel für einen Fachbereich können Sie aus technischen Gründern nicht mehr verändern. 
+			
+		\newpage	
+		\subsection{Standorte}
+		\label{sec:environment-place}
+		\index{Standort}
+		Durch die Eingabe von Standorten können Sie festlegen, wo sich das jeweilige Dokument befindet. Dies kann ein Regal, aber auch ein elektronischer Link sein. Der Standort eines Dokumentes kann sich ändern, wenn z.B. ein Buch ausgeliehen wird. Daher können Sie mit Liabolo beliebig Standorte editieren, um auf unvorhergesehene Änderungen vorbereitet zu sein. Jedes Regal bietet leider nur endlichen Platz :-) 
+		\begin{figure*}[!htb]
+                  \begin{center}
+                    \includegraphics[scale=0.5]{images/place.png}
+                  \end{center}
+	          \caption{Die Standorte im Überblick}
+        	  \label{fig:place2}
+               	\end{figure*}\par
+		\begin{itemize}
+		\item{Klicken Sie auf 'Neu', um einen neuen Standort zu erstellen.(S.:\pageref{fig:place-new2})}
+		\item{Klicken Sie auf 'Bearbeiten', um die Beschreibung für einen Standort zu bearbeiten. (S.:\pageref{fig:place-edit2})}
+		\item{Klicken Sie auf 'Inhalt', um alle Dokumente anzuzeigen, die sich an dem jeweiligen Standort befinden. Sie erhalten die entsprechende Trefferliste (siehe Kap. \ref{sec:hit-list}) angezeigt.}
+		\item{Klicken Sie auf 'Entfernen', um den Standort nach einer Rückfrage zu löschen.}
+		\end{itemize} 
+			\subsubsection{Standort erstellen}
+			 Unter diesem Menupunkt können Sie selbst definierte Standorte anlegen.
+			\begin{figure*}[!htb]
+			\begin{center}
+			\includegraphics[scale=0.5]{images/place_new.png}
+			\end{center}
+			\caption{Hinzufügen von Standorten}
+			\label{fig:place-new2}
+			\end{figure*}\par
+			Geben Sie einen Namen und eine Beschreibung für den Standort ein. Bestätigen Sie Ihre Eingabe mit 'OK'.
+			\subsubsection{Standort bearbeiten}
+			\begin{figure*}[!htb]
+			\begin{center}
+			\includegraphics[scale=0.5]{images/place_edit.png}
+			\end{center}
+			\caption{Bearbeiten von Standorten}
+			\label{fig:place-edit2}
+			\end{figure*}\par
+			 Bearbeiten Sie die Beschreibung für den gewählten Standort.
+			 \underline{Hinweis:} der Name kann aus technischen Gründen nicht geändert werden.
+			
+			
+		\newpage
+		\subsection{Individualliste}
+		\label{sec:environment-indlist}
+		Die Individualliste dient der Zusammenführung von Dokumenten, die für ein bestimmtes Projekt benötigt werden. Wenn Sie z.B. gerade an einer Diplomarbeit schreiben, können Sie alle Dokumente, die Sie referenzieren möchten, in einer Individualliste zusammenfassen.
+		\begin{figure*}[!htb]
+                  \begin{center}
+                    \includegraphics[scale=0.5]{images/indlist.png}
+                  \end{center}
+	          \caption{Die Individuallisten im Überblick}
+        	  \label{fig:indlist2}
+               	\end{figure*}\par
+		\begin{itemize}
+		\item{Klicken Sie auf 'Neu', um eine Individualliste hinzuzufügen. (S.:\pageref{fig:indlist-new2})}
+		\item{Klicken Sie auf 'Bearbeiten', um eine Individualliste zu bearbeiten. (S.:\pageref{fig:indlist-new2})}
+		\item{Klicken Sie auf 'Exportieren', um die Individualliste zu exportieren. Eine ausführliche Beschreibung finden Sie im Kapitel \ref{sec:file-export}}
+		\item{Klicken Sie auf 'Entfernen', um die markierten Individuallisten nach einer Rückfrage aus der Datenbank zu löschen.}
+		\item{Klicken Sie auf 'Inhalt', um alle Dokumente anzuzeigen, die sich in den markierten Individuallisten befinden. Sie erhalten die entsprechende Trefferliste (siehe Kap. \ref{sec:hit-list}) angezeigt.}
+		\end{itemize} 
+		\underline{Hinweis:} Markieren Sie mit der Maus die Einträge, die sie weiter bearbeiten möchten
+			\subsubsection{Hinzufügen von Individuallisten}
+			Die Individualliste speichert die Dokumente, die Sie individuell zusammenfassen bzw. gruppieren wollen. In dieser Liste können sie die Objekte sammeln, die später z.B. in einem Literaturverzeichnis erscheinen sollen oder zu einer Diplomarbeit gehören.
+			\begin{figure*}[!htb]
+                	  \begin{center}
+        	            \includegraphics[scale=0.5]{images/indlist_new.png}
+	                  \end{center}
+		          \caption{Hinzufügen von Individuallisten}
+	        	  \label{fig:indlist-new2}
+	               	\end{figure*}\par
+			Geben Sie einen Namen und eine Beschreibung für die Individualliste ein. Bestätigen Sie Ihre Eingabe mit 'OK' oder brechen Sie den Dialog ab.
+			\subsubsection{Inhalt einer Individualliste}
+			Klicken Sie auf 'Inhalt', um die Dokumente anzuzeigen, die in der markierten Individualliste eingetragen sind. Sie erhalten die entsprechende Trefferliste (siehe Kap. \ref{sec:hit-list})
+			\subsubsection{Individuallisten bearbeiten}
+			Bereits bestehende Individuallisten können jederzeit bearbeitet werden.
+			 \begin{figure*}[!htb]
+                	  \begin{center}
+        	            \includegraphics[scale=0.5]{images/indlist_edit.png}
+	                  \end{center}
+		          \caption{Bearbeiten von Individuallisten}
+	        	  \label{fig:indlist-edit2}
+	               	\end{figure*}\par
+			Ändern Sie die Beschreibung der gewünschten Individualliste und bestätigen Sie Ihre Änderungen mit 'OK' oder brechen Sie den Dialog ab.
+			
+		\newpage			
+		\subsection{Zwischenablage}
+		\label{sec:environment-clipboard}
+		\index{Zwischenablage}
+		Die Zwischablage ermöglich die Bearbeitung von Dokumenten, die sich in entfernten Datenbanken befinden. Eine ausführliche Beschreibung der Zwischenablage finden Sie in Kapitel \ref{sec:clipboard}.
+		
+	
+	\section{Verbindung}
+	\label{sec:connection}
+	\index{Verbindung}
+	In diesem Abschnitt finden Sie alle Informationen über den Aufbau von Verbindungen zu Datenbanken im Netzwerk (Inter-/Intranet).
+		\subsection{Verbinden/Trennen}
+		\label{sec:connection-connect}
+		Unter diesem Menupunkt können Sie die Verbindung zur Datenbank herstellen und trennen. 
+		\begin{figure*}[!htb]
+                  \begin{center}
+                    \includegraphics[scale=0.5]{images/conn_globe.png}
+                  \end{center}
+	          \caption{Verbindung zu entfernter Datenbank besteht}
+        	  \label{fig:conn-globe}
+               	\end{figure*}\par
+		\underline{Hinweis:} Beachten Sie den Globus neben dem Menupunkt 'Verbinden' und in der Symbolleiste. Ein Globus in grüner Farbe zeigt an, das eine Verbindung zur gewünschten Datenbank besteht. Ist das Symbol rot, so besteht zur Zeit keine Verbindung zu einer entfernten Datenbank. 
+		
+		\subsection{Neu}
+		\label{sec:connection-new}
+		Unter diesem Menupunkt können Sie neue Verbindungen zu Datenbanken im Netzwerk aufnehmen. Für die Verbindung werden verschiedene Angaben benötigt. Liabolo ist in der Lage, mit unterschiedlichen Datenbanken eine Verbindung aufzubauen. Hierfür ist die Angabe eines passenenden Treibers erforderlich.
+		\begin{figure*}[!htb]
+                  \begin{center}
+                    \includegraphics[scale=0.5]{images/conn_new.png}
+                  \end{center}
+	          \caption{Verbindung hinzufügen}
+        	  \label{fig:conn-new}
+               	\end{figure*}\par
+		
+		\begin{itemize}
+		\item{Geben Sie einen Namen für die Verbindung ein. Diesen Namen können Sie frei wählen, er dient zur Unterscheidung der einzelnen Verbindungen.}
+		\item{Weiterhin geben Sie die URI ein, unter der die Datenbank zu erreichen ist. Sie müssen die Art der Datenbank, die Adresse und den Port angeben, auf dem die Datenbank zu erreichen ist. Durch diese drei Angaben kann eine Datenbank eindeutig bezeichnet werden und unterscheidet sich damit von allen anderen möglichen Datenbanken.}
+		  \begin{itemize}
+		  \item{Geben Sie die Art der Datenbank an, gefolgt von einem Doppelpunkt und zweimal dem Symbol Slash ('/'). Für eine Datenbank vom Typ eXist lautet dieser Teil: 'exist://'}
+		  \item{Weiterhin wird die Adresse benötigt, unter der die Datenbank zu erreichen ist. Sie können den Namen oder die IP-Adresse eines Computers angeben. Der Name setzt sich im Allgemeinen aus Host, Domain und Top-Level-Domain zusammen. Ein vollständiger Name lautet z.B.: 'p30srv.wiwi.uni-oldenburg.de'}
+		  \item{Weiterhin wird die Adresse benötigt, unter der die Datenbank zu erreichen ist. Sie können den Namen oder die IP-Adresse eines Computers angeben. Der Name setzt sich im Allgemeinen aus Host, Domain und Top-Level-Domain zusammen. Ein vollständiger Name lautet z.B.: 'p30srv.wiwi.uni-oldenburg.de'}
+		  \item{Abschließend wird der Port benötigt, auf dem die Datenbank auf Anfragen antwortet. Dieser Port ist eine Zahl zwischen 1 und 65535 und abhängig von der Installation und der Art der Datenbank. In diesem Beispiel erwartet die Datenbank eXist Anfragen auf dem Port 8081. Der Port muss an die Adresse angehängt werden, nachdem ein Doppelpunkt als Trennzeichen eingefügt wurde.}
+		  \end{itemize} 
+		\item{Fügen Sie die Art der Datenbank, gefolgt von den Trennzeichen '://', die Adresse des Servers gefolgt von einem Doppelpunkt und den Port zu einem Ausdruck zusammen und tragen Sie ihn unter DB-URI ein. Ein korrektes Beispiel lautet: 'exist://p30srv.wiwi.uni-oldenburg.de:8081'}
+		\item{Weiterhin wird ein Benutzername benötigt, der den Zugriff auf die angegebene Datenbank ermöglicht.}
+		\item{Geben Sie das zum Benutzernamen passende Kennwort ein. }		
+		\item{Geben Sie den entsprechenden Treiber für die Datenbank ein. Dieser Treiber ermöglicht den korrekten Zugriff auf die Datenbank. Liabolo kann so auf verschiedene Datenbankarchitekturen zugreifen. Der korrekte Treiber für eine eXist Datenbank lautet: 'org.exist.xmldb.DatabaseImpl'}		
+		\item{Bestätigen Sie Ihre Angaben mit 'OK' oder verlassen Sie den Dialog mit 'Abbrechen', um Ihre Änderungen nicht zu speichern.}
+		\end{itemize} 
+				
+		\subsection{Bearbeiten}
+		\label{sec:connection-edit}
+		Unter diesem Menupunkt können Sie bestehende Verbindungen zu Datenbanken im Netzwerk bearbeiten. Es erscheint eine Tabelle mit allen Verbindungen, die Liabolo gespeichert hat. Die letzte Spalte 'Aktiv' gibt an, ob zur Zeit eine Verbindung zu dieser Datenbank besteht. Hiermit können Sie überprüfen, auf welche Daten Liabolo überhaupt zugreifen kann.
+		\begin{figure*}[!htb]
+                  \begin{center}
+                    \includegraphics[scale=0.5]{images/conn_show.png}
+                  \end{center}
+	          \caption{Anzeige bestehender Verbindungen}
+        	  \label{fig:conn-show}
+               	\end{figure*}\par
+		Wählen Sie mit der Maustaste den Eintrag aus, den Sie bearbeiten möchten. Klicken Sie auf 'Bearbeiten' um einen Eintrag zu verändern. Bearbeiten Sie die Einträge in der angezeigten Maske. Es gelten die gleichen Bedingungen wie für einen neuen Eintrag.
+		
+	\newpage	
+	\section{Extras}
+	\label{sec:extra}
+		\subsection{Formulareditor}
+		\label{sec:extra-formeditor}
+		\index{Formulareditor}
+		Mit dem Formulareditor können Sie entscheiden, welche Medadaten für ein Objekt angezeigt werden sollen. Liabolo unterstützt zur Zeit bis zu 15 Elemente für jedes Dokument, das Sie erfassen möchten. Die Elemente sind die Kernelemente des Dublin Core \cite{dublincore} und erfüllen damit einen offenen Standard. Somit ist der Datenaustausch mit anderen Softwareprodukten problemlos möglich.
+		\begin{figure*}[!htb]
+                  \begin{center}
+                    \includegraphics[scale=0.5]{images/form_edit.png}
+                  \end{center}
+	          \caption{Der Formulareditor}
+        	  \label{fig:form-edit}
+               	\end{figure*}\par
+		Wählen Sie im Pulldownmenu einen bestehenden Medientyp. Aktivieren Sie die Felder, die Sie bei der Eingabe von Objekten bearbeiten möchten. Felder, die Sie vorerst nicht nutzen, können später jederzeit aktiviert werden. Deaktivieren Sie die Felder, die sie nicht mehr nutzen möchten. Diese Felder werden zwar bei der Eingabe nicht mehr angezeigt, ihr Inhalt wird jedoch nicht gelöscht. Es werden keine Daten aus der Datenbank entfernt, die Anzeige wird lediglich übersichtlicher.
+		\newpage	
+		\subsection{Einstellungen}
+		\label{sec:extra-preferences}
+		Hier können sie generelle Einstellungen von Liabolo vornehmen. Diese wirken sich sofort auf sämtliche Funktionen aus. Die Änderung der Sprache erfordert allerdings einen Neustart von Liabolo. 
+		\begin{figure*}[!htb]
+                  \begin{center}
+                    \includegraphics[scale=0.5]{images/preferences.png}
+                  \end{center}
+	          \caption{Einstellungen}
+        	  \label{fig:preferences}
+               	\end{figure*}\par
+		\begin{itemize}
+		\item{'Toolbar anzeigen': hiermit können Sie die Symbolleiste am linken Fensterrand von Liabolo ein- und ausschalten. Diese dient dem schnellen Zugriff auf wichtige Funktionen.}
+		\item{'Warnungen anzeigen': mit dieser Funktion können Warnungen bei der Eingabe und Speicherung abgeschaltet werden. Fortgeschrittene Nutzer, die mit der Bedienung von Liabolo vertraut sind, können hiermit Bestätigungen häufig auftretender Funktionen abschalten.}
+		\item{'Sprache wählen': Liabolo unterstützt die Sprachen Deutsch und Englisch. Nach einer Änderung muss Liabolo neu gestartet werden. Liabolo kann leicht durch das Hinzufügen einer Datei an weitere Sprachen angepasst werden.}
+		\item{'Automatischer Verbindungsaufbau': diese Funktion legt fest, das Liabolo sofort nach dem Start eine Verbindung zu einem Datenbankserver im Netzwerk hmen soll. Diese Einstellung wird empfohlen, wenn eine permanente Anbindung an das Internet oder Netzwerk vorhanden ist.}
+		\end{itemize} 
+		
+
+
+		
+	
+	\section{Hilfe}
+	\label{sec:help}
+	\index{Hilfe}
+		\subsection{Inhalt}
+		\label{sec:help-content}
+		Über diesen Punkt erreichen Sie die Hilfe von Liabolo, die Sie gerade lesen. :-)
+		\subsubsection{Tool-Tips}
+		Liabolo verfügt nicht nur über diese Online-Hilfe, sondern unterstützt Sie auch direkt bei der Eingabe in den meisten Dialogen. Wenn Ihnen an einer Stelle unklar ist, was Sie in ein bestimmtes Feld eintragen sollen, so können Sie sich durch einen Tool-Tip helfen lassen: bewegen Sie die Maus auf das Feld, dessen Bedeutung Ihnen unklar ist. Nach kurzer Zeit erscheint ein kleines Fenster mit einem Hilfetext, der Ihnen die Bedeutung des Feldes erläutert. 
+		\subsubsection{Rechte Maustaste}
+		Falls Ihnen nicht klar ist, welche Funktionen Sie an einer bestimmten Stelle ausführen können, so drücken Sie die rechte Maustaste. In einem Fenster erscheinen die Menupunkte, die zu diesem Zeitpunkt sinnvoll sind.
+		\subsubsection{Navigation in der Hilfe}
+		Die Online-Hilfe ist in der Seitenbeschreibungssprache HTML verfasst und verhält sich ähnlich wie der Seitenaufruf im Internet. Auf jeder Seite der Hilfe finden Sie am oberen Rand einen Link zum '[index]', der Sie zum Inhaltsverzeichnis der Hilfe führt. Weiterhin bieten die Icons am oberen Fensterrand folgende Funktionen: 
+		\begin{figure*}[!htb]
+                  \begin{center}
+                    \includegraphics[scale=0.5]{images/help_buttons.png}
+                  \end{center}
+	          \caption{Die Icons der Online-Hilfe}
+        	  \label{fig:help_buttons}
+               	\end{figure*}\par
+		\begin{itemize}
+		\item {Klicken Sie auf das Symbol 'Pfeil nach links', um immer zum Inhaltsverzeichnis der Hilfe zu gelangen}
+		\item {Klicken Sie auf das Symbol 'Drucker', um die Online-Hilfe auszudrucken
+		\item {Klicken Sie auf das Symbol 'geöffnete Tür', um die Online-Hilfe zu} verlassen}
+		\end{itemize} 
+		
+	
+%
+%
+% For figures use
+%
+%\begin{figure}
+%\centering
+% Use the relevant command for your figure-insertion program
+% to insert the figure file.
+% For example, with the option graphics use
+%\includegraphics[height=4cm]{images/figure.eps}
+%
+% If not, use
+%\picplace{5cm}{2cm} % Give the correct figure height and width in cm
+%
+%\caption{Please write your figure caption here}
+%\label{fig:1}       % Give a unique label
+%end{figure}

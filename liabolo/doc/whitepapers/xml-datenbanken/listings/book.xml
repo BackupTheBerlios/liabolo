@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mediaType>
+    <metadata name="creator" desc="creator_desc" DCid="0" type="0"/>
+    <metadata name="title" desc="title_desc" DCid="1" type="0"/>
+    <metadata name="publisher" desc="publisher_desc" DCid="2" type="0"/>
+    <metadata name="date" desc="date_desc" DCid="3" type="3"/>
+    <metadata name="source" desc="source_desc" DCid="5" type="0"/>
+    <metadata name="coverage" desc="coverage_desc" DCid="6" type="2"/>
+    <metadata name="language" desc="language_desc" DCid="7" type="0"/>
+    <metadata name="description" desc="description_desc" DCid="8" type="1"/>
+    <metadata name="subject" desc="subject_desc" DCid="9" type="0"/>
+    <metadata name="identifier" desc="identifier_desc" DCid="10" type="0"/>
+    <metadata name="format" desc="format_desc" DCid="12" type="0"/>
+    <metadata name="contributors" desc="contributors_desc" DCid="13" type="0"/>
+</mediaType>

@@ -1,0 +1,88 @@
+%################################################################
+% package definitions
+%################################################################
+\usepackage [latin1] {inputenc}
+\usepackage{fancyhdr}
+\usepackage{german}
+\usepackage[OT1]{fontenc}
+\usepackage{ngerman}
+\usepackage{graphicx}
+\usepackage{verbatim}
+%\usepackage{floatflt} % figures float over some pages
+%\usepackage{setspace}
+%%%%%\usepackage{listings}
+\usepackage{color}
+\usepackage{epsfig}
+%\usepackage{fancybox}
+\usepackage{fancyvrb}
+%\usepackage{fancyhdr}
+%\usepackage{ae}
+%\usepackage{color}
+%\usepackage{colortbl}
+%\usepackage{flafter}
+\usepackage{hyperref}
+%\usepackage{supertabular}
+%\usepackage{longtable}
+\usepackage{makeidx}
+
+%################################################################
+%page layout settings
+%################################################################
+\pagestyle{headings}
+%\pagenumbering{arabic}
+\fancyfoot{}
+\fancyhead{}
+\fancyhead[LO]{{\bfseries \rightmark}}
+%\fancyhead[RO,LE]{{\bfseries \thepage}}
+%\fancyhead[RE]{{\bfseries Projekt 30}}
+
+\setcounter{secnumdepth}{3}
+
+\hypersetup{
+        plainpages=false,
+        colorlinks=true,
+        bookmarksopen=true,
+        bookmarksnumbered=true,
+        bookmarksopenlevel=1,
+        pdfauthor={Projektgruppe},
+        pdftitle={Title of document},                            
+       pdfkeywords={stefan,willer,keyword},
+        linkcolor=black,
+        anchorcolor=black,
+        citecolor=black,
+        filecolor=black,
+        menucolor=black,
+        pagecolor=black,
+        urlcolor=black,
+}
+
+%################################################################
+%self defined commands
+%################################################################
+\providecommand{\easy}{Stefan Willer}
+\providecommand{\quoted}[1]{"`#1"'}
+
+%\newcommand{}
+
+%################################################################
+%other
+%################################################################
+% Setzt den graphics-Modus von pdftex auf quiet
+% -> Dadurch werden keine Meldungen mehr über eingebundene Grafiken
+%  ausgegeben.
+%\setkeys{Gin}{quiet}
+% Verhindert overfull vbox, die durch fancyhdr und 12pt verursacht
+% werden
+\addtolength{\headheight}{2.5pt}
+% Verhindert overfull hbox-Warnungen, bei Überschreitungen, die nicht
+% sichtbar sind.
+\emergencystretch=3pt\relax
+
+% how the bibliography should like
+\bibliographystyle{alpha}
+
+% create index
+\makeindex
+
+
+

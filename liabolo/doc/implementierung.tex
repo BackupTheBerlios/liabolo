@@ -1,0 +1,129 @@
+\part{Implementierung}
+Folgt im Abschlussbericht
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SIGNATURBESCHREIBUNGSALGORITHMUS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	\chapter{Signaturbeschreibungsalgorithmus}%Thorsten
+
+	Hier werden die Einzelheiten zur Implementierung des oben nat\"urlichsprachlich angegebenen
+	Algorithmus beschrieben.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% FUNKTIONSBESCHREIBUNG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	\chapter{Funktionsbeschreibung}
+		\section{Frontend}%Maxim, Jurij
+			\subsubsection{Benutzungsoberfläche}	 % Jurij
+			\paragraph{Gestaltung}
+		Im Verlauf der Implementierungsphase ist eine grafische Benutzungsoberfläche entstanden, die in der Anforderungsdefinition und dem Entwurf festgelegten Ziele umsetzt.\\\\
+		Bei Start der Anwendung wird ein Login-Fenster eingeblendet. Erst die Eingabe der richtigen Anmeldedaten lässt den Benutzer in das Hauptfenster. Seine Grösse ist standardmässig auf 800x600 Pixel eingestellt, lässt sich aber beliebig vergrössern und verkleinern. Die GUI-Anwendung stellt in sich ein Multi-Dokument-Fenster dar, welches beim Start zunächst leer ist und nur eine Menuleiste und optional abschaltbare Werkzeugleiste enthält. \\\\
+		Die Menuleiste erlaubt den Zugriff auf alle verfügbaren Formulare und Funktionen. Viele der Einträge sind zusätzlich mit einem Icon versehen, um möglichst ansprechende und intuitive Bedienung zu ermöglichen.\\\\
+		Die Werkzeugleiste stellt eine Schnellzugriffsleiste dar. über sie können die wichtigsten Funktionen und Formulare der Anwendung schnell und unkompliziert aufgerufen werden. Damit die Werkzeugleiste nicht zuviel vom verfügbaren Arbeitsbereich beansprucht, sind alle Einträge in Form von kleinen Bild-Knöpfen implementiert. Die Leiste lässt sich entweder frei positionieren, beliebig dimensionieren oder an einem der vier Randbereiche des Arbeitsbreich-Fensters andocken.\\\\
+		Die Formulare, Dialoge und Einstellungen-Fenster  können mittels der Menueinträge bzw. über die Werkzeugleisten aufgerufen werden. Sie erscheinen dabei als Unterfenster im Hauptfenster, können parallel geöffnet, beliebig verschoben und minimiert werden. Die Vergrösserung der Unterfenster ist nicht möglich, weil das vordefinierte Layout der Formulare durch ihre die Neudimensionierung  verloren gehen und somit zur  Unübersichlichkeit beitragen würde.\\
+				\paragraph{Einsatz von Icons}
+				Um eine möglichst komfortable und intuitive Bedienung der grafischen Oberfläche zu ermöglichen, wurden die zahlreiche Menueinträge mit den Icons versehen. Dabei wurden die PG-mitglieder mit zahlreichen nicht vorhersehbaren Problemen konfrontiert, die im Folgenden aufgeführt werden.
+						\subparagraph{Icon-Abmessungen}
+						Unglücklicherweise besitzen die u.a. im Internet frei verfügbaren Standard-Icons eine Auflösung von 32 x 32 Pixel. Diese Grösse ist für unsere Anwendung jedoch entscheidend zu gross. Zahlreiche Versuche die vorliegenden Icons  auf die Wunschgrösse von 16 x 16 Pixel herunter zu skalieren brachten nur ungenügende Ergebnisse mit sich.
+					\subparagraph{Bitmap-Icons}
+			Die Bitmap-Icons werden nativ im einem zum LZW-Algorithmus verwandtem Codierungsverfahren abgelegt. Die Bilddaten liegen dabei als Pixelgrafik(Bitmap) mit einer Farbtiefe von 8 bit vor. Die Bitmaps lassen sich aber nur bedingt vergrössern bzw. verkleinern. Zudem sind die erzielbaren Ergebnisse von stark von der Quellfarbtiefe abhängig. Bei der 8 bit-Farbtiefe behalten die verkleinerten Grafiken ihre Darstellungschärfe, die Proportionen der Objekte gehen durch die Umrechnungsprozesse und der Tatsache, dass keine Halbpixel abgelegt werden können, unter Umständen verloren. Um dies zu vermeiden, lassen sich die  Quelldaten zunächst in einen TrueColor-Format(32 bit) überführen. Dadurch wird die verkleinerte Darstellung interpoliert, wodurch aber der Schärfeeindruck sichbar abnimmt. \\
+			Ein Bespiel: Eine 1-Pixel breite, schwarzgefärbte Kante auf einem 10-Pixel weissgefärbtem Untergrund würde durch die in dem verkleinerten 8bit-Icon völlig verschwinden. Bei einem True-Color-Icon wäre die Kante immer noch sichbar, dafür aber äusserst unscharf.
+			\subparagraph{SVG-Icons}
+			Die SVG-Icons werden als Verktorgrafiken abgelegt. Der grösste Vorteil der Vektorgrafiken gegenüber den Bitmapgrafiken besteht darin, dass sie sich  "`verlustfrei"' vergrössern bzw. verkleinern lassen. Die jeweiligen Faktoren sind praktisch unbegrenzt, doch bei einer zu starken Verkleinerung sind viele Objekte auf der kleinen Fläche nicht mehr erkennbar und die Darstellung wird unbrauchbar.
+	\subparagraph{Open Source Icons}
+	Da die Projektgruppe an einem Open Source arbeitet, sollten auch die eingesetzten Ressourcen, also auch die Grafiken, ebenfalls lizenzfrei bleiben. Dies stellte eine zusätzliche Hürde dar, da viele der verfügbaren Quellen entweder von minderwertiger Qualität  oder wegen der unpassenden Abmessungen bereits am Anfang nicht mehr von Interesse waren. Hinzu kommt  die Tatsache, dass es zwar viele Icon-Bibliotheken gibt, viele aber nur einen begrenzten Motiv-Bereich abdecken und die Darstellungsweise zum Teil sehr stark unterscheidet, so dass die Zusammenstellung einer homogenen Icon-Bibliothek für die GUI sich als sehr schwierig erwies.
+
+
+
+		\section{Backend}
+			Details folgen im Abschlussbericht..
+			\subsection{Datenhaltung}
+				\subsubsection{Pfade, URI}%Thorsten, Stefan
+				\subsubsection{Datens\"atze}%Frank
+				Die Datensätze werden für jedes Dokument in einer XML-Datei gespeichert. Durch die 				speziellen Anforderungen sind noch weitere Metatags notwendigt, um alle 					Informationen erfassen zu können.
+
+					\paragraph{UNI-OL Metatags}
+					Für das Projekt 30 reichen die vorhandenen Metatags des Dublin Core nicht aus. Es wurden im Lauf der Entwicklung neue Metatags entworfen
+					um den Anforderungen an das Projekt gerecht zu werden. Das Pr\"afix für die zus\"atzlichen Metadaten wurde auf 'UNI-OL' festgelegt. Insgesamt
+					sind sechs Metatags entstanden, die im Folgenden beschrieben werden.
+						\subparagraph{UNI-OL.branch}
+						Das Metatag 'UNI-OL.branch' bezeichnet den Fachbereich, zu dem ein Dokument geh\"ort. Beispiele f\"ur Fachbereiche sind: Informatik, Theologie
+						oder Wirtschaftswissenschaften. Der Fachbereich ist eine Zeichenkette, daher ist das Tag als String deklariert.
+						\subparagraph{UNI-OL.abstract}
+						Dieses Metatag bietet Raum für Notizen oder eine ausf\"uhrlichere Beschreibung wie den Klappentext eines Buches. Der Text kann beliebig lang
+						sein und ist als String deklariert.
+						\subparagraph{UNI-OL.signature}
+						'UNI-OL.signature' enthält die Signatur für das Dokument. Damit kann ein Dokument eineindeutig einer Signatur zugewiesen werden. Da die Signatur
+						eine Mischung aus Ziffern und Buchstaben ist, wird das Metatag als String definiert.
+						\subparagraph{UNI-OL.owner}
+						Hier kann der Besitzer des Dokuments angegeben werden. Die Namen werden als String gespeichert.
+						\subparagraph{UNI-OL.private}
+						Jeder Nutzer hat die Möglichkeit, seine Dokumente der Öffentlichkeit zur Verfügung zu stellen. Es ist aber auch möglich, Dokumente nur für den
+						eigenen Gebrauch in die Datenbank aufzunehmen. Das Metatag 'UNI-OL.private' klassifiziert das Dokument als privat oder öffentlich. Die Eigenschaft
+						wurde daher als Boolean festgelegt. True steht für ein privates Dokument, false für ein öffentlich freigegebenes.
+						\subparagraph{UNI-OL.archivesource}
+						Das Metatag 'UNI-OL.archivesource' ist speziell für elektronische Dokumente eingefügt worden. Hiermit kann direkt eine Verknüpfung (Link) zum Dokument
+						gespeichert werden. Nutzer, die mit dem Internet verbunden sind, können dann sofort auf die Datei zugreifen.
+
+					\paragraph{XML Dateien f\"ur verschiedene Dokumenttypen}
+					Die Datenbank soll insgesamt sechs verschiedene Arten von Dokumenten verwalten: 'Artikel', 'Audio', 'Buch', 'Kapitel', 'Magazin' und 'Video'. Alle fünfzehn Elemente
+					des Dublin Core lassen sich auf jede der Dokumentarten anwenden. Zusätzlich werden die Datensätze durch die 'UNI-OL.' Metatags ausführlicher und eindeutig
+					bezeichnet. Es genügt jedoch nicht, eine einfache Darstellung der Elemente in Form einer XML-Datei abzubilden. Nicht nur der Inhalt, sondern auch die Form
+					muss beschrieben werden. Diese Aufgabe übernimmt das XML Schema.
+				\subsubsection{XML Schema}%Frank
+				Die XML Schema Dateien ermöglichen die einfache und sichere Handhabung von XML Dateien.
+				Am Beispiel der Datei 'book.xsd' soll der Aufbau einer Schema Datei erläutert werden. Aus						Platzgründen wird an dieser Stelle nicht die komplette Datei abgebildet. Im Anhang befinden
+				sich die vollständigen XML-Dateien sowie die Schema-Datei. An dieser Stelle werden
+				sowohl die Dublin Core als auch
+				die 'UNI-OL' Elemente werden auf zwei Objekte reduziert, der reguläre Ausdruck
+				'ISBNtype' wird separat aufgeführt und erläutert.
+
+					\paragraph{XML Schema für Dokumenttyp 'Buch'}
+					\begin{center}
+					\begin{Verbatim}[tabsize=2,frame=leftline,label=build.xml,numbers=left]
+					<?xml version="1.0" encoding="UTF-8" ?>
+					<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+					<xs:complexType name="book">
+					 <xs:complexContent>
+					  <xs:restriction base="xs:anyType">
+					   <xs:sequence>
+					    <xs:element name="DC.identifier" type="xs:ISBNtype"/>
+					    <xs:element name="DC.title" type="xs:string" use=required/>
+					    <xs:element name="UNI-OL.branch" type="xs:string"/>
+					    <xs:element name="UNI-OL.archivesource" type="xs:string"/>
+					   </xs:sequence>
+					  </xs:restriction>
+					 </xs:complexContent>
+					</xs:complexType>
+					\end{Verbatim}
+					\end{center}
+					Die ersten zwei Zeilen stellen den Header dar. Die Datei wird im XML-Format
+					1.0 gespeichert. Der Zeichensatz wird auf UTF-8 festgelegt, um die
+					Plattformunabhängigkeit garantieren zu können.  Die Schema-Datei wird an das W3C XML Schema
+					angelehnt (Zeile 2), alle Elemente in diesem Namensraum beginnen daher mit dem Präfix 'xs:'.
+					Ab Zeile drei beginnt der komplexe Datentyp 'Buch', nach dem  Schlüsselwort 'sequence' werden
+					die Dublin Core, sowie die 'UNI-OL'-Elemente  mit ihren Attributen aufgelistet.
+
+
+						\subparagraph{Der regul\"are Ausdruck: ISBNtyp}
+						Das Element 'DC.identifier' führt einen unbekannten Datentyp ein, der definiert werden
+						muss:
+						\begin{center}
+						\begin{Verbatim}[tabsize=2,frame=leftline,label=build.xml,numbers=left]
+						<xs:simpleType name="ISBNType">
+						   <xs:restriction base="xs:string">
+						    <xs:pattern value="\d{9}[0-9X]"/>
+						   </xs:restriction>
+						</xs:simpleType>
+						\end{Verbatim}
+						\end{center}
+						Der Datentyp 'ISBNtype' wird in Zeile 2 vom Datentyp 'String' abgeleitet. Durch den
+						regulären Ausdruck, der mit dem Schlüsselwort 'pattern' eingeleitet wird, erfolgt eine
+						Einschränkung für die möglichen Werte in einem Element. Ein Objekt vom Typ 'ISBNtype'
+						muss mit neun Symbolen aus dem Zeichensatz der Ziffern beginnen ($\backslash d\{9\}$). 							Abschließend
+						muss eine Prüfziffer folgen. Für die Prüfziffer 10 wird das große 'X' verwendet. Die
+						Prüfziffern null bis neun werden durch die jeweiligen Ziffern dargestellt. Der Ausdruck
+						[0-9X] verlangt also nach einer Ziffer zwischen null bis neun oder dem Symbol 'X'.
+						Diese Einschränkungen garantieren, das nur dem Format nach gültige ISBN-Nummern
+						eingegeben werden können.

@@ -1,0 +1,171 @@
+\chapter{Einführung}
+Die folgenden Seiten sollen einen Einblich in die Verwendung von XML-Datenbanken geben. Nach einer Erklärung dieser wird auf die unterschiedlichen Dokumentarten eingegangen und darauf auf die Vorteile des Einsatzes einer XML-Datenbank bezogen. Es werden drei Implementierungen der XML:DB Schnittstelle vorgestellt und anhand einer Featurelist ein grober Vergleich gezogen. Abschliessend wird auf den Einsatz einer dieser Implementierungen in Bezug auf Liabolo eingegangen, wobei der interne Datenbank-Aufbau von Liabolo detailiert beschrieben wird.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	CHAPTER WAS SIND XML-DATENBANKEN
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Was sind XML-Datenbanken}
+\label{chap:xml_datenbanken}
+
+	\section{Datenbanken und XML}
+		Duch die Verwendung von XML entstanden i.A. zwei verschieden Ansätze der Integration von XML-Dokumenten in bestehende Datenbanken. Die beiden Ansätze werden nun kurz vorgestellt.
+		\subsection{XML-fähige Datenbanken}
+			Im Laufe der Entwicklung wurde der Anteil an semi-strukturierten Dokumenten immer verbreiteter und es entstand der Wunsch nach adäquater Unterstützung dieser Daten in bestehenden Datenbanken. Somit musste zusätzliche Funktionalität in bisherigen Datenbanken integriert werden, um diese Dokumente zu verarbeiten. Eine Möglichkeit bestand in dem Mapping von XML-Dokumenten mittels einer DTD bzw. XMLSchema auf ein relationales Schema. Hiermit geschah eine Umwandlung, wobei die Daten schliesslich nicht mehr als XML vorlagen, eine mögliche Extraktion aber wiederum durch DTD's möglich ist. Ein weiterer Ansatz der Integration ist die Speicherung der XML-Dokumente als BLOB's bzw CLOB's, die in der Verwendung dann als Volltext durchsucht werden können. Diese Art der Datenbanken sind also in der Lage, XML-Daten zu verarbeiten, wobei dies eher ein evolutionärer Prozeß ist. Metadaten wie z.B. die Namen der Elemente werden hierbei in der Regel nicht berücksichtigt.
+
+		\subsection{Native XML-Datenbanken}
+			Unter nativen Datenbanken versteht man die Fähihgkeit der ursprünglichen und unveränderten Speicherung und Rückgewinnung der XML-Dokumenten. Es sind hierbei vier Arten der Speicherung zu unterscheiden:\\
+			\begin{enumerate}
+				\item{XML-Dokumente werden vollständig als Text in der Datenbank gespeichert.}
+				\item{XML-Dokumente werden in ein effizientes Zwischenformat(pre-parsed) überführt und dann gespeichert.}
+				\item{Schaffung einer strukturellen Abbildung, wobei ein DOM\footnote{DOM: Document Object Model} auf Tabellen oder Objekte einer Datenbank übertragen wird. "`The Document Object Model is a platform- and language-neutral interface that will allow programs and scripts to dynamically access and update the content, structure and style of documents."'\cite{w3c_dom}}
+				\item{Struktur von XML-Dokumente wird auf Datenbank abgebildert, wobei pro Element eine Tabelle entsteht. Metadaten gehen i.d.R. verloren.}
+			\end{enumerate}
+
+
+	\section{Arten von Dokumenten}
+		Auch die Art eines vorliegenden Dokumentes gibt Auskunft über die Integrationsmöglichkeiten. Stark strkturierte Dokumente sind einfacher auf Relationen zu übertragen als schwach strukturierte, die eher als Ganzes gespeichert werden.
+		
+		\subsection{Daten-zentrierte Dokumente}
+			Daten-zentrierte Dokumente zeichnen sich durch hohe Regelmäßigkeit der Daten aus, welches für eine automatische Verarbeitung konzipiert sein kann. Somit wird das XML-Format häufig lediglich als reines Datenaustauschformat verwendet. Rechnungen und  Statistiken wären hierfür ein Beispiel.
+		
+		\subsection{Dokumenten-zentrierte Dokumente}
+			Dokumenten-zentrierte Dokumente legen, wie der Name es schon vermuten läßt mehr Wert auf das Dokument als Ganzes. Dies zeichnet sich u.a. durch eine strenge Unregelmäßigkeit der Daten aus. Typisch hierfür sind z.B. Dokumente, die in einem XML-Format vorliegen, jedoch XML z.B. zur Layoutbeschreibung verwenden(RTF, DocBook).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	CHAPTER STATE OF THE ART
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{State of the art}
+Im Umfang dieses Papers können leider nicht alle gängigen Datenbanken behandelt werden, so daß im Folgenden
+nur XML-Datenbanken betrachtet werden, die der XML:DB-API\ref{xmldb-api} genügen. Angefangen mit der Vorstellung der XML:DB-API werden die Datenbanken dbXML v1(v2, Xindice und eXist im Anschluss angeführt.
+\section{XMLDB:API}
+\label{sec:xmldb_api}
+Die API XML:DB stellt eine Schnittstelle für den Zugang von native XML-Datenbanken dar. Die Schnittstellen wure in IDL(Interface Definition Language) beschrieben und ist somit prinzipiell für alle Sprachen offen. Eine Standard-Implementierung ist mit Java gegeben und wird in den folgenden drei XML-Datenbanken ebenfalls verwendet. Es sind in der Schnittstellenbeschreibung das Anlegen, Editieren, Löschen, Abfragen definiert. Somit werden alle Basisfunktionen zur Implementierung gefordert. Innerhalb der XML:DB Initiative wurde eine deskriptive Sprache XUpdate(\url{www.xmldb.org/xupdate}) definiert, die an XPATH(\url{www.w3c.org/XPATH}) angelehnt wurde. Wie der Name schon verlauten läßt, wird hiermit eine Update-Funktionalität beschrieben, auf die jedoch nciht näher eingegangen wird. 
+
+\section{dbXML(1.0/2.0)}
+\label{sec:xmldb}
+dbXMLv1.0\cite{dbXML} wurde von der dbXML-Group entwicklet und später in das Apache-Xindice-Projekt überführt. Da dbXMLv2.0 zur Zeit im RC1 veröffentlich wurde und eine komplette Neuentwicklung darstellt, sind relativ viele Quellen zu dbXMLv1.0 verschlossen. Als neue Features werden von den Entwicklern ein Transaktionskonzept, XSLT-Transfomationen, ein Sicherheitsmodell(u.a. sichere Verbindungen), etc. angegeben. Jedoch scheint der Release Candidate 1 laut Entwicklern noch nicht stable zu sein, so daß auch hier keine näheren Informationen erhältlich sind. Wie auch die Version 1.0 steht die Neuentwicklung 2.0 unter der GPL, wobei Version 2.0 ebenfalls kommerziell Lösungen anbietet, die den Support und weitere Funktionalität beinhaltet.
+
+\section{xindice}
+\label{sec:xindice}
+Xindice\cite{xindice} (gesprochen 'zeen-dee-chay')entstand aus dbxmlv1.0 und wird zur Zeit vom Apache-XML-Project unter der GPL weiterentwickelt. Die aktuelle Version ist 1.1b4. Xindice zeichnet sich als Web-Applikation standardmäßig deployed unter Tomcat(Apache Group) aus. Dokumente werden mit Inizes versehen, um die Performance zu steigern. Weiterhin unterstützt sie zur Zeit kein Benutzermangement.
+
+\section{eXist}
+\label{sec:exist}
+eXist\cite{exist} steht un der aktuellen Version 1.0b1 unter der LGPL. Neben der Schnittstellenimplementierung gibt es die Möglichkeit eXist als Standalone, web-application und embedded-Version zu integrieren. Ebenfalls werden Dokumente mit Indizes versehen. Das Benutzermanagement ist unter eXist als XML:DB-Service integriert.
+
+\section{Vergleich}
+\label{sec:vergleich}
+Der nun folgende Vergleich  basiert im Wesentlichen auf verfügbaren Features der drei Alternativen. Ein Benchmark zu Xindice und eXist ist unter \url{http://exist-db.org/webdb.pdf} zu finden. Jedoch stammen die Daten von den Entwicklern von eXist. Hierin wird unter dem Abschnitt 'Performance und Skalierbarkeit' ein Vergleich der durschnittlichen verbrauchten Zeit für verschiedene Suchanfragen gestellt. Es werden eXist, eXist mit Erweiterungen, Xindice und Jaxen gegenübergestellt. Anhand von acht zunehmend komplexer werdenden Anfragen treten gewisse Unregelmäßgikeiten auf, die Aufschluß über die Indizes-Vergabe erahnen lassen. Insgesamt geht hieraus hervor, daß eXist(ohne Erweiterungen) um ein drei- bis fünffaches schneller Ergebnisse liefert als Xindice, jedoch mit Ausnahmen. Das Ziel dieser Anaylse läßt jedoch verlauten, daß die Erweiterungen in eXist einen wesentlichen Performance- wie auch Skalierbarkeitsvorteil mit sich bringen. In eXist wurden ein Reihe von XPATH-Erweiterungen implementiert, die eine effizientere Volltext-Suche incl. Schlüsselwörter gewährleistet.\\
+
+Die folgende Tabelle (\ref{tab:featureDB}) soll Features der Datenbanken, soweit von den Entwicklern publiziert gegenüberstellen. Eine anschliessende Bewertung wird jedoch nicht explizit gegeben. Lediglich die Entscheidung der einzusetzenden Datenbank sei in Abschnitt (\ref{sec:einsatz_exist}) gegeben. Weiterhin stand zum Zeitpunkt der Entscheidung die Version dbXMLv2.0 noch nicht zur Verfügung.\\
+	\begin{table}[htp]
+		\begin{tabular}{|l|l|l|l|}
+			\hline
+																		& dbXML v2.0	& Xindice v1.1	& eXist v1.0\\
+			\hline
+			XML:DB API Impl.							& ja 					& ja 							& ja\\
+			\hline
+			Einsatz 											& standalone,	& web-						& standalone,\\
+																		& embedded		& deployment			& embedded, web-\\
+																		& 						&									& deployment\\
+			\hline
+			Transaktionen 								& ja 					& nein 						& nein\\
+			\hline
+			XSLT-Transformation 					& ja 					& nein 						& nein\\
+			\hline
+			Volltextsuche/								& ja 					& nein 							& ja\\
+			-indexierung 									& 						& 									&\\
+			\hline
+			commandline							 			& ja 					& ja 							& nein\\
+			\hline
+			Sichere-Verbindungen 					& ja 					& nein 						& nein\\
+			\hline
+			Benutzer-management 					& ja 					& nein 						& ja\\
+			\hline
+			Skript-Erweiterungen 					& ja 					& nein 						& nein\\
+			\hline
+			Triggers 											& ja 					& nein 						& nein\\
+			\hline
+			Kommunikation									& XML-RPC,		& XML-RPC 				& REST,XML-\\
+																		& REST\cite{rest}&									&RPC,SOAP,\\
+																		& 						&									&WebDav\\
+			\hline
+			GUI-Admin-Interface 					& ja 					& ja 							& ja\\
+			\hline
+			Backup-Funktionalität 				& nein 				& ja 							& ja\\
+			\hline
+			Anfrage-sprachen 							& XPATH,			& XPATH						& XPATH,\\
+																		&fulltext			&									& XQUERY,\\
+																		&							&									& fulltext\\
+			\hline
+			Update-sprachen 							& XUPDATE\cite{w3c_xupdate} 		& XUPDATE 				& XUPDATE\\
+			\hline
+			License 											&GPL/Commercial& ASL 						& LGPL\\
+			\hline
+		\end{tabular}
+		\caption{Feature-Vergleich}
+		\label{tab:featureDB}
+	\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	CHAPTER WARUM XML-DATENBANKEN ZUR LITERATURVERWALTUNG
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Warum XML-Datenbanken zur Literaturverwaltung}
+Bei dem Umgang mit XML-Datenbanken stellt sich allgemein die Frage, wofür diese besonders geeignet sind, bzw. wo Stärken und Schwächen dieser liegen. Warum wurden XML-Datenbanken, speziell native XML-Datenbanken, entworfen, wo es doch schon das Relationale Modell(theoretesch untermauert und bewährt) seid langem gibt? Die Antwort gibt im Wesentlichen die Eigenart von XML und die zunehmende Verbreitung dieser Technologie. XML-Dokumente sind semi-strukturiert, von Mensch und Maschine leserlich.\\
+
+Durch ihre selbstbeschreibende Kraft ist dem Verfasser eine Möglichkeit gegeben, Restriktionen auf die Verwendung von XML-Sprachelementen zu beschränken. Es ist somit ein sehr freier Umgang vom Einsatz dieser gewährleistet. Während beim Relationalen Modell eine striktere Struktur durch vorgegebene Entities besteht und somit im Wesentlichen fest strukturierte Daten verarbeitet werden (vorgegebene DTD, die Mapping bestimmt), besteht im Umgang mit XML fast beliebige Freiheit.\\
+
+Jetzt stellt sich die Frage, wenn wir von XML-Dokumente ausgehen, welcher Aufwand erbracht werden muss, um XML-Daten auf das Relationale Modell zu übertragen. Gehen wir von daten-zentrierten Dokumenten aus, so ist der Aufwand in Grenzen zu halten, um ein Mapping zu schaffen. Komplizierter  wird es bei dokumenten-zentrierten Dokumenten, welche in der Regel eine komplexere bzw. unstrukturierte Ordnung aufweisen. Elemente aus daten-zentrierten Dokumenten können bzw. werden meist als Entites ins Relationale Modell überführt, da sie gehäuft vorkommen und somit aus den Element-Attributen Entity-Attribute generiert werden. \\
+
+Die selbstbeschreibende Art, welche z.B. durch die Namensgebung der Elemente geschieht, kann kaum bei einer Überführung erhalten bleiben. Diese Metadaten, welche natürlich die Semantik eines Dokumentes mit bestimmen, werden daher leicht vernachlässigt.\\
+
+Abschliessend ist daher der Einsatz von XML-Datenbanken zu empfehlen, wenn wenig strukturierte Daten vorliegen und die weiteren Rahmenbedingungen beider Alternativen in etwa übereinstimmen. XML-Datenbanken, die starke Restriktionen in der Größe des Dokumentes vorgeben, scheinen trotz guter Unterstützung unregelmäßig strukturierter Daten nicht die beste Wahl zu sein, wenn hauptsächlich diese Art an Dokumenten vorkommt. Es gibt also neben den besprochenen Aspekten noch andere, die bei der Wahl einer einzusetzenden Datenbank berücksichtigt werden sollten.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	CHAPTER WAS SIND XML-DATENBANKEN
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Liabolo - Eine teuflisch gute Literaturverwaltung}
+Dieses Kapitel soll den Einsatz der gewählten Datenbank in Liabolo verdeutlichen.
+\section{Einsatz von eXist}
+\label{sec:einsatz_exist}
+	Bei der Analyse der Datenbanken wurde auf folgende Features der zur Verfügung stehenden Datenbanken gesetzt:\\
+	\begin{itemize}
+		\item{XML:DB API Unterstützung, um Standards zu verwenden}
+		\item{Möglichst schlanker Einsatz als embedded Version in Liabolo-Client}
+		\item{Mehrbenutzerbetrieb incl. Benutzerverwaltung}
+		\item{Volltextsuche und Indexierung}
+	\end{itemize}
+	Gerade der Punkt 'embedded version' war ausschlaggebend für den Einsatz von eXist, da eine Datenbank-Instanz sowohl im Client als auch als Server entstehen sollte. Weiterhin wurde Wert auf ein bestehendes Benutzermanagement gelegt, was jedoch in zum Zeitpunkt Liabolo1.0 implementiert, jedoch nicht  integriert wurde. Für die spätere Entwicklung  von Liabolo, sollten statt Metadaten auch Dokumente integriebar sein und effizient durchsucht werden, was eine indexierte Volltextsuche unabkömmlich werden ließ. Angesichts dieser Vorgaben entschied sich das Liabolo-Team zum Einsatz von eXist in der akutellen Version 1.0b1.
+
+	\subsection{embedded vs. standalone}
+	\label{sec:exist_alternativen}
+		Da der Client auch alleine als Nutzwerkzeug dienen sollte wurde eXist als embedded-Version integriert. Weiterhin entstand durch den Einsatz der gleichen Datenbank als Client und Server eine vereinfachte Kommunikation und Entwicklungsaufwand. Als angedachtes Feature-TODO steht eine Distribution als Java-WebStart-Anwendung aus, die somit die Paketgröße zusätzlich einschränkt.\\
+		
+		Der interne Aufbau der Datenbank-Instanzen ähnelt sich auf Client- und Serverebene sehr stark. Der einzige Unterschied besteht in der zusätzliche Verwaltung von Individuallisten und der Umsetzung eines Replication Repositories\footnote{Replication Repository: Teilbereich der logischen Trennung von lokalen und globalen Daten. Globale Daten werden als Kopien im Replication Repository abgelegt.} zur Replikation von globalen Daten in der Clientanwendung. Das Bild (\ref{fig:dbcontent}) verdeutlicht den internen Aufbau der Client-Anwendung.\\
+		
+		Eine detailiertere Einsicht in die verwendeten Dokumente gibt der Anhang(\ref{appendix}).
+
+	\begin{figure*}[!ht]
+		\begin{center}
+			\includegraphics[width=0.90\textwidth]{images/dbcontent.png}
+		\end{center}
+		\caption{Interner Aufbau der Datenbank}
+		\label{fig:dbcontent}
+	\end{figure*}\par 
+
+\section{Anfragesprachen}
+\label{sec:anfragesprachen}
+	eXist besitzt die Möglichkeit Anfragen asl XPATH/XSLT-Ausdrücke\cite{w3c_xpath}\cite{w3c_xslt} und als XQUERY-Ausdrücke\cite{xquery} zu verarbeiten. Zur Zeit ist in  Liabolo1.0 eine einfache Suche integriert, die Metadatensätze nach Vorkommen eines gewünschten Patterns in einem angegebenen Metadaten-Property\footnote{Metadaten-Property: Als Property werden die einzelnen Dublin Core Einträge eines Metadatensatzes betrachtet} durchsucht. Diese Suche wird über XPATH-Ausdrücke realisiert. Im weiteren Verlauf der Entwicklung wird jedoch eine uneingeschränkte Suchfunktionalität über XQUERY für den erfahrenderen Benutzer zusätzlich angeboten.\\
+	
+	Zum Abschluss soll nun kurz die recht einfache Suche  anhand eines Listings dargestellt werden:\\
+	\begin{lstlisting}[style=xml,title=Einfaches Suchstatement, label=lst:xsltsearch,caption=Einfaches Suchstatement]{}
+	/mediatype/PROPERTY[contains(lower-case(text()),'" + pattern + "')]/parent::*
+	\end{lstlisting}

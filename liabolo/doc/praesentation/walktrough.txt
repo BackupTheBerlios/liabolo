@@ -1,0 +1,38 @@
+
+
+
+http://developer.berlios.de/projects/liabolo/
+
+
+Praxisvorführung
+
+
+- Statistik vorführen
+- Neuen Datensatz anlegen (Datei)
+- Neuen Standort anlegen (Umgebung)
+- Neue Individualliste anlegen (Umgebung)
+
+- Suchen mit * (Datei)
+  - Suchergebnisse bearbeiten
+    - Zu Liste (Zu Individuallisten hinzufügen)
+    - Referenz erstellen
+    - Druckvorschau
+  
+  
+
+- Backup herstellen/wiederherstellen (Datei)
+- Excel-Tabelle importieren (Datei)
+- Verbindung bearbeiten (Verbindung)
+- Formulareditor (Extras)
+- Einstellung (Extras)
+- Hilfe
+
+
+Architektur
+
+- XML-orientierte Datenbank eXist
+- Dispatcher nimmt Aufrufe entgegen (Delegation)
+- Lose Kopplung des Backends für Datenbankwechsel
+- GUI und Datenbank beliebig austauschbar
+- Client bringt Datenbank für Offlinebetrieb mit
+- Server hat Standalone Datenbank

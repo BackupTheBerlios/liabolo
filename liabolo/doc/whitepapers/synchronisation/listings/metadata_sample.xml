@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mediatype actualDbTime="1088063419111" localDbTime="1088068419911">
+    <title updateTime="1088063419078">Einführung in die allgemeine Betriebswirtschaftslehre</title>
+    <creator updateTime="1088063419062">Wöhe, Günter Dr. Dr. h.h. mult.</creator>
+    <subject updateTime="1088063419111">Verlag Franz Vahlen München</subject>
+    <description updateTime="0"/>
+    <publisher updateTime="1088063411037">Verlag Franz Vahlen München</publisher>
+    <contributors updateTime="1088063419512">Döring, Ulrich Dr.</contributors>
+    <date updateTime="1088063413067">2000</>
+    <type updateTime="1088063419008">book</type>
+    <format updateTime="1088063409045">DIN A5</format>
+    <identifier updateTime="1088063319027">3-8006-2550-4</identifier>
+    <source updateTime="0"/>
+    <language updateTime="1088063419267">german</>
+    <relation updateTime="1088063414027">bwl_BA0071</relation>
+    <coverage updateTime="1088068419911">A4-120</coverage>
+    <rights updateTime="10880634190223"></>
+    <branch updateTime="1088063419027">bwl</branch>
+    <signature updateTime="1088063218345">bwl_CA0071</signature>
+</mediatype>

@@ -1,0 +1,141 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	CHAPTER WAS SIND XML-DATENBANKEN
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	CHAPTER Synchronisation
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Synchronisation}
+
+	\section{Einführung}
+	Die folgenden Seiten sollen einen Einblick in die Synchronisation und Replikation von Metadaten in Liabolo1.0 geben. Ausgehend von einer Motivation bzw. Kurzeinführung in das Concurrent Version System (Abschnitt \ref{sec:motivation}) werden im Weiteren die zwei wesentlichen Ansätze der Synchronisation besprochen, dem optimistischen und dem pessimistischen Ansatz. Die darauf folgenden Abschnitte geben einen Einblick in die Umsetzung in Liabolo1.0 (Abschnitt \ref{sec:umsetzung}). Insgesamt sollen angeführte Fragen behandelt werden:\\
+	\begin{itemize}
+		\item{Was bedeutet Synchronisation?}
+		\item{Was bedeutet Replikation?}
+		\item{Was sollte man bei der Synchronisation beachten?}		
+		\item{Wie wird Synchronisation im Datenschema von Liabolo1.0 integriert?}
+		\item{Welcher Informationsfluß ist nötig, um Daten in Liabolo zu replizieren und zu synchronisieren?}
+	\end{itemize}
+
+		\subsection{Synchronisation}
+		Synchronisation kommt aus dem Griechischen von syn (für 'zusammen') und chronos (für 'Zeit'). Der Begriff bedeutet das 'Herstellen von Gleichzeitigkeit'. Da es verschiedene domänenabhängige Interpretation gibt, werden wir unter Replikation im Folgenden die Rückführung auf eine konsistente Datenbasis nach vorheriger Replikation verstehen.
+		\subsection{Replikation}
+		Replikation von existierenden Datenbeständen beschreibt das Anlegen von Kopien zur weiteren Verarbeitung(z.B. Performancesteigerung).
+
+	\section{Motivation durch CVS}
+	\label{sec:motivation}
+		\subsection{Was ist CVS?}
+			CVS\cite{cvs} steht für "`Concurrent Version Control"'. Es handelt sich hierbei also um ein System zur \textit{Versionskontrolle}
+			beliebiger Daten. Angefangen mit einer initialen Version eines Datums werden im Laufe der Zeit Änderungen an diesem Datum vorgenommen, die zu einer neuen Version führen. Diese Änderungen werden mittels CVS verwaltet, so daß zu beliebiger Zeit jede Version anhand einer bestimmten Kennung wiederherstellbar ist. Der gerade beschriebene Ablauf lässt sich nun auf eine Vielzahl von Dateien anwenden, die z.B. im Laufe eines Projektes von Bedeutung sind.\\
+			Das CVS-System wird in eine Server- und eine Clientschicht unterteilt. Auf der Serverseite liegen in einem sogenannten \textit{Repository} \index{Repository} u.a. alle Informationen über die zeitliche Änderung einer Datei. Da die Arbeit auf den Daten des Repositories immer nur auf einer Kopie stattfindet, wird der Zugriff auf das Repository über einen Client ermöglicht. Der Client dient dem Zugriff und der Abgabe gewisser Kommandos bzgl. einer Datei.\\
+			Eine wichtige Eigenschaft stellt weiterhin die Konkurrenz dar. Sie verdeutlicht die Möglichkeit des konkurrierenden Arbeitens auf den Daten des
+			Repositories. Es ist also ein Mehrbenutzerbetrieb vorgesehen. Mögliche Konflikte, die bei der Bearbeitung einer Datei von mehreren Personen zur gleichen
+			Zeit auftreten können, werden prinzipiell als unwahrscheinlich angesehen. Diese Annahme bezeichnet den Vorgang des \textit{optimistischen Sperrens}\index{Optimistisches Sperren}. Es wird also davon ausgegangen, das immer nur eine Person eine Datei gleichzeitig bearbeitet. Falls dennoch ein
+			Konflikt auftritt, wird serverseitig versucht, den Konflikt zu lösen (\textit{merge}). Diese serverseitige Konfliktlösung funktioniert solange bis mehrere
+			Änderungen in derselben atomaren Einheit(z.B. Zeile) vorgenommen wurden. Einzig in diesem Fall wird die Konfliktlösung an den jeweiligen Client weitergegeben, der dann manuell
+			entscheiden muss, wie weiter vorgegangen werden soll.
+		
+		\subsection{Optimistisch vs. Pessimistisch}
+				Generell unterscheidet man zwischen einer optimistischen Synchronisationsvariante und einer Pessimistischen. Bei der Findung einer optimalen Lösung spielen mehrere Aspekte aus der Anforderungsanalyse eine Rolle. Zu nennen wären hier u.a.:\\
+				\begin{itemize}
+					\item{Zu erwartende Häufigkeit an auftretenden Konflikten}
+					\item{Rechtfertigung einer komplexen Architektur in Bezug zur Nutzung}
+					\item{Komponentenbasierte Betrachtung des Backends}
+					\item{Austauschbarkeit des Backends unter minimalen Anforderungen}
+					\item{Implementierungsaufwand}
+					\item{Granularität der atomaren Einheiten}
+					\item{Effizienzbetrachtung}
+				\end{itemize}
+	Der wesentliche Aspekt ist die \textit{Zu erwartende Häufigkeit an auftretenden Konflikten}. Wie wahrscheinlich ist ein auftretender Konflikt (mergable vs. non-mergable) an der Anzahl der tatsächlichen read/write-Operationen? Ein System ,welches Artefakte bereitstellt, die kaum einer zeitlichen Veränderung unterworfen sind, kann davon ausgehen, daß nach einer initialen Version selten weitere Schreibzugriffe erfolgen. So stellt sich generell die Frage, ob eine Synchronisation Sinn macht bzw. eine optimistische Lösung mit feingranularen atomaren Einheiten nicht ein Implementierungs-/Performanceoverhead verursacht. Allgemein ist eine Synchronisation daher mit Performanzeinbußen verbunden.\\
+	
+	Nun gehen wir jedoch davon aus, daß Konflikte auftreten und diese entsprechend behandelt werden wollen. Unter dem Aspekt, das eine modulare Architektur entwickelt werden soll, man u.a. davon ausgeht, eine Backend-Komponenten unter möglichst geringen Aufwand tauschen zu können, wird man einen minimalen Konsens der funktionalen Anforderungen an das Backend stellen müssen. Sind verteilte Transaktionen in diesem Konsens enthalten? Ist es möglich Ressourcen über einen bestimmten Zeitraum zu sperren? Da diese Funktionalitäten z.T. spezifisch sind, muss eine andere Lösung in Betracht genommen werden, oder auf Austauschbarkeit verzichtet werden. So stellt im Falle des pessimistischen Ansatzes(des Sperrens) eine Middleware eine Lösung dar, die die Austauschbarkeit der Datenhaltungskomponente erhöht. Ausserdem kann hiermit ebenfalls anwendungsspezifische Funktionalität integriert werden, die die Client-Seite verschlankt und ihr somit lediglich Darstellungseigenschaften überläßt. Der letzte Gedanke sollte der Ausfallsicherheit gewidmet sein, die durch die Einführung einer Middleware steigt.\\
+	
+	
+	Die gerade genannten Überlegungsansätze sollten zeigen, daß eine \\
+	Synchronisations-Problemlösung von vielen Faktoren abhängig ist.
+	
+	
+	\section{Umsetzung in Liabolo}
+	\label{sec:umsetzung}
+		Im Folgenden werden die Überlegungen \ref{sec:motivation} hinsichtlich der Integration in Liabolo betrachtet. 
+		
+		\subsection{Anforderungen}
+		\label{sec:anforderungen}
+			In der Anforderungsanalyse wurde ausdrücklich der Wunsch nach Offlineverfügbarkeit von Daten gefordert. Man stelle sich folgendes motivierendes Szenario vor:\\
+			
+			Der Umgang mit Liabolo gehört zum Alltag des Benutzers. Eine wesentliche Aufgabe des Benutzers ist die Verfassung von wissenschaftlichen Dokumenten, basierend auf domänenübergreifenden Informationen. Somit ist die Suche nach passender Literatur in einem recht großen Umfang gegeben. Da Zitate einschlägiger Sekundärliteratur als ein Qualitätszeichen des eigenen Dokumentes betrachtet werden, entsteht ein hohes Aufkommen von Verweisen. Um diesem Aufkommen gerecht zu werden und es weiterhin in effizienter Weise zu handhaben, wurde einerseits eine Suchfunktionalität und andererseits die Möglichkeit des  Bearbeitens von existierenden Einträgen gefordert. Dem Autor sollten keine Grenzen hinsichtlich der Netzverfügakeit gestellt werden, damit das Fortschreiten des Werkes auch im Zug etc. gewährleistet ist. Hierfür sollte ein \textit{Replication Repository}\footnote{Replication Repository: Teilbereich der logischen Trennung von lokalen und globalen Daten. Globale Daten werden als Kopien im Replication Repository abgelegt.} clientseitg erstellt werden, in dem Kopien von Daten liegen, deren Verfügbarkeit stets gewährleistet sein sollte. Da Änderungen bestehender Datensätze im Offlinemodus keine direkte Auswirkung auf den reellen Bestand haben, sie jedoch zumindest vermerkt werden sollten, wurde die Möglichkeit geschaffen, die Änderungen auf den Kopien vorzunehmen und später (im Online-Modus) zu übertragen.\\
+			
+			Eine weitere Anforderung bestand in dem Wunsch nach möglichst leichter Austauschbarkeit der Datenbank, wodurch funktionale Erweiterungen gekapselt werden sollten. 
+		
+		
+		
+		\subsection{Datenbank}
+		\label{sec:datenbank}
+			Aus dem Wunsch der Austauschbarkeit der Datenbank resultierte eine Zweiteilung der Clientseite in Darstellungssicht und Logiksicht. Die Logikschicht übernimmt die eigentliche Synchronisation und weitere spezifische Backendfunktionalität. Mit der Trennung des Clients in Darstellungssicht und Logiksicht, wurde ein Grundstein für die spätere Implementierung einer Middleware geliefert. Für die Replikation wird auf Client- und Serverseite das gleiche Datenschema in einer separaten Datenbank verwendet, damit der Transfer und die Operationen möglichst einfach gehalten werden.\\
+			
+			Liabolo wurde unter dem Gedanken der möglichst einfachen Integration bestehender Datenbestände konzipiert. Dem Benutzer sollten hinsichtlich der Speicherung der Daten kaum Grenzen gesetzt werden. Daher wurde ein auf Dublin Core aufbauendes Datenschema entwickelt (siehe Listing \ref{lst:metadata_sample}), welches allgemein die Beschreibung von Metadaten gewährleistet. Eine Integration von bestehenden Daten kann über die Import-Schnittstelle oder eine Implementation des Interfaces \textit{org.liabolo.repository.Library} geschehen. In der Version Liabolo1.0 wurde die XMLDB-Schnittstelle (liabolo.org.repository.XMLDB)implementiert, die den Zugriff aller XMLDB-API basierten Datenbanken ermöglicht. Hierzu zählen eXist\cite{exist_doc}, Xindice\cite{xindice}, dbxml\cite{dbxml}(Nur Version 1.0 betrachtet). 
+		
+		
+		\newpage
+		\subsection{Zeitstempel als Synchronisationsvorraussetzungen}
+		\label{sec:timestamp}
+			Anhand eines im Folgenden kurz dargestellten Datenschemas soll der Einsatz von Zeitstempeln gezeigt werden, die je nach Granularitätsstufe die Basis für die Synchronisation darstellen.\\
+			\lstinputlisting[style=easy,title=Aufbau eines Dublin-Core basierten Metadatensatzes zur Literaturspezifizierung, label=lst:metadata_sample,caption=Aufbau eines Dublin-Core basierten Metadatensatzes zur Literaturspezifizierung]{listings/metadata_sample.xml}
+			Das voliegende Listing \ref{lst:metadata_sample} zeigt die interne Struktur eines abgespeicherten Datensatzes. Betrachtet werden hier die verschienden Zeitstempel. Es gibt drei verschiedene Arten von Zeitstempel:\\
+			\begin{itemize}
+				\item{actualDbTime : Die aktuelle Zeit des Datensatzes, die beim letzten Checkout bekannt war. Diese Zeit wird während der Bearbeitung lokal als aktuelle Zeit betrachtet. Sie kann sich jedoch durch andere Nutzer währenddessen geändert haben!}
+				\item{localDbTime : Die Zeit des Datensatzes, die sich im Falle einer Unterscheidung zur actualDbTime, als letzte updateTime auszeichnet}
+				\item{updateTime : Die letzte Zeit einer Änderung dieses atomaren Metadaten-Properties\footnote{Metadaten-Property: Als Property werden die einzelnen Dublin Core Einträge eines Metadatensatzes betrachtet}}
+			\end{itemize}
+			
+			\begin{figure*}[!ht]
+				\begin{center}
+					\includegraphics[scale=0.6]{images/synchronisation_statechart.png}
+				\end{center}
+				\caption{Statechart eines Metadateneintrages}
+				\label{fig:statechart}
+			\end{figure*}\par 
+			
+			Allgemein wird durch die Vergabe der Zeitstempel eine Granularitätsstufe verstanden. Die Granularitätsstufe zeigt an, auf welcher Ebene ein merge stattfinden kann. Dies bedeutet, welcher Teil des Metadatensatzes gilt als atomar im Sinne einer Zusammenführung beim einchecken. Zu unterscheiden sind hier der komplette Metadateneintrag und die jeweiligen Metadaten-Properties. In der Version Liabolo1.0 wird nicht auf Metadaten-Property-Ebene gemergt, sondern lediglich auf Metadaten-Ebene. Der Merging-Prozeß ist jedoch für die fein-granularere Version vorbereitet und kann somit bei Bedarf aktiviert werden.\\
+			
+			Nach einem Checkout stimmen nun \textit{actualDbTime} und \textit{localDbTime} überein. Die verschiedenen \textit{updateTime}-Einträge können unterschiedlich sein. Einer dieser Einträge jedoch stimmt wiederum mit \textit{actualDbTime} und \textit{localDbTime} überein. Man stelle sich nun folgendes Szenario vor:\\
+			Es existiert bereits ein Buch , wie in Listing \ref{lst:metadata_sample} beschrieben in der globalen Datenbank.\\
+			\textbf{actualDbTime = localDbTime = updateTime(subject)}\\
+			\textbf{updateTime(subject)= 1088063419111}\\
+			Hieraus geht hervor, daß die letzte Änderung im Metadaten-Teileintrag 'subject' vorgenommen wurde. Nach einem checkout wird nun die Metadaten-Property 'coverage' lokal im Replication Repository geändert, und zwar zur Zeit '1088068419911'. Somit wird die updateTime des Propertyeintrages 'coverage' nun auf diese Zeit gesetzt. Weiterhin wird die localUpdateTime ebenfalls auf diesen Wert gesetzt, da sich die aktuellen Version der Metadaten zur dieser Zeit das letzte Mal geändert hat. Es entsteht also ein Unterschied zwischen globalUpdateTime und localUpdateTime:\\
+			\textbf{actualDbTime = 1088063419111}\\
+			\textbf{localDbTime = updateTime(coverage) = 1088068419911 }\\
+			Da localUpdateTime und globalUpdateTime nun unterschiedlich sind, entsteht eine Inkonsistenz der Daten zwischen lokaler und globaler Instanz, die im nächsten Online-Modus durch ein Merge behoben werden muss.\\
+			Zum besseren Verständnis soll Abb(\ref{fig:statechart}) die verschiedenen Zustände verdeutlichen.		
+		
+		\subsection{Szenariengestaltung}
+		\label{sec:szenarien}
+			Um den Ablauf einer Synchronisation etwas näher zu bringen, wird unter Abb(\ref{fig:sequence}) das zugehörige Sequenzdiagramm aufgezeigt.
+			\begin{figure*}[!htb]
+				\begin{center}
+					\includegraphics[scale=0.6]{images/synchronisation_sequence.png}
+				\end{center}
+				\caption{Sequenzdiagramm der Synchronisation}
+				\label{fig:sequence}
+			\end{figure*}\par 
+			Das Sequenzdiagramm Abb(\ref{fig:sequence}) teilt sich in vier life-lines, die die wesentlichen Etappen der Kommunikation ausmachen. Der Client als Akteur steuert über die Darstellungsebene(in Abb.\ref{fig:sequence} nicht enthalten) den Dispatcher an, welcher die komplexen Anfragen in atomare teilt und dann an die jeweiligen Adapter der Datenbank-Instanzen delegiert.\\
+			
+			Nach einer initialen Schaffung einer Verbindung und der Bestimmung der auszuwählenden Einträge, die repliziert werden sollen, beginnt der eigentliche Ablauf:\\
+			\begin{enumerate}
+				\item{Replikation der Items: Aufruf des Dispatchers, vorher ausgewählte Metadaten-Einträge zu replizieren bzw. auszuchecken}
+				\item{Delegation des Aufrufes an die globale Datenbank}
+				\item{Speicherung der resultierenden Menge an Einträgen in der lokalen Datenbank im \textit{Replication Repository}}
+				\item{Wechsel in den Offline-Modus}
+				\item{Bearbeitung eines bzw. mehrerer Einträge des Replication Repositories. Da die lokale Datenbank-Instanz in Liabolo eingebettet ist, ist ein Konflikt ausgeschlossen.}
+				\item{Ermittlung aller geänderten Einträge des Replication Repositories, die noch nicht übertragen wurden.}
+				\item{Delegation der Anfrage an die lokale Datenbank-Instanz, die anhand von Zeitstempeln vergleicht, ob die vorliegende Version potentiell eine aktuelle Replikation der globalen Datenbank ist(Näheres unter : \ref{sec:timestamp})}
+				\item{Erneuter Verbindungaufbau mit der globalen Datenbank}
+				\item{Übermittlung einer Mengen an offline editierten Einträgen zur endgültigen Speicherung in der globalen Datenbank}
+				\item{Delegation der Anfrage an die globale Datenbank}
+				
+			\end{enumerate}
+

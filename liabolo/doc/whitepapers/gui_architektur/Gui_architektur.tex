@@ -1,0 +1,114 @@
+%%%%%%%%%%%%%%%%%%%% book.tex %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% sample root file for the chapters of your "monograph"
+%
+% Use this file as a template for your own input.
+%
+%%%%%%%%%%%%%%%% Springer-Verlag %%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% RECOMMENDED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\documentclass[envcountsame,envcountchap]{svmono}
+\documentclass [12pt,german,a4paper,titlepage]{book}
+
+
+% choose options for [] as required from the list
+% in the Reference Guide, Sect. 2.2
+
+\usepackage{makeidx}         % allows index generation
+\usepackage{graphicx}        % standard LaTeX graphics tool
+                             % when including figure files
+\usepackage{multicol}        % used for the two-column index
+\usepackage[bottom]{footmisc}% places footnotes at page bottom
+% Damit Header etc. in deutsch erscheinen
+\usepackage{ngerman}
+%Umlaute und {\ss}
+\usepackage[latin1]{inputenc}
+% Trennung für Worte mit Umlauten
+\usepackage[T1]{fontenc}
+
+% URLs und Hyperreferenzen für PDF
+\usepackage[unicode%
+            ,colorlinks, citecolor=black, linkcolor=black, urlcolor=black, filecolor=black, pagecolor=black%
+            ,bookmarks, bookmarksopen, bookmarksopenlevel=1, bookmarksnumbered%
+            ,backref, pagebackref%
+            ,pdfpagelabels, plainpages=false]{hyperref}
+% normales hyperref ansonsten für PS
+\usepackage{hyperref}
+
+% etc.
+% see the list of further useful packages
+% in the Reference Guide, Sects. 2.3, 3.1-3.3
+
+\makeindex             % used for the subject index
+                       % please use the style svind.ist with
+                       % your makeindex program
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\begin{titlepage}
+
+ \begin{figure*}[!htb]
+    \begin{center}
+      \includegraphics[scale=0.6]{uni-logo-long.jpg}
+   \end{center}
+  \end{figure*}\par
+
+%  \vspace*{1cm}
+  \begin{center}
+  {\large Whitepaper zur Literaturverwaltung}
+  \end{center}
+
+    \begin{figure*}[!htb]
+      \begin{center}
+         \includegraphics[scale=0.7]{liaboloX.png}
+      \end{center}
+    \end{figure*}\par
+
+  
+  \begin{center}
+  {\large \textbf{,,Architektur der GUI''}}\\
+   von Jurij Henne
+  \vspace{1cm}
+
+  erstellt im Rahmen der Projektgruppe \\ \textbf{,,Open Source und virtuelle Unternehmen''}\\
+  \vspace{0.5cm}
+  unter der Leitung von \\Prof. Uwe Schneidewind und Hendrik Eggers (Lehrbeauftragter)\\
+
+  \end{center}
+
+\end{titlepage}
+
+\frontmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\include{dedic}
+%\include{pref}
+
+\tableofcontents
+
+
+\mainmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\include{part}
+\include{chapter}
+%\include{chapter}
+\appendix
+\include{appendix}
+
+\backmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\include{solutions}
+%\include{referenc}
+\printindex
+%\bibliography{bibliography} 
+%\bibliographystyle{alpha}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+
+
+
+
+

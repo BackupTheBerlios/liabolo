@@ -1,0 +1,39 @@
+				\section{XML-Datenbanken}%Stefan
+					Laut Pflichtenheft sollte die Datenspeicherung in einer XML-Datenbank erfolgen, da es sich bei den Daten grundsätzlich nur um XML-Daten handelt. Eine weitere Einschränkung war die Voraussetzung, daß es sich um eine Open-Source-Lösung handelt. Die folgenden beiden Vertreter von XML-Datenbanken wurden zum Vergleich ausgewählt. Beide Alternativen stellen eine Implementierung der XML:DB-API \index{XML:DB-API} \cite{xmldb_api} bereit. Eine übersichtliche Aufstellung aller weiteren verbreiteten XML-Datenbanken wurde von Ronald Bourret angefertigt \cite{xml_database_comparison}. 
+					\subsection{Xindice}
+						Xindice\index{Xindice} (gesprochen [zeen-dee-chay]) wird von der Apache Software Foundation\index{Apache Software Foundation} entwickelt und stellt eine Weiterentwicklung von \textit{dbXML 	1.0}\index{dbXML} dar. Die Anbindung an verschiedene Programmiersprachen ist durch ein XML-RPC Plugin\index{XML-RPC Plugin} gewährleitest. Speziell für Java ist eine XML:DB API Implementierung entwickelt worden. Zur Zeit werden XPATH\index{XPATH} als Anfragesprache und XML:DB-XUpdate\index{XML:DB-XUpdate} als Änderungssprache verwendet.\\
+						Folgende Eigenschaften zeichnet Xindice aus :\\
+						 \begin{itemize}
+						 	\item{Strukturierung durch Collections : Dokumente werden in Collections gespeichert(entsprechen Verzeichnissen in einem Betriebssystem)}
+						 	\item{XPATH Such-Engine : Zur Suche wird XPATH verwendet, das vom W3C(\url{http://www.w3.org/})\index{W3C} spezifiziert wurde. XPATH ist ein bewährter Anfrage-Standard auf XML-Dokumenten.}
+						 	\item{Indezierung :  Zur Verbesserung der Suchperformance können Dokumentelemente etc. indexiert werden.}
+						 	\item{XML:DB XUpdate Implementierung : Möglichkeit der serverseitgen Datenänderung.}
+						 	\item{XML:DB API Implementierung : Zur Verbundenheit von Java und XML wurde eine Java-Schnittstelle implementiert.}
+						 	\item{Kommandozeilen-Befehle : Nahezu alle Funktionen der XML:DB API können auch durch Eingabe von Kommandos erfolgen.}
+						 	\item{Modulare Architektur : Modularer Aufbau von Xindice zur einfachen Erweiterung und Integration in bestehenden Systeme.}
+						 \end{itemize}
+						Für nähere Informationene siehe :\cite{xindice},\cite{xindice_admin_guide},\cite{xindice_user_guide},\cite{xindice_developer_guide},\cite{xindice_tools}.
+					\subsection{eXist}
+						eXist ist eine Open-Source\index{Open-Source} native XML-Datenbank (zur Zeit Version 1.0), die von Wolfgang M. Meyer entwickelt
+						wurde. Wie bei der vorgestellten Alternative Xindice ist auch hier die Möglichkeit der Einbettung in anderer Applikationen, in
+						eine Servlet-Engine sowie ein Stand-alone-Betrieb vorgesehen. Für die Einbettung in einen Servlet-Container wird
+						Jetty(\url{jetty.mortbay.org}) verwendet, wobei andere Servlet-Container ebenfalls eingesetzt werden können. eXist zeichnet sich
+						durch folgende Eigenschaften aus:\\
+						\begin{itemize}
+							\item{Automatische Index-Erstellung : Index-Erstellung, um Performance zu steigern}
+							\item{XPath/XQuery Such-Engine : Neben XPATH sind auch XQuery-Anfragen möglich}
+							\item{Volltextsuche : Mittels Indexierung performant gelöst}
+							\item{XML:DB XUpdate : Möglichkeit um Daten serverseitig zu ändern}
+							\item{Zugriff über XML:DB API, HTTP, XML-RPC, SOAP, WebDAV : Verschiedenste Netzwerkanbindungen}
+							\item{Backup/Restore Funktion : Backup der kompletten Datenbank mit allen Zugriffsbeschränkungen etc.}
+							\item{Authorisierungsmechanismus : Ein an UNIX-Authorisierung angelehntes Verfahren(Jedoch nicht im XML:DB API Standard enthalten)}
+						\end{itemize}
+						Für nähere Informationene siehe: \cite{xindice},\cite{exist_doc},\cite{exist_doc2},\cite{xml_data_management},\cite{xml_database_comparison}.						
+					\subsection{Fazit}
+						Der recht kurze Überblick der beiden vorgestellten XML-Datenbanken zeigt grundsätzliche Übereinstimmungen sowie spezielle
+						Unterscheidungen. Beide Lösungen sind native XML-Datenbanken, können leicht integriert werden und sind über die XML:DB API
+						seitens Java ansteuerbar. eXist ist zusätzlich in der Lage, automatisch einen Index zu erstellen und darauf Volltextsuchen
+						durchzuführen. Weiterhin ist ein Benutzermanagement sowie eine Backup/Restore Funktionalität gegeben, die für das angehende
+						Projekt unerläßlich sind. Insgesamt scheint eXist mehrere Features zu haben, die eventuell im Verlaufe des Projektes noch genutzt
+						werden können. Ein Performance-Gegenüberstellung spricht ebenfalls für eXist. Diese Gegenüberstellung ist unter \cite{exist_doc2} zu finden.\\ 
+						Insgesamt fiel die Entscheidung also auf die Open-Source Lösung 'eXist', die nun für die Datenhaltung sorgen wird.

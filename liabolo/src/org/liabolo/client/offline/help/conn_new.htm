@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Unbenanntes Dokument</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body>
+
+  
+<p align="center"><img src="images/infologo.jpg" width="300" height="60"> </p>
+<p align="center"><strong>[<a href="index.htm">index</a>]</strong></p>
+<p><strong>Datenbankverbindung erstellen</strong></p>
+<p>Unter diesem Menupunkt können Sie neue Verbindungen zu Datenbanken im Netzwerk aufnehmen. Für die Verbindung werden verschiedene Angaben benötigt. Liabolo ist in der Lage, mit unterschiedlichen Datenbanken eine Verbindung aufzubauen. Hierfür ist die Angabe eines passenenden Treibers erforderlich.</p>
+
+<p align="center"><img src="images/conn_edit.png"> </p>
+
+
+<ul>
+  <li>Geben Sie einen Namen für die Verbindung ein. Diesen Namen können Sie frei wählen, er dient zur Unterscheidung der einzelnen Verbindungen.</li>
+  <li>Weiterhin geben Sie die URI ein, unter der die Datenbank zu erreichen ist. Sie müssen  die Art der Datenbank, die Adresse und den Port angeben, auf dem die Datenbank zu erreichen ist. Durch diese drei Angaben kann eine Datenbank eindeutig bezeichnet werden und unterscheidet sich damit von allen anderen möglichen Datenbanken.<p></p>
+  	<ul>
+	
+	<LI>Geben Sie die Art der Datenbank an, gefolgt von einem Doppelpunkt und zweimal dem Symbol Slash ('/'). Für eine Datenbank vom Typ eXist lautet dieser Teil: 'exist://'</LI>
+	
+	<li>Weiterhin wird die Adresse benötigt, unter der die Datenbank zu erreichen ist. Sie können den Namen oder die IP-Adresse eines Computers angeben. Der Name setzt sich im Allgemeinen aus Host, Domain und Top-Level-Domain zusammen. Ein vollständiger Name lautet z.B.: 'p30srv.wiwi.uni-oldenburg.de' </li>
+	<li>Abschließend wird der Port benötigt, auf dem die Datenbank auf Anfragen antwortet. Dieser Port ist eine Zahl zwischen 1 und 65535 und abhängig von der Installation und der Art der Datenbank. In diesem Beispiel erwartet die Datenbank eXist Anfragen auf dem Port 8081. Der Port muss an die Adresse angehängt werden, nachdem ein Doppelpunkt als Trennzeichen eingefügt wurde.</li>
+	</ul>
+	<li>Fügen Sie die Art der Datenbank, gefolgt von den Trennzeichen '://', die Adresse des Servers gefolgt von einem Doppelpunkt und den Port zu einem Ausdruck zusammen und tragen Sie ihn unter DB-URI ein. Ein korrektes Beispiel lautet: 'exist://p30srv.wiwi.uni-oldenburg.de:8081'</li> <p></p>
+	
+	  
+  <li>Weiterhin wird ein Benutzername benötigt, der den Zugriff auf die angegebene Datenbank ermöglicht. </li>
+  <li>Geben Sie das zum Benutzernamen passende Kennwort ein. </li>
+  <li>Geben Sie den entsprechenden Treiber für die Datenbank ein. Dieser Treiber ermöglicht den korrekten Zugriff auf die Datenbank. Liabolo kann so auf verschiedene Datenbankarchitekturen zugreifen. Der korrekte Treiber für eine eXist Datenbank lautet: 'org.exist.xmldb.DatabaseImpl'</li>
+  <li>Bestätigen Sie Ihre Angaben mit 'OK' oder verlassen Sie den Dialog mit 'Abbrechen', um Ihre Änderungen nicht zu speichern.</li>
+  
+</ul>
+<p align="center"><strong>[<a href="index.htm">index</a>]</strong></p>
+</body>
+</html>

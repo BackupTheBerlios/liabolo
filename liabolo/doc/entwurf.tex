@@ -1,0 +1,478 @@
+\part{Entwurf}
+	\chapter{Entwurfsmuster}%Stefan
+		Folgt im Abschlussbericht
+%		\section{MVC Design Pattern}
+%			passt nicht !!!!!!!!!!!
+%		\section{Template Design Pattern}
+%		\section{Singelton Design PAttern}
+%		\section{Dispatching Adapter Design Pattern}
+	\chapter{Software-Ergonomie}%Maxim
+	
+		\section{Einführung}
+Die \index{Software-Ergonomie}Software-Ergonomie beschäftigt sich seit ihren Anfängen mit der menschengerechten und Aufgaben angemessenen Gestaltung der \index{Mensch-Computer-Interaktion}\textit{Mensch-Computer-Interaktion} (\texttt{MCI}). Informationsdarstellung auf Bildschirmen und ihre Manipulation durch Eingabegeräte in verschiedenen Interaktionsformen sind zwar ein Gegenstand der Software-Ergonomie, aber auch die dahinter liegende Funktionalität. Benutzergerechte Gestaltung der Software berücksichtigt im umfassenden Sinn vier Aspekte \cite{Obe91}:
+\begin{itemize}
+	\item Menschengerechte Gestaltung: die Benutzer als Menschen haben ihre Stärken, Schwächen und Bedürfnisse, sowie auch unterschiedliche Entwicklung, und müssen deshalb
+	berücksichtigt werden. D.h. es werden Kenntnisse über menschliche Wahrnehmung, Denken und Problemlösung sowie über Lernen, Kommunikation und Kooperation benötigt, damit
+	die Software menschengerecht gestaltet werden kann.
+	\item Aufgaben angemessene Gestaltung: da die Computer für bestimmte Aufgaben eingesetzt werden, sollten diese Aufgaben und das Verhalten des Benutzer bei der Arbeit genauestens bekannt sein, um menschengerechte Software zu entwickeln \cite{Vol93}. 
+	\item Technikbewusste Gestaltung: Die technisch verfügbaren Möglichkeiten sollten so gut es geht ausgenutzt werden.
+	\item Organisationsgerechte Gestaltung:  Durch die wachsende Verbreitung und Vernetzung der Computer, betrieblich wie privat, ist die Mensch-Computer-Interaktion nicht
+	mehr auf die Einzelbenutzer und ihre Aufgaben beschränkt, sondern schließt auch die organisatorische Einbindung mit ein.
+\end{itemize}
+			\subsubsection*{Bedeutung der Software-Ergonomie}
+	Die \index{Software-Ergonomie}Software-Ergonomie im weitesten Sinne bedeutet, dass dem Benutzer auf seinem Computer ein oder mehrere Anwendungssoftware-Systeme zur Verfügung stehen, die eine ergonomische,
+	d.h. auf seine Person bezogene, menschengerechte Lösung seiner Aufgaben erlauben.
+						\paragraph{} 
+	Im engeren Sinne bedeutet der Begriff der Software-Ergonomie , dass die Dialogstruktur und die Ein-/Ausgaben eines Software-Systems nach ergonomischen Richtlinien gestaltet sind. In beiden Fällen ist Wissen über den jeweiligen Endbenutzer, über seine zu lösenden Aufgaben und das organisatorische Umfeld erforderlich, um die Kriterien zu erfüllen. 
+	
+		\section{Formen der Mensch-Computer-Interaktion}
+	Die Formen der MCI wurden stets einem Wandel unterworfen. Dieser Wandel zeigt sich auf unterschiedlichsten Ebenen. Auf der Ebene der Ein-/Ausgabegeräte sind neue Formen möglich geworden wie z.B. Maus oder Stift. Die traditionellen Interaktionsformen wie Kommandodialoge und Menüeingaben wurden langsam durch die "`direkte Manipulation"' ergänzt. Graphische Benutzungsschnittstellen (\index{GUI}\textbf{GUIs}= Graphical User Interfaces) gewannen mittlerweile stark an Bedeutung und sind sehr verbreitet. Anwendungen, die auf graphischen Modellen beruhen wie z.B. 3D-Darstellungen von Informationen, Video- und Audio-Daten und die Einbeziehung von Hand- und Körperbewegungen zur Navigation in künstlichen Welten eröffnen neue Möglichkeiten \cite{Bal88}. 
+			\subsection{Gestaltung der Ein-/Ausgaben}
+Die Ein-/Ausgabeelemente werden in der Regel in drei verschiedene Gruppen unterteilt: Die \textit{visuellen}, \textit{akustischen} und \textit{haptischen} Elemente. Wobei den visuellen Elementen die  entscheidende Rolle zugeordnet wird und die akustische sowie haptische Elemente eher eine untergeordnete Rolle spielen.
+						
+				\subsubsection {Ausgabeelemente}
+				\subsubsection*{Visuelle Elemente}
+						
+	Alle \index{visuellen Ausgaben}visuellen Ausgaben auf einem Bildschirm sind 2-dimensionaler Natur, da sie aus Rasterpunkten zusammengesetzt sind. Wichtige Einheiten sind entweder \textsl{Symbole} (Schriftzeichen eines Alphabets, Bildsymbole = Icons) oder \textsl{bildliche Darstellungen} (Rahmen, Bilder, Linien, etc.) von Modellkomponenten. Einige der bildlichen Darstellungen können mit Blick auf die Bearbeitung mit speziellen Bedeutungen versehen sein, z.B. können Sie \textbf{Buttons} darstellen, die gedrückt werden können.
+\paragraph{} 						
+Bei der Gestaltung bzw. Auswahl von Schriften sollten Texte in Versalien (nur Grossbuchstaben) vermieden werden, genauso wie Schriften ohne Unterlängen, da sie das flüssige Wahrnehmen von Wortsymbolen verhindern.
+Bekannte Schriften mit Serifen (kleine Häkchen) unterstützen dagegen das sichere Lesen. Schriftgrösse, Farbe, Stil und Helligkeit sind weitere Merkmale, deren Auswahl eine wichtige Rolle bei der Entwicklung der Oberflächen spielt. Das 2-dimensionale Layout von Texten (z.B. Absätze, Blöcke, Spalten) ist ein weiteres Gestaltungsfeld, bei dem die menschliche Gestaltwahrnehmung berücksichtigt werden muss. Die 2D-Anordnung von Punkten, Linien und Flächen ist geeignet, absolute und relative Quantitäten, Ordnungen, Sorten und Beziehungen auszudrücken. Durch Nutzung der anderen graphischen Variablen wie z.B. \textit{Grösse}, \textit{Helligkeit}, \textit{Muster}, \textit{Richtung}, \textit{Farbe} und \textit{Form} kann eine Verstärkung erreicht werden. Die relative räumliche Lage der graphischen Elemente drückt in der Regel eine inhaltliche Beziehung zwischen den dargestellten Komponenten aus \cite{Mar92}.
+\paragraph{} 
+Die am häufigsten eingesetzte Fenster sind Visualisierungsinstrumente, mit denen unter Benutzerkontrolle relevante Aussschnitte des Systemzustandes permanent angezeigt und interaktiv bearbeitet werden können.
+Das sind in der Regel Kombinationen von graphischen Ausgabeelementen wie z.B. eine Titelanzeige, eine Reihe von Buttons für das Schließen, Vergrössen/Verkleinern, einen Rollbalken für die Wahl des Abschnitts und Ähnlichen. Die konsistente visuelle Darstellung ähnlicher Information in ähnlichen Formen an erwarteten Positionen unterstützt die Herausbildung von Wahrnehmungsgewohnheiten und damit die schnelle und sichere Orientierung an der Benutzungsschnittstelle.
+				\subsubsection*{Akustische  Ausgabe}
+Bei der \index{akustischen Ausgabe}akustischen Ausgabe wird zwischen Sprach- und Klang- bzw. Geräusch-Ausgabe unterschieden. 
+Die Sprachausgabe erlaubt es beliebige Texte hörbar auszugeben und wird in erster Linie dazu verwendet, um die besondere Aufmerksamkeit zu erzeugen. Oder auch um die mit den Augen anderweitig beschäftigten eine Wahrnehmungsalternative zu bieten.
+\paragraph{} 
+Die Ausgabe von Klängen oder Geräuschen kann Symbolcharakter haben. Hörbare Symbole werden als eine Verstärkung der visuellen Ausgabe verwendet. Der Nachteil der akustischen Ausgaben liegt in der Beeinträchtigung der anderen Benutzer in selben Raum, was sich eventuell auf deren Arbeitsleistung auswirkt. Deshalb sollten die visuellen Ausgaben abschaltbar sein, ohne dass die Interaktion mit dem Benutzer gestört wird.     
+ 
+				\subsubsection {Eingabeelemente}
+Als \index{Eingabeelemente}Eingabeelemente sind die Tastaturen und Zeigeinstrumente die traditionellen Geräte und sind am häufigsten verbreitet. Z.B. eine Maus als Zeigeinstrument hat wie jedes Eingabegerät ihre Handhabungsvor- und nachteile. Sie erlaubt eine entspannte Hand- und Armhaltung, hat eine relativ hohe Positioniergeschwindigkeit und die Bedienung ist leicht erlernbar. Dagegen erfordert die Nutzung einer Maus Platz auf einer waagerechten Fläche, sie wirkt nur indirekt über den Zeiger und ist weniger zum Zeichnen oder Malen geeignet.
+\paragraph{} 
+Tasten sind die Eingabeelemente mit deren Hilfe bestimmte Zeichen eines festen Alphabets eingegeben werden können. Die Zeichen sind nicht notwendigerweise Buchstaben, es können auch andere Bildsymbole sein. Abstrahiert können die Tastaturen als Quellen von Eingabesymbolen und Symbolketten aus einem festem Alphabet betrachtet werden, die der Beschreibung von Angaben dienen. Über die Eingabe von Symbolen hinaus, können mit Hilfe der Zeigeinstrumente auch graphische Eingaben erzeugt werden. 
+					\subsubsection{Techniken der MCI}
+Grundsätzlich werden mehrere Standardformen der MCI unterschieden. Darunter sind die Kommandodialoge, Frage-/Antwort-Dialog, Menü-Techniken und direkte Manipulation gemeint. Um festzustellen, welche Techniken zur Erzeugung benötigter Angaben besonders geeignet bzw. ungeeignet sind, werden die einzelnen Techniken genauer betrachtet.
+					\subsubsection*{Kommandodialogen}
+Unter \index{Kommandodialogen}Kommandodialogen wird die Form der Kommandoeingabe bzw. -ausgabe in Textform, und die dafür verwendete Kommandosprache verstanden. Eine Kommandosprache ist eine formale Sprache zur Formulierung von Anweisungen an den Computer. Für jede Anweisung werden die benötigten Angaben, wie Operation, Argumente, Bezugsobjekt und etc., in Textform angegeben. Kommandosprachen können mit Elementen von Programmiersprachen angereichert werden, um komplexe Kommandos zu bilden \cite{Shn92}.
+
+\paragraph{Vorteile der Kommandosprachen:}
+\begin{itemize}
+	\item Keine speziellen Eingabegeräte erforderlich
+	\item Kommandosprachen sind universell hinsichtlich der Ausdrucksmächtigkeit
+	\item Erlauben leichte Aufzeichnung von Vergangenheit (Protokoll) und Zukunft (Pläne) der Interaktion
+	\item Erlauben effiziente Formulierung von Anweisungen (Expertenwissen vorausgesetzt)
+\end{itemize}
+
+\paragraph{Nachteile der Kommandosprachen:}
+\begin{itemize}
+	\item Die Sprache muss erlernt werden
+	\item Schnelle und fehlerfreie Eingabe von Zeichenketten ist erforderlich (flüssige Interaktion), dadurch höherer Lernaufwand
+	\item Der Wirkungsbereich von Kommandos kann den gesamten Zustand des interaktives Systems beeinflussen -- die Wirkungen eines Kommandos sind schwer abzuschätzen 
+	\item Für Anfänger und gelegentliche Benutzer ungeeignet (hoher Lern- und Erinnerungsaufwand)
+\end{itemize}
+					\subsubsection*{Menüs}
+\index{Menü}Menüs sind wahrnehmbare Darstellungen alternativ möglicher Angaben, aus denen der Benutzer eine Auswahl treffen kann. Die Gestaltungsform eines Menüs kann von \textit{einfachen Textform} bis zu einer \textit{Menü-Leiste mit Untermenü als Pulldown-Menü} variiren. Bei den einzelnen Angaben eines Menüs handelt es sich immer um eine beschränkte Anzahl von Elementen, die in Textform oder bildlich dargestellt werden können. Bei hierarchischen werden häufig mindestens zwei Ebenen dargestellt, um den Kontext der aktuellen Auswahl erkennen zu können. Für die graphische Darstellung von Menüs mit Einfach- oder Mehrfachauswahl werden zunehmend \textbf{Buttons} verwendet, die direkte Manipulation erlauben und mit Menü-Angaben beschriftet werden \cite{Shn92}.
+\paragraph{} 
+Die Platzierung von Menüs kann sowohl an einer festen Stelle des Bildschirms, bzw. an festen Stellen von Fenstern oder in der Nähe von aktuell bearbeiteten Objekten erfolgen. Eine einheitliche Platzierungsstrategie für einen kompletten Arbeitsplatz ist empfehlenswert, weil dies die Ausprägung von Wahrnehmungs- und Handhabungsgewohnheiten unterstützt. 
+\paragraph{} 
+Darüber hinaus sollte der Zeitraum, in dem ein Menü sichtbar ist, festzulegen. Dauernd wählbare Optionen sollten auch dauernd sichtbar bleiben, nur aktuell verfügbare Optionen nur so lange, bis eine Auswahl getroffen ist und der Benutzer das Feedback über die getroffen Wahl zur Kenntnis genommen haben kann.
+\paragraph{} 
+In graphischen Oberflächen haben sich mehrere Darstellungsformen herausgebildet, die als "`pull-down"'-, "'popup"'- bzw. "`pin-down"'-Menüs bezeichnet werden.
+\begin{itemize}
+	\item \textbf{Pull-down-Menüs} machen die Optionen eines Menü-Eintrags aus einer Menü-Leiste sichtbar, solange eine Teste des Zeigeinstruments gedrückt ist und der Cursor sich im Darstellungsbereich des Untermenüs befindet. Die Position der Cursors in der Menü-Darstellung beim Loslassen der Taste bestimmt, welche Option gewählt wird. Diese Auswahl sollte in der Regel durch Hervorhebung der aktuellen Wahl (z.B. durch Einfärben) unterstützt.
+	\item \textbf{Pop-up-Menüs} erscheinen dynamisch nach betätigen einer speziellen Menü-Darstellungstaste des Zeigeinstruments in der nähe von ausgewählten Objekten oder nahe beim Cursor. Sie verschwinden nach getroffener Auswahl wieder.
+	\item \textbf{Pin-down-Menüs} sind das gleiche wie "`Pop-up-Menüs"', nur dass das Menü explizit dauerhaft sichtbar gemacht werden kann ("`Anpinnen"'). 
+\end{itemize}
+Die Zahl der zu wählenden Angaben ist meistens eins, kann aber auch mehrere Angaben umfassen, z.B. wenn in einem Menü Alternativen für verschiedene Textattribute angeboten werden. Zur Erhöhung der Verständlichkeit sollte in jedem Menü an seiner äußeren Form erkennbar sein, wie viele Auswahlen zu treffen sind und welches die jeweiligen, sich gegenseitig ausschließenden Alternativen sind.
+\paragraph{}
+Als Auswahltechniken für Menü-Optionen sind das Zeigen auf die Darstellung der Option oder die Tastatureingabe üblich. Bei der Tastatureingabe werden meistens folgende Auswahl-Codes verwendet:
+\begin{itemize}
+	\item laufende Nummer
+	\item laufender Buchstabe
+	\item mnemotechnische Kürzel
+\end{itemize}
+Aus Benutzersicht ist es wichtig, dass solche Codes leicht und fehlerfrei eingegeben und mit dem Inhalt gut assoziiert werden können. Sie sollten durch die Menü-Darstellung leicht ersichtlich sein.
+\paragraph{Vorteile von Menüs}
+\begin{enumerate}
+	\item Entlasten das Gedächtnis, weil der Benutzer die Alternativen nur erkennen und nicht erinnern muss.
+	\item Geringer Eingabeaufwand (Codes oder Zeigen).
+	\item Keine Modus- oder Syntaxfehler treten auf, weil nur zulässige Eingaben in der richtigen Form angeboten werden.
+	\item Der Umgang mit Menüs ist leicht erlernbar.
+	\item Unterstützen das entdeckende Lernen, da sie bisher nicht verwendete und nicht erinnerte Alternativen sichtbar machen.
+	\item Besonders gut für Anfänger und gelegentliche Benutzer geeignet.  
+\end{enumerate}
+\paragraph{Nachteile von Menüs}
+\begin{enumerate}
+	\item Die einzelnen Menü-Angaben müssen verständlich benannt bzw. bildlich beschrieben werden.
+	\item Benötigen Platz auf dem Bildschirm für die Darstellung.
+	\item Bei partiellen Darstellung von strukturierten Menüs ergeben sich Orientierungs- und Navigationsprobleme.
+	\item Ein mehrstufiger Auswahlweg (z.B. in einem hierarchischen Menü) kann u.U. aufwendiger sein als eine kommando-orientierte Eingabe. Dies gilt allerdings nur für Routine-Benutzer und Experten.
+\end{enumerate}
+
+					\subsubsection{Masken und Formulare}
+\index{Masken}Masken und \index{Formulare}Formulare dienen zur 2-dimensionalen Informationsdarstellung und -erfassung \cite{Shn92}. 
+\paragraph{}
+\textbf{Masken} sind 2-dimensionale Anzeigen des Zustandes von interaktiven Systemen, die meistens die gesamte Bildschirmfläche belegen und in bestimmte Bereiche unterteilt sind (z.B. Arbeitsbereich, Steuerungsbereich, Meldungsbereich). Häufig wird der Arbeitsbereich von Masken als Formular angelegt. Formulare sind 2-dimensionale Anordnungen von Feldern, in denen Information aus- und eingegeben werden kann. Im Unterschied zu Menüs, die sich auf Einzelaufgaben konzentrieren, können mit Formularen Kombinationen von Angaben erfasst und angezeigt werden. 
+\paragraph{}  
+Ausgaben in Formularen können sowohl Zustandsbeschreibungen, Handlungsanweisungen wie Erläuterungen zu anderen Feldern der Formulars sein. Die Eingaben erfolgen in der Regel über die Tastatur in die dafür vorgesehenen Textfelder, die syntaktischen und semantischen Einschränkungen unterliegen können. 
+\paragraph{}  
+Formulare werden generell verwendet, um Angabekombinationen für Aufträge zusammengefasst zu erheben, Standardkombinationen abzuspeichern und sie erneut anzubieten. Damit dienen die Formulare der sprachlichen Formulierung der Aufträge.    
+			
+			\section{Individualisierung von Benutzungsschnittstellen}
+
+\paragraph{}
+Ein vollkommenes Fehlen von Freiheitsgraden wie bei völlig systemgesteuerten Dialogen führt mit seiner Gefahr der Abstumpfung und Dequalifizierung genauso in die Irre ein völliges Öffnen der Handlungsmöglichkeiten ohne Strukturierungshilfe.
+\paragraph{}
+Individualisierung soll die wünschenswerte Vielfalt von Systemfunktionalitäten zur Unterstützung eines angemessen breiten Aufgabenspektrums dem Benutzer vermitteln helfen. Sie dient damit der Unterstützung von abwechslungsreichen und anregenden Arbeiten als Ziel allgemeiner software-ergonomischer Bemühung. Begründet ist die Suche nach \index{Individualisierbarkeit}Individualisierbarkeit durch die grosse Bandbreite der Eigenschaften von Benutzer und einer ebenso grossen Bandbreite der Eigenschaften von Aufgaben. 
+				\subsection{Elemente der Anpassung}
+\begin{itemize}
+	\item \textbf{Synonyme:} Bestimmte Funktionsbezeichnungen lösen bei Benutzern gelegentlich falsche Assoziationen aus. Ihre Anpassung an den jeweiligen Sprachgebrauch kann Missverständnisse beseitigen und Klarheit schaffen. 
+	\item \index{Defaultwerte}\textbf{Defaultwerte:} Zur Vereinfachung der Handhabung und Erhöhung der Effizienz werden in Anwendungen häufig Vorbelegungen angeboten. Diese Eintragungen können bereits vom Systementwickler aufgrund der Anforderungsanalyse vergeben worden sein oder vom Benutzer während der Benutzung eingetragen werden. Dabei könnte bei neuen Werten der jeweils letzte Wert oder u.U. auch der bisher häufigster Wert als Voreinstellung übernommen werden.
+	\item \textbf{Hilfestellung:} Hilfesysteme bieten dem Benutzer hinsichtlich des Ausführlichkeitsgrades, des Aktivierungszeitpunktes der vermittelten Inhalte und der Präsentationsart unterschiedliche Unterstützungen, die vom Benutzer oder vom System bedarfsentsprechend gesteuert werden können.
+	\item \index{Interaktionsformen}\textbf{Interaktionsformen:} Die Anwendungssysteme sollten überwiegend redundante Interaktionsformen anbieten, indem sie die verschiedenen Interaktionstechniken parallel verwenden, damit dem Benutzer jederzeit die freie Wahl überlassen wird, die eine oder andere Form der Interaktion zu wählen.
+	\item \index{Interaktionsinitiative}\textbf{Interaktionsinitiative:} Benutzer unterscheiden sich in ihrer Abhängigkeit von Interaktionsaufforderungen. Fest steht, dass Fortgeschrittenen und Experten Systeme mit benutzerinitiierten Interaktionsstilen bevorzugen. Die Anfänger dagegen benötigen mehr Interaktionsführung, was im Konflikt mit dem Bedürfnis, ein System frei explorieren zu können, steht. Eine komplexe Form der benutzergesteuerten Interaktionsinitiative stellen die sogennanten \textsl{Makros} dar. Damit kann der Benutzer eine Reihe von elementaren Interaktionsschritten zu einem Paket zusammenfassen und mit einem Aufruf ausführen lassen.
+	\item \textbf{Modifikation und Erweiterung der Funktionalität:} Ein System ist nur so gut wie die Funktionalität dahinter. Gute Benutzbarkeit ersetzt nicht die aufgaben gerechte Funktionalität. Darüber hinaus sollte die Möglichkeit der Anpassung des Systems vorhanden sein (z.B. das Anlegen von Makros oder das Kombinieren von verschiedenen Anwendungen unter einer gemeinsamen Interaktiosoberfläche) \cite{Haa92}.   
+\end{itemize}
+		
+ 
+			\section{Aufgabenorientierte Systemgestaltung}
+				Die Gestaltung von interaktiven Softwaresystemen muss sich an den Aufgaben, Arbeitsweisen, Fähigkeiten und Nutzungssituationen des Systembenutzers orientieren. Die Berücksichtigung dieser Faktoren bildet den Kern der software-ergonomischen Ansatzes zur Systemgestaltung. Eine aufgabenorientierte Systemgestaltung sollte verschiedene Zielsetzungen verfolgen: Die Verteilung der Aufgaben zwischen Mensch und Softwaresystem sollte so erfolgen, dass die grundlegend unterschiedlichen Fähigkeiten berücksichtigt werden, d.h. die kreativen sowie die Sachkompetenz und Flexibilität erfordernden Aufgabenteile dem Menschen zugeordnet werden, während das System die repetitiven, formalisierbaren oder mengenmäßig aufwendige Tätigkeiten übernimmt \cite{Zie93}.
+				\subsection{Perspektiven und Methoden der Aufgabenanalyse}
+Die verschiedenen Methoden zur \index{Aufgabenanalyse}Analyse von Arbeitsaufgaben sind durch jeweils unterschiedliche Zielsetzungen und Perspektiven gekennzeichnet. Eine Perspektive berücksichtigt jeweils einen ganz bestimmten Aspekt des Mensch Rechner Systems, während andere Aspekte eher vernachlässigt werden. Da auch schon relativ einfache Aufgaben bei Betrachtung aller möglichen Aspekte eine hohe Komplexität aufweisen, ist eine solche Reduktion der Betrachtungsaspekte entsprechend der jeweiligen Zielsetzung erforderlich. Den Methoden liegen dementsprechend unterschiedliche Abstraktionsebenen und -prinzipien zugrunde.
+\paragraph{}
+Die Analyseebenen werden folgendermassen nach ihren Schwerpunkten unterschieden:
+\begin{itemize}
+	\item \textbf{Organisatorische Ebene:} Zuordnung von Aufgaben auf organisatorische Einheiten und Rollen, Informationsflüsse, Kommunikation
+	\item \textbf{Aufgabenebene:} Tätigkeitsspektrum, Beurteilung von Tätigkeiten, Belastungen
+	\item \textbf{Funktionale Ebene:} Auslegung der Systemfunktionalität, Funktionsteilung zwischen Mensch und Rechner
+	\item \textbf{Interaktionsebene:} Mensch-Computer-Interaktion, Dialogtechniken und -abläufe.
+\end{itemize}
+Prinzipiell lassen sich die Methoden der Aufgabenanalyse nach folgenden Herangehensweisen unterscheiden. Die \textsl{systemorientierten} und \textsl{benutzerorientierten} Herangehensweisen, je nachdem, ob die Anforderungen an die Funktionalität des Systems oder der Benutzer mit seinen Eigenschaften im Mittelpunkt der Betrachtung stehen. 
+ 
+				\subsection{Beschreibungsmerkmale von Aufgaben}
+Zur Untersuchung der einzelnen Aufgaben müssen für die jeweilige Analysezielsetzung relevanten Merkmale erfasst und in geeigneter Form dargestellt bzw. modelliert werden. Dabei lassen sich fünf Hauptgruppen von Merkmalen unterscheiden, die jeweils verschiedene strukturelle oder kontextbezogene Aspekte von Aufgaben beschreiben.
+\begin{enumerate}
+	\item Die \index{statische Aufgabenstruktur}\textbf{statische Aufgabenstruktur} beschreibt im wesentlichen die Beziehungen zwischen einer Aufgabe, ihren Teilaufgaben und der Oberaufgabe, in der sie selbst wieder eine Teilaufgabe bildet. (Aufgabenhierarchie).
+	\item Die \index{dynamische Aufgabenstruktur}\textbf{dynamische Aufgabenstruktur} gibt die (zeitlichen) Abläufe an, beschreibt also die möglichen Übergänge zwischen einzelnen Aufgaben und die jeweiligen Ereignisse und Bedingungen, die zu diesen Übergängen führen.
+	\item Unter rechnergestützten Aufgaben werden die \textbf{Informationsobjekte} betrachtet. Deshalb werden in der Aufgabenanalyse die zu bearbeitenden (ein- und ausgehenden) Informationsobjekte mit ihrer jeweiligen Struktur und den Beziehungen untereinander bestimmt.
+	\item Unter Regeln zur Ausführung werden die \textbf{Vor- und Nachbedingungen} der Aufgabenausführung verstanden. Eine Aufgabe kann nur dann gestartet werden, wenn die Vorbedingungen erfüllt sind. Nach dem Abschluss der Aufgabe sollten gültige Nachbedingungen (Ergebnisse) erzeugt worden sein. 
+	\item Zur Gestaltung aufgaben angemessener Systeme ist es unerlässlich, die Einbettung von Aufgaben in den realen Arbeitskontext zu betrachten. Darunter ist eine vielzahl von Parametern gemeint, die als \textbf{Kontextparameter} bezeichnet werden können. Solche Parameter bestehen in der Regel in der Priorität, Häufigkeit und Repetitivität von Aufgaben, den Mengengerüsten hinsichtlich der zu bearbeitenden Daten oder Faktoren wie Unterbrechungshäufigkeit.    
+\end{enumerate}
+Für den Zweck der Systemgestaltung ist es sinnvoll, die Aufgabenanalyse unter zwei Aspekten zu betrachten: Zum einem sollten nur die wirklich gestaltungsrelevanten Merkmale erfasst werden, um das Ganze zielgerichtet und ökonomisch zu halten und zum anderen sollte vermieden werden, überflüssigen Aufwand auf die Analyse der Ist-Situation zu verwenden. Obwohl diese wertvolle Ausgangsinformation liefert, sollte das Schwergewicht auf die Analyse der Soll-Konzeption gelegt werden \cite{You89}. 
+ 
+				\subsection{Analyse kognitiver Aufgaben} 
+\index{Kognitive Aufgabenanalyse}Kognitive Aufgabenanalyse hat zum Ziel, die mentale Repräsentation von Aufgaben durch den Benutzer zu bestimmen und zu modellieren, um daraus Aussagen über Leistungsgrössen, die Erlernbarkeit von Benutzungsschittstellen, Transfer von Wissen sowie die Gedächtnisbelastung und Fehlermöglichkeiten zu gewinnen. Die Modellierung einer kognitiven Aufgabenstruktur erlaubt die Abbildung der einzelnen Aufgaben in Handlungssequenzen. 
+\paragraph{}
+Die kognitiv orientierte Analyseverfahren haben nur begrenzten Nutzen, obwohl teilweise Vorhersagen relevanten Benutzerverhaltens möglich wären, sind Analysen kompletter Systeme oder Systemkomponenten allein schon aus Aufwandsgründen praktisch nicht möglich.					
+			%\section{Visuelle Hilfen}%Jurij
+			%	 \subsection{Graphiken und Icons}
+			%	 	\ldots 
+			\section{Fehlermanagment und Hilfesysteme}
+					\subsection{Grundlagen und Problemfelder}
+\index{Fehlermanagment}Die Anpassung von technischen Systemen an den Menschen (und nicht umgekehrt) ist ein Hauptziel der Software-Ergonomie. Der Benutzer von technischen Systemen wird als aktiv Handelnder und das System selbst als Werkzeug angesehen. Wenn der aktiv handelnde Benutzer bei der Bearbeitung von Aufgaben unterstützt werden soll, so sind Grundkenntnisse über den menschlichen Handlungsprozess erforderlich. 
+						\subsubsection{Der menschliche Handlungsprozess}
+Bei der Arbeit am Computer werden Ziele durch die zu erledigende Arbeitsaufträge und durch die Benutzer formuliert. Die Benutzer bestimmen mehr oder weniger darüber, wie sie ihre Aufgaben im einzelnen erledigen möchten. Sie regulieren ihre Handlungen, indem sie Grobziele und Teilziele entwickeln (Zielbildung), entsprechende Pläne zur Realisierung aufstellen (Planung), ausführen (Handlungsausführung) und vergleichen ob die tatsächlichen Handlungsergebnisse von den erwarteten abweichen (Rückmeldungsverarbeitung) \cite{MGP91}.
+\paragraph{}
+Bei der \textit{Zielbildung} möchten die Benutzer gerne wissen, welche ihrer Ziele sie mit dem vorliegenden System erreichen können und welche nicht. Bei der \textit{Planung} geht es um die Frage, wie sich die Ziele erreichen lassen und welche Teilziele angestrebt werden müssen. Währen der \textit{Handlungsausführung} werden die ursprüngliche Pläne schrittweise weiterentwickelt, verfeinert und gegebenfalls korrigiert. Bei der \textit{Rückmeldungsverarbeitung} geht es um die Erkennung, ob die vorhandenen Ziele mit den Handlungsergebnissen übereinstimmen. 
+						\subsubsection{Fehlhandlungen}
+Die Fehlhandlungen sollten im Sinne einer mangelhaften Anpassung verstanden werden und nicht so, dass der Benutzer etwas falsch gemacht hat. Weder der Benutzer noch das Computer-System für sich alleine genommen lassen sich als Urheber für die Fehlhandlungen identifizieren \cite{Fre91}. 
+\paragraph{}
+Die Qualität der Unterstützungskomponenten von Software-Produkten wird gerade daran gemessen, wie oft die Benutzer in Mismatch-Situationen gerät und wie gut sie bei der Bewältigung von Mismatch-Situationen unterstützt werden. Mismatch bedeutet, dass es Mängel an der gegenseitigen Anpassung zwischen Mensch und Computer gibt. Durch Software-Evaluation kann die Art und die Anzahl von Fehlhandlungen sowie die Dauer der Fehlerbewältigungszeit bei der Bearbeitung von Standartaufgaben bestimmt werden \cite{Bro91}.
+\paragraph{}
+Beim Fehlerbewältigungsprozess lassen sich drei Schritte unterscheiden: Fehlerentdeckung, Fehlerdiagnose und Fehlerkorrektur. \cite{Zap91}
+\begin{itemize}
+	\item \textit{Fehlerentdeckung:} Fehlerbewältigung wird eingeleitet durch den Verdacht oder durch das genaue Wissen, dass ein Fehler aufgetreten ist. Dabei ist es meistens unklar, worin der Fehler besteht oder wie er korrigiert werden kann.
+	\item \textit{Fehlerdiagnose:} Hier werden die Vorstellungen über den richtigen Handlungsverlauf mit dem tatsächlichen Handlungsverlauf verglichen. Aus diesem Vergleich leiten sich Vermutungen ab, wie ein Fehler zustandegekommen sein könnte.
+	\item \textit{Fehlerkorrektur:} Kann entweder direkt oder kompensatorisch erfolgen. Bei der direkter Fehlerkorrektur wird der fehlerhafte Handlungschritt rückgängig gemacht, oder inverse Aktionen werden ausgeführt. Diese Art der Korrektur wird nur bei Fehlern eingesetzt, deren Konsequenzen unmittelbar erkannt werden und nur wenige Teilhandlungen betreffen. Bei der kompensatorischen Korrektur werden Fehlerkonsequenzen in zukünftige Handlungen einbezogen oder neue Handlungen geplant, die einen Zustand herstellen, von dem aus das ursprüngliche Ziel ebenfalls erreicht werden kann. Kompensatorische Fehlerkorrektur bezieht sich vor allem auf Fehler, die sehr spät entdeckt werden und deren Konsequenzen eine grössere Anzahl von Handlungsschritten betreffen.   
+\end{itemize}
+       
+							\subsection{Fehlervermeidung}
+Bei der Betrachtung des menschlichen Fehlebewältigungsprozesses wird von der Existenz eines Fehlers ausgegangen. Es ist jedoch möglich einiges zu tun, damit es erst gar nicht zu Fehlern kommt, oder dass die Fehler leicht entdeckt werden können. 
+								\subsubsection*{Konsistente Dialoggestaltung}
+Die wichtigste Strategie zur Vermeidung von Routinefehlern ist die \textit{konsistente Gestaltung der Benutzungsschnittstelle} eines Softwareprodukts in Bezug auf unterschiedliche Aspekte wie Informationsdarsstellung, Aktivierung von Funktionen, Rückmeldungen.
+\begin{itemize}
+	\item Informationsdarstellung: Gleichartige Informationen werden stets an der gleicher Stelle, in gleicher Formulierung, Typografie und Layout dargestellt (z.B. Menüs).
+	\item Aktivierung von Funktionen: Gleichartige Funktionen in unterschiedlichen Arbeitskontexten/-modi werden auf gleiche Weise aktiviert.
+	\item Rückmeldungen: Beim Umschalten in einen anderen Arbeitsmodus oder bei der Ausführung von Funktionen erfolgt eine entsprechende Rückmeldung.
+\end{itemize}
+Eine konsistente Gestaltung der Benutzungsschnittstelle sorgt dafür, dass Routinehandlungen des Benutzers seltener zur Gewohnheitsfehlern führen. Darüber hinaus wird auch das Erlernen neuer Funktionalität vereinfacht, da sich bekannte Handlungsmuster übertragen lassen.
+								\subsubsection*{Einschränkung von Freiheitsgraden}
+Bei der Einschränkung von Freiheitsgraden werden i.d.R. unzulässige Eingaben abgewiesen. Z.B. werden in einem Eingabefeld wo ein Datum eingegeben ist, alle Eingaben ausser Ziffern mit Punkten abgelehnt. Oder die Funktionen, die in der aktuellen Situation nicht anwendbar sind, werden im Menü gesperrt.
+\paragraph{}
+Die Einschränkungen von Freiheitsgraden steht im Widerspruch zum Modell des aktiven Benutzers. Hier besteht ein Konflikt zwischen dem Ziel, dem Benutzer die vollständige Kontrolle über ein Softwaresystem zu ermöglichen, und dem Ziel, Fehler zu vermeiden. Eine Entscheidung darüber, welchem dieser Ziele die höhere Priorität zukommt, muss in Jedem Einzelfall in Abhängigkeit von der Aufgabe getroffen werden.
+								\subsubsection*{Sicherheitsrückfragen}
+Sicherheitsrückfragen werden zur Fehlervermeidung eingesetzt, wenn der Benutzer Funktionen aktiviert, die unbeabsichtigte Effekte haben können oder zur Verfälschung bzw. zum Verlust von Daten führen können und die nicht ohne weiteres umkehrbar sind. In einer solchen Rückfrage werden die möglichen Konsequenzen der aufgerufenen Funktion beschrieben und der Benutzer muss entweder bestätigen, dass er die Funktion weiter ausführen will, oder die Funktion abbrechen. 
+							\subsection{Fehlermanagment}
+Ziel von Fehlermanagment ist es, den Aufwand für die Fehlerbewältigung zu reduzieren, da diese einen beträchtlichen Teil der Arbeitszeit in Anspruch nimmt. Eine gelungene Reduktion wäre durch eine Verringerung der Fehlerbewältigungszeit oder durch eine geringere Beanspruchung von Beratungsleistungen erkennbar. Im folgenden werden einige Strategien zur Beseitigung von bestimmten Arten von Fehlern beschrieben.
+								\subsubsection*{Routinefehler}
+Konsistente und transparente Systemgestaltung hilft nicht nur viele Routinefehler (Gewohnheits-, Erkennens-, Bewegungsfehler) zu vermeiden, sondern sorgt auch dafür, dass solche Fehler leichter entdeckt und identifiziert werden. Für ihre Korrektur ist eine Funktionalität von Vorteil, die es erlaubt unbeabsichtigte Handlungsresultate rückgängig zu machen bzw. zu kompensieren (inverse Funktionen, allgemeine Undo-Funktion).
+								\subsubsection*{Wissensfehler}
+Bei der Fehlerdiagnose und der Fehlerkorrektur von Wissensfehlern sollten im wesentlichen Suchprozesse und exploratives Agieren unterstützt werden. Dazu dienen insbesondere Hilfesysteme, Apropos- und Explorationsfunktionen. Mit einer Apropos-Funktion werden Begriffe, Prozeduren, Funktionen und dergleichen verfügbar gemacht, die mit dem im System verwendeten Begriffen synonym oder verwandt sind. Damit kann der Benutzer auch mit einer vagen Vorstellung Funktionsnamen und spezifische Informationen ausfindig machen. Unter explorativen Agieren werden bestimmte Funktionen gemeint, die sich anhand der Testdaten vom Benutzer ausprobieren lassen, um die Wirkungsart und -weise der im System vorhandenen Funktionen zu erläutern.
+
+\paragraph{}
+Darüber hinaus gibt es noch die Denkfehler, Merk-und Vergessensfehler, Urteilsfehler etc.. Die jeweiligen Strategien sind den oben Vorgestellten teilweise ähnlich und werden hier nicht weiter beschrieben. Entscheidend ist nur, dass mit Hilfe des Fehlermanagements die einzelnen Fehler effektiv bewältigt werden können, wenn die entsprechenden Strategien richtig angewendet werden.			 
+							\subsection{Hilfesysteme}
+Ein Hilfesystem besteht aus Programmen oder Programmteilen und Datenbasen, die eine Hilfeleistung in Form von Texten, Abbildungen etc. mit Informationen und Erläuterungen zur Benutzung eines oder mehrerer Softwareprodukte und Hilfefunktionen (z.B. Anzeige-, Such- und Navigationsfunktionen) zur Erschließung und Nutzung der Hilfeleistungen bereitstellen. Das Hauptmerkmal eines Hilfesystems besteht darin, dass es den Benutzer während der Arbeit mit dem betreffenden Produkt schnell und unmittelbar unterstützt, ohne den aktuellen Arbeitskontext zu verlassen \cite{Rup87}.
+\paragraph{}
+Es existieren zwei Bereiche in denen Hilfesysteme unterstützung bieten können:
+\begin{itemize}
+	\item Wissenserwerb - Benutzer lernen neue Sachverhalte, Wissensprobleme werden beseitigt.
+	\item Fehlermanagment - Benutzer orientieren sich über Informationen und Funktionen die zur Fehlerbehebung notwendig sind.
+\end{itemize}
+Darüber hinaus gibt es zwei Gestaltungsarten bei der Entwicklung von Hilfesystemen:
+\begin{itemize}
+	\item Passive Hilfe: die Initiative geht vom Benutzer aus. Er ruft die Hilfe auf und fordert damit die Hilfeleistung an.
+	\item Aktive Hilfe: die Initiative geht von Hilfesystem bzw. dem Benutzten Softwareprodukt aus. Die Hilfeleistung wird ohne explizite Anforderung durch den Benutzer bereitgestellt. 
+\end{itemize}
+Hilfesysteme eignen sich für die Bereitstellung von Informationen lokaler Bedeutung, d.h. zur Ausführung einzelner Arbeits- und Bedienungsschritt, zum aktuellen Arbeitskontext oder zur aufgetretenen Fehlern. Sie sind weniger geeignet für Informationen globaler Bedeutung, etwa zur Planung komplexer Arbeitsvorgänge und Abläufe. Denn letzteres kann besser in Handbüchern vermittelt werden.
+	\chapter{Architektur}%Stefan
+		Ausgegangen von einer Zwei-Teilung unterscheiden wir die grafische Benutzeroberfläche und das Backend. Die grafische Benutzeroberfläche wird einerseits durch eine Java Swing Applikation und andererseits durch ein Web-Frontend repräsentiert. Beide Frontend-Varianten werden als Thin-Clients implementiert, so daß also jegliche auslagerbare Logik sich im Backend wiederfinden läßt. Es fiel die Entscheidung auf einer Client-Server-Architektur zu Ungunsten einer MVC-Struktur(Model-View-Control)\index{Model-View-Control}\footnote{MVC: Aufteilung der Architektur in Model(Datenhaltung), View(Darstellungslogik) und Control(Applikationslogik)}. Da die Komplexität des Projektes überschaubar ist, schien eine MVC-Struktur nur unnötige strukturelle Einbußen mit sich zu bringen.\\
+		Im Klassendiagramm Abb(\ref{fig:classDiagramSimple}) werden die wichtigsten Klassen, deren Vererbungsbeziehungen und Assoziationen zu anderen Klassen angedeutet. Hierdurch wird sofort eine Zwei-Teilung mit Verbindung durch einen Wrapper\index{Wrapper}\footnote{Wrapper: Schnittstelle, die Funktionsaufrufe etc. bereitstellt, um modulare Struktur, Wiederverwendbarkeit und Entkopplung zu unterstützen.} deutlich.
+    \begin{figure*}[!htb]
+        \begin{center}
+            \includegraphics[scale=0.4]{images/classdiagram.png}
+        \end{center}
+        \caption{vereinfachtes Klassendiagramm}
+        \label{fig:classDiagramSimple}
+    \end{figure*}\par		
+    \section{Paketstruktur}
+    	Das Projekt wurde der Übersichtlichkeit und zur Erzeugung einer modularen Struktur in verschiedene Pakete unterteilt. Zur globalen Identifizierung wurden die Pakete in übergeordneten Paketen plaziert, die Auskunft über den Rahmen der Entwicklung geben. Angefangen mit dem Paket \textit{de}(Deutschland) über die Pakete \textit{uni.oldenburg} bis hin zur Porjektveranstaltung \textit{p30} (Projekt 30) sollte eine eindeutige Zuordnung der Entwicklung gegeben sein. Im Folgenden werden nun alle weiteren Unterpakete und deren Bedeutung vorgestellt:\\
+    	\begin{itemize}
+    		\item{client}
+    			\begin{itemize}
+    				Alle Client-Sourcen werden hier gehalten. Es wird zusätzlich noch in die unterschiedliche Art der Client-Anwendung unterschieden:
+    				\item{offline: Spezielle Gui-Komponenten, die für den Swing-Client erforderlich sind}
+    				\item{web: Spezielle Web-Komponenten, die für den Web-Client(Java-Servlet) erforderdlich sind.}
+    			\end{itemize}
+    		\item{common: Hier finden sich alle Klassen wieder, die von unterschiedlichen Orten benötigt werden. Es handelt sich hierbei meist um strukturelle Hilfsklassen.}
+    		\item{exception: Alle möglichen Fehlerbehandlungen werden ebenfalls zentral verwaltet.}
+    		\item{registry: Die Registrierungskomponente zur (De-)Registrierung von Bibliotheken.}
+    		\item{repository: Bereich für die verschiedenen Backend-Implementierungen.}
+    		\item{service: Plazierung des Wrappers, über den Client-Server-Kommunikation ermöglicht wird}
+    		\item{test: Paket für die Ablage der Tests.}
+    	\end{itemize}
+    	Ein Zusammenspiel der Pakete wird in Abb(\ref{fig:packageDiagram}) verdeutlicht.
+    \begin{figure*}[!htb]
+        \begin{center}
+            \includegraphics[scale=0.7]{images/package_diagram.jpg}
+        \end{center}
+        \caption{Paket-Übersicht}
+        \label{fig:packageDiagram}
+    \end{figure*}\par		
+		\section{Dispatcher-Funktionalität}
+			Client und Server sind durch den Dispatcher entkoppelt, so daß beide Seiten unter wenigen Umständen austauschbar sind. Der Dispatcher hat weiterhin eine Proxy-Funktionalität in der Hinsicht, daß die Anzahl der verbundenen Server für den Client transparent gehalten werden. Aus Client-Sicht werden verschiedene Server am Dispatcher registriert. Alle weiteren Anfragen delegiert der Dispatcher dann automatisch weiter.\\
+			\section{Datenhaltung und Anbindung}
+			Die Art der Datenhaltung ist ebenfalls für den Client transparent. Über eine vorgegebene Schnittstelle ist die Anbindung unterschiedlichster Datenhaltungskomponenten denkbar. Unterstützt werden initial alle XML-Datenbanken, die eine Implementierung der XML:DB API bereitstellen. Die Anbindung bzw. die Integration in die Arbeit des Clientprozesses kann über eine zentrale Registierung oder auch manuell erfolgen. An der zentralen Registrierung können Bibliotheken für den öffentlichen Zugang registriert werden. Alle benötigten Daten werden dort übergeben und der Allgemeinheit bereitgestellt. Der Client hat die Möglichkeit eine Anfrage über verfügbare Server zu stellen oder Verbindungsdaten manuell einzutragen. Die manuelle Eintragung sorgt für die Unterstützung von privaten Bibliotheken, auf denen die allgemeinheit keinen Zugriff erhält.
+						
+	\chapter{Feinentwurf}
+		\section{Backend}%Stefan
+%			\subsubsection{Signaturbeschreibungsalgorithmus}%Thorsten
+Folgt im Abschlussbericht..
+
+		\section{Frontend}
+			\subsection{Rapid-Prototyping vs. Evolutionäre Programmierung}%Jurij
+				\index{Softwareentwicklungsprozess}
+			Um die Softwareentwicklung planbar, überschaubar, vorhersehbar und kontrollierbar zu
+gestalten, wird üblicherweise ein Vorgehensmodell verwendet. Hierbei handelt es sich um
+eine Darstellung, die weitestgehend den Softwareentwicklungsprozess beschreibt.
+Im folgendem Abschnitt werden jedoch nur zwei, für das Projekt relevante, Modelle beschrieben und miteinander verglichen.
+\subsubsection{Prototypenmodell}
+\index{Prototypenmodell}
+		Die traditionellen Entwicklungsmodelle, wie zum Beispiel das Wasserfallmodell, bringen oft Probleme mit sich. Denn sie setzen gleich zu Beginn der Entwicklung eine vollständige
+Spezifizierung der Anforderungen voraus, die der Auftraggeber nicht liefern kann. Während der Entwicklung ist oft eine wechselseitige Koordination zwischen Entwicklern und Anwendern erforderlich. Bei den traditionellen Modellen ist die Kooperation nach der Fertigstellung der Anforderung nicht mehr vorgesehen. Die Probleme und Lösungsansätze die im Verlauf der Entwicklung entstehen können  mit dem Auftraggeber nicht mehr diskutiert werden und  das Ergebnis wird erst am Ende des Entwicklungsprozesses präsentiert.\\
+\subsubsection{Prototyp als Hilfsmittel}
+ Das Prototypenmodell löst einen Teil der oben beschriebene Probleme, indem es bereits in einer frühen Entwicklungsphase die Erstellung eines Prototyps vorsieht. Der Prototyp soll dabei nicht das erste Muster einer großen Serieproduktion darstellen. Vielmehr ist es ein abgespecktes funktionales Modell, welches ausgewählte Eigenschaften des Zielproduktes im praktischen Einsatz zeigt.
+\paragraph{}
+Die Erstellung eines Prototyps bringt wesentliche Vorteile mit sich. \\
+\begin{itemize}
+	\item Anforderungen oder Entwicklungsprobleme können besser geklärt werden
+		\item Die Vorführung des Prototyps bietet Basis für Diskussionen und leistet Entscheidungshilfe
+			\item  Verwendung für experimentelle Zwecke
+				\item  Sammeln von praktischen Erfahrungen		
+\end{itemize}
+\subsubsection{Prototyp-Arten}
+	Es existieren vier unterschiedliche Arten von Prototypen.
+	\begin{itemize}
+	\item \textbf{Demonstrationsprototypen} 
+	\index{Demonstrationsprototypen} sollen  dem Auftraggeber den ersten Eindruck über das mögliche Aussehen des späteren fertigen Produkts vermitteln. Sie dient Auftragsakquisition, werden relativ schnell aufgebaut("`rapid prototyping"') und werden nach der Vorführung weggeworfen.
+		\item \textbf{Prototypen in engeren Sinne} 
+		\index{Prototyp i.e.S} werden parallel zur Modellierung des Anwendungsbereichs erstellt und sollen Aspekte der Benutzungsschnittstelle oder Teile der Funktionalität veranschaulichen. Es handelt sich dabei um ein provisorisches, ablauffähiges System.
+			\item  \textbf{Labormuster}
+				\index{Labormuster} sollen konstruktionsbezogene Fragen und Alternativen beantworten. Sie demonstrieren die technische Umsetzbarkeit des Produktmodells, sind technisch mit dem späteren Endprodukt vergleichbar sein, jedoch sind nicht für den Endbenutzer bestimmt.
+				\item Das \textbf{Pilotsystem}
+				\index{Pilotsystem}	 stellt einen Kern des Endprodukts dar. Die Grenzen zwischen dem Prototyp und Produkt sind nicht mehr klar definiert. Pilotsysteme werden für die Benutzung in der Einsatzumgebung und nicht nur unter Laborbedingungen entworfen .
+			\end{itemize}
+			
+	Die Abbildung zeigt eine Übersicht der Prototyp-Arten(Quelle: \cite{Bald01})
+	
+		\begin{figure*}[!htb]
+                    \begin{center}
+                        \includegraphics[scale=0.6]{images/prototypenmodelle.jpg}
+                    \end{center}
+                   % \caption{Prototypenmodelle}
+                    \label{fig:evModell}
+                \end{figure*}\par	
+
+\subsubsection{Fazit}
+ Das Prototypenmodell bringt eine Reihe wesentlicher Vorteile mit sich.
+ 
+\begin{itemize}
+	\item  Die Entwicklungsrisiken können durch einen frühzeitigen Einsatz von Prototypen reduziert werden.
+		\item Prototypen können mit den heute verfügbaren Werkzeugen schnell entworfen und sinnvoll in andere Prozessmodelle integriert werden.
+		\item 	Prototyping verbessert die Planung von Softwareentwicklungen, die Labormuster fordern die Kreativität für Lösungsalternativen.
+			\item  Die Entwickler sind während des gesamten Erstellungsprozesses stark an den Endbenutzer und den Auftraggeber gebunden.
+			Diesen stehen jedoch einige Nachteile gegenüber. So erfordern die Prototypen einen höheren Entwicklungsaufwand. Die Beschränkungen von Prototypen können oft nicht ausreichend analysiert werden und werden oft als Ersatz für die fehlende Dokumentation angesehen. Darüber hinaus besteht die Gefahr, dass ein "`Wegwerf"'-Prototyp Teil des Endprodukts wird.
+	\end{itemize}		
+	\subsection{Das evolutionäre/inkrementelle Modell}
+		\subsubsection{Das evolutionäre Modell}
+	Bei dem evolutionären Modell wird anfangs eine Kern- oder Mussanforderung des Auftraggebers umgesetzt. Es wird ein Mindestanforderungspaket entwickelt und an den Auftraggeber ausgeliefert. Der Auftraggeber setzt das Produkt ein, sammelt Erfahrungen und entwickelt im späteren Verlauf weitere Anforderungen, die dem bestehendem Kern hinzugefügt werden.\\
+		
+		Das Modell eignet sich besonders gut, wenn der Auftraggeber seine Anforderungen  nicht vollständig überblicken kann. Das Software-Produkt kann also stufenweise entwickelt. Die Entwickler konzentrieren sich jeweils lauffähige Teilprodukte und Pflegeaktivitäten werden als Erstellung einer neuen Version angesehen. \\
+		
+		Die Abbildung zeigt eine normierte Darstellung des evolutionären Modells(Quelle: \cite{Bald01} )
+		\begin{figure*}[!htb]
+                    \begin{center}
+                        \includegraphics[scale=1.0]{images/evolutModell.jpg}
+                    \end{center}
+                   \caption{Darstellung des evolutionären Modells}
+                    \label{fig:evModell}
+                \end{figure*}\par	
+      
+			Das evolutionäre Modell  ermöglicht es den Entwicklern das Produkt in einer Anzahl kleiner Arbeitsschritte überschaubarer Größe zu erstellen. Erfahrungen aus dem Produkteinsatz der vorherigen Version fließen und die nächste Version mit ein. Der Auftraggeber erhält so in kürzeren Zeitabständen einsatzfähige Produktversion. Allerdings besteht die Gefahr, dass die neue Version eine komplette Überarbeitung der bestehenden Systemarchitektur erforderlich macht. Problematisch wäre ebenfalls eine Nullversion, die nicht genug flexibel ist, um  an evolutionäre Entwicklungsschritte angepasst zu werden.
+		\newpage
+		\subsubsection{Das inkrementelle Modell}
+		Das inkrementelle Modell vermeidet einige Schwächen des evolutionären Modells, indem es eine möglichst vollständige Anforderungsmodellierung des zu entwickelnden Produkts voraussetzt. Das Produkt wird dabei stückchenweise entworfen und implementiert. Erst wenn eine Ausbaustufe erfolgreich entwickelt wurde, kann die nächste Stufe darauf aufbauen.\\
+		
+		Die Abbildung zeigt eine normierte Darstellung des evolutionären Modells(Quelle \cite{Bald01} )
+		
+		\begin{figure*}[!htb]
+                    \begin{center}
+                        \includegraphics[scale=0.7]{images/inkremModell.jpg}
+                    \end{center}
+                   \caption{Darstellung des inkrementellen Modells}
+                    \label{fig:inkModell}
+                \end{figure*}
+       \newpage
+      \subsection{Bezug zum P30-Projekt}
+	Die Entwicklung der graphischen Benutzungsoberfläche(Tooliban) macht von allen, im oberen Abschnitt beschriebenen, \index(Prozessmodelle) Prozessmodellen Gebrauch. In einem sehr frühen Stadium der Entwicklung verlagert sich der Schwerpunkt in Richtung des Prototypenmodells. So werden einige Demonstrationsprototypen erstellt, um eine geeignete Dokumentdarstellungsarchitektur für die definierte Anforderungen ermitteln zu können.
+
+\subsubsection{Single Document vs. Multiple Document}
+		Der Schwerpunkt liegt in der Entscheidung über einen geeignete Typ der  \index(Dokumentarchitektur)Programmarchitechtur. Aus der Entscheidung resultiert ebenso die spätere Benutzerfreundlichkeit der Anwendung. 
+	\subsubsection*{Single Document Type}
+		\index{SDI - Single Document Type}
+		Die Singledokumente erlauben zur gleichen Zeit jeweils nur ein geöffnetes Formular bzw. eine Eingabe-/Einstellmaske. Dies sorgt zwar für einen gewissen Maß an Übersicht und Ordnung bringen jedoch eine Reihe von designtechnischen Nachteile mit sich. Die Abmessungen der geöffneten Formulare müssen zwangläufig an die Abmessungen des Anwendungsfensters angepasst werden. Dabei gibt es mindestens zwei Möglichkeiten dies zu bewerkstelligen:
+		
+\begin{itemize}
+	\item Die Größe des Hauptanwendungsfensters an die Größe des jeweils aktiven Formulars bzw. der aktiven Eingabenmaske anpassen. Dies sollte nach Möglichkeit vermieden werden, da eine unter Umständen mausbegleitende Änderung des Anwendungsfensters den Benutzer verwirren könnte. Darüber hinaus werden ausgewählte Bedienelemente, wie Menuleiste oder Werkzeugleiste bei einem zu kleinen Fenster mitskaliert und sind so unter Umständen nicht mehr vollständig sichtbar bzw. bedienbar.
+	\item Die Größe des aktiven Formulars  bzw. der aktiven Eingabenmaske an die feste Standard-Größe des Hauptanwendungsfensters anpassen. Dies vermeidet falsche Darstellung der Bedienelemente. Die Darstellung und Positionierung der formular- bzw. maskeninternen Elemente müssen aber explizit für jedes Formular auch für eventuelle Maximierungsmöglichkeit hin optimiert werden. Denn sonst kann die vom Benutzer erzwungene Größenänderung des Anwendungsfensters die vorher festgelegte Layouts "`verzerren"' indem es  der internen Elemente gemäß der definierten Eigenschaften auf dem Bildschirm neu orientiert und die Darstellung nicht mehr ansehnlich wird. Auch hier gibt es mindestens zwei mögliche Szenarien:
+	
+\begin{itemize}
+
+	\item  Die Formular-/Maskenelemente bleiben aneinander gebunden, in ihrer Gesamtheit müssen sie jedoch entweder zentriert oder an einer Kante des Anwendungsfensters positioniert werden. Nachteilig hier wirken die u.U. großen ungenutzten Bereich des Anwendungsfensters.
+	\item Die Formulare-/Maskenelemente  verteilen sich gleichmäßig auf der verfügbaren Anzeigefläche. Allerdings werden dadurch die jeweils zusammen gehörende Elementenpaare (z.B. Beschriftung des Texteingabefeldes und das eigentliche Texteingabefeld) auseinander gerissen.
+\end{itemize}
+ Beide Szenarien sind daher unbefriedigend. Tatsächliche Darstellungsverhältnisse sollen aber an einem geeigneten Demonstrationsprototyp untersucht werden.
+\end{itemize}
+
+			\subsubsection*{Multiple Document Type}  
+			\index{MDI - Multiple Document Type}
+	 Diese Art der Programmarchitektur erlaubt eine parallele, weitgehend voneinander unabhängige Darstellung und Verwaltung von mehreren internen Unterfenstern innerhalb des Hauptanwendungsfenster, welches in diesem Fall als Desktop-Frame bezeichnet wird.  Das Desktop-Frame verhält sich dabei als ein universeller Container, der sowohl die Bedienelemente wie Menu-, Werkzeugleisten und sonstiges, als auch die eigentlichen Eingabenmasken  aufnehmen  und darstellen kann.\\ 
+
+	 Die einzelnen Formularfenster und Eingabemasken existieren als eigenständige Instanzen, können minimiert, maximiert und manuell vergrößert bzw. verkleinert und geschlossen werden. Dies macht die Darstellung wesentlich flexibler als bei dem oben beschriebenen Single-Document-Typ:
+	 
+\begin{itemize}
+	\item  Für den Wechsel zwischen zwei parallel geöffneten Unterfenstern genügt oft ein Mausklick
+		\item Die Formulare und Masken können ihre optimale Darstellungsgröße einnehmen und behalten und zwar unabhängig von der aktuellen Größe des Anwendungsfensters.
+			\item Die geöffneten Formulare können von dem Benutzer  innerhalb des Anwendungsfensters frei positioniert werden. Dies ermöglicht ein angenehmes Arbeiten und schnellen Zugriff auf die oft verwendeten Funktionen.
+\end{itemize}
+	\subsubsection{Vorgehensweise}
+	Die Projektgruppe erstellt jeweils einen Demonstrationsprototyp die die beiden Dokumentarchitekturen repräsentieren. Dabei werden Vorteile und Nachteile der jeweiligen Architektur analysiert. Der Auftraggeber ist jedesmal anwesend und erhält einen genauen Einblick in den Aufbau der möglichen Benutzungsschnittstelle(GUI). Im gleichen Zeitraum erfolgt eine Spezifizierung der Funktionsumfang, den das Endprodukt aufweisen soll. Nachdem der Auftraggeber sich für einen Architekturtyp entscheidet, erfolgt der Wechsel auf das evolutionäre/inkrementelle Prozessmodell. Die ungeeigneten Prototypen werden verworfen, die restlichen Prototypen dienen als Muster für eine vollständig neue Entwicklung als Grundlage für das Endprodukt. Die Funktionen werden Schrittweise der Grundlage hinzugefügt und dem Auftraggeber laufend vorgeführt. Am Ende wird das fertige Endprodukt ausgeliefert, welches die wesentlichen, vom Auftraggeber spezifizierten, Funktionen unterstützt.
+				      
+			\subsection{Benutzungsoberfläche}%Jurij
+				\subsubsection{Gestaltung} 
+		Im Verlauf der Implementierungsphase soll eine grafische Benutzungsoberfläche entstehen, die in der Anforderungsdefinition  festgelegten Ziele umsetzt.\\
+			Bei Start der Anwendung wird ein Anmeldungsbildschirm eingeblendet. Nach einer erfolgreichen Authorisierung gelagnt der Benutzer in die Hauptanwendung. Die Abmessungen der Arbeitsoberfläche sollen  standardmäßig mit 800x600 Pixel vorgegeben werden, das Fenster soll  sich aber beliebig vergrößern und verkleinern lassen. Die GUI-Anwendung soll eine geeignete Dokumentarchitektur aufweisen. Das Anwendungsfenster soll zunächst leer bleiben und lediglich eine Menuleiste und optional abschaltbare Werkzeugleiste enthalten. \\
+		
+		Die Menuleiste soll den Zugriff auf alle verfügbaren Formulare und Funktionen  erlauben. Die Einträge sollen nach Möglichkeit und Funktionsumfang der Programmiersprache zusätzlich mit einem Icon vorgesehen werden, um möglichst ansprechende und intuitive Bedienung zu ermöglichen.\\
+		
+		Die Werkzeugleiste soll eine Schnellzugriffsleiste darstellen. Über sie sollen die wichtigsten Funktionen und Formulare der Anwendung schnell und unkompliziert aufgerufen werden. Damit die Werkzeugleiste nicht zuviel vom verfügbaren Arbeitsbereich beansprucht, sollen alle Einträge in Form von kleinen Bild-Knöpfen dargestellt werden. Die Leiste soll sich entweder frei positionieren, beliebig dimensionieren oder an einem der vier Randbereiche des Arbeitsbereich-Fensters andocken lassen.\\
+		
+		Die Formulare, Dialoge und sonstige Masken sollen  mittels der Menueinträge bzw. über die Werkzeugleisten abrufbar sein. Sie sollen dabei in einer für die optimale Darstellung und Lesbarkeit geeigneten Form und Grösse eingeblendet und positioniert werden. Sie sollen sich verschieben, verkleinern, vergrößern, maximieren, minimieren  oder schließen lassen. Welche Auswahl an den aufgezählen Eigenschaften die Formulare bzw. Masken aufweisen hängt dabei entscheidend von der gewählten Dokumentenarchitektur.
+		
+				\subsubsection{Funktionale Analyse} 
+				Folgende Funktionen sollen dem Benutzer zur Verfügung stehen und per Menu- bzw. Werkzeugleiste abrufbar sein:		
+\begin{itemize}
+	\item \textbf{Metadaten anlegen/hinzufügen} \\
+	Diese Funktionalität verteilt sich auf zwei Formulare, die nacheinander eingeblendet werden.
+	Auf dem ersten Formular sollen abhängig vom Medientyp  DC- und UniOL-Metatags eingegeben werden. Zusätzlich soll der Benutzer eine Auswahl des Standortes für das Medium treffen. Die Auswahlbox wird dabei aus der vom Benutzer davor erstellten Standortliste generiert. Erst danach wird der Benutzer dazu aufgefordert eine Kategorie für die eingegebenen Metadaten auszuwählen. Diese Liste wird aus der mit dem Programmpaket mitgelieferten vordefinierten Liste generiert. Die Anwendung soll eine Warnung ausgeben, dass die Kategorie eines Metadatensatzes nachträglich nicht mehr bearbeitet werden kann.  Aus den Eingaben werden zusätzliche programmspezifische Metadaten generiert und der komplette Satz in der Datenbank abgelegt.
+		\item \textbf{Metadaten bearbeiten} \\
+		Der Benutzer darf bereits gespeicherte Metadaten bearbeiten. Änderungen der Kategorie und der Signatur soll aber nicht mehr möglich sein.
+			\item \textbf{Metadaten suchen} \\
+		Der Benutzer soll eine Suchmöglichkeit erhalten, in den gespeicherten Metadatensätzen nach ausgewählten Attributen zu suchen. Nach der Ausgabe der Ergebnisse soll eine Bearbeitungsfunktion zur Verfügung stehen.	
+			\item \textbf{Kategorien hinzufügen} \\	
+		Bei der Auslieferung des Endprodukts wird eine vordefinierte Liste mitgeliefert. Diese kann jedoch mit weitere Einträgen 	erweitert werden. Hierfür wird vom Benutzer die Eingabe der neuen Kategorie als ausgeschriebenes Wort und als Kürzel erwartet.
+		
+	\item \textbf{Kategorien bearbeiten} \\
+	Der Benutzer soll eine Möglichkeit erhalten, die Kategorien bearbeiten und löschen zu können.
+	
+	 	\item \textbf{Standort anlegen/hinzufügen} \\
+	 Die Standortliste ist zunächst leer und muss von dem Benutzer aufgebaut werden. Dafür werden neue Einträge aus den Benutzereingaben (Bezeichnung des Standortes) generiert.
+	 	\item \textbf{Standort bearbeiten} \\
+	 Die Standorteinträge sollen editierbar bleiben, Ebenso soll der Benutzer sie löschen können.
+	
+	\item \textbf{Individuallisten anlegen/hinzufügen} \\	
+  Eine Individualliste soll unbegrenzte Anzahl an bereits gespeicherten Medien aufnehmen. Es dürfen mehrere Individuallisten angelegt werden. Die Medien sollen beim Suchen oder Beabeiten der Metadatensätze durch wenige Mausklicks den Listen zugewiesen werden können. Vom Benutzer wird der Name der neuen Liste als Eingabe erwartet.
+
+		\item \textbf{Individuallisten bearbeiten/löschen} \\	
+	Die Listen sollen editierbar sein. Außerdem soll der Benutzer sie jederzeit löschen können. Entsprechende Bedienelemente sind bei der Auflistung der Individuallisten vorzusehen.
+	
+		\item \textbf{Verbindungen anlegen/hinzufügen} \\	
+	Die Client-Anwendung muss sich  zur Datensynchronisation und der netzumfassenden Suche mit einem verfügbaren Server verbinden können. Die Verbindungsdaten liefert der Benutzer.
+	
+		\item \textbf{Verbindungen bearbeiten} \\	
+	Der Benutzer soll die bestehenden Verbindungen bearbeiten und löschen können.
+	
+			\item \textbf{Bevorzugte Verbindung auswählen} \\	
+	Der Benutzer soll aus der Liste der verfügbaren Verbindungen eine bevorzugte Verbindung (evtl. eine Präferenzliste) auswählen können. Die ausgewählte Verbindung wird dann der Anwendung bevorzugt zur Datensynchronisation eingesetzt.
+	
+		\item \textbf{Optionen/Einstellungen} \\		
+	Der Benutzer soll ausgewählte Eigenschaften des GUI-Erscheinungsbildes den eigenen Bedürfnissen anpassen können. Einige Fehlermeldungen sollen sich hier ebenfalls abschalten lassen. Genaue Spezifizierung der Einträge/Schalter erfolgt im Endbericht.
+	
+		\item \textbf{Hilfe} \\
+	Dem Benutzer soll ein umfassendes Hilfesystem zur Verfügung stehen.
+\end{itemize}
+
+				\subsubsection{Einsatz von Icons} 
+				Um eine möglichst komfortable und intuitive Bedienung der grafischen Oberfläche zu ermöglichen, wurden die zahlreiche Menueinträge mit den Icons versehen. Dabei wurden die PG-Mitglieder mit zahlreichen nicht vorhersehbaren Problemen konfrontiert, die im Folgenden aufgeführt werden.
+						\subsubsection*{Icon-Abmessungen}
+
+						Unglücklicherweise besitzen die unter anderem im Internet frei verfügbare Standard-Icons eine Auflösung von 32 x 32 Pixel. Diese Größe ist für unsere Anwendung jedoch entscheidend zu groß. Zahlreiche Versuche die vorliegenden Icons  auf die Wunschgröße von 16 x 16 Pixel herunter zu skalieren brachten nur ungenügende Ergebnisse mit sich.
+\begin{itemize}
+	\item \subsubsection*{Bitmap-Icons}
+			Die Bitmap-Icons werden nativ im einem LZW-Algorithmus-verwandtem Codierungsverfahren abgelegt. Die Bilddaten liegen dabei als Pixelgrafik(Bitmap) mit einer Farbtiefe von 8bit vor. Die Bitmaps lassen sich aber nur bedingt vergrößern bzw. verkleinern. Zudem sind die erzielbaren Ergebnisse von stark von der Quellfarbtiefe abhängig. Bei der 8bit-Farbtiefe behalten die verkleinerten Grafiken ihre Darstellungsschärfe, die Proportionen der Objekte gehen durch die Umrechnungsprozesse und der Tatsache, dass keine Halbpixel abgelegt werden können, unter Umständen verloren. Um dies zu vermeiden, lassen sich die  Quelldaten zunächst in einen True-Color-Format(32bit) überführen. Dadurch wird die verkleinerte Darstellung interpoliert, wodurch aber der Schärfeeindruck sichtbar abnimmt. \\
+			
+			Ein Bespiel: Eine 1-Pixel breite, schwarzgefärbte Kante auf einem 10-Pixel weißgefärbtem Untergrund würde durch die in dem verkleinerten 8bit-Icon völlig verschwinden. Bei einem True-Color-Icon wäre die Kante immer noch sichbar, dafür aber äußerst unscharf.
+			
+		\item 	\subsubsection*{SVG-Icons}
+			Die SVG-Icons werden als Verktorgrafiken abgelegt. Der größte Vorteil der Vektorgrafiken gegenüber den Bitmapgrafiken besteht darin, dass sie sich  "`verlustfrei"' vergrößern bzw. verkleinern lassen. Die jeweiligen Faktoren sind praktisch unbegrenzt, doch bei einer zu starken Verkleinerung sind viele Objekte auf der kleinen Fläche nicht mehr erkennbar und die Darstellung wird unbrauchbar.
+			
+\end{itemize}
+		
+		\subsubsection*{Open Source Icons}
+	Da die Projektgruppe an einem Open Source arbeitet, sollten auch die eingesetzten Ressourcen, also auch die Grafiken, ebenfalls lizenzfrei bleiben. Dies stellt eine zusätzliche Hürde dar, da viele der verfügbaren Quellen entweder von minderwertiger Qualität  oder wegen der unpassenden Abmessungen bereits am Anfang nicht mehr von Interesse waren. Hinzu kommt  die Tatsache, dass es zwar viele Icon-Bibliotheken gibt, viele aber nur einen begrenzten Motiv-Bereich abdecken und die Darstellungsweise zum Teil sehr stark unterscheidet, so dass die Zusammenstellung einer homogenen Icon-Bibliothek für die GUI sich als sehr schwierig erweist.
+	
+	\subsubsection{Klassenanalyse} 
+%Für die Analyse, Design und Entwurf hat sich die Projektgruppe für die objektorientierte Modellierung
+%entschieden. Ausgangspunkt ist die Grobdefinition der Architektur aus der Anforderungsdefinition.
+%Diese soll in der nun folgenden OO-Analyse näher spezifiziert werden. 
+\begin{itemize}
+	\item \textbf{Die Hauptklasse} ist für die Darstellung der Arbeitsoberfläche und der zugehörigen Bedienelemente verantwortlich und hält die Referenzen der Schnittstellen zu den Backend-Komponenten bereit. Sie verwaltet die Liste der aktiven/geöffneten Formulare bzw. Eingabemasken und übernimmt die Aspekte der Authorisierung.
+		\item \textbf{Die Darstellung der Bedienelemente}, wie z.B. Menuleiste wird in eigene Klassen ausgegliedert.
+	\item  \textbf{Eine jede Formularklasse} ist für sowohl für die Darstellung als auch die Funktionalität der jeweiligen Funktion verantwortlich. Die Instanzen der aktiven Klassen/Formulare werden von der Hauptklasse überwacht und verwaltet. Die Formularklassen können auf die Schnittstellen-Instanzen der Hauptklasse zugreifen und diese nutzen.
+\end{itemize}
+ 
+
+
+		
+			
+

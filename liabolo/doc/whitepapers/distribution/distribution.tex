@@ -1,0 +1,462 @@
+\documentclass [12pt,german,a4paper,titlepage]{article}
+
+\usepackage[german]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage{graphicx}
+\usepackage[OT1]{fontenc}
+\usepackage{verbatim}
+\usepackage{fancyvrb}
+
+% erzeuge Bookmarks und Links im Inhaltsverzeichnis
+\usepackage[colorlinks=true, linkcolor=black]{hyperref}
+
+
+%keine Kopfzeile, Seitenzahl unten mittig
+\pagestyle{plain}
+
+%Seiten so ausdehnen, dass sie unten immer gleich abschliessen
+\flushbottom
+
+\begin{document}
+
+\begin{titlepage}
+
+ \begin{figure*}[!htb]
+    \begin{center}
+      \includegraphics[scale=0.6]{../titel/uni-logo-long.jpg}
+   \end{center}
+  \end{figure*}\par
+
+%  \vspace*{1cm}
+  \begin{center}
+  {\large Whitepaper zur Literaturverwaltung}
+  \end{center}
+
+    \begin{figure*}[!htb]
+      \begin{center}
+         \includegraphics[scale=0.7]{../titel/liaboloX.png}
+      \end{center}
+    \end{figure*}\par
+
+  
+  \begin{center}
+  {\large \textbf{,,Distribution und Installation von Liabolo''}}\\
+   von Thorsten Schlörmann
+  \vspace{1cm}
+
+  erstellt im Rahmen der Projektgruppe \\ \textbf{,,Virtuelle Organisation - Open Source''}\\
+  \vspace{0.5cm}
+  unter der Leitung von \\Prof. Uwe Schneidewind und Hendrik Eggers (Lehrbeauftragter)\\
+
+  \end{center}
+
+\end{titlepage}
+
+
+
+\thispagestyle{empty}
+\tableofcontents
+\newpage
+\setcounter{page}{1}
+\section{Einleitung}
+
+In der Entwicklungsphase eines Softwareprojekts gelangt man irgendwann an den Punkt, wo eine erste
+lauffähige Versions des Programms vor der Veröffentlichung steht. Dann stellen sich häufig Fragen,
+über die im vorherigen Entwicklungszeitraum wenig nachgedacht wurde, nämlich wie das Programm zum
+Benutzer gelangen und in welcher Form dies geschehen kann. Auch bei der Installation der Software
+müssen nicht nur die Besonderheiten und Möglichkeiten des Zielbetriebssystems, sondern auch die
+unterschiedlichen Kenntnisse der Benutzer im Umgang mit Computern berücksichtigt werden und nach
+Mitteln gesucht werden, die Installation für den Benutzer zu erleichtern. Im Folgenden
+sollen hier mögliche Vorgehensweisen bei der Distribution und Installation von Liabolo vorgestellt
+werden. 
+
+\section{Plattformspezifische Verteilung und Installation}
+   
+   \subsection{Windows}\label{win}
+   Benutzer des Betriebssystems Windows sind es im Allgemeinen gewöhnt, Software mittels eines
+   Installationsprogramms auf dem System zu installieren. Solch ein Hilfsprogramm, oft auch 
+   ,,Wizard'' genannt, führt den Benutzer Schritt für Schritt durch die Installation, indem die
+   benötigten Informationen abgefragt werden, kleine Hilfstexte gegeben werden oder bereits
+   voreingestellte sinnvolle Angaben vorgeschlagen werden, welche der Benutzer einfach übernehmen
+   oder nach seinen Vorstellungen ändern kann. Danach kopiert es die benötigten Dateien auf das
+   System und nimmt evtl. notwendige Einträge in die Windows-Registry vor, mit dessen Hilfe 
+   System und Userdaten verwaltet werden.\\
+   
+   \noindent Java Programme, zu denen ja auch Liabolo zählt, brauchen nicht auf die oben beschriebene Weise
+   installiert werden; sie laufen nämlich streng genommen nicht unter Windows selbst, sondern
+   innerhalb der einer \textit{Java Runtime Environment} (JRE). Diese JRE muss bereits auf dem
+   System installiert sein und dient sozusagen als Vermittlungsschicht zwischen dem Betriebssystem
+   (in diesem Fall Windows) und dem Java Programm. Java Programme werden demnach nicht in eine
+   windows-native Maschinensprache übersetzt, sondern in die Pseudo-Maschinensprache ,,Bytecode'',
+   die von der JRE als virtuelle Maschine ausgeführt wird.\\
+   
+   \noindent Aus diesem Grund ist es für Java Programme ausreichend, einfach auf das System (mit vorhandener
+   JRE) kopiert zu werden und mittels des 
+   \begin{quote} \texttt{java 'Programmname'}\end{quote} Kommandos gestartet 
+   werden, wobei 
+   \texttt{'Programmname'} die Java-Klasse mit der main()-Methode darstellt.\\
+   
+   \noindent Eine weitere Möglichkeit ist es, alle Klassen und sonstigen Dateien in eine 
+   ,,Jar\footnote{Java Archive} Datei'' zusammenzufassen und diese Datei durch das Kommando 
+   \begin{quote} \texttt{java -jar 'Progammname.jar'} \end{quote}zu starten, wobei \texttt{'Programmname.jar'} die erstellte Jar-Datei
+   darstellt.\\
+   
+   \noindent Da jedoch solche Vorgehensweisen, wie oben bereits beschrieben, für einige Windows-Nutzer eher
+   ungewohnt sind, ist es auch für Java Programme überlegenswert, ein Installationsprogramm zu
+   verwenden. Eine Möglichkeit wäre hier der 
+   \textit{Advanced Installer}\footnote{\url{http://www.advancedinstaller.com/}}, dessen einfache
+   Basisfunktionen kostenlos einsetzbar sind (siehe Abbildung \ref{wizard}).
+   
+   \begin{figure*}[!htb]
+        \begin{center}
+            \includegraphics[scale=0.5]{Liabolo_setup.jpg}
+        \end{center}
+        \caption{\label{wizard}Durch den \textit{Advanced Installer} erstellter Installations Wizard}
+    \end{figure*}\par
+
+   \pagebreak
+   \noindent Momentan wird Liabolo unter Windows mittels einer Batch-Datei namens ,,\texttt{start.bat}'' 
+   gestartet,
+   hinter der sich eigentlich nur den Aufruf 
+   \begin{quote}\texttt{java -jar liabolo.jar}\end{quote} verbirgt. Auch 
+   hier
+   könnte man, um dem Windows-User entgegenzukommen, den Aufruf in eine ,,Exe-Datei'' packen. Das 
+   ließe sich z.B. mit dem 
+   \textit{Xenoage Java Exe Starter}\footnote{\url{http://www.xenoage.com/jestart/}} realisieren.
+   
+   
+     
+   
+   \subsection{Linux}
+   
+   Die plattformunabhängige Einsetzbarkeit von Java Programmen bringt mit sich, dass diese auf
+   allen Systemen auf die gleiche Art gestartet werden können, nämlich --- wie im vorangegangen
+   Abschnitt beschrieben --- durch das von der JRE gelieferte Programm ,,\texttt{java}''. Somit
+   kann einfach das komplette Programmverzeichnis (oder eine Jar Datei) auf das Linux-System 
+   kopiert werden und gestartet werden. Dem Großteil der Linux-User wird diese einfache 
+   Vorgehensweise keine Probleme bereiten bzw. bereits bekannt sein. Doch auch für Linux gibt 
+   es komfortable Installationshilfen in Form von sogenannten Paketmanagern.\\
+   
+   \noindent Dabei wird aus dem Programm, der Dokumentation, den Konfigurationsdateien, usw. ein Paket 
+   ,,geschnürt'', welches von einem Paketmanager verwaltet
+   werden kann. Dadurch wird die Installation, das Update und das Entfernen von Software
+   erleichtert. Es haben sich insbesondere zwei Paketverwaltungen in der Linuxwelt durchgesetzt:
+   der Paketmanager von \textit{Red Hat} und die Paketverwaltung von \textit{Debian}. Diese beiden
+   sollen hier kurz vorgestellt werden.
+   
+   
+      \subsubsection{Red Hat Package Manager}
+      
+      Der \textit{Red Hat Package Manager} (RPM) wurde im Rahmen der 
+      Red Hat\footnote{\url{http://www.redhat.com/}} Linux Distribution
+      entwickelt und ist mittlerweile von vielen anderen Distributionen als Paketverwaltung
+      übernommen worden.\\
+      
+      \noindent RPM-Pakete tragen üblicherweise den Namen des Programms, die Versionsnummer und eine
+      Releasenummer im Paketnamen, gefolgt von '.rpm' als 
+      Dateiendung, z.B. \texttt{liabolo-1.0-1.rpm}. Die Verwaltung der Pakete erfolgt durch das
+      Konsolen-Programm '\texttt{rpm}', für das auch graphische Frontends existieren.\\
+      
+      \noindent Durch den Befehl \begin{center} \texttt{rpm -i 'Paketname'} \end{center} wird das 
+      Programmm, welches sich im Paket \texttt{'Paketname'} befindet, installiert. '\texttt{rpm}'
+      überprüft dabei, ob Abhängigkeiten zu anderen nicht installierten Programmen bestehen und
+      meldet dies ebenso wie Konflikte, die bei der Installation entstehen, z.B. wenn eine Datei
+      oder gar das zu installierende Programm bereits vorhanden ist.\\
+      
+      \noindent Pakete werden durch \begin{center} \texttt{rpm -e 'Paketname'}\end{center} wieder entfernt,
+      wobei '\texttt{rpm}' prüft, ob noch installierte Programme von dem zu entfernenden abhängen und
+      mittels \begin{center}\texttt{rpm -U 'Paketname'}\end{center} können bereits installierte
+      Pakete durch neuere ,,upgedatet'' werden.\cite{rpm}\\
+      
+      \noindent Möchte man Informationen zu einem Paket kann man diese durch
+      \begin{center}\texttt{rpm -q 'Paketname'}\end{center} erhalten und 
+      \begin{center}\texttt{rpm -qa}\end{center} zeigt alle auf dem System installierten Pakete.\\
+      
+      \noindent Die Beschreibung der RPM-Paketerstellung ist ein wenig umfangreicher und soll im Rahmen 
+      dieser Arbeit nicht behandelt werden.
+      
+      \subsubsection{Debian Paketverwaltung}
+      
+      Die Linux Distribution \textit{Debian GNU/Linux}\footnote{\url{http://www.debian.org/}} 
+      entwickelte ihrerseits eine eigene
+      Paketverwaltung. Grundlage dafür ist das Programm '\texttt{dpkg}', das sozusagen das
+      Pendant zum oben beschriebenen '\texttt{rpm}' ist. Im Laufe der Zeit haben sich dazu
+      Frontends gebildet, '\texttt{dselect}' und '\texttt{apt}'\footnote{,,A Package Tool''}. 
+      \texttt{dselect} ist eine textbasierte Benutzungsoberfläche und war bis zur Debian-Version
+      2.2 das wichtigste Werkzeug, um Pakete zu verwalten. Mittlerweile wurde es von
+      '\texttt{apt}' abgelöst, das allerdings ein Kommandozeilen-Tool ist.\footnote{als
+      Benutzungsoberfläche gibt es das Programm '\texttt{aptitude}'}\\
+      
+      \noindent Debian-Pakete haben die Endung '.deb' und werden folgendermaßen mit \texttt{dpkg}
+      installiert:
+      \begin{center} \texttt{dpkg -i 'Paketname'}\end{center}
+      Das Entfernen erfolgt mit
+      \begin{center} \texttt{dpkg -r 'Paketname'}\end{center}
+      Die Option '-r' entfernt nur Programmdateien, mit '-P' werden zusätzlich auch die
+      Konfigurationsdateien gelöscht.\\
+      
+      \noindent Heutzutage wird allerdings eher \texttt{apt} benutzt. \texttt{apt} unterteilt sich in
+      mehrere kleine Programme. Zum Installieren ist '\texttt{apt-get}' wichtig:
+      \begin{center} \texttt{apt-get install 'Programmname'}\end{center}
+      \texttt{apt-get} benötigt allerdings einen Hinweis auf die Quellen, wo die Pakete zu finden
+      sind. Diese werden in eine Datei namens '\texttt{sources.list}' eingetragen. Solche Quellen
+      können sich lokal auf der Festplatte oder CD-ROM befinden, aber auch auf einem entfernten
+      FTP-Server. Das Programm '\texttt{apt-setup}' bietet Hilfe beim Eintragen neuer Quellen.\\
+      
+      \noindent \texttt{apt-get install} überprüft auch auf Abhängigkeiten von Paketen und installiert nicht
+      vorhandene, benötigte Pakete gleich mit.\\
+      
+      \noindent Pakete können mit 
+      \begin{center}\texttt{apt-get remove 'Programmname'}\end{center}
+      entfernt werden mitsamt der Pakete zu denen Abhängigkeiten bestanden (sofern diese nicht
+      noch von anderen Paketen benötigt werden).\\
+      
+      \noindent \texttt{apt} bietet noch eine Vielzahl von Funktionen, die hier nicht weiter besprochen
+      werden können. Bei Interesse empfiehlt sich ein Blick in das ,,APT HOWTO''\cite{apt}.
+      Auch das Erstellen von Debian-Paketen kann hier nicht behandelt werden.
+      
+     
+
+
+\section{Plattformunabhängige Verteilung und Installation}
+
+   \subsection{Quellcode als Zip-Datei oder tarball}
+   
+   Die Offenlegung des Quellcodes ist ja die zentrale Eigenschaft von Open Source 
+   Projekten\footnote{Das wird ja schon bereits durch den Namen Open Source ausgedrückt}. Und
+   die Distribution eines Programms durch den Quellcode, anstatt ausführbarer Binaries, stellt
+   vielleicht die ehrlichste und ursprünglichste Weise dar. Der Benutzer kann --- entsprechendes
+   ,,Know-How'' vorausgesetzt --- Einblick den in Code nehmen und diesen selbst in ein 
+   ausführbares Programm übersetzen.\\
+   
+   \noindent In der Linux-Welt werden dazu sogenannte ,,tarballs'' eingesetzt. Die Quelltexte werden durch
+   das Archivierungswerkzeug '\texttt{tar}' in eine Datei zusamengefasst und mittels des
+   Programms '\texttt{gzip}' komprimiert. Dabei entsteht eine Datei mit der Endung '.tar.gz' oder
+   '.tgz', die tarball genannt wird.\\
+   
+   \noindent Weit verbreitet sind auch die ,,Zip-Archive''. Die Quelltexte werden durch ein Zip-Programm zu
+   einer Datei zusammengefasst und komprimiert. Die entstehende Datei trägt die Endung '.zip'.\\
+   
+   \noindent In beiden Fällen besorgt sich der Benutzer die komprimierte Quellcodedatei und entpackt diese.
+   Anschließend übersetzt er mit einem Compiler den Sourcecode und erhält so das lauffähige
+   Programm.\\
+   
+   \noindent Leider ist nicht jeder Benutzer gewillt oder in der Lage, obige Schritte durchzuführen. Auch
+   kann es beim Übersetzen des Quellcodes zu Fehlern kommen, die der Benutzer oft nicht selbst
+   beheben kann. Aus diesem Grund werden neben dem Sourcecode auch Archive mit bereits übersetzten
+   Programmen angeboten.\\
+   
+   \noindent Wie bereits in Abschnitt \ref{win} erwähnt, handelt es sich bei Liabolo um ein Java-Programm
+   und kann daher, auch in bereits übersetzter Form, einfach entpackt und ausgeführt werden. Auf
+   diese Art ist es auf jedem System, auf dem auch eine JRE lauffähig ist, einfach einsetzbar.
+   
+   \subsection{make und ant}
+   
+   Bei größeren Programmen wird der gesamte Quellcode nicht mehr in einer Datei gehalten, sondern
+   auf mehrere Dateien verteilt. Das entspricht dem Konzept der Modularisierung, wo Teilprobleme
+   in einzelne Module zusammengefasst werden und auch dem Klassenkonzept der objektorientierten
+   Programmierung, wo die Problemwelt durch Objekte dargestellt wird, die verschiedenen
+   Objektklassen zugehörig sind. Dadurch lassen sich z.B. bei der Wartung der Software
+   einzelne Komponenten leichter verändern oder austauschen.\\
+   
+   \noindent Ein ,,Build-Tool'' hilft beim kompilieren des Quellcodes. Es verwaltet die Quelldateien und
+   deren Ab\-hängig\-keiten untereinander. Alle notwendigen Operationen zum Kompilieren des Quellcodes
+   können mit einem Build-Tool zusammengefasst werden und somit der gesamte Prozess der
+   Quell\-code\-über\-setzung auf einen einzigen Schritt reduzieren werden. Die hier vorgestellten 
+   Werkzeuge '\texttt{make}' und '\texttt{ant}' stellen solche Build-Tools dar.
+   
+      \subsubsection{make}
+      
+      \texttt{make} ist das ältere der beiden Tools. Es wurde bereits früh unter Unix,
+      insbesondere für die Programmiersprache C, eingesetzt. Unter Linux wird allgemein 
+      ,,GNU make''
+      benutzt, das aber im Wesentlichen mit dem traditionellem make übereinstimmt.\\
+      
+      \noindent \texttt{make}
+      benötigt eine Steuerungsdatei, ein sogenanntes ,,Makefile'', das die
+      notwendigen Informationen zum Erstellen des Programms enthält. Ein Makefile besteht aus
+      Regeln, die folgende Form haben\cite{make}:
+   %   \pagebreak
+      \begin{verbatim}
+        Ziel:     Abhängigkeit(en)
+             Kommando
+             Kommando
+             ...
+      \end{verbatim}
+      
+      \noindent Hier wird ein einfaches Makefile gezeigt, das nur aus einer einzigen Regel besteht. Es
+      wird aus einigen Tex-Files mit dem '\texttt{latex}' Kommando ein Dokument 
+      erzeugt\cite{make}:
+      
+      \begin{verbatim}
+      book.dvi: ch01.tex ch02.tex ch03.tex ch04.tex ch05.tex \
+                ch06.tex ch07.tex ch08.tex ch09.tex book.tex
+                latex book.tex
+      \end{verbatim}
+      
+      \noindent Ruft man nun \texttt{make} ohne Argument auf, so nimmt es das erste Ziel (,,Target'') des
+      Makefile (in diesem Fall gibt es nur eins, nämlich 'book.dvi') und führt die darin
+      enthaltenen Kommandos aus. \\
+      
+      \noindent Diese Kommandos sind allerdings plattformabhängig; nun wird mit
+      \texttt{ant} ein Build-Tool vorgestellt, das plattformunabhängig einsetzbar ist.
+      
+      
+      \subsubsection{ant}
+      
+      \texttt{ant} ist ein Projekt der Apache Gruppe\footnote{\url{http://ant.apache.org}} 
+      und steht für ,,A Neat Tool''. \texttt{ant} war
+      ursprünglich Teil des Tomcat-Projekts, doch man erkannte seine Nützlichkeit und formte ein
+      eigenständiges Programm daraus\cite{ant-faq}. Es basiert auf Java und kann, wie Java selbst
+      auch, plattformunabhängig benutzt werden\footnote{Als Javaprogramm benötigt \texttt{ant}
+      natürlich eine JRE.}.\\
+      
+      \noindent Genauso wie \texttt{make} benötigt auch \texttt{ant} eine Steuerungsdatei 
+      (bzw. Builddatei), die im XML-Format gehalten ist. Eine Builddatei muss ein Wurzelelement
+      namens \textit{project} enthalten. Innerhalb des Wurzelelements werden die 
+      Ziele(\textit{target})
+      beschrieben, die auch einen Namen tragen und von anderen targets abhängig sein können.
+      Die Ziele wiederum bestehen aus Aufgaben (\textit{tasks} genannt), die ausgeführt werden
+      müssen, um das Ziel zu erfüllen.\cite{ant-build} \\
+      
+      \noindent Hier ein (gekürztes) Beispiel aus dem Apache Ant User Manual\cite{ant-manual}:
+      
+      \begin{verbatim}
+      
+      
+<project name="MyProject" default="dist" basedir=".">
+
+  <!-- set global properties for this build -->
+  <property name="src" location="src"/>
+  <property name="build" location="build"/>
+  <property name="dist"  location="dist"/>
+
+  <target name="init">
+    <mkdir dir="${build}"/>
+  </target>
+
+  <target name="compile" depends="init"
+        description="compile the source " >
+    <!-- Compile the java code from ${src} into ${build} -->
+    <javac srcdir="${src}" destdir="${build}"/>
+  </target>
+
+</project> 
+   \end{verbatim}
+   
+   \noindent Auch Liabolo besitzt ein Ant-Buildfile, das leider zu umfangreich ist, um es in diesem 
+   Whitepaper abzudrucken, dennoch lohnt sich sicherlich eine Einsichtnahme.
+   Die Builddatei von Liabolo (,,build.xml'') befindet sich auf der oberen Ebene des 
+   Quellcodeverzeichnisses. 
+   
+   \subsection{Java Webstart}
+   
+   Java Webstart ist Teil der JRE und somit bereits vorhanden, wenn die JRE auf dem System
+   installiert ist. Es erlaubt dem Softwareentwickler, sein Programm auf einem Webserver zu
+   installieren, so dass Benutzer das Programm über einen Webbrowser starten können. Es muss also
+   auf Benutzerseite keine Installation vorgenommen werden und Entwickler können ihre
+   Applikationen für den Anwender unmittelbar und unkompliziert nutzbar machen.\\
+   
+   \noindent Die Anwendung von Java Webstart ist für den User einfach. Er braucht lediglich die URL der
+   Startdatei (JNLP\footnote{Java Network Launching Protocol}-Datei) der Applikation im Browser 
+   einzugeben. Eine andere Möglichkeit ist die Benutzung des \texttt{javaws}-Programm, das sich im
+   JRE-Verzeichnis befindet. Beispiele für Webstart-Anwendungen sind unter
+   \url{http://java.sun.com/products/javawebstart/demos.html} zu finden.\\
+   
+   \noindent Serverseitig muss ein Jar-File mit der Applikation vorhanden sein und eine entsprechendes
+   JNLP-Datei. Zusätzlich muss der Webserver so eingestellt werden, dass er als MIME-Typ 
+   \texttt{application/x-java-jnlp-file} für JNLP-Datei ausgibt. Der genaue Prozess
+   der Einrichtung einer Webstart-Anwendung und das Erstellen einer JNLP-Datei kann der Dokumentation
+   über Java Webservices entnommen werden\cite{jws}.
+
+\section{Programmstruktur}
+
+Ob Liabolo auch via Webstart verfügbar sein wird, steht noch nicht fest. Auf jeden Fall gibt es
+aber eine installierbare Version. In diesem abschließenden Abschnitt wird beschrieben, wo auf der
+Festplatte sich Liabolodateien befinden bzw. befinden werden.
+
+   \subsection{Installationsort}
+   Der Installationsort von Liabolo kann vom Benutzer frei gewählt werden. Bestimmte Orte bieten
+   sich traditionsgemäß an:
+   \begin{itemize}
+      \item \textbf{Windows:}\\ 
+         C:$\backslash$ Liabolo \textit{oder}\\
+         C:$\backslash$ Programme$\backslash$ Liabolo
+			      
+      \item \textbf{Linux:}\\
+         /opt/liabolo \textit{oder}\\
+	 /usr/local/liabolo
+   \end{itemize}
+   
+   \subsection{Aufbau des Installationsverzeichnisses}
+   Ist Liabolo ins gewünschte Verzeichnis entpackt worden, bietet sich dem User dort folgende
+   Verzeichnisstruktur:
+   \begin{itemize}
+      \item \textbf{bin}\\Hier liegt die Jar-Datei von Liabolo
+      \item \textbf{config}\\Hier liegen die Konfigurationsdatei, sowie XSL-Dateien, die für den
+      Export benötigt werden.
+      \item \textbf{exit}\\Die eXist-Datenbank befindet sich in diesem Verzeichnis.
+      \item \textbf{lib}\\ In diesem Verzeichnis liegen alle externen Bibliotheken, von denen
+      Liabolo Gebrauch macht.
+      \item \textbf{log}\\ Hier erstellt Liabolo die Log-Dateien, die Ereignisse während der
+      Benutzung von Liabolo aufzeichnen.
+      \item Außerdem befindet sich eine Kopie der GPL (,,LICENSE.txt''), sowie Startskripte für
+      Windows (,,start.bat'') und Linux (,,start.sh'') im Verzeichnis.
+   \end{itemize} 
+   
+   \subsection{Lage der Userdaten}
+   Liabolo soll auch im Mehrbenutzerbetrieb laufen. Dazu müssen alle benutzerspezifischen Daten im
+   Heimverzeichniss des Benutzer gehalten werden. Speziell betrifft das die individuellen
+   Datenbankeinträge (alle .dbx Dateien im data-Verzeichnis von exist) sowie die
+   Konfigurationsdatei 'config.xml'.
+   Zur Zeit ist das bei Liabolo leider noch nicht der Fall. Alle oben genannten Dateien werden
+   noch global im Liabolo-Installationsverzeichnis gehalten. Das soll so schnell wie möglich
+   geändert werden.
+   
+\section{Schluss}
+
+Java Programme werden häufig nur als Jar-Datei oder Zip-Archiv mit den lauffähigen Klassen
+verbreitet. Für Linuxsysteme kann durchaus an dieser Praxis festgehalten werden. Für viele
+Windows-User könnte jedoch diese Form eher ungewohnt sein, daher wäre der Einsatz eines 
+Installationswizard als Alternative eine Überlegung wert.\\
+
+\noindent Zusätzlich müssen gerade im Rahmen eines Open Source Projekt die Quelltexte angeboten werden.\\
+
+\noindent Ob sich der Einsatz von Java Webstart lohnt, sollte noch zur Diskussion gestellt
+werden. Für den ernsthaften Einsatz von Liabolo ist sicherlich eine lokale Installation die
+bessere Lösung. Bei der Benutzung über Webstart muss der Benutzer ständig online sein und es
+stellt sich die Frage, wie schnell die Kommunikation von User und Programm über das Internet
+erfolgen kann. 
+
+
+\newpage
+\thispagestyle{empty}
+\begin{thebibliography}{xx}
+
+   \bibitem{rpm} Edward C. Bailey. Maximum RPM. Red Hat, Inc. 2000.
+   \url{http://www.rpm.org/max-rpm/} 
+   
+   \bibitem{apt} APT HOWTO. 
+   \url{http://www.debian.org/doc/manuals/apt-howto/index.en.html}
+
+   \bibitem{make} Unixwerkzeuge: Make und Makefiles. Die Linuxfibel. 
+   \url{http://www.linuxfibel.de/make.htm}
+   
+   \bibitem{ant-faq} Frequently Asked Questions. The Apache Ant Project.
+   \url{http://ant.apache.org/faq.html}
+   
+   \bibitem{ant-build} Softwareentwicklung mit Ant. Java User Group Deutschland 2002.
+   \url{http://www.java.de/article/articleview/63/1/1}
+   
+   \bibitem{ant-manual} Apache Ant User Manual. The Apache Ant Project.
+   \url{http://ant.apache.org/manual/}
+   
+   \bibitem{jws} Java Web Start 1.4.2 Developer Guide. 
+   \url{http://java.sun.com/j2se/1.4.2/docs/guide/jws/developersguide/contents.html}
+
+\end{thebibliography}
+
+
+
+\end{document}

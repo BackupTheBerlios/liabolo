@@ -1,0 +1,443 @@
+\documentclass [12pt,german,a4paper,titlepage]{article}
+
+\usepackage[german]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage{graphicx}
+\usepackage[OT1]{fontenc}
+\usepackage{verbatim}
+\usepackage{fancyvrb}
+
+% erzeuge Bookmarks und Links im Inhaltsverzeichnis
+\usepackage[colorlinks=true, linkcolor=black]{hyperref}
+
+
+%Kapitelangabe auf der linken Seite, Seitenzahl in der rechten Seite der Kopfzeile
+\pagestyle{plain}
+
+\flushbottom
+
+\begin{document}
+
+\begin{titlepage}
+
+ \begin{figure*}[!htb]
+    \begin{center}
+      \includegraphics[scale=0.6]{../titel/uni-logo-long.jpg}
+   \end{center}
+  \end{figure*}\par
+
+%  \vspace*{1cm}
+  \begin{center}
+  {\large Whitepaper zur Literaturverwaltung}
+  \end{center}
+
+    \begin{figure*}[!htb]
+      \begin{center}
+         \includegraphics[scale=0.7]{../titel/liaboloX.png}
+      \end{center}
+    \end{figure*}\par
+
+  
+  \begin{center}
+  {\large \textbf{,,Signaturen und ihre Generierung in Liabolo''}}\\
+   von Thorsten Schlörmann
+  \vspace{1cm}
+
+  erstellt im Rahmen der Projektgruppe \\ \textbf{,,Virtuelle Organisation - Open Source''}\\
+  \vspace{0.5cm}
+  unter der Leitung von \\Prof. Uwe Schneidewind und Hendrik Eggers (Lehrbeauftragter)\\
+
+  \end{center}
+
+\end{titlepage}
+
+
+
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+\section{Einleitung}
+
+Liabolo ist in erster Linie ein Programm zur Literaturverwaltung; genauer gesagt verwaltet 
+Liabolo Metadaten über Literatur. Innerhalb eines Literaturbestandes ist es wichtig, jedes
+Objekt aus dem Gesamtbestand identifizieren zu können. Dazu werden Signaturen verwendet. Jedem
+Medium wird eineindeutig\footnote{mathematisch auch ,,bijektiv'' genannt} eine Signatur 
+zugeordnet, d.h. wenn ein Buch gleich mehrfach im Gesamtbestand vertreten ist, so erhält jedes
+Exemplar eine eigene eineindeutige Signatur. Das unterscheidet die Signatur z.B. von der
+ISBN, wo jedes Exemplar eines Buches die gleiche Nummer hat\footnote{das ist im mathematischem
+Sinne ,,surjektiv''}.\\
+
+\noindent Anmerkung: Im folgenden Text wird häufig der Begriff ,,Buch'' stellvertretend für 
+eine bibliothekarische Einheit benutzt werden.
+
+\section{Signaturen im Bibliothekswesen}
+
+Eine Signatur ist im Bibliothekswesen die Standortbezeichnung für ein Buch\cite{sig_def}. Die
+Signatur deutet also zusätzlich zu ihrer Funktion als eineindeutiger Schlüs\-sel auch darauf
+hin, wo in der Bibliothek das Buch zu finden ist. Es gibt verschiedene Systeme, nach denen 
+Bücher in der Bibliothek aufgestellt werden und anhand derer auch die Signatur gebildet wird.
+An dieser Stelle sollen zwei vorgestellt werden: die Bremer Systematik und die Regensburger
+Verbundklassifikation.
+
+  \subsection{Bremer Systematik}
+  
+  Die Bremer Systematik wird an der hiesigen Bibliothek der Carl von Ossietzky Universität
+  eingesetzt, aber natürlich auch, wie der Name vermuten lässt, an der Staats- und 
+  Universitätsbibliothek Bremen.\\
+  
+  \noindent Jedes Buch wird dabei einem Fachbereich zugeordnet. Eine Auflistung der Fachbereiche der
+  Staats- und Universitätsbibliothek Bremen ist online 
+  verfüg\-bar\footnote{\url{http://suche.suub.uni-bremen.de/browse.html}}.\\
+  
+  \pagebreak
+  \noindent Die Signatur der UB Oldenburg setzt sich wie folgt zusammen:
+  \begin{itemize}
+     \item einem Kürzel für das Fachgebiet, bestehend aus drei Kleinbuchstaben,
+     \item einer Systemstelle, die das Fachgebiet thematisch feiner untergliedert und aus
+     	drei Ziffern besteht,
+     \item sowie einer Aufstellungsnummer. Sie wird aus zwei Großbuchstaben und einer 
+       vierstelligen Zahl gebildet. Diese Aufstellungsnummer gilt global für den Gesamtbestand
+       und erhöht sich mit jedem Buch, das dem Bestand hinzugefügt wird.
+  \end{itemize}
+  
+  \noindent An die Signatur kann noch weitere Information angehängt werden: eine Zahl für die Auflage
+  eines Buches, ein Kleinbuchstabe für jedes weitere Exemplar und eine Zahl mit vorangestelltem
+  Minuszeichen für die Bandnummer bei mehrbändigen Reihen.
+  
+  
+  
+  
+  \subsection{Regensburger Verbundklassifikation}
+  
+  Die an der Universitätsbibliothek Regensburg entwickelte Regensburger Verbundklassifikation
+  wird an einigen deutschen Bibliotheken eingesetzt, z.B. an der Bibliothek der Berliner Humbold 
+  Universität oder der Bibliothek der Universität Rostock. Anhand dieser
+  Verbundklassifikation wird die Signatur gebildet. Die besteht an der UB Regensburg aus folgenden
+  Komponenten\cite{sig_regensburg}:
+  
+  % Regeln für die Signaturvergabe: http://www.bibliothek.uni-regensburg.de/Systematik/sigreg.html
+  
+  \begin{itemize}
+    \item Lokalkennzeichen: Es gibt den Standort des Buches an und besteht aus einer Zahl, die mit
+    	einem Schrägstrich (,,Slash'') abgeschlossen wird.
+    \item Notation: Sie ordnet das Buch in das Aufstellungssystem ein und gibt in verschlüsselter
+    	Form Auskunft über das Fachgebiet, dem das Buch zugehörig ist. Sie besteht aus zwei
+	Großbuchstaben, wobei der erste Buchstabe die Hauptgruppe bezeichnet (z.B Q für
+	Wirtschaftswissenschaften), der zweite die Untergruppe angibt (z.B. QP für Allgemeine
+	Betriebswirtschaftslehre) und eine mehrstellige Zahl die Feingruppe spezifiziert (z.B.
+	QP500-QP550 für Produktion).
+   \end{itemize}
+   
+   \noindent Danach können noch Zusätze an die Signatur angehängt werden: 
+   \begin{itemize}
+      \item Verschlüsselung von Autorname oder Titel (Buchstaben und Ziffern),
+      \item die Bandzahl (Gedankenstrich),
+      \item die Auflage (in Klammern) und
+      \item ein Mehrfachexemplar (Pluszeichen).
+   
+   \end{itemize}
+  
+\section{Signatur in Liabolo}
+
+  \subsection{Motivation}
+  Liabolo dient der Verwaltung eines Literaturbestands. Mit anderen Worten kann man Liabolo also
+  auch als Bibliotheksverwaltung bezeichnen. Nun ist Liabolo zwar nicht mit dem Ziel entwickelt
+  worden, Literaturbestände in der Größenordnung einer Universitätsbibliothek zu verwalten,
+  sondern eher für kleine und mittlere Bestände, doch auch hier ist der Einsatz einer Signatur
+  sinnvoll.\\
+  
+  \noindent Die Signatur dient in Liabolo als eineindeutiger Schlüssel und als Mittel, den Gesamtbestand in
+  Fachbereiche zu gruppieren und die Zugehörigkeit eines Buches darzustellen. Als Hinweis auf 
+  den Standort wird die Signatur in Liabolo nicht eingesetzt; hierfür werden Standorte verwendet,
+  die der Benutzer selbst definieren kann.
+  
+  \subsection{Signaturalgorithmus}
+  Die Signatur in Liabolo ist an die Signatur angelehnt, wie sie an der UB Oldenburg verwendet
+  wird. Das lag für uns als Studenten der CvO-Universität Oldenburg nahe, da wir den Umgang mit
+  dieser Signatur gewohnt sind. Aber auch die Tatsache, dass die Fachbereiche in der Signatur als
+  Kürzel dargestellt und daher leicht zu identifizieren sind, erschien uns vorteilhaft, da dadurch
+  die Transparenz der Signaturen erhöht wird.\\
+  
+  \noindent Die Signatur besteht in Liabolo aus:
+  \begin{itemize}
+    \item dem Fachbereichskürzel,
+    \item einem Unterstrich ('\_') und
+    \item einer Aufstellungsnummer. Sie hat zwei Komponenten: eine zweistellige
+    Großbuchstabenkombination und eine vierstellige Zahl.
+  \end{itemize}
+  
+  Im Folgenden wird der Algorithmus zur Signaturbestimmung auf verschiedene Weise dargestellt.
+  Einmal natürlichsprachlich, dann graphisch und zuletzt werden die wesentlichen Merkmale des Java
+  Quellcodes vorgestellt.
+  
+    \subsubsection{Natürlichsprachliche Beschreibung}
+    An dieser Stelle wird versucht, den Signaturalgorithmus durch natürliche Sprache zu 
+    beschreiben, auch wenn solche Beschreibungen häufig recht um\-ständ\-lich klingen.
+    
+      \begin{enumerate}
+        \item Bestimme den Fachbereich, dem das Buch zugeordnet werden soll und verwende das
+	  entsprechende Kürzel als erstes Element der Signatur.
+	  
+	\item Füge einen Unterstrich '\_' an die Signatur an.
+	\item Bestimme die Aufstellungsnummer. Das erste Buch erhält die Nummer AA0001, die Nummer
+	  erhöht sich für jedes folgende Buch wie folgt:
+	  \begin{enumerate}
+	    \item Wenn die vierstellige Zahl kleiner als 9999 ist, so erhöhe sie um eins. Fahre
+	    mit Schritt 4 fort. 
+	    \item Ist die Zahl 9999, so
+	      \begin{enumerate}
+	        \item setze sie auf 0001 und
+		\item wenn der zweite Buchstabe der Buchstabenkombination nicht 'Z' ist, setze
+		diesen auf auf den nächsten im Alphabet folgenden. Fahre mit Schritt 4 fort. 
+		\item Ist der zweite Buchstabe 'Z', so setze in auf 'A' und den ersten Buchstaben
+		auf den nächsten im Alphabet folgenden. Fahre mit Schritt 4 fort.
+		\item Ist der zweite und auch der erste Buchstabe 'Z', so sind keine
+		Signaturen mehr generierbar und er Algorithmus schlägt fehl.
+              \end{enumerate}
+	  \end{enumerate}
+	\item Füge die neu gewonnene Aufstellungsnummer an die Signatur an und beende den 
+	Algorithmus.
+	
+      \end{enumerate}
+      
+    
+      
+    \subsubsection{Graphische Darstellung}
+    Der hier durch ein UML-Statechart graphisch dargestellte Signaturalgorithmus stellt nur
+    eine grobe Skizze des oben beschriebenen Algorithmuss dar, und soll lediglich der 
+    Veranschaulichung dienen. Der genaue Algorithmus folgt anschließend in Form des tatsächlichen
+    Java-Codes.
+    
+    \pagebreak
+    
+    \begin{figure*}[!htb]
+        \begin{center}
+            \includegraphics[scale=0.5]{Signatur_Algorithmus.jpg}
+        \end{center}
+	\caption{Skizze des Signaturalgorithmus als Statechart}
+    \end{figure*}\par
+
+    
+    \subsubsection{Java-Code}
+    
+    Hier ist der Java Quellcode des Signatur-Generators. Einige für den Algorithmus unwesentliche
+    Codeteile sind aus Gründen der Übersichtlichkeit entfernt worden. Außerdem mussten
+    Formatierungen vorgenommen werden, um den Code auf die Breite der Seite anzupassen. Im
+    Anschluss folgen einige Erläuterungen.
+    
+    \begin{Verbatim}[tabsize=2,frame=leftline,label=build.xml,numbers=left]
+package org.liabolo.common;
+
+import java.net.URL;
+
+public class SignatureGenerator {
+
+
+    static private int number;
+    static private String numberString;
+    static private char letter1, letter2;
+    static private boolean signatureRead = false;
+    static boolean changeLetter1 = false;
+    static boolean changeLetter2 = false;
+    static boolean emptyError = false;
+
+    static private void readSignatureNumber() {
+
+        number = Configurator.getIntProperty(
+	    "signatureNumber", 0, "signature");
+		
+        letter1 = Configurator.getProperty(
+	    "signatureLetters", "ZZ", "signature").charAt(0);
+		
+        letter2 = Configurator.getProperty(
+	    "signatureLetters", "ZZ", "signature").charAt(1);
+		
+        signatureRead = true;
+    }
+
+
+    public static Signature setSignature(String branch, String url){
+        String signatureString = "";
+
+
+        if (!signatureRead) readSignatureNumber();
+        number++;
+        if (number == 10000) {
+            number = 1;
+            changeLetter();
+            if (emptyError) return null;
+        }
+        numberString = Integer.toString(number);
+
+        switch (numberString.length()) {
+            case 1:
+                numberString = "000" + numberString;
+                break;
+            case 2:
+                numberString = "00" + numberString;
+                break;
+            case 3:
+                numberString = "0" + numberString;
+        }
+
+        
+	// set properties and store them to file
+	Configurator.setProperty(
+	    "signatureLetters", "" + letter1 + letter2, "signature");
+            
+	Configurator.setProperty(
+	     "signatureNumber", numberString, "signature");
+
+        signatureString =  ""+ letter1 + letter2 + numberString;
+        
+        return new Signature(branch, signatureNumber, url);
+    }
+
+    private static void changeLetter() {
+        short charNr;
+        if (letter2 != 'Z') {
+            charNr = ((short) letter2);
+            charNr++;
+            letter2 = ((char) charNr);
+        } else {
+            if (letter1 == 'Z') emptyError = true;
+            letter2 = 'A';
+            charNr = ((short) letter1);
+            charNr++;
+            letter1 = ((char) charNr);
+        }
+    }
+
+}
+   
+  \end{Verbatim}
+  \pagebreak
+  
+  \noindent Erläuterungen zum Programm:\\
+  
+  
+  Die Methode \textit{setSignature} in Zeile 31 wird beim Erstellen eines neuen Metadatensatzes 
+  aufgerufen. Als Argumente müssen die Branch (das Fachgebiet) und eine URL\footnote{die
+  Begründung für das Vorhandensein der URL folgt später} angegeben werden. 
+  In Zeile 35 wird überprüft, ob die letzte Signatur schon aus der Konfigurationsdatei
+  ausgelesen wurde. Das Auslesen ist nur für die erste Signaturerstellung nach dem Programmstart
+  erforderlich; die Überprüfung erfolgt, um unnötige Dateizugriffe zu vermeiden.\\
+  
+  \noindent In Zeile 36 wird die Nummer der Signatur um eins erhöht und anschließend überprüft, ob die Zahl
+  schon 10000 erreicht hat (also nicht mehr vierstellig wäre). Ist das der Fall, wird die Nummer
+  auf eins gesetzt (Zeile 38) und die Methode \textit{changeLetter} aufgerufen (Zeile 39).\\
+  
+  \noindent In der changeLetter-Methode (Zeile 68-81) wird die Buchstabenkombination erhöht. Dazu werden die
+  Buchstaben in ihre entsprechenden ASCII-Nummern umgewandelt (Zeile 71 und 77) und dann 
+  inkrementiert. Anschliessend wird die ASCII-Nummer wieder in einen Buchstaben umgewandelt (Zeile 
+  73 und 79).\\
+  
+  \noindent Die Zeilen 42-53 dienen dazu, die Nummer in der Signatur immer in eine vierstellige Zeichenkette
+  umzuwandeln, so dass z.B. aus der '5' eine '0005' wird.\\
+  
+  \noindent Schließlich werden die Komponenten der Aufstellungsnummer der neuen Signatur in den 
+  Zeilen 57-65 in der Konfigurationsdatei gespeichert.\\
+  
+  \noindent In Zeile 63 wird die Aufstellungnummer zu einem String zusammengesetzt und danach ein
+  Signaturobjekt erzeugt, in das auch der Fachbereich und die URL einfließen. Diese Signatur wird
+  dann als Funktionswert der aufrufenden Methode zurückgegeben.
+    
+  \subsection{Netzwerkfähigkeit}
+  Eine der Besonderheiten von Liabolo ist die Fähigkeit, einen Literaturbestand über ein Netzwerk
+  zu verwalten. Hierzu kann ein Server eingerichtet werden, auf den von Liabolo aus Bücher
+  hinzugefügt werden können und natürlich auch der Bestand durchsucht werden kann. Liabolo ist in
+  der Lage, sowohl den lokalen Bestand zu verwalten, und auch als Client auf den Server
+  zuzugreifen. Dadurch ist Liabolo gut geeignet für Betriebe, Organisationen, Vereine, etc. bei
+  denen die Mitarbeiter bzw. Mitglieder einen eigenen Buchbestand pflegen, gleichzeitig aber auch
+  bestimmte Bücher den Kollegen und Freunden auf dem Server sichtbar machen wollen.
+  
+    \subsubsection{Problematik}
+    Durch die Netzwerkfähigkeit entstehen zwei Arten von Signaturen, die (lokalen) clientseitigen
+    und die serverseitigen. Es muss in der Signatur deutlich gemacht werden, wo das betreffende
+    Buch verwaltet wird, ansonsten kann es zu Mehrdeutigkeiten kommen.\\
+    
+    \noindent Um die Problematik zu verdeutlichen, gebe ich hier ein Beispiel. Ein Benutzer verwaltet 
+    seinen eigenen Buchbestand, stellt aber auch Bücher in die Server-Datenbank 
+    ein. Fügt er seinem lokalen Bestand ein Buch
+    hinzu, so generiert Liabolo eine Signatur für dieses Buch. Fügt er ein Buch auf dem Server
+    hinzu, muss die betreffende Signatur vom Server erzeugt werden, andernfalls könnte es
+    Kollisionen geben, wenn ein weiterer Benutzer Bücher (mit seiner lokalen Signatur) auf dem 
+    Server einstellt. Die Frage ist nun, wie der Benutzer seine lokalen Signaturen von denen des
+    Servers unterscheiden kann, beispielsweise wenn er in den Beständen auf beiden Seiten suchen
+    möchte? Die Signatur benötigt also ein Element, das angibt, woher die Signatur kommt. Dazu
+    sollen nun zunächst die Begriffe URI, URL, URN erläutert werden.
+    
+    \subsubsection{URI, URL, URN} \label{uri}
+    
+    URI ist die Abkürzung für \textit{Uniform Resource Identifier}. Ein URI 
+    ist eine kompakte Zeichenkette zur Identifizierung einer abstrakten oder physikalischen 
+    Ressource \cite{rfc2396}. Eine Ressource \index{Ressource} kann alles sein, was einen Namen 
+    hat oder beschrieben werden kann, z.B. Dokumente, Bilder oder ein Service.
+    Weiterhin versteht man unter URI den Oberbegriff für die Unterarten 
+    \textit{Uniform Resource Locator}(URL) und \textit{Uniform Resource Name}(URN).\\
+
+    \noindent URLs identifizieren eine Ressource über den Ort (im WWW), an dem sie zu
+    finden ist, nicht über einen Namen oder Attribute \cite{rfc2396}. Sie stellen also
+    gewissermaßen einen Zeiger auf die Ressource dar.\\
+
+    \noindent URNs sollen als beständige, ortsunabhängige Bezeichner für Ressourcen 
+    dienen \cite{rfc2141}. Ein URN bezeichnet eine Ressource eindeutig, d.h. ist sie mehrfach 
+    im Netz vertreten, besitzt sie immer denselben URN, wo hingegen sie \nopagebreak mehrere unterschiedliche 
+    URLs hat.\\
+    
+    \noindent Die komplette Syntax von URIs ist im 'Request for Comment' (RFC) 2396 \cite{rfc2396} 
+    angegeben.
+
+
+    \subsubsection{Umsetzung in Liabolo}
+    
+    Soll ein Buch mittels Liabolo in die Datenbank des Servers eingestellt werden, erhält es 
+    eine Signatur, welche vom Server generiert werden muss. Diese Signatur wird dann Liabolo
+    mitgeteilt. Dazu muss auf dem Server ein Web Service installiert sein. Dieser bekommt eine
+    Anfrage von Liabolo, generiert eine Signatur und schickt diese als Antwort an Liabolo zurück.\\
+    
+    \noindent Wir haben bereits festgestellt, dass die Signatur ein weiteres Element be\-nö\-tigt, das anzeigt,
+    woher die Signatur kommt und damit auch, wo der Datensatz verwaltet wird. Wir benötigen also
+    den Ort der Gültigkeit der Signatur und einen solchen Ort gibt man im Netz mit einer URL 
+    an, wie wir in Abschnitt \ref{uri} gesehen haben.
+    Liabolo muss also an die vom Server empfangene Signatur noch die URL des Server anheften, um
+    deutlich zumachen, woher die Signatur stammt. Das geschieht, indem an die Signatur ein
+    `@` angehängt wird, gefolgt von der URL des Servers. Zur Verdeutlichung bekommen die lokalen
+    Signaturen statt der URL ,,localhost'' angeheftet.
+    \\
+    \\
+    \noindent Beispiel: inf\_AA0001@p30srv.wiwi.uni-oldenburg.de
+    
+\section{Ausblick}
+
+Die Signatur stellt in Liabolo einen eineindeutigen Schlüssel zur Identifikation eines Buches dar.
+Diese Eigenschaft ist auch im Netzbetrieb gewährleistet. Soll ein Server eingerichtet werden,
+muss jedoch der Web Service manuell vom Benutzer installiert werden und der Signaturgenerator 
+angepasst werden, was einiges an Wissen über Liabolo erfordert und daher im Moment für einen 
+Außenstehenden noch schwierig zu handhaben 
+ist. Hier müssen sicherlich einige Erleichterungen geschaffen werden.\\
+
+\noindent Außerdem wäre es wünschenswert, Zusatzinformationen über Auflage, Mehrfachexemplar und Bandnummer 
+in die Signatur aufzunehmen. Dazu sind allerdings auch Änderungen bei der Eingabe der Metadaten
+nötig und ggf. eine Dublettenkontrolle, die überprüft, ob ein Buch möglicherweise bereit in der
+Datenbank befindlich ist. So kann dann an die bestehende Signatur lediglich eine Auszeichnung als
+Mehrfachexemplar angefügt werden. 
+
+\newpage
+\thispagestyle{empty}
+\begin{thebibliography}{xx}
+
+   \bibitem{sig_def} Wikipedia: Signatur. \url{http://de.wikipedia.org/wiki/Signatur}
+   \bibitem{sig_regensburg} Universität Regensburg: Regeln für die Signaturvergabe: 
+   \url{http://www.bibliothek.uni-regensburg.de/Systematik/sigreg.html}
+   \bibitem{rfc2396} Request for comment 2396. \url{http://www.ietf.org/rfc/rfc2396.txt}
+   \bibitem{rfc2141} Request for comment 2141. \url{http://www.ietf.org/rfc/rfc2141.txt}
+
+\end{thebibliography}
+
+\end{document}

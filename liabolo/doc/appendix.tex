@@ -1,0 +1,1486 @@
+\appendix
+
+\chapter{Protokolle}
+    \section{16.12.2003}
+    \paragraph{Teilnehmer:}
+    Hendrik Eggers, Stefan Willer, Jurij Henne, Maxim Bauer,
+    Thorsten Schl{\"o}rmann, Frank Slotta.
+    \subsection{Allgemein}
+    Erw{\"u}nscht ist ein Software Produkt zur Erfassung der unten
+    aufgelisteten Best{\"a}nde.
+    Bestand der Bibliothek ca. 8000 Exemplare, darunter
+    B{\"u}cher, Online-Verweise, Artikel.
+    Das Produkt soll in der Lage sein, die Daten zu erfassen und
+    zu verwalten. Ein wichtiger Bestandteil der Software soll die
+    Vernetzung der Best{\"a}nde ausmachen. Das Produkt soll auf
+    verschieden Betriebssystemen lauff{\"a}hig sein. (MacOS, Windows,
+    Linux).
+    \subsection{Funktionale Elemente}
+    \begin{itemize}
+        \item Speicherung der Daten in XML-Format (Dublin Core
+        unterst{\"u}tzung)
+        \item Programmiersprache offen
+        \item Offline Funktionalit{\"a}t(Datenabgleich wenn online)
+        \item Suchfunktion anhand der Metadaten (Volltextsuche
+        erw{\"u}nscht, aber nicht zwingend erforderlich)
+        \item Replikation der Daten auf den Client
+        \item Einfache Datenmaske und Suchmaske
+        \item Druckfunktionalit{\"a}t (PS-Drucker)
+        \item Export-Funktion in Bibtex
+    \end{itemize}
+
+    \section{Protokoll vom 15.01.2004}
+    \paragraph{Teilnehmer:}
+    Hendrik Eggers, Stefan Willer, Jurij Henne, Maxim Bauer,
+    Thorsten Schl{\"o}rmann, Frank Slotta.
+    \subsection{Allgemein}
+    Die letzten Unklarheiten vor der Erstellung eines Prototyps sollen beseitigt werden.
+    \subsection{Themen}
+    \subsubsection{Signaturerzeugung}
+    Die Erzeugung der Signatur ist immer noch problematisch, da noch
+    nicht alle Informationen aus der Bibliothek verf\"ugbar sind. Eine Liste mit Fachk\"urzeln
+    muss noch erstellt werden. Das Schl\"usselwort <DC.subject> soll mit Schl\"usselw\"ortern gef\"ullt werden.
+    \subsubsection{Metatag: Standort}
+    Das Metatag Standort soll nicht bei jedem Dokument in einer XML Datei gespeichert werden.
+    Als Alternative soll eine Tabelle mit Standorten angelegt werden, die erweitert werden kann.
+    \subsubsection{Client/Server Architektur vs. Peer to Peer Netzwerk}
+    Beschluss: der Client/Server Struktur wird der Vorzug gegeben, da weniger Netzverkehr auf langsam
+    angebundene Clients entsteht, und die Datenkonsistenz h\"oher eingesch\"atzt wird. Probleme bei
+    gleichzeitigen \"anderungen auf verschiedenen Clients werden durch die zentrale Instanz minimiert.
+    \subsubsection{Zuweisung Buch : Fach}
+    Festlegung: Die Zuordnung eines Buches zu einem Fachbereich soll eineindeutig sein. Es soll eine
+    1:1 Beziehung modelliert werden. Die Fachbereich und ihre Unterabteilungen sollen in einer Baumstruktur
+    gespeichert werden. Die Liste mit den Fachbereichen liegt allerdings noch nicht vor. Nur Nutzer, die
+    online arbeiten, sollen neue Kategorien anlegen d\"urfen.
+    \subsubsection{Gestaltung der grafischen Oberfl\"achen}
+    Das urspr\"ungliche Konzept eines Offline Client mit Java Swing Oberfl\"ache und eines Servers mit
+    JSP Oberfl\"ache wird verworfen. Stattdessen soll eine GUI mit einem Java Applet entwickelt werden.
+    Dadurch muss die Oberfl\"ache nur einmal gestaltet werden. Der Nutzer kann auf Knopfdruck einen
+    Abgleich mit dem Server einleiten, ansonsten kann er lokal arbeiten.
+    \subsubsection{Prototyp}
+    Ein Prototyp soll erstellt werden. Jurij und Maxim erstellen eine GUI mit Java als Applet mit
+    folgenden Eigenschaften:
+      \begin{itemize}
+          \item{Menu:} Das Menu soll die Punkte: Datei, Bearbeiten, Hilfe haben
+          \item{Sprachanpassung:} Das gesamte Programm soll in Englisch erstellt werden. Danach ist eine
+          Anpassung an die deutsche Sprache geplant.
+          \item{Abfragemaske:} Die 15 Dublin Core Elemente sollen abgefragt werden k\"onnen.
+          \item{Die eingegebenen Daten sollen zuerst in eine Datei geschrieben werden, sp\"ater in die Datenbank
+           (Xindice)}
+      \end{itemize}
+    \subsubsection{Leistungsmerkmale des Clients}
+      \begin{itemize}
+          \item{Eingabe eines Datensatzes}
+          \item{Ausgabe aller Datens\"atze}
+          \item{\"anderung von Datens\"atzen}
+          \item{Fachliste/Standortliste editieren}
+          \item{Bildung einer eindeutigen Signatur, Besitzer und Standort eines Dokuments soll enthalten sein}
+          \item{Schlagwortsuche}
+      \end{itemize}
+
+
+
+
+   \section{Protokoll vom 22.01.2004}
+    \paragraph{Teilnehmer:}
+    Hendrik Eggers, Jurij Henne, Maxim Bauer,
+    Thorsten Schl{\"o}rmann, Frank Slotta.
+    \subsection{Allgemein}
+\begin{itemize}
+    \item{GUI-Prototy: } Vorstellung des Prototyps von Jurij und Maxim. Der Prototyp ist bereits in der Lage, Metatag Inhalte aufzunehmen und
+    ungepr\"uft in eine Datei zu schreiben.
+    \item{UTF-8} Forderung: XML Dateien m\"ussen im UTF-8 Format vorliegen
+    \item{XML-Schema} Es soll f\"ur alle Dokumente eine Vorlage im XML Format vorliegen. Damit soll eine Beschreibung
+    der Felder eingehen, um Fehleingaben abzufangen. Diese Dateien werden als Schema Dateien bezeichnet.
+    Unter www.xcbl.org ist eine Beschreibung zu finden, mit der das Schema in XML beschrieben werden kann.
+    Beispiele f\"ur die Beschreibung: Vorgaben f\"ur eine Aufz\"ahlung (enumeration), Datumspr\"ufung f\"ur reale Datumsangaben.
+    Die Java Bibliothek Saxon \"uberpr\"uft XML Dateien anhand der Schemadatei. Es soll eine Schemadatei f\"ur book.xml entworfen werden.
+
+    \item{Hinweis: Eclipse Plugin} f\"ur die Eclipse IDE gibt es die Plugins: ETeX f\"ur die Verarbeitung von *.tex Dateien, sowie ein Visual Builder
+    f\"ur die Erzeugung einer GUI.
+\end{itemize}
+
+
+\subsection{Programmierung}
+
+Folgende Programmier-Aufgaben wurden festgelegt:
+\begin{itemize}
+    \item{Realisierung der Eingabemaske f\"ur XML-Dateien}
+    \item{Bildung der Signatur}
+    \item{Eingabe des Standortes durch eine Checkbox, es ist auch m\"oglich, keinen Standort einzugeben, eine Standortliste wird nicht vorgegeben}
+    \item{Import der Fachliste, es wird eine Vorlage erstellt }
+    \item{F\"ur die Schlagwortliste soll ein Pop-Up entwickelt werden, das zul\"assige Schlagworte anzeigt}
+    \item{Erstellung einer XML-Schema Datei, die mit Saxon verwendet werden kann}
+\end{itemize}
+
+\subsubsection{Bildung der Signatur}
+\begin{itemize}
+    \item{Drei Kleinbuchstaben werden f\"ur jeden Fachbereich verwendet}
+    \item{Algorithmus f\"ur die Generierung eines Fachbereiches muss erstellt werden}
+    \item{Die Eingabe muss darauf \"uberpr\"uft werden, ob Fachbereich aus drei kleinen Zeichen besteht}
+    \item{Das Ergebnis muss in einer XML Datei gespeichert werden (UTF-8)}
+    \item{Der Name und das K\"urzel werden in einer Baumstruktur gespeichert. Ein Knoten enth\"alt jeweils einen Namen und das K\"urzel.
+    Die Signatur besteht aus: Fachk\"urzel + laufende Nummer (6-stellig) = URN = lokale Signatur}
+
+    \item{ Die Signatur muss ausgelesen und dekodiert werden k\"onnen}
+\end{itemize}
+
+\subsubsection{Speicherung des Standortes}
+Unklar ist noch, ob eine Liste mit Standorten bereit gestellt werden soll und wie. Jeder Client verwaltet lokal seine eigene Datenbank.
+Auf dem Server werden alle Datenbanken der Clients gespeichert. Mit der URN k\"onnen Datenbanken und Dokumente eindeutig angesprochen werden.
+Jeder Nutzer hat entweder nur Leserechte auf einer Datenbank oder Lese- und Schreibrecht.
+
+\subsection{Format der XML-Dateien}
+
+F\"ur die Fachzuordnung sollen feste Kategorien vorgegeben werden. Schlagworte m\"ussen am Client selber eingegeben werden ('DC.subject'). Musikst\"ucke
+sollen ebenfalls aufgenommen werden k\"onnen. Das Format der CDDB Datenbank soll auf Kompatibilit\"at \"uberpr\"upft werden.
+Die Felder mit dem Prefix 'UP.' sollen in 'UNI-OL.' umbenannt werden. Das Dublin Core Metatag 'DC.relation' soll nicht verwendet werden.
+Das Metatag UNI-OL.edition soll f\"ur die Angabe der Auflage hinzugef\"ugt werden. Das Tag 'UNI-OL.department' soll in 'UNI-OL.branch' umbenannt
+werden.
+\\
+F\"ur jedes Dokument in der Datenbank m\"ussen folgende Tags Pflicht sein: title, creator, subject, publisher, date (Jahr), identifier.\\
+
+\subsubsection{Kategorisierung}
+
+Etwa 30 verschiedene Kategorien sollen per Drop-Down-Menu angew\"ahlt werden k\"onnen. Alle Kategorien m\"ussen erfasst werden k\"onnen.
+Da es zuviele Unterkategorien gibt, wird auf Unterkategorien verzichtet. Der Client soll Kategorien anlegen, bearbeiten und l\"oschen k\"onnen.
+
+
+\subsection{Ausblick f\"ur das n\"achste Treffen}
+    \begin{itemize}
+        \item Kl\"arung, auf welche Weise die Standorte in einer Liste gespeichert werden sollen.
+        \item Pr\"asentation des Projekts auf den Linux Informationstagen 2004 in Wilhelmshaven.
+    \end{itemize}
+
+
+  \section{Protokoll vom 29.01.2004}
+    \paragraph{Teilnehmer:}
+    Hendrik Eggers, Stefan Willer, Jurij Henne, Maxim Bauer,
+    Thorsten Schl{\"o}rmann, Frank Slotta.
+    \subsection{Allgemein}
+
+     Alle Projektteilnehmer sollen notieren, welche Arbeiten sie durchgef\"uhrt haben, um sp\"atere Dokumentation zu erm\"oglichen.
+     Die Use Case sollen besprochen werden. S\"amtliche Datenbanken der Clients sollen in einer Registry verwaltet werden. Ein Dispatcher
+     soll dann die Datenbanken mit den Programmfunktionen verbinden. Das Backend \"ubernimmt die Kommunikation mit den Datenbanken.
+     Der Client soll als Standalone-Applikation entworfen werden, um u.a. Problemen mit der JAVA Sandbox aus dem Weg zu gehen.
+
+
+    \subsubsection{Anwendungsfalldiagramm (Use-Case)}
+    Beim Start des Clients soll folgende Funktionalit\"at gegeben sein:
+    \begin{itemize}
+    \item Eine lokale Datenbank wird mitgeliefert und initialisiert
+    \item Der Nutzer gibt seine pers\"onlichen Daten ein
+    \item Der Nutzer vergibt ein Passwort f\"ur die lokale Datenbank
+    \item Es wird immer nur mit einer Datenbank gearbeitet, f\"ur jede DB kann ein Konto erstellt werden
+    \item Die Konten m\"ussen bearbeitet werden k\"onnen
+    \item Nach dem Einloggen kann in der Datenbank gesucht werden
+    \item Eine leere Liste wird bereitgestellt
+    \end{itemize}
+
+
+
+\subsubsection{Unterpunkt Neu: f\"ur die Eingabe von Dokumenten}
+----------------------------------------------
+\begin{itemize}
+\item Der Nutzer entscheidet, welche Art von Dokument er anlegen will
+\item Das passende XML-Schema wird ausgelesen, eine GUI wird generiert
+\item Der Nutzer tr\"agt die Daten ein (inkl. Standort)
+\item Eine Signatur wird generiert
+\item Die URI wird generiert
+\item Ein Standort muss angegeben werden.
+\item Es gibt eine Kategorie: 'nicht einsortiert'
+\item B-Anforderung: Vorgabe von Standorten wird sp\"ater implementiert
+\end{itemize}
+
+
+\subsubsection{Unterpunkt: \"Andern}
+Ein Rechtsklick auf ein Dokument oder das Anw\"ahlen des Buttons: '\"Andern' soll die Bearbeitung eines
+Eintrags erm\"oglichen. Der Nutzer soll einen Dialog angezeigt bekommen, in dem er die Dokumenteigenschaften ver\"andern kann.
+
+\subsubsection{Unterpunkt: L\"oschen}
+Nach einer Sicherheitsabfrage kann ein Eintrag gel\"oscht werden.
+
+\subsubsection{Unterpunkt: Kategorien}
+Hinter dem Unterpunkt Kategorien verbirgt sich eine Liste mit vorgegebenen Eintr\"agen. Kategorien k\"onnen angelegt, ge\"andert oder gel\"oscht werden.
+
+
+\subsubsection{Unterpunkt Schlagwortliste}
+Der Unterpunkt Schlagwortliste ist ein Pop-Up Menu mit vorgegebenen Eintr\"agen. Schlagworte k\"onnen angelegt, ge\"andert oder gel\"oscht werden.
+
+\subsection{Individualliste}
+Es existiert eine Gesamtliste, die alle Dokumente der Datenbanken enth\"alt. Jedes Element einer individuellen Liste
+erh\"alt einen Button, mit dem das Dokument der Gesamtliste hinzugef\"ugt werden kann.
+
+\subsection{Signaturerstellung}
+\begin{itemize}
+\item Der Nutzer legt ein Dokument an
+\item Die Signatur wird generiert
+\item Das Dokument wird in der Individualliste und der Gesamtliste gespeichert
+\end{itemize}
+
+\subsection{Eingabe von XML- Daten}
+\begin{itemize}
+\item Die Kategorie wird aus einer Liste ausgew\"ahlt\\
+\item Die Signatur wird mt Hilfe der Listeneintr\"age generiert
+\item Das Dokument wird in der Gesamt- und Individualliste gespeichert
+\item Die Individualliste referenziert die Gesamtliste
+\item Der Dateneintrag wird in der lokalen Datenbank gespeichert
+\end{itemize}
+
+\subsection{Konten f\"ur eine Datenbank}
+Jedes Konto stellt nur eine Verbindung her. Entweder der Server wird kontaktiert, oder ein weiterer Client. F\"ur einen Verbindungsaufbau m\"ussen folgende Daten bekannt sein: URL der Gegenstelle, sowie Name und Passwort. Mehrere Konten k\"onnen mit einem Client verwaltet werden. In der Statusleiste soll das gerade aktive Konto angezeigt werden. Konten k\"onnen mit dem Client angelegt, ge\"andert oder gel\"oscht werden.
+
+\subsection{Server}
+Auf dem Server wird die Gesamtdatenbank gespeichert. Die Datenbank muss initialisiert und mit einem Passwort gespeichert werden. Es wird ein Installationsprogramm f\"ur den Server ben\"otigt.
+
+\subsection{Backend}
+Das Backend realisiert die Anbindung des Clients an die Datenbank. Verbindungen werden auf- und abgebaut. Weiterhin muss die Suche nach Dokumenten implementiert werden. Die Funktionen Anlegen, \"Andern, L\"oschen sind sowohl f\"ur die Dokumente. als auch f\"ur die Standorte zu programmieren. Der Branch soll eine Liste der m\"oglichen Kategorien enthalten. Das Backend abstrahiert die Datenbank von der GUI.
+
+\subsection{eXist statt Xindice}
+Xindice hat sich als zu unflexibel erwiesen. Als Alternative kommt eXist in Betracht. eXist erm\"oglicht die Abbildung einer Rechteverwaltung f\"ur die Dokumente in der Datenbank. Es besteht die M\"oglichkeit, ein Backup anzulegen. Mit der Rechteverwaltung ist es m\"oglich, Lese- und Schreibzugriff getrennt zu vergeben.
+
+\subsection{XML}
+Das interne Feld UNI-OL.archivesource soll in die XML-Beschreibung der Dokumente aufgenommen werden. Hier soll eine URL eingegeben werden k\"onnen, um elektronische Dokumente zu referenzieren.
+
+\subsection{Vorschau auf das n\"achste Treffen}
+Die XML Schemadateien werden diskutiert sowie die Vorgabe bei den Kategorien.
+Das n\"achste Treffen findet am  18.2.04 von 17.00-19.30 Uhr (s.t.) im CIP Raum A5-1-161 statt.
+
+
+\section{Protokoll vom 18.02.2004}
+ \paragraph{Teilnehmer:}
+    Hendrik Eggers, Stefan Willer, Jurij Henne, Maxim Bauer,
+    Thorsten Schl{\"o}rmann, Frank Slotta.
+   
+\subsection{ Allgemein}
+
+Das Tool Ant wird vorgestellt. Ant ist das Pendant von make f\"ur Java. Die GUI wird neu implementiert.
+Die Individualliste enth\"alt auch Daten aus anderen Datenbanken, wenn Anwender ihre Dokumente freigeben.
+
+\subsection{Bildung der Signatur}
+
+F\"ur die Bildung der Signatur muss eine Kategorie eingegeben werden. Die Signatur (URN) besteht nur aus Kleinbuchstaben und Ziffern und wird wie folgt zusammen
+gesetzt: Fachk\"urzel +laufende Nummer+ Buchstaben [a-z][A-Z]
+Dabei ist das UTF-8 Format einzuhalten.\
+
+Bsp:\
+BWL\_00000001\
+INF\_a03d74
+
+\subsection{eXist}
+Die Datenbank speichert die Datens\"atze nicht im XML Format, der Zugriff erfolgt \"uber eine API.
+Die Bibliotheksdatenbank soll Collection heißen. \
+
+Beispiel f\"ur einen Verzeichnisbaum, in dem die Medataen gespeichert werden sollen:\\
+
+\begin{verbatim}
+/home/pum/branch\_list
+
+home/nutzer/branch\_list/
+                                    inf
+                                    bwl
+                                    the
+                    individual\_list/
+                                    inf
+                                    bwl
+                                    list
+\end{verbatim}
+
+
+Alles unterhalb von branch\_list wird repliziert, allerdings nicht die individual\_list.
+Nach dem Verbindungsaufbau zum Server sollen die eigenen Daten auf den Server \"ubertragen werden.
+Der Client installiert eine  eigene Datenbank (eXist), diese wird beim ersten Start generiert,
+Die branch\_list und die individual\_list werden angelegt, ebenso die Kategorien.
+
+Die Eintr\"age unter  'nutzer' werden mit dem Server repliziert, die individual\_list ist nur f\"ur den privaten
+Gebrauch. Wenn eine URI nicht lokal verf\"ugbar ist, dann wird eine Fehlermeldung ausgegeben. Lokal eingegebene Daten werden in der branch\_list gespeichert.
+
+Vorstellung der JAVA-API f\"ur den Zugriff auf die Datenbank
+
+\subsection{Speicherung der K\"urzel und ihre Beschreibung}
+Es wird eine Liste ben\"otigt, mit der die Fachbereiche einer Beschreibung gegen\"uber gestellt werden k\"onnen. (Inf=Informatik)
+Bestehende Kategorien k\"onnen vom Server heruntergeladen werden. Dokumente, die keiner Kategorie zugeordnet werden, bekommen
+das K\"urzel 'N-A' (not available). Kategorien d\"urfen nicht gel\"oscht werden, damit Signaturen immer referenzieren k\"onnen. Die Beschreibung darf allerdings
+ge\"andert werden.
+
+\begin{verbatim}
+Bsp:
+    <branches>
+      <all>
+        <description='Allgemeine Nachschlagewerke'>
+      </all>
+    </branches>
+\end{verbatim}
+
+Die XML Dateien k\"onnen mit der Bibliothek Xerxes validiert werden.
+
+\subsection{Aufgaben bis zum n\"achsten Treffen}
+\begin{itemize}
+\item  Frank: XML-Schema, Xerxes, Protokoll
+\item  Stefan: Branches-XML in Datenbankschema einbinden
+\item  Jurij und Maxim: GUI-Weiterentwicklung
+\item  Thorsten: Eingabe der Kategorien in XML, Signaturalgorithmus erstellen
+\end{itemize}
+
+Das n\"achste Treffen findet am 03.03.2004 um  17.00 Uhr (s.t.) im CIP Raum A5-1-161 statt. Im Anschluss an die
+Besprechung ist ein kurzer Umtrunk geplant.
+
+
+\section{Protokoll vom 28.04.04}
+ \paragraph{Teilnehmer:}
+    Hendrik Eggers, Stefan Willer, Jurij Henne, Maxim Bauer,
+    Thorsten Schl{\"o}rmann, Frank Slotta.
+   
+\subsection{Allgemein}
+Der endgültige Abgabetermin für das Projekt P30 ist der 15. August 2004. Das Team trifft sich ab sofort jeden Donnerstag von 08.00 Uhr bis 12.00 Uhr im Informatikbereich der Universität Oldenburg. Die Programmierarbeiten liegen ca. 4 Wochen im Rückstand, dieser Rückstand soll im Verlauf der nächsten Wochen abgebaut werden. Die Anwendungsfälle müssen noch als Use-Case Diagramme modelliert werden.
+\subsection{Namensänderung}
+Aus markenrechtlichen Gründen wird das Projekt umbenannt. Als neuer Name wurde einstimmig 'Liabolo' gewählt. Als Slogan kommt: "Die teuflisch gute Bibliotheksverwaltung" zum Einsatz. 
+\subsection{JBiblio} Das Projekt JBiblio entwickelt ebenfalls eine Bibliotheksverwaltung. Eine Kooperation/Weiterentwicklung soll geklärt werden, da JBiblio Open Source Software ist.
+
+\section{Protokoll vom 13.05.04}
+ \paragraph{Teilnehmer:}
+    Stefan Willer, Jurij Henne, Maxim Bauer,
+    Thorsten Schl{\"o}rmann, Frank Slotta.
+\subsection{Webservices}
+Einige Features werden nicht über den (Offline-)Client abgewickelt, sondern durch dynamische Webseiten zur Verfügung gestellt. Diese Webservices zeigen z.B. an, auf welche Bibliotheken der Nutzer zugreifen kann. 
+\subsection{JUnit}
+Das Backend wird ab sofort durch die Testklasse JUnit überprüft. JUnit ermöglicht mit einer grafischen Oberfläche das Testen aller Funktionen für das Backend, ohne das das Liabolo-Frontend verwendet werden muss, das sich selbst noch in der Entwicklung befindet. Eine Master-Testklasse durchläuft alle Funktionen, die das Backend bereitstellt, und gibt Erfolgs- oder Fehlermeldungen aus.
+\subsection{Exist} Die Datenbank Exist für die Aufnahme der Metadaten läuft ab sofort auf dem Server und muss nicht mehr lokal installiert werden.
+\subsection{Excel} Die bisher verwendeten Excel-Tabellen mit den Bibliothekseinträgen sollen in das Liabolo-Projekt importiert werden. Da die Tabellen nicht einheitlich aufgebaut sind, müssen diese für einen Import angepasst werden. Die erste Zeile muss vorgegebene Schlüsselworte für die jeweiligen Spalten aufnehmen, um eine Zuordnung auf die Dublin-Core Elemente vornehmen zu können. Das Ende der Tabelle muss durch mindestens eine Leerzeile gekennzeichnet sein.
+\subsection{Statusbar} Sämtliche Meldungen, die durch den Zugriff auf die Datenbank erfolgen, sollen in der Statusbar von Liabolo ausgegeben werden.
+\subsection{Benutzergruppen} Es sollen vier Benutzergruppen angelegt werden. Jeder Nutzer kann Mitglied in einer oder mehrerer dieser Gruppen sein. Die Gruppen lauten:
+\begin{itemize}
+\item Gast: dieser Nutzer hat nur Lesezugriff
+\item P30: Dieser Nutzer hat ein eigenes Konto und eine Datenbank
+\item DBA: Gruppe der Datenbankadministratoren, Benutzer können hinzugefügt- oder gelöscht werden 
+\item PUMDBA: Datenbanken können angelegt oder gelöscht werden, Branches ebenso
+\end{itemize}
+
+\subsection{Nächstes Treffen} Das nächste Treffen findet am 19.05.2004 um 16.30 Uhr statt.
+
+
+\section{Protokoll vom 02.06.04}
+ \paragraph{Teilnehmer:}
+    Hendrik Eggers, Stefan Willer, Jurij Henne, Maxim Bauer,
+    Thorsten Schl{\"o}rmann, Frank Slotta.
+   
+\subsection{Allgemein}
+Liab`o´lo soll durch eine Präsentation vorgestellt werden. Ein Probevortrag wird am 15.06.04 um 08.00 Uhr in A5 1-159 gehalten. Die Präsentation findet am 02.07.2004 von 10.00 - 12.00 Uhr im Schulungsraum der Bibliothek
+statt. Die Software Liabolo soll nach einstimmiger Abstimmung unter die GPL gestellt werden. Die Homepage www.liabolo.org wird reserviert, nachdem der Name durch Abstimmung
+ausgewählt wurde. Die Erstellung einer Homepage ist geplant. Das Projekt soll durch eine Veröffentlichung auf Freshmeat.org oder Slashdot bekannt gemacht werden.
+\subsection{Liab`o´lo}
+Der Name Liab`o´lo wurde durch die Hochkommata erweitert. durch die ASCII-Zeichen 96 '`' und 180 '´' soll ein Teufel symbolisiert werden. Als Werbeslogan kommt: 'Die teuflisch gute
+Literaturverwaltung' zum Einsatz.
+\subsection{Nächstes Treffen}
+Das nächste Treffen findet am 16.06.04 um 16.30 Uhr statt.
+
+\section{Protokoll vom 14.07.04}
+	\paragraph{Teilnehmer:}
+	Hendrik Eggers, Stefan Willer, Jurij Henne, Maxim Bauer, Thorsten
+	Schlörmann
+	\subsection{Statusberichte} 
+	Seit der gelungenen Präsentation von Liabolo vor fachkundigem
+	Publikum der Bibliothek am 09.07.04 wurden keine nennenswerten
+	Änderungen mehr am Programm vorgenommen.
+	
+	\subsection{E-Mails und TODOs}
+	Da sich in den E-Mails der Mailingliste für Liabolo viele Ideen, Verbesserungsvorschläge und noch zu
+	erledigende Aufgaben(TODOs) angesammelt haben, wurden diese nun aufgegriffen und einzeln angesprochen.
+	Dabei sind folgende noch anstehende Aufgaben formuliert worden:
+	
+	\begin{itemize}
+		\item Frank:
+		\begin{itemize}
+			\item Startskript für Linux schreiben (analog zu \dq start.bat\dq)
+			\item Dokumentation schreiben. Es soll drei Dokumentationen geben:
+			\begin{itemize}
+				\item Userguide analog zur Online-Hilfe
+				\item Adminguide
+				\item Developerguide
+			\end{itemize}
+			\item FAQ beginnen (auf BerliOS, Link darauf von liabolo.org)
+			\item Die Präsentation als pdf auf BerliOS unter Dokumente ablegen
+			\item Testfälle für die GUI bestimmen
+		\end{itemize}
+		\item Maxim:
+		\begin{itemize}
+			\item sofortiges automatisches \dq refreshen\dq\ des Statistikfensters bei Änderungen
+			\item Hinweise und Warnungen abschaltbar durch den Benutzer machen
+		\end{itemize}
+		\item Thorsten:
+		\begin{itemize}
+			\item Umstellung der Properties auf JConfig
+			\item Daten der DB sollen im User-Verzeichnis gehalten werden (sprich: \dq Eigene Dateien\dq\  unter
+				Windows, \dq home\dq\ unter Linux)
+			\item Installationsanweisungen für Liabolo auf BerliOS schreiben, auch für weniger versierte
+				Benutzer
+			\item I18n soll auch auf JConfig umgestellt werden (am besten so, dass im Source keine Änderungen
+				vorgenommen werden müssen)
+		\end{itemize}
+		\item Stefan:
+		\begin{itemize}
+			\item Server-DB ohne Ant startbar machen
+			\item Synchronisation von Client und Server fortführen
+			\item Test-DB auf dem Server anlegen anhand der Exceltabelle von Stefan Seuring
+		\end{itemize}
+		\item Jurij:
+		\begin{itemize}
+			\item Gerüst für die Webseite erstellen und in CVS einchecken
+			\item Bereithalten zum Erstellen noch benötigter GUI-Elemente (insb.
+				Interaktion mit Stefan bzgl. Synchronisation)
+		\end{itemize}
+	\end{itemize}
+	
+	\subsection{Website}
+	Das von Jurij gestaltete Website-Layout wurde einstimmig angenommen. Jurij wird weitehin ein Grundgerüst erstellen, das
+	anschliessend mit Inhalten gefüllt werden soll (s.o.).
+	
+	\subsection{White papers} 
+	Der abschliessende Projektbericht soll aus einzelnen White Papers bestehen. Jeder Projektteilnehmer erstellt Papers zu diversen
+	Themen, an denen er im Projektzeitraum gearbeitet oder zu denen er recherchiert hat.
+	
+	\subsection{Sonstiges}
+	\begin{enumerate}
+		\item Bugmeldungen und Featuresrequest werden zukünftig nicht mehr über die Mailingliste abgewickelt, sondern direkt
+		über BerliOS.
+		\item Ist eine Steuerung von Liabolo über Web-Services bis zum 15. August möglich?
+		\item Es besteht noch Diskussionsbedarf im Themenbereich Dublin Core Elemente.
+	\end{enumerate} 
+			
+
+
+\chapter{Codebeispiele}
+    \label{ant_code}
+    \section{Ant-Build-File}
+    \begin{Verbatim}[tabsize=2,frame=leftline,label=build.xml,numbers=left]
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project basedir="." default="usage">
+
+    <target name="init" description="sets variables for the other targets" >
+        <property name="debug" value="off"/>
+        <property name="optimize" value="off"/>
+        <property name="deprecation" value="off"/>
+
+        <property name="p30.lib.dir" value="./lib"/>
+
+        <property name="p30.build.src" value="./src"/>
+        <property name="p30.build.dest" value="./classes"/>
+        <property name="p30.deploy.dest" value="./bin"/>
+        <property name="p30.deploy.file" value="p30.jar"/>
+        <property name="p30.java.doc.path" value="./javadoc" />
+
+        <property name="exist.build.src" value="./exist/src"/>
+        <property name="exist.build.dest" value="./exist/classes"/>
+        <property name="exist.deploy.dest" value="./exist"/>
+        <property name="exist.deploy.file" value="exist.jar"/>
+        <property name="exist.java.doc.path" value="./exist/javadoc"/>
+
+        <property name="exist.home" value="./exist" />
+        <property name="exist.bin" value="./exist/bin" />
+        <property name="exist.start" value="start.jar" />
+
+        <property name="p30.doc.src" value="./doc"/>
+
+
+        <path id="globalClasspath"
+            path="${p30.lib.dir}/xmldb.jar:
+                  ${p30.lib.dir}/exist.jar:
+                  ${p30.lib.dir}/javax.servlet.jar:
+                  ${p30.lib.dir}/xmlrpc-1.2.jar"
+            />
+
+        <fileset id="images" dir="${p30.build.src}" excludes="*.java" />
+    </target>
+
+    <target name="prepare" depends="init" 
+            description="creates directories etc." >
+        <mkdir dir="${p30.build.dest}"/>
+        <mkdir dir="${p30.deploy.dest}"/>
+        <mkdir dir="${p30.java.doc.path}" />
+        <mkdir dir="${exist.java.doc.path}" />
+        <mkdir dir="${exist.build.dest}" />
+    </target>
+
+    <target name="usage">
+        <echo message="p30_projektbericht    : 
+            Translate projektbericht.tex into .pdf file"/>
+        <echo message="do_p30                : 
+            compile and deploy all source files"/>
+        <echo message="start_tooliban        : 
+            Starts the offline client"/>
+        <echo message="p30_javadoc           : 
+            creates java documention from all p30 source files"/>
+        <echo message="start_exist           : 
+            Starts the exist-db"/>
+        <echo message="stop_exist            : 
+            Stops the exist-db"/>
+        <echo message="exist_javadoc         : 
+            creates java documention from all exist source files"/>
+        <echo message="extract_exist         : 
+        extracts a new exist db. All existing exist files will be lost."/>
+    </target>
+
+
+    <target name="p30_compile" depends="prepare" 
+        description="compiles all sources to classes-dir" >
+        <javac classpathref="globalClasspath"
+            debug="${debug}"
+            deprecation="${deprecation}"
+            srcdir="${p30.build.src}"
+            destdir="${p30.build.dest}"
+            optimize="${optimize}"
+            >
+            <src path="${p30.build.src}"/>
+        </javac>
+        <copy overwrite="true" todir="${p30.build.dest}">
+            <fileset refid="images"/>
+        </copy>
+    </target>
+
+    <target name="p30_deploy" depends="init" 
+        description="builds a jar-file and copies it into bin-dir" >
+        <jar basedir="${p30.build.dest}" 
+            jarfile="${p30.deploy.dest}/${p30.deploy.file}">
+            <manifest>
+                <attribute name="Build-By" value="Stefan Willer" />
+                <attribute name="Main-Class" 
+                    value="de/uni/oldenburg/p30/client/offline/Gui" />
+                <attribute name="Class-Path" 
+                    value="../lib/exist.jar ../lib/javax_servlet.jar 
+                        ../lib/xmldb.jar ../lib/xmlrpc-1.2.jar" />
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="p30_javadoc" depends="init,prepare" 
+        description="creates java documention from all p30 source files">
+        <javadoc destdir="${p30.java.doc.path}" 
+            sourcepath="${p30.build.src}" 
+            classpathref="globalClasspath" 
+            packagenames="de.uni.oldenburg.p30.client,
+                            de.uni.oldenburg.p30.common,
+                            de.uni.oldenburg.p30.service,
+                            de.uni.oldenburg.p30.test,
+                            de.uni.oldenburg.p30.repository,
+                            de.uni.oldenburg.p30.registry,
+                            de.uni.oldenburg.p30.exception"/>
+    </target>
+
+    <target name="do_p30" depends="p30_compile,p30_deploy" 
+        description="compile and deploy all source files" />
+
+    <target name="p30_projektbericht" depends="init,prepare" 
+        description="Translate projektbericht.tex into .pdf file">
+        <exec dir="${p30.doc.src}" executable="pdflatex">
+            <arg line="projektbericht"/>
+        </exec>
+        <exec dir="${p30.doc.src}" executable="bibtex">
+            <arg line="projektbericht"/>
+        </exec>
+        <exec dir="${p30.doc.src}" executable="makeindex">
+            <arg line="projektbericht"/>
+        </exec>
+        <exec dir="${p30.doc.src}" executable="pdflatex">
+            <arg line="projektbericht"/>
+        </exec>
+        <exec dir="${p30.doc.src}" executable="pdflatex">
+            <arg line="projektbericht"/>
+        </exec>
+    </target>
+
+    <target name="start_exist" depends="init" 
+        description="Starts the exist-db " >
+        <java jar="${exist.home}/${exist.start}" 
+            maxmemory="256m" fork="true">
+            <arg value="jetty" />
+            <sysproperty key="file.encoding" value="UTF-8" />
+            <!--sysproperty key="java.endorsed.dirs" 
+                value="${exist.home}/lib/endorsed" /-->
+            <sysproperty key="exist.home" value="${exist.home}" />
+        </java>
+    </target>
+
+    <target name="start_exist_client" depends="init" 
+        description="Starts the exist-client " >
+        <java jar="${exist.home}/${exist.start}" 
+            maxmemory="256m" fork="true">
+            <arg value="client" />
+            <sysproperty key="file.encoding" value="UTF-8" />
+            <!--sysproperty key="java.endorsed.dirs" 
+                value="${exist.home}/lib/endorsed" /-->
+            <sysproperty key="exist.home" value="${exist.home}" />
+        </java>
+    </target>
+
+    <target name="stop_exist" depends="init" 
+        description="Stops the exist-db ">
+        <java dir="${exist.home}" jar="${exist.home}/${exist.start}" 
+            fork="true" >
+            <arg value="shutdown" />
+            <sysproperty key="exist.home" value="${exist.home}" />
+        </java>
+    </target>
+
+    <target name="exist_javadoc" depends="init,prepare" 
+        description="creates java documention from all exist source files">
+        <javadoc destdir="${exist.java.doc.path}" 
+            sourcepath="${exist.build.src}" 
+            classpathref="globalClasspath" 
+            packagenames="org.exist.*,org.xmldb" />
+    </target>
+
+    <target name="start_tooliban" 
+        depends="init,prepare,p30_compile,p30_deploy" 
+        description="Starts the offline client">
+        <java jar="${p30.deploy.dest}/${p30.deploy.file}" 
+            classpathref="globalClasspath" fork="true" />
+    </target>
+
+    <target name="extract_exist" depends="init" 
+        description="extracts a new exist db. 
+            All existing exist files will be lost.">
+        <unzip src="exist.zip" dest="." overwrite="yes"/>
+    </target>
+</project>
+    \end{Verbatim}
+    
+    \label{eval_tcl}
+    \section{Softwareevaluation Codebeispiele}
+    \subsection{Tcl/Tk}
+
+    \begin{Verbatim}[tabsize=2,frame=leftline,label=build.xml,numbers=left]
+    
+#Titel
+wm title . "easyButton"
+
+#Frames
+frame .menuFrame    -borderwidth 1 -relief raised
+frame .mainFrame -borderwidth 1 -relief raised
+frame .statusFrame   -borderwidth 1 -relief raised
+
+pack .menuFrame    -side top -fill x
+pack .mainFrame -fill x
+pack .statusFrame   -side bottom -fill x
+
+######################
+# menuFrame
+######################
+#Menu 
+menubutton .datei -text Datei -menu .datei.dateisubmenu -underline 0
+menubutton .hilfe -text Hilfe -menu .hilfe.hilfesubmenu -underline 0
+
+menu .datei.dateisubmenu
+.datei.dateisubmenu add command -label "Öffnen" -underline 0 -accel \\
+    Ctrl-o -command notImplemented
+.datei.dateisubmenu add command -label "Speichern" -underline 0 -accel \\ 
+    Ctrl-s -command notImplemented
+.datei.dateisubmenu add command -label "Beenden" -underline 0 -accel \\
+    Ctrl-q -command exit
+pack .datei -side left -in .menuFrame
+
+
+menu .hilfe.hilfesubmenu
+.hilfe.hilfesubmenu add command -label "Hilfe" -underline 0 -accel \\
+    Ctrl-h -command notImplemented
+.hilfe.hilfesubmenu add command -label "Info" -underline 0 -accel F1 \\
+    -command {doInfo}
+pack .hilfe -side right -in .menuFrame
+
+bind . <Control-q> exit
+bind . <Control-o> notImplemented
+bind . <Control-s> notImplemented
+bind . <Control-h> notImplemented
+bind . <F1> doInfo
+
+######################
+# mainFrame
+######################
+
+#Button
+button .button -text "Button" -command {set contains "Button gedrückt!"}
+grid .button -in .mainFrame -row 0 -column 0 -sticky sw -padx 35 -pady 9
+#pack .button -side bottom -in .mainFrame
+
+#Inhalt von textEntry
+set contains ""
+
+#TextEntry
+entry .text -textvariable {contains}
+grid .text -in .mainFrame -row 1 -column 0
+#pack .text -in .statusFrame
+
+######################
+# statusFrame
+######################
+global statusMessage
+set statusMessage "Drücken sie den Button .."
+label .status -textvariable {statusMessage}
+pack .status -in .statusFrame -side left
+
+######################
+# Methoden
+######################
+proc doInfo {} {
+    set info "About easyButton v0.1 \n\nCopyright 2003 Stefan Willer\\
+        (stefan.willer@t-online.de)\nRelease Info: v0.1\nUsing: \\
+        ActiveTcl v8.4.5"
+    toplevel .info
+    wm title .info "Info"
+    message .info.msg -width 10c -text $info
+    pack .info.msg
+}
+
+proc notImplemented {} {
+    toplevel .debug
+    wm title .debug "Zur Zeit nicht implementiert"
+    message .debug.msg -text "Dieses Feature ist zur Zeit \\
+        nicht implementiert."
+    pack .debug.msg
+}   
+    \end{Verbatim}
+    
+    \subsection{C \#/Mono}
+    \begin{Verbatim}[tabsize=2,frame=leftline,label=build.xml,numbers=left]
+using System;
+using Gtk;
+using GtkSharp;
+
+class Hallo {
+
+    static void Main() {
+        
+        Window fenster;
+                            
+        Application.Init();
+        
+
+        // das Hauptfenster erzeugen
+        fenster = new Window ("Hallowelt");
+        fenster.DefaultHeight = 150;
+        fenster.DefaultWidth = 200;
+        
+
+        // eine vertikale Box, die Objekte (z.B. Buttons, MenuBar)
+        // aufnehmen kann
+        VBox box1 = new VBox(true,1);
+        
+        // die Menueleiste
+        MenuBar menu = new MenuBar();
+
+        // die Menues
+        Menu dateiMenu = new Menu();
+        Menu hilfeMenu = new Menu();
+
+        // die Submenuepunkte
+        MenuItem oeffnen = MenuItem.NewWithLabel("Oeffnen");
+        MenuItem speichern = MenuItem.NewWithLabel("Speichern");
+        MenuItem beenden = MenuItem.NewWithLabel("Beenden");
+        beenden.Activated += new EventHandler(quit);
+
+        // Submenupunkte an Dateimenue anhaengen
+        dateiMenu.Append(oeffnen);
+        dateiMenu.Append(speichern);
+        dateiMenu.Append(beenden);
+
+        // die Menupunkte erzeugen
+        MenuItem datei = MenuItem.NewWithLabel("Datei");
+        MenuItem hilfe = MenuItem.NewWithLabel("Hilfe");
+        
+
+        // das Menu in die Box packen
+        box1.PackStart(menu,false,false,1);
+
+        // das Submenue dem Menuepunkt Datei zuordnen
+        datei.Submenu = dateiMenu;
+
+        // die Menupunkte an die Menuleisten anhaengen
+        menu.Append(datei);
+        menu.Append(hilfe);
+
+        // Menueleiste sichtbar machen
+        menu.Show();
+
+        // Textfeld erzeugen        
+        Label label = new Label("Hallo Welt!");
+        box1.PackStart(label,false,false,15);
+        label.Show();       
+
+        // Button "Hello" erzeugen und Click-Event
+        Button btn1 = new Button ("Hello");
+        box1.PackStart(btn1,false,false,1);
+        btn1.Clicked += new EventHandler (hello);
+        btn1.Show();    
+
+        
+        // "Quit"_Button erzeugen und Quit-Event
+        Button btn2 = new Button("Beenden");
+        box1.PackStart(btn2,false,false,1);
+        btn2.Clicked += new EventHandler (quit);
+        btn2.Show();    
+        
+        fenster.DeleteEvent += new DeleteEventHandler (delete_event);
+
+        // die Box ins Fenster "stellen" 
+        fenster.Add (box1);
+        
+        fenster.ShowAll();  
+
+        // warten auf Events 
+        Application.Run();
+    }
+    
+    static void delete_event (object obj, DeleteEventArgs args) {
+
+        Application.Quit();
+    }
+
+    static void hello (object obj, EventArgs args) {
+
+        //label.Text="Hallo Welt";
+        //label.Show();
+        
+    }
+    static void quit (object obj, EventArgs args) {
+        Application.Quit();
+    }
+    
+}   
+            \end{Verbatim}
+    
+        \subsection{PHP/Gtk}
+
+    \begin{Verbatim}[tabsize=2,frame=leftline,label=build.xml,numbers=left]
+<?php
+
+
+if (!extension_loaded('gtk')) {
+    dl( 'php_gtk.' . PHP_SHLIB_SUFFIX);
+}
+
+// Nur ein Dummy für Pop-down "`Laden"'
+function Load() {
+    $window = &new GtkFileSelection('Datei auswaehlen');
+    $ok_button = $window->ok_button;
+    $ok_button->connect('clicked', 'close_window', $window);
+    $cancel_button = $window->cancel_button;
+    $cancel_button->connect('clicked', 'close_window');
+    $window->show();
+}
+
+// Zeigt ein Info-Fenster an mit Copyrights und Sonstigem
+function Display_Info() {
+    $window = &new GtkWindow();
+    $window->set_policy(false, false, false);
+    $window->set_uposition(50, 50);
+    $window->set_usize(320, 240);
+    $window->set_title('Info');
+    $window->set_name('InfoWindow');
+
+    $box = &new GtkVBox(false, 10);
+    $box->set_border_width(10);
+    $window->add($box);
+
+    $text = &new GtkText(null,null);
+    $text->set_word_wrap(true); //klar
+    $text->set_editable(FALSE); // ebenso
+
+    $string = "Das ist ein Demoprogramm fuer PHP-GTK. 
+    \n\n Copyright 2003 by Jurij und Maxim ;).";
+    //if(strstr(PHP_OS, 'WIN')) $string = wordwrap($string, 26);
+    $blue = &new GdkColor('#0000FF');
+    $gray = &new GdkColor('#EEEEEE');
+
+    // die Methode wird von dem GtkEditable vererbt, 
+    // insert() geht genauso gut
+    $text->insert_text($string,0);  
+    
+    $box->pack_start($text);
+    
+    $button = &new GtkButton('Ist ja gut !');
+    $button->connect('clicked', 'close_window');
+    $box->pack_start($button, false, false);
+
+    $window->show_all();
+}
+
+//Kleine Hilfsfunktion zum Schliessen der Kind-fenster. 
+//Eigentlich überflüssig, da GTK sehr oft selber Fenster schliesst,
+//wenn dem Event keine Funktion zugewiesen wurde.
+function close_window($widget)
+{
+    $window = $widget->get_toplevel();
+    $window->hide();
+}
+
+// Ähnlich der close_window, nur so zu test-zwecken
+function delete_event($window, $event)
+{
+    $window->hide();
+    return true;
+}
+
+//
+function New_Data()
+{
+
+$window = &new GtkWindow();
+$window->set_policy(false, false, false);
+$window->set_uposition(50, 50);
+$window->set_usize(640, 480);
+$window->set_title('Neu erstellen');
+$window->set_name('NEWWindow');
+//$window->connect_object('destroy', array('gtk', 'main_quit'));
+
+    // äusserste Box nur als Table drum herum
+    $box = &new GtkVBox(false, 10);
+    $box->set_border_width(10);
+    $window->add($box);
+    //$box->show();
+
+    $frame = &new GtkFrame();
+    $label = &new GtkLabel('Hier Einstellungen fur das neue Dokument taetigen');
+    $frame->add($label);
+    $box->pack_start($frame, false, false);
+
+$window->show_all();
+
+}
+
+function Write_Hello()
+{
+    // Machen die relevanten Elemente des Hauptfensters der Funktion bekannt
+    GLOBAL  $label;
+    GLOBAL $hb_clicked;
+    // Schalte die Textausgabe ein und wieder aus
+    if($hb_clicked)
+        $label->set_text('');
+    else
+        $label->set_text('Hast du gut gemacht !!');
+    // Steuerungsvariable anpassen
+    $hb_clicked=!\$hb_clicked;
+
+}
+
+
+// Das Hauptfenster
+$window = &new GtkWindow();
+$window->set_uposition(0, 0);   // Position der oberen Linken Ecke
+$window->set_usize(640, 480);   // Initiale Grösse des Fensters
+$window->set_title('GTK-DEMO');
+$window->set_name('MainWindow');
+// Zuweisen der Funktionen für Close-Events der Titeleiste-Knöpfe
+$window->connect_object('destroy', array('gtk', 'main_quit'));  
+
+// keine Doku verhanden, 
+// aber anscheinend für Menu-Erzeugung von Bedeutung
+$accel = &new GtkAccelGroup();  
+$window->add_accel_group($accel);
+
+// einen VertikalBox-Container im Hauptfenster platzieren
+$vboxA = &new GtkVBox();    
+$window->add($vboxA);
+
+// Erzeuge die Menu-Struktur, es gibt eine weitere Möglichkeit, 
+// allerdings ist diese übersichtlicher und kompakter
+$menu_items = array(
+        array("/File","",NULL,0,"<Branch>"),
+        array("/File/Neu","",New_Data,0,""),
+        array("/File/Laden","",'Load',0,""),
+        array("/File/Beenden","",array('gtk', 'main_quit'),0,""),
+
+        array("/Hilfe","",NULL,0,"<Branch>"),
+        array("/Hilfe/Info","",'Display_Info',0,""),
+
+    );
+
+// die Eigentliche Generierung der Menu-Leiste
+$bar = &new GtkMenuBar();
+$item_factory = &new GtkItemFactory($bar->get_type(),"<mbar>",$accel);
+$item_factory->create_items(\$menu_items);
+$menubar = $item_factory->get_widget("<mbar>");
+// Menu dem Fenster hinzufügen
+$vboxA->pack_start(\$menubar, FALSE, FALSE, 5); 
+
+// erzegen des Textausgabebereichs(Label), Frame ist lediglich kosmetisch
+$frame = &new GtkFrame('Textausgabe');
+$label = &new GtkLabel('');
+
+$frame->add($label);    // Label in das Frame packen
+// Frame in das Box-Container, dabei soll das Frame das  Box ausfüllen 
+// und jeweils
+$vboxA->pack_start($frame, TRUE, TRUE,50); 
+// 500 Pixel nach uben und unten Abstand halten
+
+// Erzeuge ein weiteres Container, weilches seine Kinder frei 
+// positionieren kann
+$align=&new GtkAlignment(0.5, 0.9,0,0);
+// Erzeige das Hello-Button
+$button = &new GtkButton('Hello');
+// Verbinde den Klicked-Event des Buttons mit der Funktion "Write_Hello()"
+$button->connect('clicked', 'Write_Hello');
+// Button dem align-Container hinzufügen
+$align->add($button);
+// Align-Container dem Box-Container hinzufügen
+$vboxA->pack_start($align, TRUE, TRUE, 5);
+
+// Zeigt an ob die Textasugabe aktiv ist oder nicht
+$hb_cklicked=false;
+
+// Zeichne alle Elemente
+$window->show_all();
+//Systemaufruf
+Gtk::main();
+
+?>
+        \end{Verbatim}      
+\subsection{Java}
+    \begin{Verbatim}[tabsize=2,frame=leftline,label=build.xml,numbers=left]
+package sw_eval.java;
+
+/* Projekt 30 Guitest */
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+/**
+ * @author Frank Slotta
+ *
+ * This is a GUI test for the project 30
+ * 
+ * Tested Operating Systems: Windows, Linux and FreeBSD
+ * 
+ * Requirements: Java Runtime Environment >=1.4.1, prior versions may work
+ * 
+ * Development: JDK 1.4.1 with Eclipse IDE
+ * 
+ */
+
+public class P30guitest
+extends JFrame
+implements ActionListener
+{
+    public P30guitest()
+    {
+        super("Swing-Menütest für das Projekt P30");
+        JMenuBar menubar = new JMenuBar();
+        menubar.add(createFileMenu());
+        menubar.add(createHelpMenu());
+        setJMenuBar(menubar);
+        Container contentpane = getContentPane();
+        JButton okbutton = new JButton("OK");
+        okbutton.addActionListener(this);
+        okbutton.setToolTipText("Hier klicken, um Fenster zu öffnen");
+        contentpane.add(okbutton);
+        
+    }
+    
+    
+    public void actionPerformed(ActionEvent event)
+    {
+        String cmd = event.getActionCommand();
+        if (cmd.equals("OK")) {
+            JOptionPane.showMessageDialog(this,"Hallo Welt");
+            
+        }
+        System.out.println(event.getActionCommand());
+    }
+    
+    //---Private Methoden---------------
+    private JMenu createFileMenu()
+    {
+        JMenu ret = new JMenu("Datei");
+        ret.setMnemonic('D');
+        JMenuItem mi;
+        //Öffnen
+        mi = new JMenuItem("Öffnen", 'f');
+        setCtrlAccelerator(mi, 'O');
+        mi.addActionListener(this);
+        ret.add(mi);
+        //Speichern
+        mi = new JMenuItem("Speichern", 'p');
+        setCtrlAccelerator(mi, 'S');
+        mi.addActionListener(this);
+        ret.add(mi);
+        //Separator
+        ret.addSeparator();
+        //Beenden
+        mi = new JMenuItem("Beenden", 'e');
+        mi.addActionListener(this);
+        ret.add(mi);
+        return ret;
+    }
+    
+    
+    
+    private JMenu createHelpMenu()
+    {
+        JMenu help = new JMenu("Hilfe");
+        help.setMnemonic('H');
+        
+        
+        return help;
+    }
+    
+    private void setCtrlAccelerator(JMenuItem mi, char acc)
+    {
+        KeyStroke ks = KeyStroke.getKeyStroke(
+                acc, Event.CTRL_MASK
+        );
+        mi.setAccelerator(ks);
+    }
+    
+    public static void main(String[] args)
+    {
+        P30guitest frame = new P30guitest();
+        frame.setLocation(100, 100);
+        frame.setSize(300, 200);
+        frame.setVisible(true);
+        
+    }
+}           
+\end{Verbatim}          
+
+    \label{xml_documents}
+    \section{Datensätze für Dokumenttypen}
+    \begin{Verbatim}[tabsize=2,frame=leftline,label=build.xml,numbers=left]
+<?xml version="1.0" encoding="UTF-8"?>
+<article>
+    <DC.title>c't 01/03</DC.title>
+    <DC.subject>Die unglaubliche Geschichte des Bill G.</DC.subject>
+    <DC.description>Artikel über Bill</DC.description>
+    <DC.publisher>Heise Verlag</DC.publisher>
+    <DC.date>Januar 2003</DC.date>
+    <DC.type>Artikel</DC.type>
+    <DC.format>Papier</DC.format>
+    <DC.identifier>Signatur</DC.identifier>
+    <DC.language>german</DC.language>
+    <DC.relation>http://www.heise.de/ct</DC.relation>
+    <DC.coverage>Uni OL, A5-5-556, 3. Regal links</DC.coverage>
+    <DC.rights>Copyright: Verlag Heinz Heise</DC.rights>
+
+    <UNI-OL.branch>Fachbereich Informatik</UNI-OL.branch>
+    <UNI-OL.abstract>Small notes or text from the paperback</UNI-OL.abstract>
+    <UNI-OL.signature>Signatur für das Dokument</UNI-OL.signature>
+    <UNI-OL.owner>Ingo Knito</UNI-OL.owner>
+    <UNI-OL.private>true</UNI-OL.private>
+    <UNI-OL.archivesource>http://hier.ist.die.datei</UNI-OL.private>
+</article>
+
+<?xml version="1.0" encoding="UTF-8"?>
+<audio>
+
+    <DC.title>Interview mit Linus Torvalds</DC.title>
+    <DC.creator>Interviewer</DC.creator>
+    <DC.subject>Linux und Windows</DC.subject>
+    <DC.description>5 Minuten Interview mit Linus T.</DC.description>
+    <DC.publisher>20th Century Fox</DC.publisher>
+    <DC.date>10.November 2002</DC.date>
+    <DC.type>OGG</DC.type>
+    <DC.format>Datei</DC.format>
+    <DC.identifier>Checksumme???</DC.identifier>
+    <DC.source>file:///fest/platte/interview.ogg</DC.source>
+    <DC.language>finnisch</DC.language>
+    <DC.relation>http://www.linux.de</DC.relation>
+    <DC.coverage>Uni Oldenburg, A5-1-161,3. Regal links</DC.coverage>
+    <DC.rights>Interviewer</DC.rights>
+
+    <UNI-OL.branch>Fachbereich Informatik</UNI-OL.branch>
+    <UNI-OL.abstract>Hier ist Raum fuer Notizen</UNI-OL.abstract>
+    <UNI-OL.signature>Signatur für das Tondokument</UNI-OL.signature>
+    <UNI-OL.owner>Wilhelm Mustermann</UNI-OL.owner>
+    <UNI-OL.private>true</UNI-OL.private>
+    <UNI-OL.archivesource>http://hier.ist.die.datei</UNI-OL.private>
+
+</audio>
+
+<?xml version="1.0" encoding="UTF-8"?>
+<book>
+    <DC.title>Freie Software</DC.title>
+    <DC.creator>Volker Grassmuck</DC.creator>
+    <DC.subject>Zwischen Privat- und Gemeineigentumg</DC.subject>
+    <DC.description>Buch ueber Freie Software</DC.description>
+    <DC.publisher>bpb</DC.publisher>
+    <DC.contributors>Georg Greve</DC.contributors>
+    <DC.date>30.November 2001</DC.date>
+    <DC.type>Buch</DC.type>
+    <DC.format>Buch</DC.format>
+    <DC.identifier>ISBN 3-89331-432-6</DC.identifier>
+    <DC.source>http://freie-software.bpb.de/Grassmuck.pdf</DC.source>
+    <DC.language>german</DC.language>
+    <DC.relation>http://freie-software.bpb.de</DC.relation>
+    <DC.coverage>Uni Oldenburg, A5-1-161,3. Regal links</DC.coverage>
+    <DC.rights>Rechteinhaber Verlag, Autor</DC.rights>
+
+    <UNI-OL.branch>Fachbereich Informatik</UNI-OL.branch>
+    <UNI-OL.abstract>Raum fuer Notizen oder den Klappentext</UNI-OL.abstract>
+    <UNI-OL.signature>Signatur für das Buch</UNI-OL.signature>
+    <UNI-OL.owner>Helga Musterfrau</UNI-OL.owner>
+    <UNI-OL.private>true</UNI-OL.private>
+    <UNI-OL.archivesource>http://hier.ist.die.datei</UNI-OL.private>
+</book>
+
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter>
+    <DC.title>Freie Software</DC.title>
+    <DC.creator>Volker Grassmuck</DC.creator>
+    <DC.subject>Erstes Kapitel</DC.subject>
+    <DC.description>Buch ??ber Freie Software</DC.description>
+    <DC.publisher>bpb</DC.publisher>
+    <DC.contributors>Georg Greve</DC.contributors>
+    <DC.date>30.November 2001</DC.date>
+    <DC.type>Buch</DC.type>
+    <DC.format>Buchkapitel</DC.format>
+    <DC.identifier>ISBN 3-89331-432-6</DC.identifier>
+    <DC.source>http://freie-software.bpb.de/Grassmuck.pdf</DC.source>
+    <DC.language>german</DC.language>
+    <DC.relation>http://freie-software.bpb.de</DC.relation>
+    <DC.coverage>Uni Oldenburg, A5-1-161,3. Regal links</DC.coverage>
+    <DC.rights>Rechteinhaber</DC.rights>
+
+    <UNI-OL.branch>Fachbereich Informatik</UNI-OL.branch>
+    <UNI-OL.abstract>Hier ist Raum fuer Notizen</UNI-OL.abstract>
+    <UNI-OL.signature>Signatur für das Kapitel</UNI-OL.signature>
+    <UNI-OL.owner>Kapitän Blaubeer</UNI-OL.owner>
+    <UNI-OL.private>true</UNI-OL.private>
+    <UNI-OL.archivesource>http://hier.ist.die.datei</UNI-OL.private>
+</chapter>
+
+<?xml version="1.0" encoding="UTF-8"?>
+<magazine>
+    <DC.title>Freie Software Sonderheft</DC.title>
+    <DC.creator>Volker Grassmuck</DC.creator>
+    <DC.subject>Erstes Kapitel</DC.subject>
+    <DC.description>Beschreibung von  Freier Software</DC.description>
+    <DC.publisher>bpb</DC.publisher>
+    <DC.contributors>Georg Greve</DC.contributors>
+    <DC.date>30.November 2001</DC.date>
+    <DC.type>Buch</DC.type>
+    <DC.format>Buchkapitel</DC.format>
+    <DC.identifier>ISBN 3-89331-432-6</DC.identifier>
+    <DC.source>http://freie-software.bpb.de/Grassmuck.pdf</DC.source>
+    <DC.language>german</DC.language>
+    <DC.relation>http://freie-software.bpb.de</DC.relation>
+    <DC.coverage>Uni Oldenburg, A5-1-161,3. Regal links</DC.coverage>
+    <DC.rights>Rechteinhaber</DC.rights>
+
+    <UNI-OL.branch>Fachbereich Informatik</UNI-OL.branch>
+    <UNI-OL.abstract>Hier ist Raum fuer Notizen</UNI-OL.abstract>
+    <UNI-OL.signature>Signatur für das Magazin</UNI-OL.signature>
+    <UNI-OL.owner>Frank Slotta</UNI-OL.owner>
+    <UNI-OL.private>true</UNI-OL.private>
+    <UNI-OL.archivesource>http://hier.ist.die.datei</UNI-OL.private>
+</magazine>
+
+<?xml version="1.0" encoding="UTF-8"?>
+<video>
+    <DC.title>Interview mit Linus Torvalds</DC.title>
+    <DC.creator>Interviewer</DC.creator>
+    <DC.subject>Linux und Windows</DC.subject>
+    <DC.description>5 Minuten Interview mit Linus T.</DC.description>
+    <DC.publisher>Linux TV</DC.publisher>
+    <DC.contributors>Mitwirkendende</DC.contributors>
+    <DC.date>13.November 2002</DC.date>
+    <DC.type>mpg</DC.type>
+    <DC.format>Datei</DC.format>
+    <DC.identifier>123563</DC.identifier>
+    <DC.source>file:///fest/platte/interview.mpg</DC.source>
+    <DC.language>english</DC.language>
+    <DC.relation>http://www.linux.de</DC.relation>
+    <DC.coverage>Uni Oldenburg, A5-1-161,3. Regal links</DC.coverage>
+    <DC.rights>Interviewer</DC.rights>
+
+    <UNI-OL.branch>Fachbereich Informatik</UNI-OL.branch>
+    <UNI-OL.abstract>Hier ist Raum fuer Notizen</UNI-OL.abstract>
+    <UNI-OL.signature>Signatur für das Video/UNI-OL.signature>
+    <UNI-OL.owner>Kapitän Blaubeer</UNI-OL.owner>
+    <UNI-OL.private>true</UNI-OL.private>
+    <UNI-OL.archivesource>http://hier.ist.die.datei</UNI-OL.private>
+</video>
+
+    \end{Verbatim}
+
+    \label{xml_schema}
+    \section{XML Schema für Dokumenttypen}
+    \begin{Verbatim}[tabsize=2,frame=leftline,label=build.xml,numbers=left]
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:complexType name="audio">
+ <xs:complexContent>
+  <xs:restriction base="xs:anyType">
+   <xs:sequence>
+    <xs:element name="DC.title" type="xs:string" use=required/>
+    <xs:element name="DC.creator" type="xs:string"/>
+    <xs:element name="DC.subject" type="xs:string" use=required/>
+    <xs:element name="DC.description" type="xs:string"/>
+    <xs:element name="DC.publisher" type="xs:string"/>
+    <xs:element name="DC.contributors" type="xs:string"/>
+    <xs:element name="DC.date" type="xs:date"/>
+    <xs:element name="DC.type" type="xs:string"/>
+    <xs:element name="DC.format" type="xs:string"/>
+    <xs:element name="DC.identifier" type="xs:string"/>
+    <xs:element name="DC.source" type="xs:string"/>
+    <xs:element name="DC.language" type="xs:string"/>
+    <xs:element name="DC.relation" type="xs:string"/>
+    <xs:element name="DC.coverage" type="xs:string"/>
+    <xs:element name="DC.rights" type="xs:string"/>
+
+    <xs:element name="UNI-OL.branch" type="xs:string"/>
+    <xs:element name="UNI-OL.abstract" type="xs:string"/>
+    <xs:element name="UNI-OL.signature" type="xs:string" use=required/>
+    <xs:element name="UNI-OL.owner" type="xs:string"/>
+    <xs:element name="UNI-OL.private" type="xs:boolean"/>
+    <xs:element name="UNI-OL.archivesource" type="xs:string"/>
+   </xs:sequence>
+  </xs:restriction>
+ </xs:complexContent>
+</xs:complexType>
+
+    \end{Verbatim}
+
+
+\chapter{Anwendungsf\"alle}
+\chapter{Handhabung Buildmanagement}
+        \label{build_p30}
+    \section{Projektbezogenes Vorgehen}
+        Im Wesentlichen gibt es folgende targets, die von den Projektmitgliedern benutzt werden sollten.\\
+        Folgende Aufrufe sollten nach erfolgreicher Ant-Installation und Checkout des Projektes getätigt werden:        
+        \begin{enumerate}
+            \item{extract\_exist: Extrahiert die Datenbank. Aufruf nur einmal nach dem Checkout nötig!}
+            \item{ant start\_exist :Startet die Datenbank}
+            \item{ant stop\_exist : Beendet die Datenbank}
+            \item{ant p30\_offlineClient : Kompiliert, deployed und startet den Offline-Client}
+            \item{ant p30\_projektbericht: ruft pdflatex, bibtex und makeindex in richtigen     
+            Intervallen auf}
+        \end{enumerate}     
+\chapter{Handhabung Versionsmanagement}
+    \label{cvs_p30}
+    \section{Projektbezogenes Vorgehen}
+        Folgende Beschreibung basiert auf der Annahme, daß ein CVS-Konsolen-Client vorliegt.\\
+        \subsection{Anwendung für den Benutzer}
+            Für den Benutzer sind in der Regel nur Releases interessant. Daher wird auch nur auf ein Checkout eines Releases eingegangen. Falls andere Funktionen erwünscht sind, wird auf den Entwickler-Abschnitt(\ref{cvs_developer}) verwiesen.\\
+            Unter Annahme, daß die Bezeichnung des gewünschten Releases zur Verfügung steht, sollten ´folgende Aufrufe genügen :\\
+      \begin{Verbatim}[tabsize=2,frame=leftline,label=build.xml,numbers=left]
+cvs -d:pserver:anonymous@srv.wiwi.uni-oldenburg.de:/var/lib/cvs login
+cvs -d:pserver:anonymous@srv.wiwi.uni-oldenburg.de:/var/lib/cvs checkout
+                         -r [release_name] p30
+      \end{Verbatim}
+        \label{cvs_developer}
+        \subsection{Anwendung für den Enwickler}
+            Entwickler werden neben dem reinen Checkout eines Projektes auch Änderungen vornehmen. Da hierbei CVS in intensiverem Maße als beim reinen Benutzer benutzt wird, empfiehlt es sich folgende Variable zu setzen.\\
+            \textbf{CVSROOT=:pserver:[USER\_NAME]:[PASSWORD]@srv.wiwi.uni-oldenburg.de:/var/lib/cvs}\\
+            Von nun an können folgende Kommandos vereinfacht abgegeben werden:\\
+            \begin{itemize}
+                \item{Einloggen: cvs login}
+                \item{HEAD Auschecken: cvs checkout}
+                \item{Änderungen einholen: cvs update}
+                \item{Änderungen einchecken}
+                    \begin{enumerate}
+                        \item{cvs update}
+                        \item{cvs commit}
+                    \end{enumerate}
+                \item{Element hinzufügen}
+                    \begin{enumerate}
+                        \item{cvs add [ELEMENT\_NAME]}
+                        \item{cvs commit [ELEMENT\_NAME]}
+                    \end{enumerate}
+                \item{Element löschen} 
+                    \begin{enumerate}
+                        \item{Datei lokal löschen: del/rm [ELEMENT\_NAME]}
+                        \item{cvs remove [ELEMENT\_NAME]}
+                        \item{cvs commit [ELEMENT\_NAME]}
+                    \end{enumerate}
+            \end{itemize}
+            Mit obigen Kommandos sollte wesentliche Funktionaltiät erklärt sein. Bei speziellen Ereignissen wird auf die Literatur verwiesen\cite{cvs_doc}.
+\chapter{Autoren}
+    \section{Maxim Bauer}
+    Matrikelnummer:7237430
+        \subsection{Bearbeitete Bereiche}
+            \begin{itemize}
+                \item{Vorstudien und Recherchen / Analyse bestehender Softwaresysteme / Greenstone}
+                \item{Vorstudien und Recherchen / Programmiersprachenevaluation / PHP-GTK}
+                \item{Vorstudien und Recherchen / GUI }
+                \item{Entwurf / Software-Ergonomie}
+                    \end{itemize}
+    \section{Jurij Henne}
+        Matrikelnummer:7237560
+                \begin{itemize}
+            \item{Einleitngskramm könnte ich helfen, dass wenn wir Probleme haben einfach ne vorlage von                            woanders nehmen und überwiegend copypasten}     
+                \item{Vorstudien und Recherchen / Analyse bestehender Softwaresysteme / DBP}
+                \item{Vorstudien und Recherchen / Programmiersprachenevaluation / PHP-GTK(ergänzungen)}
+                \item{Vorstudien und Recherchen / GUI }
+                \item{Entwurf / GUI/ Prozeßmodelle(vs.-Geschichte) /}
+                \item{Implementierung / GUI/ (visuelle)Gestaltung/ Funktionsumfang/Handbuch/}
+                
+                    \end{itemize}
+    \section{Thorsten Schl\"ormann}
+        Matrikelnummer:5683640
+         \subsection{Bearbeitete Bereiche}
+              \begin{itemize}
+               \item Problembeschreibung
+               \item Vorstudien und Recherchen / Programmiersprachenevaluation / C\#
+               \item Vorstudien und Recherchen / Signaturbildung / *
+               \item Anforderungsanalyse / *
+               \item Ausblick
+          \end{itemize}
+    \section{Frank Slotta}
+        Matrikelnummer:7888140
+            \subsection{Bearbeitete Bereiche}
+            \begin{itemize}
+                \item{Einführung}
+        \item{XML als Beschreibungssprache}
+        \item{XML Schema}
+        \item{Dublin Core}
+        \item{XML Codebeispiele}
+        \item{JAVA Programmiersprachenevaluation}
+        \item{Protokolle}
+        
+
+            \end{itemize}
+        
+    \section{Stefan Willer}
+        Matrikelnummer:7212110
+        \subsection{Bearbeitete Bereiche}
+            \begin{itemize}
+                \item{Vorstudien und Recherchen / Analyse bestehender Softwaresysteme / Dspace}
+                \item{Vorstudien und Recherchen / Programmiersprachenevaluation / TclTk}
+                \item{Vorstudien und Recherchen / XML-Datenbanken / *}
+                \item{Vorstudien und Recherchen / Konfigurationsmanagement / *}
+                \item{Entwurf / Entwurfsmuster}
+                \item{Entwurf / Architektur}
+                \item{Entwurf / Feinentwurf / Backend}
+                \item{Implementierung / Backend / Pfade+URI}
+            \end{itemize}
+        \cite{xindice}
+        \cite{xindice_admin_guide}
+        \cite{xindice_user_guide}
+        \cite{xindice_developer_guide}
+        \cite{xindice_tools}
+        \cite{exist_doc}
+        \cite{exist_doc2}
+        \cite{xml_data_management}
+        \cite{xmldb_api}
+        \cite{xml_database_comparison}
+        \cite{xpath_tut}
+        \cite{xpath_spec}
+        \cite{SEGlossary}
+        \cite{SESlides}
+        \cite{UMLOMG}
+        \cite{Omondo}
+        \cite{ArgoUML}
+        \cite{DIA}
+        \cite{dspace_doc}
+        \cite{oai_pmh}
+        \cite{openURL}
+        \cite{ant_doc}
+        \cite{make_doc}
+        \cite{make_ant_compare}
+        \cite{koala_make}
+        \cite{make_alternative}
+        \cite{cvs_doc}
+        
+%   \chapter{Glossar}
+%   Icon : Icons sind Piktogramme, kleine Bildelemente, die bei grafischen Benutzeroberflächen als bildliche Ergänzung eingesetzt werden und über die man beispielsweise Programme aufrufen kann. \\
+%   SVG: SVG ist ein offener Standard, zur Erstellung von zweidimensionalen Vektorgrafiken, Texten und Pixelbildern.

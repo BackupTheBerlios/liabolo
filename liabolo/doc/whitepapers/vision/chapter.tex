@@ -1,0 +1,84 @@
+\chapter{Vision}
+\section{Einleitung}
+\label{sec:einleitung} % Always give a unique label
+% use \chaptermark{}
+% to alter or adjust the chapter heading in the running head
+
+Das Softwareprodukt "`Liabolo"' unterstützt inzwischen sehr viele Funktionen, die für eine Literaturverwaltungssoftware von Bedeutung sind. Diese Funktionen sind ausführlich im Whitepaper "`Gui-Architektur"' beschrieben. Es ist jedoch möglich und auch wünschenswert, dass noch mehr Funktionen, die "`Liabolo"' noch besser und komfortabler machen, in dieses Softwareprodukt eingebunden werden. 
+Einige der Funktionen können "`Liabolo"' noch mächtiger im Bezug auf die Literaturverwaltungssoftware machen, andere könnten z.B. die Arbeit mit "`Liabolo"' wesentlich erleichtern. Ein Softwareprodukt, welches die Arbeit der Nutzer beschleunigt und erleichtert, findet bei vielen Nutzern Verwendung und Unterstützung. Einige mögliche Funktionen, die für Liabolo wichtig werden können, werden in diesem Whitepaper genauer erläutert.
+\paragraph{}
+Die Funktionen, die in "`Liabolo"' eingebunden werden können und hier beschrieben werden, sind das \index{Anlegen von Duplikaten}"`Anlegen von Duplikaten"', \index{Überprüfung auf Duplikate}"`Überprüfung auf Duplikate"' und die \index{Nicht-sortier-Kennzeichen}"`Unterstützung von Nicht-sortier-Kennzeichen"'. Was beinhalten aber diese Funktionen im einzelnen und wie können sie realisiert werden? Die Beantwortung dieser Fragen wird im wesentlichen den Inhalt dieses Whitepapers bilden. 
+\newpage
+
+\section{Anlegen von Duplikaten}
+\label{sec:duplizieren}
+\index{Anlegen von Duplikaten}Das Anlegen von \index{Duplikate}Duplikaten beinhaltet in sich die Möglichkeit zum schnellen Anlegen von gleichen Datensätzen. Dies ist besonders dann sinnvoll, wenn mehrere gleiche Objekte existieren, die erfasst werden sollen\footnote{In einer Bibliothek existieren in der Regel öfters mehrere Exemplare der gleichen Bücher, Artikeln, etc. }. Zur Zeit ist dies nur als "`Anlegen von neuen Datensätzen"' möglich. Dies ist jedoch beim Anlegen mehrerer gleicher Objekte sehr ineffizient und für den Benutzer langweilig, weil immer die gleichen Daten eingegeben werden müssen. Mit Hilfe der Funktion "`Anlegen von Duplikaten"' werden die gleichen Daten bereits in das Eingabe-Formular mit übernommen, was viel Zeit und Routinearbeit erspart.
+Wie genau diese Funktion in "`Liabolo"' eingebunden werden kann, wird weiter unten genauer beschrieben.  
+
+	\subsection*{Umsetzung der Funktion in "`Liabolo"'}
+	\label{sec:umsetzung}
+Um diese Funktion überhaupt aufrufen zu können, muss zunächst mindestens ein bereits definiertes \index{Metadaten-Objekt}Metadaten-Objekt\footnote{Metadaten-Objekt : Ein in "`Liabolo"' definiertes Metadaten-Objekt wie z.B. Buch, Artikel, Zeitschrift und etc.} vorhanden sein. Der Aufruf der Funktion kann aus dem Ergebnis-Fenster entweder durch den entsprechenden Button oder das Kontext-Menü, wobei als Vorlage immer das gewählte Metadaten-Objekt verwendet wird.
+\paragraph{}
+Wenn die Funktion gestartet wird, erscheint als erstes das Editier-Formular mit bereits ausgefüllten Eingabefeldern. An dieser Stelle wären dann generell zwei Varianten möglich.
+\paragraph{}
+Die erste Möglichkeit wäre, dass die Eingabefelder alle nicht editierbar sind, was für das Anlegen von Duplikaten durchaus Sinn macht. Denn bei einer Änderung der Daten des Metadaten-Objekts wäre das kein Duplizieren mehr (Die einzige Änderung, die zulässig wäre ist die Änderung des Standortes). Wenn der Benutzer anschließend die Eingaben bestätigt, wird das Metadaten-Objekt mit aktuellen Angaben in der Datenbank gespeichert mit einer neuen Signatur. Zur Zeit gibt es in "`Liabolo"' noch keine Möglichkeit zur Bildung einer für die \index{Duplikate}Duplikate passenden Signatur (z.B. die Übernahme der Signatur von dem zu duplizierenden Objekt mit dem Hinzufügen eines Buchstaben am Ende der Signatur. Wenn der Buchstabe bereits vorhanden ist, wird dieser abgeschnitten und durch den nächstfolgenden ersetzt.), also wird eine komplett neue Signatur generiert.
+
+Als Ergebnis wird das duplizierte \index{Metadaten-Objekt}Metadaten-Objekt mit der modifizierten Signatur und eventuell neuen Standort in der Datenbank abgelegt.
+\paragraph{} 
+Die zweite Variante wird von der ersten nur durch die Möglichkeit des Editierens im Editier-Formular aller möglichen Eingabefelder des Metadaten-Objekts unterschieden. Dies macht Sinn, weil damit nicht nur genaue Duplikate erfasst werden könne, sondern auch Objekte, die sich geringfügig von einander unterscheiden (z.B. andere Auflage). In diesen Fall sollte aber genau unterschieden werden, welche Signatur generiert werden muss. Bei Duplikaten sollte der \index{Signaturalgorithmus}Signaturalgorithmus nur den Buchstaben an das Ende der Signatur anhängen, bei allen anderen sollte eine neue Signatur generiert werden.
+
+Als Ergebnis wird entweder ein modifiziertes \index{Metadaten-Objekt}Metadaten-Objekt mit einer neuen Signatur in der Datenbank abgelegt oder ein Duplikat mit der modifizierten Signatur und eventuell neuen Standort.
+\paragraph{}
+Für welche der beiden Varianten die Entwickler sich auch entscheiden, es sollte bedacht werden, dass die erste Variante zwar ziemlich einfach zu implementieren wäre, die zweite jedoch mehr Raum für weitere mögliche Erweiterungen bietet. 
+\newpage	
+\section{Überprüfung auf Duplikate}
+\label{sec:duplikate_finden}
+\index{Überprüfen auf Duplikate}Das Überprüfen auf Duplikate beim Anlegen eines neuen Metadaten-Objekts bietet die Möglichkeit zum schnellen finden der gleichen \index{Metadaten-Objekt}Metadaten-Objekte. Wenn ein neues Objekt angelegt wird, wird gleichzeitig nach allen Objekten in derselben Bibliothek gesucht, die die gleiche ISBN-Nummer aufweisen. Danach kann der Benutzer entscheiden, ob die in der Bibliothek enthaltene Objekte Duplikate des gerade neu angelegten Objekts sind oder nicht. Abschließend wird der Benutzer vor die Wahl gestellt ob er das neu angelegte Metadaten-Objekt trotzdem in der Datenbank speichern möchte, oder ob er dieses Objekt verwerfen möchte.   
+\paragraph{}
+Diese Funktion ist nur dann sinnvoll, wenn mehrere Nutzer die gleiche Bibliothek pflegen, was in "`Liabolo"' häufig der Fall sein kann. Durch diese \index{Mehrbenutzerfähigkeit}Mehrbenutzerfähigkeit können unter Umständen viele redundante Daten entstehen, die mit der obenbeschriebenen Funktion minimiert werden können. Wichtig ist diese Funktion auch bei der Signaturbildung (wenn der \index{Signaturalgorithmus}Signaturalgorithmus erstmals angepasst wurde), denn somit bekommen die gleiche Metadaten-Objekte nicht eine komplett neue Signatur, sondern eine modifizierte Signatur, die dem Umgang mit den \index{Duplikate}Duplikaten erleichtert.   
+	
+	\subsection*{Umsetzung der Funktion in "`Liabolo"'}
+	\label{sec:umsetzung1}
+Umgesetzt werden kann diese Funktion auf folgende Art und Weise: Zunächst wird das Formular zum Anlegen der neuen Metadaten-Objekte aufgerufen. Wenn der Benutzer seine Eingaben getätigt hat und bestätigt hat, wird eine Suche in der Datenbank angestoßen, welche alle Metadaten-Objekte mit der ISBN-Nummer des neu eingegebenen Objektes in der Datenbank findet\footnote{Bei Objekten, die keine ISBN-Nummer (oder ISSN-Nummer) haben, wird die Funktion nicht aufgerufen.}. Es wird ausschließlich nur nach der gleichen ISBN-Nummer gesucht. Danach bekommt der Benutzer ein Ergebnis-Formular eingeblendet, wo die gesamten Ergebnisse der Suche aufgelistet sind. 
+
+An dieser Stelle hat der Benutzer die Möglichkeit die aufgelisteten Ergebnisse durchzusehen und zu entscheiden, was mit dem von ihm eingegebenen Metadaten-Objekt geschehen soll. Soll das Objekt trotzdem in die Datenbank aufgenommen werden, weil dieses Metadaten-Objekt-Duplikat auf ein anderes Objekt verweist, oder nicht, weil die Metadaten in Wirklichkeit zum einen und denselben Objekt gehören.
+
+Je nachdem, wie der Benutzer sich entscheidet, wird das Metadaten-Objekt in die Datenbank aufgenommen oder nicht. Somit kann erreicht werden, dass die Datenbank sauber bleibt in Bezug auf unerwünschte redundante Informationen.
+\newpage	
+\section{Unterstützung von \\
+				Nicht-sortier-Kennzeichen}
+\label{sec:kennzeichen}
+\index{Nicht-sortier-Kennzeichen}Nicht-sortier-Kennzeichen sind Zeichen mit deren Hilfe bestimmte Wörter markiert werden können, um von der Sortierung ausgeschlossen zu werden. Als ein Nicht-sortier-Kennzeichen wird meistens ein Zeichen, welches in der Regel nicht in der Zeichenkette, die sortiert werden soll, vorkommt. Die Markierung der Wörter erfolgt durch das setzen des Nicht-sortier-Kennzeichens vor dem jeweiligen Wort. Somit wird dieses Wort von der Sortierung ausgeschlossen. Die Nicht-sortier-Kennzeichen können überall dort verwendet werden, wo die bestimmten Zeichenketten sortiert werden können. Die Eingabe von Nicht-sortier-Kennzeichen erfolgt ausschließlich durch den Benutzer.  
+\paragraph{}
+Das Einsetzen der Nicht-sortier-Kennzeichen in "`Liabolo"' würde die Arbeit damit noch angenehmer gestalten. Im Moment werden in "`Liabolo"' noch alle in den Zeichenketten enthaltenen Wörter bei der Sortierung berücksichtigt. Dies führt dazu, dass viele Datensätze, welche z.B. als erstes Zeichen ein Artikel enthalten, anders sortiert werden, als diejenigen, die keinen Artikel haben. Damit wird eine deutliche Verfälschung des Sortierergebnisses sichtbar. Um diese Verfälschung nicht zu erlauben, können Nicht-sortier-Kennzeichen eingeführt werden, die dann vom Sortieralgorithmus unterstützt werden müssen. 
+\paragraph{}
+Alternativ zu Einführung der Nicht-sortier-Kennzeichen kann auch eine andere Möglichkeit in Betracht gezogen werden. Diese beinhaltet in sich die Anpassung des Sortieralgorithmus um \index{Zusatzlisten}Zusatzlisten mit Angaben über Artikel und andere Zusätze, welche dann vom Sortieralgorithmus nicht berücksichtigt werden. Diese Möglichkeit verlagert die Problematik des Sortierens vom Benutzer auf den Entwickler. Denn wenn beim Einsatz der  Nicht-sortier-Kennzeichen die Benutzer selbst entscheiden konnten, welche Zeichen von der Sortierung ausgeschlossen werden sollen, müssen die zusätzliche Listen vom Entwickler gepflegt werden.     
+\subsection*{Umsetzung der Funktion in "`Liabolo"'}
+	\label{sec:umsetzung2}
+In "`Liabolo"' kann die Unterstützung von Nicht-sortier-Kennzeichen auf folgende Weise erfolgen: Zuerst muss ein bestimmtes Zeichens ausgewählt werden, welchen dann die Funktion des Nicht-sortier-Kennzeichen übernimmt. Bei der Wahl des Zeichen ist zu berücksichtigen, dass dieses nicht in den zu sortierenden Zeichenketten vorkommt. Nachdem dies geschehen ist müssen noch zwei Elemente in "`Liabolo"' geändert bzw. angepasst werden
+\begin{itemize}
+	\item Erstens muss der Sortieralgorithmus so angepasst werden, dass er die Nicht-sortier-Kennzeichen mit den dazugehörigen Wörtern aus den zu \index{sortierte Zeichenketten}sortierenden Zeichenketten heraus filtert. Damit ist gemeint, dass diese Wörter nicht entfernt werden, sondern nur bei der Sortierung nicht berücksichtigt werden. Danach erfolgt die Sortierung und die Rückgabe der sortierten Zeichenketten.
+	\item Zweitens müssen einige GUI-Formulare angepasst werden. Die Formulare zur Eingabe oder zum Editieren der \index{Metadaten-Objekte}Metadaten-Objekte müssen die Nicht-sortier-Kennzeichen anzeigen. Damit wird die Möglichkeit zum Eingeben und Ändern der Nicht-sortier-Kennzeichen gegeben. Beim Anzeigen der Metadaten-Objekte sollen die Nicht-sortier-Kennzeichen aber ausgeblendet werden, um das Lesen von Ergebnissen nicht zu behindern.  
+\end{itemize}
+Im ersten Fall sollte im \index{Sortieralgorithmus}Sortieralgorithmus ein Filter eingebaut werden, welcher die mit Nicht-sortier-Kennzeichen markierten Wörtern bei der Sortierung ignoriert. Im zweiten Fall muss nur das Ergebnis-Formular geändert werden. Beim Anzeigen der Ergebnisse werden vorher aus allen Metadaten-Objekten die \index{Nicht-sortier-Kennzeichen}Nicht-sortier-Kennzeichen entfernt. Bei Anlegen oder Editieren ist keine Änderung notwendig, da die Nicht-sortier-Kennzeichen in den Metadaten gespeichert werden.
+\paragraph{}
+Alternativ zu Umsetzung der Nicht-sortier-Kennzeichen kann die zweite Möglichkeit viel einfacher umgesetzt werden. In diesem Fall muss nur der Sortieralgorithmus um eine Liste erweitert werden, wo alle Zeichen stehen, die vom Sortieralgorithmus ignoriert werden.
+Diese Liste kann vorerst nur vom Entwickler geändert werden. Um die Pflege der Liste auf den Benutzer zu übertragen, ist ein neues Formular-Fenster notwendig, wo die ganzen Nicht-sortier-Wörter enthalten sind, neu angelegt oder gelöscht werden können. Somit wäre eine weitere Möglichkeit zur Individualisierung gegeben. 
+
+%
+%
+% For figures use
+%
+%\begin{figure}
+%\centering
+% Use the relevant command for your figure-insertion program
+% to insert the figure file.
+% For example, with the option graphics use
+%\includegraphics[height=4cm]{images/figure.eps}
+%
+% If not, use
+%\picplace{5cm}{2cm} % Give the correct figure height and width in cm
+%
+%\caption{Please write your figure caption here}
+%\label{fig:1}       % Give a unique label
+%end{figure}

@@ -1,0 +1,485 @@
+         \section{XML als Beschreibungssprache}%Frank
+		\subsection{Was ist XML?}
+		XML steht für 'Extensible Markup Language' und ist eine beschreibende
+		Sprache. Sie stellt einen Standard dar, mit dem Dokumente beschrieben und
+		verarbeitet werden können. Die Sprache XML wurde wie HTML vom World Wide Web
+		Consortium \cite{xml_w3c} geschaffen und ist eine vereinfachte Variante der
+		Standard Generalized Markup Language (SGML). Nach \cite{xml_practical} ist XML
+		die neue Sprache für das Web.
+		Als Meta-Sprache ist es ohne
+		statische Vorgaben möglich, Tags selbst zu definieren, z.B.: $<$Buchbesprechung$>$
+		oder $<$Geburtstag$>$. Die Elemente können durch Document Type Definitions (DTD)
+		deklariert und beschrieben werden.
+		\subsection{Warum XML für das Projekt 30?}
+		Die Spezifikation von XML ist frei verfügbar, ohne die Rechte Dritter zu verletzen. Damit erfüllt es
+		die Anforderungen für das Modul 'Virtuelle Organisation - Open Source' und ist vollständig
+		dokumentiert. Weiterhin ermöglicht XML die strukturierte Darstellung von Daten und beseitigt damit einige der Schwächen von HTML. Die Anforderungen der Auftraggeber lassen eine objektorientierte 		Datenhaltung sinnvoller erscheinen. Eine XML Datenbank kann daher die anfallenden Daten besser 			aufnehmen als eine relationale Datenbank. XML Dateien lassen sich leicht validieren und auch über 		langsame Netzwerkverbindungen performant übertragen. Ganze Bücher dokumentieren den Einsatz von XML und Datenbanken, z.B. \cite{xml_database}.
+			\subsubsection{Terminologie}
+			Ein XML Dokument besteht aus mindestens einem Element, das z.B. folgende Form
+			hat:
+			\begin{center}
+			  \begin{verbatim}
+			    <Kopfzeile>
+			       Hier steht die Kopfzeile.
+			    </Kopfzeile>
+			  \end{verbatim}
+			\end{center}
+			Das Element Kopfzeile hat ein öffnendes und eine schließendes Tag. Ein
+			Element beginnt mit dem Symbol für die öffnende spitze Klammer ($<$) und endet mit dem
+			Symbol für die schließende spitze Klammer ($>$). Das schließende Tag ist bis auf ein Symbol
+			identisch: vor dem Namen des Elementes befindet ein Slash (/), mit diesem Tag
+			endet die Beschreibung für ein Element. Weiterhing können auch Attribute definiert werden:
+			\begin{center}
+			  \begin{verbatim}
+  			    <Länge Längenmaß="cm">16,8</Länge>
+			  \end{verbatim}
+			\end{center}
+			Das Attribut wird hier innerhalb des öffnenden Tags definiert und heißt
+			Längenmaß. Dem Attribut wird die Eigenschaft 'cm' zugewiesen. Die Eigenschaft
+			steht innerhalb von Anführungsstrichen. Es gibt weiterhin auch Tags ohne
+			Inhalt, die nur ein Attribut definieren:
+			\begin{center}
+			  \begin{verbatim}
+				<Quelle link="http://www.google.de"></Quelle>
+				<Quelle link="http://www.google.de"/>
+			  \end{verbatim}
+			\end{center}
+			Beide Elemente im Beispiel sind identisch, leere Elemente dienen häufig dazu,
+			zusätzliche Informationen zu übertragen, die nicht direkt im Text
+			stehen (sollen).
+
+				\paragraph{Zwingende Eigenschaften von XML}
+				Attribute müssen in Anführungsstrichen stehen, auf das obige Beispiel
+				bezogen würde:
+				\begin{center}
+				  \begin{verbatim}
+				  <Quelle link=http://www.google.de/>
+				    \end{verbatim}
+				\end{center}
+			zu einer Fehlermeldung führen.\\
+			Jedes Element, das nicht leer ist, muss ein öffnendes und ein schließendes
+			Tag besitzen. Folgender Aufbau ist nicht erlaubt:
+			\begin{center}
+			  \begin{verbatim}
+				<Tagespunkt>
+				  1. Tagespunkt
+				<Tagespunkt>
+				  2. Tagespunkt
+			  \end{verbatim}
+			\end{center}
+			Eine richtige Darstellung sieht folgendermaßen aus:
+			\begin{center}
+			  \begin{verbatim}
+				<Tagespunkt>
+				  1. Tagespunkt
+				</Tagespunkt>
+				<Tagespunkt>
+				  2. Tagespunkt
+				</Tagespunkt>
+			   \end{verbatim}
+				Elemente mit gleichem Namen dürfen beliebig oft verwendet werden.
+			\end{center}
+			Tags müssen korrekt geschachtelt werden. Ein schließendes Tag muss auf
+			das identische öffnende Tag folgen, es muß ihm am nächsten stehen.
+			Der folgende Aufbau stellt eine korrekte Schachtelung dar:
+			\begin{center}
+			  \begin{verbatim}
+				<Tagespunkt>
+				  <fettgedruckt>
+				    1. Tagespunkt
+				  </fettgedruckt>
+				</Tagespunkt>
+			  \end{verbatim}
+			\end{center}
+			während folgendes Beispiel eine Fehlermeldung erzeugt:
+			\begin{center}
+			  \begin{verbatim}
+				<Tagespunkt>
+				  <fettgedruckt>
+				    1. Tagespunkt
+				  </Tagespunkt>
+				</fettgedruckt>
+			  \end{verbatim}
+			\end{center}
+			\subsubsection{Namensräume}
+			Namensräume lösen Probleme, die bei gleichen Elementnamen auftauchen, die nicht zusammengehören. Namensräume sind mit lokalen und globalen Variablen in der objektorientierten
+			Programmierung vergleichbar. Beispiel:
+			\begin{center}
+			  \begin{verbatim}
+				<birne>
+				  <fassung>Blech</fassung>
+				  <draht>Wolfram</draht>
+				</birne>
+
+				<obst>
+				  <birne>Helene</birne>
+				  <apfel>Braeburn</apfel>
+				</obst>
+			  \end{verbatim}
+			\end{center}
+			Wird ein Dokument erstellt, das beide Elemente zusammenführt, so wäre unklar, welche Inhalte
+			das Element '$<$birne$>$' haben darf. Das Problem wird dadurch gelöst, das den Elementen der
+			Namensraum vorangestellt wird, getrennt durch einen Doppelpunkt.
+			\begin{center}
+			  \begin{verbatim}
+			    <licht xmlns="http://www.lagerraum.de/">
+			      <birne>Lichtquelle</birne>
+			        <nahrung xmlns:obstkiste="http://www.lecker.de/">
+			          <obstkiste:birne>Helene</obstkiste:birne>
+			          <bewohner="Mäuse"/>
+			        </nahrung>
+			    </licht>
+          		  \end{verbatim}
+			\end{center}
+			Die erste Definition $<$birne$>$ gehört zum Namensraum 'licht', da dieser zuletzt definiert wurde.
+			Da kein Doppelpunkt in der Deklaration vorkommt, wird 'licht:' als Standardnamensraum
+			angesehen. Um einen zweiten Namensraum schaffen zu können, wird dem Element 'nahrung' das Präfix 'obstkiste:' vorangestellt. So kann die zweite Definition von 'birne' eindeutig dem
+			Namensraum 'obstkiste' zugewiesen werden. Wird kein Namensraum verwendet, so gilt wieder der
+			Standardnamensraum, in diesem Fall 'licht'.
+
+
+		\subsection{Dublin Core}
+		Im Internet ist es nicht immer leicht, eine gewünschte Information zu·
+		finden. Es ist zuviel Information verfügbar, das relevante Wissen muss·
+		herausgefiltert werden. Zudem sind gleichartige Informationen, wie z.B.·
+		eine Buchbeschreibung, nicht in gleichartigen Formaten gespeichert. Weiterhin fehlte überhaupt
+		ein Standard, der Daten über Daten enthält, also Dateien, die ein Bild oder ein Dokument
+		beschreiben. Auf einer Konferenz sollte eine Einigung gefunden werden, um mit Hilfe von
+		Metadaten einen Standard zu finden, mit dem Dokumente beschrieben werden können.
+			\subsubsection{Entstehung des Dublin Core}
+			In Dublin (Ohio) fand 1995 die erste Konferenz statt, auf der sich ein 'Metadata
+			Workshop' mit der Definition von Elementen beschäftigte, die einen Standard
+			für die Dokumentenbeschreibung darstellen sollte. Der Name Dublin Core leitet sich
+			vom ersten Tagungsort ab, inzwischen befindet sich die 'Dublin Core Metadata Initiative'
+			unter \cite{dublin_core} im Internet. Das Ergebnis der ersten Tagung waren 13 Elemente,
+			auf die sich die 50 Teilnehmer einigten. Auf der dritten Konferenz wurde festgelegt, das
+			die Metadaten nicht nur auf Textdokumente, sondern auch auf Bilder und andere visuelle
+			Objekte angewendet werden können. Der vierte Workshop ergab, das zu den inzwischen 15
+			Elementen keine mehr hinzugefügt werden sollen. Bei der Entwicklung stellte sich
+			heraus, das Metadaten in der Sprache vorliegen, in der auch das zu beschreibende
+			Dokument verfasst ist. Aus diesem Grund wurde Dublin Core und seine Elemente in über
+			20 Sprachen übersetzt, um den Interessenten aus über 50 Ländern entgegen zu kommen.
+			Die Standardsprache ist jedoch Englisch, gleiche Metatags dürfen beliebig oft vorkommen.
+			\subsubsection{Elemente des Dublin Core}
+			Die 15 Metadatenelemente sind recht einfach gehalten, um größtmögliche Flexibilität zu
+			erreichen. Die Elemente enthalten Informationen über ein Dokument, um es zu kategorisieren
+			und zu beschreiben. Dadurch wird eine Indizierung erst möglich und die Suche in großen
+			Datenbeständen stark vereinfacht. Die Erfahrung zeigt, das alle Elemente sowohl auf Bücher,
+			als auch auf Tondokumente oder Filme angewandt werden können. Die Elemente werden als
+			'Dublin Core Metadata Element Set' bezeichnet, sie beginnen alle mit dem Präfix 'DC.'.
+				\paragraph{1. DC.title}
+				DC.title bezeichnet den Namen für das Dokument, also ein Buchtitel oder der Name von
+				einem Film.
+				\paragraph{2. DC.creator}
+				Hiermit wird der Verfasser oder Urheber definiert, der für das Dokument intellektuell
+				verantwortlich zeichnet. Dies kann ein Autor, aber auch ein Maler, Fotograf oder
+				Komponist sein.
+				\paragraph{3. DC.subject}
+				Das dritte Element steht für das Thema, mit dem sich das Dokument auseinandersetzt.
+				Hiermit sind auch Schlag- oder Stichworte gemeint, die den Inhalt beschreiben.
+				Auch Phrasen oder das Thema des Dokumentes können hier erfasst werden.
+				\paragraph{4. DC.descripton}
+				Hier erfolgt eine inhaltliche Beschreibung in Textform. Dokumente im Textformat
+				werden mit einer Inhaltsangabe beschrieben, graphische Objekte mit einer Art
+				Inhaltsangabe.
+				\paragraph{5. DC.publisher}
+				Dieses Metatag definiert den Verleger oder Herausgeber, je nachdem, wer dafür
+				verantwortlich ist, dass das Dokument überhaupt zur Verfügung steht.
+				\paragraph{6. DC.contributors}
+				Beteiligte Personen und Körperschaften werden hier aufgeführt. Allgemein die Personen,
+				die irgendwie an dem Dokument mitgearbeitet haben, aber nicht direkt Autor sind.
+				Dies sind z.B. Übersetzer oder Illustratoren.
+				\paragraph{7. DC.date}
+				In diesem Tag wird das Datum erfasst, an dem das Dokument verfügbar gemacht wurde.
+				Empfohlen wird eine 8-stellige Zahl im Format JJJJMMTT, wie es in ANSI X3.30-1985
+				definiert ist. Beispielsweise steht 19720219 für den 19. Februar 1972.
+				\paragraph{8. DC.type}
+				Hier wird die Art beschrieben, in der das Dokument vorliegt etwa ein Buch, ein
+				Musikstück oder ein Zeitungsartikel.
+				\paragraph{9. DC.format}
+				Das Dokumentformat wird im neunten Metatag erfasst. Hierbei wird das technische
+				Format angegeben, in der das Dokument vorliegt. Das kann z.B. die Papierform sein,
+				wenn es sich um ein Buch handelt oder eine CD bei einem Tondokument. Bei elektronischen
+				Medien wird hier das Format angegeben, damit ersichtlich ist, welche Hard- und
+				Software vorhanden sein muss, um das Dokument wiederzugeben. Eine Webseite erfordert
+				einen Browser, ein Bild im PNG-Format ein angemessenen Bildbetrachter.
+				\paragraph{10. DC.identifier}
+				Zur eindeutigen Identifikation wird hier ein Schlüssel generiert, der das Dokument
+				referenziert. Eine Webseite wird durch ihre URL eindeutig bezeichnet, ein Buch
+				durch die ISBN Nummer.
+				\paragraph{11. DC.source}
+				Dieses Metatag bezeichnet den Ursprung für ein Dokument, das entspricht einer
+				Quellenangabe. Zeigt eine Webseite ein Grafik, so verweist DC.source auf das
+				Buch, in dem die Grafik zuerst veröffentlicht wurde.
+				\paragraph{12. DC.language}
+				Hier wird die Sprache festgehalten, in der das Dokument erstellt wurde. Empfohlen
+				wird ein dreistelliger Ländercode nach den Z.39.53-Sprachcodes.
+				\paragraph{13. DC.relation}
+				Um Beziehungen verwandter Dokumente untereinander darzustellen, können hier weitere
+				Dokumente referenziert werden. Dies können z.B. weitere Kapitel eines Buches oder
+				Bilder, die zu einem Text gehören, sein.
+				\paragraph{14. DC.coverage}
+				Der Standort kann hier angegeben werden, ies kann eine Bibliothek
+				oder ein Regal in einem Raum sein. Eine Beschränkung der zeitlichen Gültigkeit
+				gehört ebenfalls in dieses Metatag.
+				\paragraph{15. DC.rights}
+				Mit dem letzten Tag werden die Rechte an einem Dokument spezifiziert. Empfohlen
+				wird ein Link, der zu den Aussagen über das Copyright für das Dokument führt.
+				Die Bezugs- und Nutzungsbedingungen der Ressource werden hier definiert.
+				Das Fehlen dieser Angabe bedeutet nicht, das die Ressource unbeschränkt genutzt
+				werden darf. Ein Hinweis auf den Urheber gehört auch in dieses Metatag.
+
+		\subsection{XML Schema}
+		Ein XML Schema formalisiert Bedingungen durch Regeln oder eine Modellstruktur, die auf eine Klasse von
+		XML Dokumente angewendet werden kann. Eine Schema ist ein Werkzeug, das es ermöglicht, eine Struktur
+		vorzugeben, die durch ein Programm verarbeitet werden kann. Eine Implementation wird dadurch möglich.
+		Schemata haben nach \cite{xml_schema} die folgenden fünf Hauptaufgaben.
+		\subsubsection{Validierung}
+		Bestehende oder erzeugte XML Dokumente müssen an
+		vielen Stellen überprüft werden: nach einer Übertragung, nach dem Import aus einem fremden Datenformat,
+		oder nach der Erzeugung durch eine Formulareingabe. Durch den Einsatz von Schemata kann die Überprüfung
+		automatisiert und damit erleichtert und beschleunigt werden. Validierung schützt vor fehlerhaften
+		Daten, die aus Quellen stammen, auf die man selbst keinen Einfluss hat. Das Risiko, nicht konforme
+		Daten verarbeiten zu müssen, läßt sich minimieren. Die Überprüfung der Dokumente kann nach jeder
+		Manipulation erfolgen und schützt das Format der Dokumente, indem es seine Form vorgibt. Mit Schemata
+		lassen sich sowohl die Struktur, als auch der Inhalt von Elementen vorgeben und damit validieren.
+		Weiterhin können auch die Beziehungen zwischen Elementen überprüft werden, dies bleibt aber zumeist
+		prozeduralem Code überlassen. Validierung ist die Hauptaufgabe von XML Schemata.
+		\subsubsection{Dokumentation}
+		Da ein Schema ein Dokument beschreibt, dokumentiert es auch. Eine Beschreibung in natürlicher Sprache
+		wäre länger und nicht so präzise wie ein Schema. Durch die formale Beschreibung sind auch Maschinen
+		in der Lage, XML Dokumente zu verarbeiten. Aus einem Schema läßt sich sogar eine vom Menschen lesbare
+		Dokumentation erzeugen.
+		\subsubsection{Abfragemöglichkeit}
+		Durch die Festlegung der Struktur und der Elemente werden Dokumenten eine Form vorgegeben, die leicht
+		verarbeitet werden kann. Verschiedene Dokumente können z.B. verglichen oder sortiert werden. Auch das
+		Durchsuchen nach bestimmten Kriterien wird durch Schemata auf einfache Weise möglich.
+		\subsubsection{Datenverbund}
+		Die Bearbeitung von XML Dokumenten ist mühselig, mit häufigen Wiederholungen verbunden und
+		fehlerträchtig. Je mehr Elemente und Attribute verwendet werden, desto höher gestaltet sich der
+		Programmieraufwand. Durch die Anordnung der Daten in einem Verbund wird die Be- und Verarbeitung
+		von XML Dokumenten durch Software erheblich vereinfacht.
+		\subsubsection{Geführte Entwicklung}
+		XML Editoren unterstützen den Anwender durch Schemata bei der Erzeugung und Bearbeitung von
+		XML Dokumenten. Durch Schemata ist es möglich, strukturelle Informationen und Datentypen
+		bereit zu stellen. Bei der Entwicklung wird vorgegeben, welche Werte verschiedene Attribute
+		haben dürfen und welche nicht. Auch die Anzahl der Elemente kann vorgegeben werden.
+		\subsubsection{Das Babuschka Prinzip}
+		Die Definition von Elementen und Attributen wird auch als 'Russian doll' Prinzip bezeichnet.
+		Jedes Objekt wird dort definiert, wo es benötigt wird, und zwar innerhalb der Umgebung, die
+		durch das Eltern-Objekt deklariert wird. Untergeordnete Elemente sind immer in übergeordneten
+		Elementen geschachtelt, genau wie die Puppen, die ineinander gesteckt werden.
+		\subsection{Einfache Datentypen}
+		Das XML Schema des W3C gibt viele verschiedene Datentypen vor. Viele dieser Vorgaben sind
+		Ableitungen von einfachen Datentypen wie 'String' oder 'Integer'. Grundsätzlich werden die Daten von
+		ihren Werten getrennt.
+			\subsubsection{Header}
+			Jedes Schema beginnt mit einem Header, der bestimmte Angaben über die Struktur enthält.
+			Die erste Zeile enthält Informationen über die Version von XML, die verwendet wird, sowie
+			die Kodierung der Zeichen:
+				\begin{center}
+				  \begin{verbatim}
+					<?xml version="1.0" encoding="UTF-8" ?>
+				  \end{verbatim}
+				\end{center}
+			Im Beispiel wird die XML Version 1.0 verwandt, die Kodierung mit UTF-8 garantiert die
+			Plattformunabhängigkeit der XML-Datei. Diese Zeile besitzt kein schließendes Tag.
+			In der zweiten Zeile kann der Namensraum vorgegeben werden:
+				\begin{center}
+				  \begin{verbatim}
+					<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+				  \end{verbatim}
+				\end{center}
+			Hier wird der Namensraum des W3C XML Schema vorgegeben. Alle Elemente besitzen in diesem
+			Namensraum gewöhnlich das Präfix 'xs:'. Auch diese Zeile erzeugt keine Umgebung, es 				existiert also kein schließendes Tag.
+			\subsubsection{Definierte Datentypen}
+				\paragraph{Leerzeichen und Leerräume}
+				Häufig werden Leerräume in XML Dateien erzeugt, um eine leichtere Lesbarkeit zu
+				erreichen.
+				Leerzeichen oder Leerräume, die aus Tabulator, Leerzeilen, Zeilenumbruch oder
+				Leerzeichen bestehen und in einem Elementwert vorkommen, werden ersetzt.
+				Jedes Vorkommen eines Tabulators (\#x9), eines Zeilenvorschubs (\#xA) oder eines
+				Zeilenumbruchs (\#xD) werden durch die gleiche Anzahl von Leerzeichen (\#x20) ersetzt.
+				Weiterhin werden Leerräume am Anfang und Ende eines Wertes entfernt, innerhalb eines
+				Wertes werden sie durch ein Leerzeichen ersetzt. Dies gilt für alle einfachen
+				Datentypen außer 'String'.
+				\paragraph{Zeichenkette}
+				Eine Oberklasse, von der häufig Datentypen abgeleitet werden, ist die Zeichenkette
+				('String'):
+				\begin{center}
+				  \begin{verbatim}
+					<xs:element name="DC.title" type="xs:string"/>
+				  \end{verbatim}
+				\end{center}
+				Erlaubte Zeichen in  einer Zeichenkette sind alle Symbole aus dem Unicode, der ISO/IEC
+				10646 und den oben genannten Zeichen, die einen Leerraum erzeugen.
+				\paragraph{Zahlen}
+				Eine Oberklasse für alle Zahlen ist der dezimale Datentyp:
+				\begin{center}
+				  \begin{verbatim}
+					<xs:element Länge="186" type="xs:decimal"/>
+				  \end{verbatim}
+				\end{center}
+				Die weiteren Oberklassen lauten: 'xs:float', 'xs:double' und 'xs:boolean'. Der Datentyp
+				'xs.decimal' beschränkt die Anzahl der Stellen nicht. Die Fließkommazahlen 'xs.float'
+				und 'xs:double' sind 32 bzw. 64 Bit lang. Der Datentyp 'xs:boolean' kann nur die Werte
+				'true' oder 'false' annehmen.
+			\subsubsection{Entwurf eigener einfacher Datentypen}
+			Durch die Beschränkung der Eigenschaften von einem Element kann einfach ein eigener Datentyp
+			entworfen werden:
+			\begin{center}
+			  \begin{verbatim}
+				<xs:simpleType name="abgeleiteterInteger">
+				  <xs:restriction base="xs:integer">
+				    <xs:minInclusive value="-8"/>
+				    <xs:maxExclusive value="8"/>
+				  </xs:restriction>
+				</xs:simpleType>
+			  \end{verbatim}
+			\end{center}
+			In diesem Beispiel kann der Datentyp 'abgeleiteterInteger' nur Werte von -8 bis 7 annehmen.
+			Datentypen können weiterhin durch festgelegte Vorgabewerte, Längenbegrenzungen oder reguläre
+			Ausdrücke eingeschränkt werden.
+		\subsection{Komplexe Datentypen}
+		XML wird erst durch die Erzeugung komplexer Datentypen vielen Anforderungen gerecht. Komplexe 			Datentypen beschreiben nicht nur Elemente oder Attribute, sondern auch Strukturen. Sie verwenden
+		einfache Datentypen, um Teile ihrer Struktur oder Attribute zu beschreiben. Weitere Zusammenhänge
+		mit einfachen Datentypen bestehen nicht.
+			\subsubsection{Erzeugung komplexer Datentypen}
+			Allgemein ist ein komplexer Datentyp eine Auflistung von Elementen und Attributen. Eine
+			Sortierung kann ebenfalls vorgenommen werden.
+			\begin{center}
+			  \begin{verbatim}
+			    <xs:complexType name="article">
+			      <xs:complexType>
+			        <xs:sequence>
+			          <xs:element name="DC.title" type="xs:string"/>
+			          <xs:element name="DC.creator" type="xs:string"/>
+			        </xs:sequence>
+			      </xs:complexType>
+			    </xs:complexType>
+			  \end{verbatim}
+			\end{center}
+			In diesem Beispiel besteht die Liste nur aus den zwei Elementen 'DC.title und 'DC.creator'.
+			Das Metatag 'xs:complexType' enhält die Definition für den Datentyp, während 'xs:complexType' 			auf eine Sammlung einfacher Datentypen hinweist. Das W3C XML Schema definiert verschiedene
+			Kompositionen für unterschiedliche Anwendungsgebiete:
+				\paragraph{xs:sequence}
+				 Innerhalb der 'xs:sequence' Metatags werden die Elemente und die Attribute
+				 aufgelistet, die damit die Sequenz erzeugen. Es entsteht eine geordnete Liste.
+				 \paragraph{xs:choice}
+				 Bei 'xs:choice' wird eine Auswahl für ein Element vorgegeben, von der eine Option
+				 gewählt werden muss.
+				 \paragraph{xs:all}
+				 Das Metatag 'xs:all' schließlich leitet eine ungeordnete Liste von Elementen ein.
+		\subsection{Regul\"are Ausdr\"ucke}
+		Die wohl mächtigste Art, Datentypen zu beschreiben und einzuschränken, ergibt sich durch den Einsatz
+		von regulären Ausdrücken.
+		Sie ermöglichen hohe Flexibilität und eine exakte Beschreibung mit 			geringem Aufwand.
+		 Es existieren Bücher, die sich ausschließlich mit regulären Ausdrücken 			beschäftigen \cite{xml_regexp}.	Viele definierte Zahlen- und Zeichenformate wie z.B. ISBN oder 			Telefonnummern können mit einem regulären Ausdruck beschrieben werden. In XML werden diese 			Ausdrücke mit dem Schlüsselwort	'pattern' gekennzeichnet, ein einfacher Datentyp kann z.B. so 			abgeleitet werden:
+		\begin{center}
+		  \begin{verbatim}
+			<xs:simpleType name="nein-ja-vielleicht">
+			  <xs:restriction base="xs:byte">
+			    <xs:pattern value="0"/>
+			    <xs:pattern value="1"/>
+			    <xs:pattern value="0\.5"/>
+			  </xs:restriction>
+			</xs:simpleType>
+		  \end{verbatim}
+		\end{center}
+		Dieser neue Datentyp 'nein-ja-vielleicht' wird von 'xs:byte' abgeleitet und kann ausschließlich die 		drei Werte:
+		'0','1' und '0.5' annehmen. Auch die Werte '0001' oder '000000002' sind nicht erlaubt. Da der Punkt '.'
+		auch eine Bedeutung in regulären Ausdrücken hat, muss ihm als Escape-Sequenz der Backslash
+		($\backslash$) vorangestellt werden.
+			\subsubsection{Quantifier}
+			Die Symbole '*', '+' und '?' ermöglichen die einfache Darstellung von Wiederholungen in
+			Datentypen.
+			\begin{center}
+			  \begin{verbatim}
+				    <xs:pattern value="1?5*3+"/>
+			  \end{verbatim}
+			\end{center}
+			Das Fragezeichen ('?') legt fest, dass das voranstehende Symbol nur einmal oder gar nicht 			vorkommen darf. Der Stern ('*') definiert, das das vorherige Symbol nicht oder beliebig
+			oft folgen darf, das Plus ('+') legt fest, das das Zeichen mindestens einmal oder unendlich
+			oft folgen muss. Der obige Ausdruck akzeptiert also nur Zeichenketten, die mit einer oder
+			keiner '1' beginnen, von keiner oder beliebig vielen Wiederholungen von '5' gefolgt werden 			und mindestens eine oder mehrere Symbole von '3' am Ende haben. Gültige Ausdrücke wären:
+			\begin{center}
+			  \begin{verbatim}
+				    <xs:zahl value="53"/>
+				    <xs:zahl value="15555555553"/>
+				    <xs:zahl value="133333333333333"/>
+			  \end{verbatim}
+			\end{center}
+			Ungültig wären dagegen:
+			\begin{center}
+			  \begin{verbatim}
+			    <xs:zahl value="553"/>
+			    <xs:zahl value="1555555555"/>
+			  \end{verbatim}
+			\end{center}
+			\subsubsection{Joker}
+			Der Punkt ('.') hat eine besondere Bedeutung in regulären Ausdrücken. Er stellt einen Joker
+			dar, d.h. jedes in XML gültige Zeichen außer Zeilenende und Zeilenvorschub können an seiner
+			Stelle stehen. In Verbindung mit dem Symbol '*' können z.B. alle Zahlen erzeugt werden,
+			die ein Vielfaches der Zahl 100 darstellen:
+			\begin{center}
+			  \begin{verbatim}
+			    <xs:simpleType name="vielfachesVonHundert">
+			      <xs:restriction base="xs:integer">
+			        <xs:pattern value=".*00"/>
+			      </xs:restriction>
+			    </xs:simpleType>
+			  \end{verbatim}
+			\end{center}
+			Jede Ziffer kann beliebig oft vorkommen, am Ende stehen jedoch immer zwei Nullen.
+			\subsubsection{Zeichenklassen}
+			Das W3C XML Schema definiert verschiedene Zeichenklassen, um den Anforderungen von
+			XML gerecht zu werden. Dabei werden verschiedene Zeichen zusammengefasst, eine Zeichenklasse
+			wird immer durch einen Backslash und einen einzelnen Buchstaben dargestellt.\\
+				\paragraph{Leerräume}
+				Die Zeichenklasse '$\backslash$s' (für 'spaces') umfasst alle Leerräume wie Tabulator,
+				Zeilenvorschub, Leerzeichen und Wagenrücklauf. Wird der entsprechende Großbuchstabe
+				('$\backslash$S')verwendet, so stellt diese Klasse das Komplement dar, umfasst also 				alle Zeichen, die nicht Leerräume bilden.
+				\paragraph{Zahlen}
+				Eine weitere wichtige Klasse wird durch den Ausdruck '$\backslash$d' (für 'digits')
+				dargestellt. Hier sind alle Ziffern zusammengefasst, z.B. '0' bis '9'. Aber auch 				Ziffern aus anderen Alfabeten gehören zu dieser Zeichenklasse. Auch hier existiert das
+				Komplement '$\backslash$D'. Weitere Zeichenklassen findet man unter \cite{xml_schema}
+				im Kapitel 6.
+			\subsubsection{Benutzerdefinierte Zeichenklassen}
+			Durch den Einsatz von eckigen Klammern ist es möglich, eigene Bereiche und damit Zeichenklassen
+			zu definieren: [0-9] erlaubt die Ziffern 0-9,
+			[qwertzuiopü] definiert die Klasse, die aus den Buchstaben der oberen Zeile einer deutschen 			Tastatur besteht.
+			Das Komplement einer solchen Klasse wird erzeugt, indem nach der öffnenden eckigen Klammer ein
+			'$\wedge$' eingefügt wird. Die Klasse [$\wedge$a] enthält also alle Zeichen außer dem 'a'.
+			\subsubsection{Zählen}
+			Eine weitere Möglichkeit von regulären Ausdrücken besteht im Zählen von Zeichen. Mit Hilfe
+			der geschweiften Klammern ist es möglich, die Anzahl der Zeichen zu beschränken.
+			\begin{center}
+			  \begin{verbatim}
+			    <xs:simpleType name="dreiStellig">
+			      <xs:restriction base="xs:decimal">
+			        <xs:pattern value=".*{3}"/>
+			      </xs:restriction>
+			    </xs:simpleType>
+			  \end{verbatim}
+			\end{center}
+			In diesem Beispiel wird die Anzahl der Stellen einer Dezimalzahl auf drei begrenzt.
+		\subsection{Java und XML}
+		Die automatische Verarbeitung von XML-Dateien ist die Voraussetzung, um überhaupt sinnvolle
+		Lösungen entwickeln zu können. Die Dateien müssen vom Computer überprüft, erzeugt und verarbeitet
+		werden können. Es existieren diverse Schnittstellendefinitionen (API) für die Behandlung von XML
+		Dateien durch die Programmiersprache Java.
+		\subsubsection{Xerces}
+		Die Bibliothek Xerces wurde nach dem 'Xerces Blue Schmetterling' benannt und ermöglicht die Überprüfung
+		und Erzeugung von XML-Dateien sowohl durch Java, als auch durch C++. Dabei werden die W3C XML Standards
+		Level 1 und Level 2 eingehalten. Der Parser ist sehr modular und damit flexibel aufgebaut und 			unterstützt auch XMl Schemata.
+		\begin{figure*}[!htb]
+                    \begin{center}
+                        \includegraphics[scale=0.7]{images/xerces_blue.jpg}
+                    \end{center}
+                    \caption{Der Xerces Blue Schmetterling}
+                    \label{fig:xerces_blue}
+                \end{figure*}\par
+
+
+
+

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<properties>
+  <category name="connections">
+    <property name="localUsername" value="user"/>
+    <property name="connectionUsername1" value="user"/>
+    <property name="connectionDbURI1" value="exist://p30srv.wiwi.uni-oldenburg.de:8081"/>
+    <property name="localPassword" value="password"/>
+    <property name="connectionPassword1" value="password"/>
+    <property name="localName" value="local"/>
+    <property name="connectionName1" value="liaboloServer"/>
+    <property name="connectionCount" value="1"/>
+    <property name="localDriver" value="org.exist.xmldb.DatabaseImpl"/>
+    <property name="localDbURI" value="exist://"/>
+    <property name="connectionDriver1" value="org.exist.xmldb.DatabaseImpl"/>
+    <property name="signatureGenerator1" value="http://p30srv.wiwi.uni-oldenburg.de:8091/axis/services/SignatureSender"/>
+    <property name="connectionActive1" value="true"/>
+  </category>
+  <category name="signature">
+    <property name="signatureNumber" value="0000"/>
+    <property name="signatureLetters" value="CB"/>
+  </category>
+  <category name="gui-forms">
+    <property name="helpContent" value="19"/>
+    <property name="editConnection" value="18"/>
+    <property name="mediaType" value="21"/>
+    <property name="treeForm" value="20"/>
+    <property name="newMetadata" value="2"/>
+    <property name="newBranch" value="7"/>
+    <property name="forms" value="25"/>
+    <property name="searchMetadata" value="4"/>
+    <property name="browseBranch" value="8"/>
+    <property name="newList" value="13"/>
+    <property name="editBranch" value="9"/>
+    <property name="browseConnection" value="17"/>
+    <property name="backup_restore" value="0"/>
+    <property name="newConnection" value="16"/>
+    <property name="importMetadata" value="3"/>
+    <property name="editList" value="15"/>
+    <property name="preferences" value="1"/>
+    <property name="newLocation" value="10"/>
+    <property name="searchMetadataResult" value="5"/>
+    <property name="browseList" value="14"/>
+    <property name="browseClipboard" value="23"/>
+    <property name="browseLocation" value="11"/>
+    <property name="editLocation" value="12"/>
+    <property name="printMetadata" value="22"/>
+    <property name="editMetadata" value="6"/>
+  </category>
+  <category name="export-formats">
+    <property name="format1" value="CVS"/>
+    <property name="desc1" value="Comma Separated String"/>
+    <property name="formatCount" value="1"/>
+  </category>
+  <category name="gui-options">
+    <property name="connect" value="1"/>
+    <property name="warnings" value="0"/>
+    <property name="toolbar" value="1"/>
+    <property name="confirmations" value="0"/>
+    <property name="update" value="1"/>
+    <property name="language" value="german"/>
+  </category>
+  <category name="general">
+    <property name="stackTraceLevel" value="9"/>
+    <property name="defaultDriver" value="org.exist.xmldb.DatabaseImpl"/>
+    <property name="defaultPassword" value=""/>
+    <property name="homePermission" value="group=+read,-update,-write,other=-read,-write,-update"/>
+    <property name="debugLevel" value="0"/>
+    <property name="branchPermission" value="group=-read,-write,-update,other=-read,-write,-update"/>
+    <property name="category_file" value="kategorien.xml"/>
+    <property name="localURLAlias" value="localhost"/>
+    <property name="registryURL" value="http://127.0.0.1:8080/axis/services/Registry"/>
+    <property name="defaultUsername" value="admin"/>
+    <property name="defaultDBURI" value="exist://"/>
+    <property name="defaultMainHome" value="home"/>
+    <property name="defaultRootCollection" value="db"/>
+  </category>
+</properties>

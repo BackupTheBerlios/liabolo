@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<branches>
+    <branch abbr="all" desc="Allgemeine Nachschlagewerke"/>
+    <branch abbr="asl" desc="Allgemeine Sparch- und Literaturwissenschaft"/>
+    <branch abbr="ang" desc="Anglistik"/>
+    <branch abbr="ast" desc="Astronomie"/>
+    <branch abbr="bcp" desc="Biochemie, Biophysik"/>
+    <branch abbr="bio" desc="Biologie"/>
+    <branch abbr="bot" desc="Biologie - Botanik"/>
+    <branch abbr="hbi" desc="Biologie - Humanbiologie"/>
+    <branch abbr="zoo" desc="Biologie - Zoologie"/>
+    <branch abbr="bub" desc="Buch- und Bibliothekswesen"/>
+    <branch abbr="che" desc="Chemie"/>
+    <branch abbr="elt" desc="Elektrotechnik"/>
+    <branch abbr="etn" desc="Ethnologie"/>
+    <branch abbr="geo" desc="Geowissenschaften"/>
+    <branch abbr="ger" desc="Germanistik"/>
+    <branch abbr="his" desc="Geschichte der Neuzeit"/>
+    <branch abbr="hit" desc="Geschichte des 20. Jahrhunderts"/>
+    <branch abbr="hil" desc="Geschichtswissenschaft"/>
+    <branch abbr="inf" desc="Informatik"/>
+    <branch abbr="ing" desc="Ingenieurswissenschaften"/>
+    <branch abbr="kla" desc="Klassische Philologie"/>
+    <branch abbr="kun" desc="Kunstgeschichte"/>
+    <branch abbr="mat" desc="Mathematik"/>
+    <branch abbr="mus" desc="Musik"/>
+    <branch abbr="not" desc="Musik - Noten"/>
+    <branch abbr="nav" desc="Not Available"/>
+    <branch abbr="ori" desc="Orientalistik"/>
+    <branch abbr="pae" desc="Paedagogik"/>
+    <branch abbr="phi" desc="Philosophie"/>
+    <branch abbr="phy" desc="Physik"/>
+    <branch abbr="psy" desc="Psychologie"/>
+    <branch abbr="puz" desc="Publizistik"/>
+    <branch abbr="jur" desc="Rechtswissenschaft"/>
+    <branch abbr="rel" desc="Religionswissenschaft"/>
+    <branch abbr="rom" desc="Romanistik"/>
+    <branch abbr="ska" desc="Skandinavistik"/>
+    <branch abbr="ssl" desc="Sonstige Sprachen und Literaturen"/>
+    <branch abbr="sow" desc="Sozialwissenschaften"/>
+    <branch abbr="soz" desc="Soziologie"/>
+    <branch abbr="spo" desc="Sport"/>
+    <branch abbr="the" desc="Theologie"/>
+    <branch abbr="vol" desc="Volkskunde"/>
+    <branch abbr="vwl" desc="Wirtschaftswissenschaften VWL"/>
+    <branch abbr="bwl" desc="Betriebswirtschaftslehre"/>
+    <branch abbr="ver" desc="Verkehrswissenschaft"/>
+    <branch abbr="swl" desc="Wirtschaftszweiglehren"/>
+</branches>

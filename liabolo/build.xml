@@ -1,0 +1,356 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<project basedir="." default="usage">
+
+    <target name="init" description="sets variables for the other targets">
+        <tstamp>
+            <format property="today" pattern="yyyy.MM.dd" locale="de"/>
+            <format property="now" pattern="HH:mm" locale="de"/>
+        </tstamp>
+        <property name="debug" value="off"/>
+        <property name="optimize" value="off"/>
+        <property name="deprecation" value="off"/>
+
+        <property name="p30.lib.dir" value="./lib"/>
+
+        <property name="p30.build.src" value="./src"/>
+        <property name="p30.build.dest" value="./classes"/>
+        <property name="p30.deploy.dest" value="./bin"/>
+        <property name="p30.deploy.file" value="liabolo.jar"/>
+        <property name="p30.nightlybuild.dir" value="./build"/>
+        <property name="p30.nightlybuild.file" value="liabolo-${DSTAMP}-${TSTAMP}.zip"/>
+        <property name="p30.java.doc.path" value="./javadoc"/>
+
+        <property name="exist.build.src" value="./exist/src"/>
+        <property name="exist.build.dest" value="./exist/classes"/>
+        <property name="exist.deploy.dest" value="./exist"/>
+        <property name="exist.deploy.file" value="exist.jar"/>
+        <property name="exist.java.doc.path" value="./exist/javadoc"/>
+
+        <property name="exist.home" value="./exist"/>
+        <property name="exist.bin" value="./exist/bin"/>
+        <property name="exist.start" value="start.jar"/>
+
+        <property name="p30.doc.src" value="./doc"/>
+        
+        <property name="p30.whitepapers.src" value="./doc/whitepapers"/>
+        <property name="p30.whitepapers.dest" value="./doc/whitepapers/pdf"/>        
+
+        <property name="p30.build.soap" value="./soap"/>
+
+
+        <path id="globalClasspath"
+            path="${p30.lib.dir}/crimson.jar:
+            	  ${p30.lib.dir}/xmldb.jar:
+                  ${p30.lib.dir}/axis-jaxrpc-1.1.jar:
+                  ${p30.lib.dir}/exist.jar:
+                  ${p30.lib.dir}/javax.servlet.jar:
+                  ${p30.lib.dir}/commons-pool-1.1.jar:
+                  ${p30.lib.dir}/TableLayout.jar:
+                  ${p30.lib.dir}/plastic-1.2.1.jar:
+                  ${p30.lib.dir}/junit.jar:
+                  ${p30.lib.dir}/saaj-api.jar:
+                  ${p30.lib.dir}/axis-1.1.jar:
+                  ${p30.lib.dir}/jxl.jar:
+                  ${p30.lib.dir}/antlr.jar:
+                  ${p30.lib.dir}/jakarta-oro-2.0.6.jar:
+                  ${p30.lib.dir}/resolver-20030708.jar:
+                  ${p30.lib.dir}/commons-logging-1.0.3.jar:
+                  ${p30.lib.dir}/commons-discovery-0.2.jar:
+                  ${p30.lib.dir}/wsdl4j.jar:
+                  ${p30.lib.dir}/log4j.jar:
+                  ${p30.lib.dir}/xmlrpc-1.2.jar:
+                  ${p30.lib.dir}/jconfig.jar:
+                  ${p30.lib.dir}/jaxp.jar:
+                  ${p30.lib.dir}/jmxri.jar"
+            />
+
+        <fileset id="all_libs" dir="${p30.lib.dir}" includes="*.jar"/>
+
+        <fileset id="images" dir="${p30.build.src}" excludes="*.java"/>
+    </target>
+
+    <target name="prepare" depends="init" description="creates directories etc.">
+        <mkdir dir="${p30.build.dest}"/>
+        <mkdir dir="${p30.deploy.dest}"/>
+        <mkdir dir="${p30.java.doc.path}"/>
+        <mkdir dir="${p30.nightlybuild.dir}"/>        
+        <mkdir dir="${exist.java.doc.path}"/>
+        <mkdir dir="${exist.build.dest}"/>
+    </target>
+
+    <target name="usage">
+        <echo message="projektbericht        : Translate projektbericht.tex into .pdf file"/>
+        <echo message="do_liabolo            : compile and deploy all source files"/>
+        <echo message="liabolo               : Starts the offline client"/>
+        <echo message="javadoc               : creates java documention from all p30 source files"/>
+        <echo message="start_junit_test      : Starts the junit tests in a separate window."/>
+        <echo message="extract_exist         : Not for local use! Only for server."/>
+        <echo message="exist_server          : Starts the exist standalone server. Only for testing."/>
+        <echo message="exist_client          : Starts the exist client. Only for testing with the standalone server."/>
+    </target>
+
+
+    <target name="compile" depends="prepare" description="compiles all sources to classes-dir">
+        <javac classpathref="globalClasspath"
+            debug="${debug}"
+            deprecation="${deprecation}"
+            srcdir="${p30.build.src}"
+            destdir="${p30.build.dest}"
+            optimize="${optimize}">
+            <src path="${p30.build.src}"/>
+        </javac>
+        <copy overwrite="true" todir="${p30.build.dest}">
+            <fileset refid="images"/>
+        </copy>
+    </target>
+
+    <target name="deploy" depends="init" description="builds a jar-file and copies it into bin-dir">
+        <jar basedir="${p30.build.dest}" jarfile="${p30.deploy.dest}/${p30.deploy.file}">
+            <manifest>
+                <attribute name="Build-By" value="Jurij Henne"/>
+                <attribute name="Main-Class" value="org/liabolo/client/offline/Gui"/>
+
+                <attribute name="Class-Path" value="../lib/crimson.jar ../lib/exist.jar ../lib/javax_servlet.jar ../lib/xmldb.jar ../lib/xmlrpc-1.2.jar ../lib/commons-pool-1.1.jar ../lib/TableLayout.jar  ../lib/plastic-1.2.1.jar ../lib/axis-jaxrpc-1.1.jar ../lib/axis-1.1.jar ../lib/commons-logging-1.0.3.jar ../lib/commons-discovery-0.2.jar ../lib/saaj-api.jar ../lib/jxl.jar ../lib/wsdl4j.jar ../lib/log4j.jar ../lib/jakarta-oro-2.0.6.jar ../lib/resolver-20030708.jar ../lib/antlr.jar ../lib/jconfig.jar ../lib/jaxp.jar ../lib/jaxp.jar ../lib/jmxri.jar"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="javadoc" depends="init,prepare" description="creates java documention from all p30 source files">
+        <javadoc destdir="${p30.java.doc.path}" sourcepath="${p30.build.src}" classpathref="globalClasspath" packagenames="org.liabolo.client,
+                            org.liabolo.client.offline,
+                             org.liabolo.client.offline.dialogs,
+                              org.liabolo.client.offline.forms,
+                            org.liabolo.client.offline.common,
+                            org.liabolo.client.offline.help,
+                            org.liabolo.client.web,
+                            org.liabolo.common,
+                            org.liabolo.service,
+                            org.liabolo.languages,
+                            org.liabolo.test,
+                            org.liabolo.repository,
+                            org.liabolo.registry,
+                            org.liabolo.exception"/>
+    </target>
+
+    <target name="do_liabolo" depends="compile,deploy" description="compile and deploy all source files"/>
+
+    <target name="projektbericht" depends="init,prepare" description="Translate projektbericht.tex into .pdf file">
+        <exec dir="${p30.doc.src}" executable="pdflatex">
+            <arg line="projektbericht"/>
+        </exec>
+        <exec dir="${p30.doc.src}" executable="bibtex">
+            <arg line="projektbericht"/>
+        </exec>
+        <exec dir="${p30.doc.src}" executable="makeindex">
+            <arg line="projektbericht"/>
+        </exec>
+        <exec dir="${p30.doc.src}" executable="pdflatex">
+            <arg line="projektbericht"/>
+        </exec>
+        <exec dir="${p30.doc.src}" executable="pdflatex">
+            <arg line="projektbericht"/>
+        </exec>
+    </target>
+    
+    <target name="whitepapers" depends="init,prepare" description="Translate all whitepapers into .pdf file">
+        <!-- Architektur-->
+        <exec dir="${p30.whitepapers.src}/architekur" executable="pdflatex">
+            <arg line="Architekur"/>
+        </exec>
+        <exec dir="${p30.whitepapers.src}/architekur" executable="bibtex">
+            <arg line="Architekur"/>
+        </exec>
+        <exec dir="${p30.whitepapers.src}/architekur" executable="makeindex">
+            <arg line="Architekur"/>
+        </exec>
+        <exec dir="${p30.whitepapers.src}/architekur" executable="pdflatex">
+            <arg line="Architekur"/>
+        </exec>
+        <exec dir="${p30.whitepapers.src}/architekur" executable="pdflatex">
+            <arg line="Architekur"/>
+        </exec>
+
+        <!-- Nutzerhandbuch-->
+        <exec dir="${p30.whitepapers.src}/nutzerhandbuch" executable="pdflatex">
+            <arg line="nutzerhandbuch"/>
+        </exec>
+        <exec dir="${p30.whitepapers.src}/nutzerhandbuch" executable="bibtex">
+            <arg line="nutzerhandbuch"/>
+        </exec>
+        <exec dir="${p30.whitepapers.src}/nutzerhandbuch" executable="makeindex">
+            <arg line="nutzerhandbuch"/>
+        </exec>
+        <exec dir="${p30.whitepapers.src}/nutzerhandbuch" executable="pdflatex">
+            <arg line="nutzerhandbuch"/>
+        </exec>
+        <exec dir="${p30.whitepapers.src}/nutzerhandbuch" executable="pdflatex">
+            <arg line="nutzerhandbuch"/>
+        </exec>
+
+        
+        <!-- Synchronisation-->
+        <exec dir="${p30.whitepapers.src}/synchronisation" executable="pdflatex">
+            <arg line="Synchronisation"/>
+        </exec>
+        <exec dir="${p30.whitepapers.src}/synchronisation" executable="bibtex">
+            <arg line="Synchronisation"/>
+        </exec>
+        <exec dir="${p30.whitepapers.src}/synchronisation" executable="makeindex">
+            <arg line="Synchronisation"/>
+        </exec>
+        <exec dir="${p30.whitepapers.src}/synchronisation" executable="pdflatex">
+            <arg line="Synchronisation"/>
+        </exec>
+        <exec dir="${p30.whitepapers.src}/synchronisation" executable="pdflatex">
+            <arg line="Synchronisation"/>
+        </exec>
+        
+        <!-- XML-Datenbanken-->
+        <exec dir="${p30.whitepapers.src}/xml-datenbanken" executable="pdflatex">
+            <arg line="XML-Datenbanken"/>
+        </exec>
+        <exec dir="${p30.whitepapers.src}/xml-datenbanken" executable="bibtex">
+            <arg line="XML-Datenbanken"/>
+        </exec>
+        <exec dir="${p30.whitepapers.src}/xml-datenbanken" executable="makeindex">
+            <arg line="XML-Datenbanken"/>
+        </exec>
+        <exec dir="${p30.whitepapers.src}/xml-datenbanken" executable="pdflatex">
+            <arg line="XML-Datenbanken"/>
+        </exec>
+        <exec dir="${p30.whitepapers.src}/xml-datenbanken" executable="pdflatex">
+            <arg line="XML-Datenbanken"/>
+        </exec>        
+        
+	<!-- GUI Architektur-->
+	<exec dir="${p30.whitepapers.src}/gui_architektur" executable="pdflatex">
+	    <arg line="Gui_architektur"/>
+	</exec>
+	<exec dir="${p30.whitepapers.src}/gui_architektur" executable="bibtex">
+	    <arg line="Gui_architektur"/>
+	</exec>
+	<exec dir="${p30.whitepapers.src}/gui_architektur" executable="makeindex">
+	    <arg line="Gui_architektur"/>
+	</exec>
+	<exec dir="${p30.whitepapers.src}/gui_architektur" executable="pdflatex">
+	    <arg line="Gui_architektur"/>
+	</exec>
+	<exec dir="${p30.whitepapers.src}/gui_architektur" executable="pdflatex">
+	    <arg line="Gui_architektur"/>
+        </exec>     
+      
+	
+	<!-- Ergonomie-->
+		<exec dir="${p30.whitepapers.src}/ergonomie" executable="pdflatex">
+		    <arg line="Ergonomie"/>
+		</exec>
+		<exec dir="${p30.whitepapers.src}/ergonomie" executable="bibtex">
+		    <arg line="Ergonomie"/>
+		</exec>
+		<exec dir="${p30.whitepapers.src}/ergonomie" executable="makeindex">
+		    <arg line="Ergonomie"/>
+		</exec>
+		<exec dir="${p30.whitepapers.src}/ergonomie" executable="pdflatex">
+		    <arg line="Ergonomie"/>
+		</exec>
+		<exec dir="${p30.whitepapers.src}/ergonomie" executable="pdflatex">
+		    <arg line="Ergonomie"/>
+	        </exec>
+    	
+    	<!-- Ergonomie-->
+		<exec dir="${p30.whitepapers.src}/vision" executable="pdflatex">
+		    <arg line="Vision"/>
+		</exec>
+		<exec dir="${p30.whitepapers.src}/vision" executable="bibtex">
+		    <arg line="Vision"/>
+		</exec>
+		<exec dir="${p30.whitepapers.src}/vision" executable="makeindex">
+		    <arg line="Vision"/>
+		</exec>
+		<exec dir="${p30.whitepapers.src}/vision" executable="pdflatex">
+		    <arg line="Vision"/>
+		</exec>
+		<exec dir="${p30.whitepapers.src}/vision" executable="pdflatex">
+		    <arg line="Vision"/>
+	        </exec>          
+	    </target>   
+    
+     <target name="deploy_whitepapers" depends="init,prepare" description="Copies all whitepapers pdf-dir">
+	 	<mkdir dir="${p30.whitepapers.dest}"/>
+		<copy overwrite="true" flatten="yes" todir="${p30.whitepapers.dest}">        
+			<fileset dir="${p30.whitepapers.src}" casesensitive="yes">
+  				<include name="**/*.pdf"/>  			
+			</fileset>
+		</copy>		
+     </target>
+
+    <target name="liabolo" depends="init,prepare,compile,deploy, start" description="Starts ant compiles/deploys the offline client" />
+
+    <target name="start" depends="init,prepare" description="Starts the offline client">
+        <java jar="${p30.deploy.dest}/${p30.deploy.file}" classpathref="globalClasspath" fork="true">
+            <sysproperty key="exist.initdb" value="true"/>
+            <sysproperty key="exist.home" value="${exist.home}"/>
+            <sysproperty key="liabolo.config" value="config"/>
+            <sysproperty key="liabolo.log" value="log"/>
+        </java>
+    </target>
+
+    <target name="make_nightly_build" depends="init,prepare,compile,deploy" description="Generates a nightly build from liabolo">
+        <zip zipfile="${p30.nightlybuild.dir}/${p30.nightlybuild.file}" basedir="." includes="build_files">
+            <fileset id="build_files" dir=".">
+                <include name="bin/**/*.*"/>
+                <include name="config/**/*.*"/>
+                <include name="lib/**/*.*"/>
+                <include name="log/README.txt"/>
+                <include name="LICENSE.txt"/>
+                <include name="exist/**/*.*"/>
+                <include name="start.bat"/>
+                <include name="start.sh"/>		
+                <include name="start.command"/>
+            </fileset>
+        </zip>
+    </target>
+
+    <target name="start_junit_test" depends="init, do_liabolo" description="starts all junit-tests">
+        <java classname="junit.textui.TestRunner" classpath="${p30.deploy.dest}/${p30.deploy.file}" classpathref="globalClasspath" fork="true">
+            <arg value="org.liabolo.test.AllTest"/>
+            <sysproperty key="exist.initdb" value="true"/>
+            <sysproperty key="exist.home" value="${exist.home}"/>
+            <sysproperty key="liabolo.config" value="config"/>
+            <sysproperty key="liabolo.log" value="log"/>
+        </java>
+    </target>
+
+    <target depends="init,prepare,do_liabolo" name="excel_test">
+        <java classname="org.liabolo.test.ExcelTest" classpath="${p30.deploy.dest}/${p30.deploy.file}" classpathref="globalClasspath"/>
+    </target>
+
+    <target name="exist_server" depends="init,prepare" description="Starts the standalone exist db">
+        <java jar="${p30.lib.dir}/start.jar" fork="true">
+            <sysproperty key="exist.home" value="${exist.home}"/>
+            <sysproperty key="file.encoding" value="UTF-8"/>
+            <sysproperty key="java.endorsed.dirs" value="${exist.home}/lib/endorsed"/>
+            <env key="ms" value="16000"/>
+            <env key="mx" value="256000k"/>
+            <arg value="standalone"/>
+        </java>
+    </target>
+
+    <target name="exist_client" depends="init,prepare" description="Starts the standalone exist db">
+        <java jar="${p30.lib.dir}/start.jar" fork="true">
+            <sysproperty key="exist.home" value="${exist.home}"/>
+            <sysproperty key="file.encoding" value="UTF-8"/>
+            <sysproperty key="java.endorsed.dirs" value="${exist.home}/lib/endorsed"/>
+            <env key="ms" value="16000"/>
+            <env key="mx" value="256000k"/>
+            <arg value="client"/>
+        </java>
+    </target>
+
+
+    <target name="extract_exist" depends="init" description="extracts a new exist db. Not for local use!.">
+        <unzip src="exist.zip" dest="." overwrite="yes"/>
+    </target>
+
+</project>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="urn:common.liabolo.org" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="urn:common.liabolo.org" xmlns:intf="urn:common.liabolo.org" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+   <!-- Messages -->   
+
+   <wsdl:message name="signatureRequest">
+   </wsdl:message>
+
+   <wsdl:message name="signatureResponse">
+      <wsdl:part name="signatueString" type="xsd:string"/>
+      <!--wsdl:part name="out1" type="xsd:string"/-->
+   </wsdl:message>
+
+   <!-- Ports -->
+
+   <wsdl:portType name="Signature">
+      <wsdl:operation name="getSignature" parameterOrder="">
+         <wsdl:input message="impl:signatureRequest" name="signatureRequest"/>
+         <wsdl:output message="impl:signatureResponse" name="signatureResponse"/>
+      </wsdl:operation>
+
+
+   </wsdl:portType>
+	
+	<!-- Binding -->
+	
+   <wsdl:binding name="SignatureSoapBinding" type="impl:Signature">
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getSignature">
+         <wsdlsoap:operation soapAction=""/>
+         <wsdl:input name="signatureRequest">
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:common.liabolo.org" use="encoded"/>
+         </wsdl:input>
+         <wsdl:output name="signatureResponse">
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:common.liabolo.org" use="encoded"/>
+         </wsdl:output>
+      </wsdl:operation>
+
+      
+      
+   </wsdl:binding>
+	
+   <!-- Service -->
+   
+   <wsdl:service name="SignatureService">
+      <wsdl:port binding="impl:SignatureSoapBinding" name="Signature">
+         <wsdlsoap:address location="http://localhost:8080/exist/services/Signature"/>
+      </wsdl:port>
+   </wsdl:service>
+
+</wsdl:definitions>

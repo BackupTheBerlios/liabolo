@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DOCUMENT type="Advanced Installer" version="1.6" modules="freeware" RootPath=".">
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
+    <ROW Property="ProductCode" Value="{6D0324CA-0735-4D38-B238-5073BF8E1147}"/>
+    <ROW Property="ARPURLINFOABOUT" Value="www.liabolo.org"/>
+    <ROW Property="ARPURLUPDATEINFO" Value="www.liabolo.org"/>
+    <ROW Property="DialogBitmap" Value="default_dialog.bmp"/>
+    <ROW Property="Manufacturer" Value="www.liabolo.org"/>
+    <ROW Property="ProductLanguage" Value="1033"/>
+    <ROW Property="ARPHELPLINK" Value="www.liabolo.org"/>
+    <ROW Property="ProductName" Value="Liabolo RC1.0"/>
+    <ROW Property="ARPCONTACT" Value="info@liabolo.org"/>
+    <ROW Property="BannerBitmap" Value="default_banner.bmp"/>
+    <ROW Property="ProductVersion" Value="1.0.0"/>
+    <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS"/>
+    <ROW Property="UpgradeCode" Value="{9C50725B-A713-4FFB-A235-BAFE8A47899B}"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
+    <ROW Directory="exception_2" Directory_Parent="liabolo_2" DefaultDir="except~1|exception"/>
+    <ROW Directory="bin" Directory_Parent="TARGETDIR" DefaultDir="bin"/>
+    <ROW Directory="core" Directory_Parent="lib" DefaultDir="core"/>
+    <ROW Directory="guides" Directory_Parent="doc" DefaultDir="guides"/>
+    <ROW Directory="repository_2" Directory_Parent="liabolo_2" DefaultDir="reposi~1|repository"/>
+    <ROW Directory="test_11" Directory_Parent="liabolo_2" DefaultDir="test"/>
+    <ROW Directory="data" Directory_Parent="exist" DefaultDir="data"/>
+    <ROW Directory="log" Directory_Parent="TARGETDIR" DefaultDir="log"/>
+    <ROW Directory="org_3" Directory_Parent="javadoc" DefaultDir="org"/>
+    <ROW Directory="registry_2" Directory_Parent="liabolo_2" DefaultDir="registry"/>
+    <ROW Directory="service_2" Directory_Parent="liabolo_2" DefaultDir="service"/>
+    <ROW Directory="SHORTCUTDIR" Directory_Parent="TARGETDIR" DefaultDir="SHORTC~1|SHORTCUTDIR"/>
+    <ROW Directory="client_5" Directory_Parent="liabolo_2" DefaultDir="client"/>
+    <ROW Directory="liabolo_2" Directory_Parent="org_3" DefaultDir="liabolo"/>
+    <ROW Directory="resources" Directory_Parent="javadoc" DefaultDir="resour~1|resources"/>
+    <ROW Directory="common_4" Directory_Parent="liabolo_2" DefaultDir="common"/>
+    <ROW Directory="developerguide" Directory_Parent="guides" DefaultDir="develo~1|developerguide"/>
+    <ROW Directory="offline_2" Directory_Parent="client_5" DefaultDir="offline"/>
+    <ROW Directory="common_5" Directory_Parent="offline_2" DefaultDir="common"/>
+    <ROW Directory="entities" Directory_Parent="exist" DefaultDir="entities"/>
+    <ROW Directory="entities_1" Directory_Parent="entities" DefaultDir="entities"/>
+    <ROW Directory="exist" Directory_Parent="TARGETDIR" DefaultDir="exist"/>
+    <ROW Directory="logs" Directory_Parent="exist" DefaultDir="logs"/>
+    <ROW Directory="userguide" Directory_Parent="guides" DefaultDir="usergu~1|userguide"/>
+    <ROW Directory="TARGETDIR" Directory_Parent="" DefaultDir="SourceDir"/>
+    <ROW Directory="config" Directory_Parent="TARGETDIR" DefaultDir="config"/>
+    <ROW Directory="doc" Directory_Parent="TARGETDIR" DefaultDir="doc"/>
+    <ROW Directory="adminguide" Directory_Parent="guides" DefaultDir="adming~1|adminguide"/>
+    <ROW Directory="lib" Directory_Parent="exist" DefaultDir="lib"/>
+    <ROW Directory="lib_1" Directory_Parent="TARGETDIR" DefaultDir="lib"/>
+    <ROW Directory="web_2" Directory_Parent="client_5" DefaultDir="web"/>
+    <ROW Directory="javadoc" Directory_Parent="TARGETDIR" DefaultDir="javadoc"/>
+    <ROW Directory="languages_2" Directory_Parent="liabolo_2" DefaultDir="langua~1|languages"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
+    <ROW Component="config.properties.1.2" ComponentId="{D83CF4AF-0F54-4DA4-83D4-D2AC248792B3}" Directory_="config" Attributes="0" Condition="" KeyPath="gui.properties" FullKeyPath="TARGETDIR\config"/>
+    <ROW Component="package_summary.html_5" ComponentId="{A1D6912C-F482-4E79-9FFB-612A5E491776}" Directory_="service_2" Attributes="0" Condition="" KeyPath="package_summary.html_5" FullKeyPath="TARGETDIR\javadoc\org\liabolo\service"/>
+    <ROW Component="play.dtd" ComponentId="{A93A2DB0-7AC5-4501-B7FF-CD297A919C6B}" Directory_="entities" Attributes="0" Condition="" KeyPath="play.dtd" FullKeyPath="TARGETDIR\exist\entities"/>
+    <ROW Component="Liabolo_eine_teuflisch_gute_Literaturverwaltung.lnk" ComponentId="{76CD39BD-4A59-47A5-A0E7-98E17D512B22}" Directory_="SHORTCUTDIR" Attributes="0" Condition="" KeyPath="User_Guide.lnk" FullKeyPath="TARGETDIR\SHORTCUTDIR"/>
+    <ROW Component="TableLayout.jar" ComponentId="{3C3A7A32-F665-4F07-96AD-07343B5049F1}" Directory_="lib_1" Attributes="0" Condition="" KeyPath="TableLayout.jar" FullKeyPath="TARGETDIR\lib"/>
+    <ROW Component="overview_tree.html" ComponentId="{0B61B83C-2D4A-4F57-91F1-7E7CB1080A33}" Directory_="javadoc" Attributes="0" Condition="" KeyPath="overview_tree.html" FullKeyPath="TARGETDIR\javadoc"/>
+    <ROW Component="package_frame.html" ComponentId="{18FAF5DF-B492-4ECC-BEAE-C9DD5E91FF22}" Directory_="offline_2" Attributes="0" Condition="" KeyPath="package_frame.html_7" FullKeyPath="TARGETDIR\javadoc\org\liabolo\client\offline"/>
+    <ROW Component="package_frame.html_1" ComponentId="{60FDAC6F-C2DF-47E2-AEE9-E08292B50E17}" Directory_="common_5" Attributes="0" Condition="" KeyPath="package_frame.html_8" FullKeyPath="TARGETDIR\javadoc\org\liabolo\client\offline\common"/>
+    <ROW Component="package_summary.html_6" ComponentId="{F8E19D47-DDF6-4B55-B88E-D59576D08D79}" Directory_="test_11" Attributes="0" Condition="" KeyPath="package_summary.html_6" FullKeyPath="TARGETDIR\javadoc\org\liabolo\test"/>
+    <ROW Component="access.log" ComponentId="{69EE25D1-0C4E-483C-9663-F2AD3C29BFCD}" Directory_="logs" Attributes="0" Condition="" KeyPath="access.log" FullKeyPath="TARGETDIR\exist\logs"/>
+    <ROW Component="package_frame.html_2" ComponentId="{A480DF0A-0357-4249-9611-9334F79DFED8}" Directory_="web_2" Attributes="0" Condition="" KeyPath="package_frame.html_9" FullKeyPath="TARGETDIR\javadoc\org\liabolo\client\web"/>
+    <ROW Component="Developer_Guide.pdf" ComponentId="{207A7FD0-D2F8-462E-B04E-8526DD700CBC}" Directory_="developerguide" Attributes="0" Condition="" KeyPath="Developer_Guide.pdf" FullKeyPath="TARGETDIR\doc\guides\developerguide"/>
+    <ROW Component="catalog" ComponentId="{6615D603-EF2E-4D9C-B8E3-8F542CE3A43D}" Directory_="exist" Attributes="0" Condition="" KeyPath="catalog" FullKeyPath="TARGETDIR\exist"/>
+    <ROW Component="data.zip" ComponentId="{6AC40BCB-5A58-4009-BDD0-E02E104DF896}" Directory_="data" Attributes="0" Condition="" KeyPath="dom.dbx" FullKeyPath="TARGETDIR\exist\data"/>
+    <ROW Component="inherit.gif" ComponentId="{52D7D584-4F4C-4ABE-89D8-B9B666EA4009}" Directory_="resources" Attributes="0" Condition="" KeyPath="inherit.gif" FullKeyPath="TARGETDIR\javadoc\resources"/>
+    <ROW Component="package_summary.html_4" ComponentId="{EF3D0BD0-3EBA-44A2-96EA-6F53957A3A0D}" Directory_="repository_2" Attributes="0" Condition="" KeyPath="package_summary.html_4" FullKeyPath="TARGETDIR\javadoc\org\liabolo\repository"/>
+    <ROW Component="project" ComponentId="{02A1E351-763B-4743-AD76-36DD6909F535}" Directory_="TARGETDIR" Attributes="0" Condition="" KeyPath="LICENSE.txt" FullKeyPath="TARGETDIR"/>
+    <ROW Component="README.txt" ComponentId="{CCC23CA3-2901-41A5-A474-CB5CA3DBB6E6}" Directory_="log" Attributes="0" Condition="" KeyPath="README.txt" FullKeyPath="TARGETDIR\log"/>
+    <ROW Component="antlr.jar" ComponentId="{8C07BAC2-8BDD-4405-B3DE-BC1CE837A4E2}" Directory_="core" Attributes="0" Condition="" KeyPath="antlr.jar" FullKeyPath="TARGETDIR\exist\lib\core"/>
+    <ROW Component="package_summary.html" ComponentId="{35AC8A8E-7BEF-423B-96C8-24E0388961CF}" Directory_="common_4" Attributes="0" Condition="" KeyPath="package_summary.html" FullKeyPath="TARGETDIR\javadoc\org\liabolo\common"/>
+    <ROW Component="package_summary.html_1" ComponentId="{D75BFA06-D971-43D6-92D1-ADB597D98188}" Directory_="exception_2" Attributes="0" Condition="" KeyPath="package_summary.html_1" FullKeyPath="TARGETDIR\javadoc\org\liabolo\exception"/>
+    <ROW Component="ISOgrk1.ent" ComponentId="{D41C4A36-862F-4A8C-A30C-E329B594FB0D}" Directory_="entities_1" Attributes="0" Condition="" KeyPath="ISOgrk1.ent" FullKeyPath="TARGETDIR\exist\entities\entities"/>
+    <ROW Component="liabolo.jar" ComponentId="{3AB264D9-956B-4317-8A62-14600009D282}" Directory_="bin" Attributes="0" Condition="" KeyPath="liabolo.jar" FullKeyPath="TARGETDIR\bin"/>
+    <ROW Component="package_summary.html_2" ComponentId="{B9BF878C-E6A4-4101-8084-7D60E2F4B4F1}" Directory_="languages_2" Attributes="0" Condition="" KeyPath="package_summary.html_2" FullKeyPath="TARGETDIR\javadoc\org\liabolo\languages"/>
+    <ROW Component="Admin_Guide.pdf" ComponentId="{505AFC8A-FCFF-4408-BCC9-A0FD8BCF30B0}" Directory_="adminguide" Attributes="0" Condition="" KeyPath="Admin_Guide.pdf" FullKeyPath="TARGETDIR\doc\guides\adminguide"/>
+    <ROW Component="doc" ComponentId="{14757534-CA82-4C2A-B7CE-1E68FD5E547A}" Directory_="doc" Attributes="0" Condition="" KeyPath="" FullKeyPath=""/>
+    <ROW Component="package_summary.html_3" ComponentId="{A6F7C22A-A046-4527-BAED-334CFBD83551}" Directory_="registry_2" Attributes="0" Condition="" KeyPath="package_summary.html_3" FullKeyPath="TARGETDIR\javadoc\org\liabolo\registry"/>
+    <ROW Component="part.tex" ComponentId="{FEB66E68-513A-4AD3-B53B-C85DFF402FDD}" Directory_="userguide" Attributes="0" Condition="" KeyPath="User_Guide.pdf" FullKeyPath="TARGETDIR\doc\guides\userguide"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
+    <ROW Feature="MainFeature" Feature_Parent="" Title="Main Feature" Description="Main Feature" Display="2" Level="1" Directory_="TARGETDIR" Attributes="0" Components="project Liabolo_eine_teuflisch_gute_Literaturverwaltung.lnk README.txt config.properties.1.2 part.tex catalog data.zip play.dtd ISOgrk1.ent antlr.jar access.log TableLayout.jar liabolo.jar overview_tree.html package_summary.html package_summary.html_1 package_summary.html_2 package_summary.html_3 package_summary.html_4 package_summary.html_5 package_summary.html_6 package_frame.html package_frame.html_1 package_frame.html_2 inherit.gif doc Admin_Guide.pdf Developer_Guide.pdf"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
+    <ROW File="MDSearchResultForm.ColumnHeaderToolTips.html" Component_="package_frame.html" FileName="MDSear~2.htm|MDSearchResultForm.ColumnHeaderToolTips.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\MDSearchResultForm.ColumnHeaderToolTips.html" SelfReg="false"/>
+    <ROW File="axis.jar" Component_="TableLayout.jar" FileName="axis.jar" Version="" Language="" Attributes="" SourcePath="..\lib\axis.jar" SelfReg="false"/>
+    <ROW File="play.dtd" Component_="play.dtd" FileName="play.dtd" Version="" Language="" Attributes="" SourcePath="..\exist\entities\play.dtd" SelfReg="false"/>
+    <ROW File="FormElement.html" Component_="package_frame.html" FileName="FormEl~1.htm|FormElement.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\FormElement.html" SelfReg="false"/>
+    <ROW File="RegistryServiceLocator.html" Component_="package_summary.html_3" FileName="Regist~4.htm|RegistryServiceLocator.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\registry\RegistryServiceLocator.html" SelfReg="false"/>
+    <ROW File="help_doc.html" Component_="overview_tree.html" FileName="help-d~1.htm|help-doc.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\help-doc.html" SelfReg="false"/>
+    <ROW File="jEdit_syntax.jar" Component_="antlr.jar" FileName="jEdit-~1.jar|jEdit-syntax.jar" Version="" Language="" Attributes="" SourcePath="..\exist\lib\core\jEdit-syntax.jar" SelfReg="false"/>
+    <ROW File="User.html" Component_="package_summary.html" FileName="User~1.htm|User.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\common\User.html" SelfReg="false"/>
+    <ROW File="UserTest.html" Component_="package_summary.html_6" FileName="UserTe~1.htm|UserTest.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\test\UserTest.html" SelfReg="false"/>
+    <ROW File="axis_ant.jar" Component_="TableLayout.jar" FileName="axis-ant.jar" Version="" Language="" Attributes="" SourcePath="..\lib\axis-ant.jar" SelfReg="false"/>
+    <ROW File="packages.html" Component_="overview_tree.html" FileName="packag~1.htm|packages.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\packages.html" SelfReg="false"/>
+    <ROW File="xmldb.jar" Component_="antlr.jar" FileName="xmldb.jar" Version="" Language="" Attributes="" SourcePath="..\exist\lib\core\xmldb.jar" SelfReg="false"/>
+    <ROW File="BrowseBranch.html" Component_="package_frame.html" FileName="Browse~1.htm|BrowseBranch.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\BrowseBranch.html" SelfReg="false"/>
+    <ROW File="wsdl4j.jar" Component_="TableLayout.jar" FileName="wsdl4j.jar" Version="" Language="" Attributes="" SourcePath="..\lib\wsdl4j.jar" SelfReg="false"/>
+    <ROW File="ImportFileFilter.html" Component_="package_frame.html_1" FileName="Import~1.htm|ImportFileFilter.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\common\ImportFileFilter.html" SelfReg="false"/>
+    <ROW File="MetaData.html" Component_="package_summary.html" FileName="MetaDa~1.htm|MetaData.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\common\MetaData.html" SelfReg="false"/>
+    <ROW File="LoginWnd.html" Component_="package_frame.html" FileName="LoginW~1.htm|LoginWnd.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\LoginWnd.html" SelfReg="false"/>
+    <ROW File="MediaTypeTest.html" Component_="package_summary.html_6" FileName="MediaT~1.htm|MediaTypeTest.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\test\MediaTypeTest.html" SelfReg="false"/>
+    <ROW File="iso_pub.ent" Component_="ISOgrk1.ent" FileName="iso-pub.ent" Version="" Language="" Attributes="" SourcePath="..\exist\entities\entities\iso-pub.ent" SelfReg="false"/>
+    <ROW File="ConnectionForm.html" Component_="package_frame.html" FileName="Connec~1.htm|ConnectionForm.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\ConnectionForm.html" SelfReg="false"/>
+    <ROW File="TreeForm.html" Component_="package_frame.html" FileName="TreeFo~1.htm|TreeForm.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\TreeForm.html" SelfReg="false"/>
+    <ROW File="Library.html_1" Component_="package_summary.html_4" FileName="Librar~1.htm|Library.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\repository\Library.html" SelfReg="false"/>
+    <ROW File="LinkLoader.html" Component_="package_frame.html_1" FileName="LinkLo~1.htm|LinkLoader.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\common\LinkLoader.html" SelfReg="false"/>
+    <ROW File="RegistrySoapBindingStub.html" Component_="package_summary.html_3" FileName="Regist~7.htm|RegistrySoapBindingStub.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\registry\RegistrySoapBindingStub.html" SelfReg="false"/>
+    <ROW File="WaitDialog.html" Component_="package_frame.html_1" FileName="WaitDi~1.htm|WaitDialog.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\common\WaitDialog.html" SelfReg="false"/>
+    <ROW File="exist.jar_1" Component_="TableLayout.jar" FileName="exist.jar" Version="" Language="" Attributes="" SourcePath="..\lib\exist.jar" SelfReg="false"/>
+    <ROW File="javax.servlet.jar_1" Component_="TableLayout.jar" FileName="javaxs~1.jar|javax.servlet.jar" Version="" Language="" Attributes="" SourcePath="..\lib\javax.servlet.jar" SelfReg="false"/>
+    <ROW File="LibItem.html" Component_="package_summary.html" FileName="LibIte~1.htm|LibItem.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\common\LibItem.html" SelfReg="false"/>
+    <ROW File="LibItemTest.html" Component_="package_summary.html_6" FileName="LibIte~1.htm|LibItemTest.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\test\LibItemTest.html" SelfReg="false"/>
+    <ROW File="package_frame.html_1" Component_="package_summary.html_1" FileName="packag~3.htm|package-frame.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\exception\package-frame.html" SelfReg="false"/>
+    <ROW File="package_frame.html_2" Component_="package_summary.html_2" FileName="packag~3.htm|package-frame.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\languages\package-frame.html" SelfReg="false"/>
+    <ROW File="AddToList.html" Component_="package_frame.html" FileName="AddToL~1.htm|AddToList.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\AddToList.html" SelfReg="false"/>
+    <ROW File="log4j.jar" Component_="antlr.jar" FileName="log4j.jar" Version="" Language="" Attributes="" SourcePath="..\exist\lib\core\log4j.jar" SelfReg="false"/>
+    <ROW File="package_frame.html_3" Component_="package_summary.html_3" FileName="packag~3.htm|package-frame.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\registry\package-frame.html" SelfReg="false"/>
+    <ROW File="dom.dbx" Component_="data.zip" FileName="dom.dbx" Version="" Language="" Attributes="" SourcePath="..\exist\data\dom.dbx" SelfReg="false"/>
+    <ROW File="package_frame.html_4" Component_="package_summary.html_4" FileName="packag~3.htm|package-frame.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\repository\package-frame.html" SelfReg="false"/>
+    <ROW File="package_summary.html_1" Component_="package_summary.html_1" FileName="packag~1.htm|package-summary.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\exception\package-summary.html" SelfReg="false"/>
+    <ROW File="server_config.wsdd" Component_="catalog" FileName="server~1.wsd|server-config.wsdd" Version="" Language="" Attributes="" SourcePath="..\exist\server-config.wsdd" SelfReg="false"/>
+    <ROW File="ExcelSheet.ExcelColumns.html" Component_="package_summary.html" FileName="ExcelS~2.htm|ExcelSheet.ExcelColumns.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\common\ExcelSheet.ExcelColumns.html" SelfReg="false"/>
+    <ROW File="ExcelSheet.html" Component_="package_summary.html" FileName="ExcelS~1.htm|ExcelSheet.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\common\ExcelSheet.html" SelfReg="false"/>
+    <ROW File="RegistryService.html" Component_="package_summary.html_3" FileName="Regist~2.htm|RegistryService.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\registry\RegistryService.html" SelfReg="false"/>
+    <ROW File="cocoon.xconf" Component_="catalog" FileName="cocoon~1.xco|cocoon.xconf" Version="" Language="" Attributes="" SourcePath="..\exist\cocoon.xconf" SelfReg="false"/>
+    <ROW File="liabolo.jar" Component_="liabolo.jar" FileName="liabolo.jar" Version="" Language="" Attributes="" SourcePath="..\bin\liabolo.jar" SelfReg="false"/>
+    <ROW File="package_frame.html_5" Component_="package_summary.html_5" FileName="packag~3.htm|package-frame.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\service\package-frame.html" SelfReg="false"/>
+    <ROW File="package_summary.html_2" Component_="package_summary.html_2" FileName="packag~1.htm|package-summary.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\languages\package-summary.html" SelfReg="false"/>
+    <ROW File="signature.properties" Component_="config.properties.1.2" FileName="signat~1.pro|signature.properties" Version="" Language="" Attributes="" SourcePath="..\config\signature.properties" SelfReg="false"/>
+    <ROW File="BrowseLocation.html" Component_="package_frame.html" FileName="Browse~4.htm|BrowseLocation.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\BrowseLocation.html" SelfReg="false"/>
+    <ROW File="package_frame.html_6" Component_="package_summary.html_6" FileName="packag~3.htm|package-frame.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\test\package-frame.html" SelfReg="false"/>
+    <ROW File="package_summary.html_3" Component_="package_summary.html_3" FileName="packag~1.htm|package-summary.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\registry\package-summary.html" SelfReg="false"/>
+    <ROW File="DummyTest.html" Component_="package_summary.html_6" FileName="DummyT~1.htm|DummyTest.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\test\DummyTest.html" SelfReg="false"/>
+    <ROW File="Language_de.html" Component_="package_summary.html_2" FileName="Langua~2.htm|Language_de.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\languages\Language_de.html" SelfReg="false"/>
+    <ROW File="RegistrySoapBindingSkeleton.html" Component_="package_summary.html_3" FileName="Regist~6.htm|RegistrySoapBindingSkeleton.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\registry\RegistrySoapBindingSkeleton.html" SelfReg="false"/>
+    <ROW File="axis_1.1.jar" Component_="TableLayout.jar" FileName="axis-1~1.jar|axis-1.1.jar" Version="" Language="" Attributes="" SourcePath="..\lib\axis-1.1.jar" SelfReg="false"/>
+    <ROW File="commons_pool_1.1.jar" Component_="antlr.jar" FileName="common~1.jar|commons-pool-1.1.jar" Version="" Language="" Attributes="" SourcePath="..\exist\lib\core\commons-pool-1.1.jar" SelfReg="false"/>
+    <ROW File="deprecated_list.html" Component_="overview_tree.html" FileName="deprec~1.htm|deprecated-list.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\deprecated-list.html" SelfReg="false"/>
+    <ROW File="iso_num.ent" Component_="ISOgrk1.ent" FileName="iso-num.ent" Version="" Language="" Attributes="" SourcePath="..\exist\entities\entities\iso-num.ent" SelfReg="false"/>
+    <ROW File="package_frame.html_7" Component_="package_frame.html" FileName="packag~1.htm|package-frame.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\package-frame.html" SelfReg="false"/>
+    <ROW File="package_summary.html_4" Component_="package_summary.html_4" FileName="packag~1.htm|package-summary.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\repository\package-summary.html" SelfReg="false"/>
+    <ROW File="Exist.html" Component_="package_summary.html_4" FileName="Exist~1.htm|Exist.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\repository\Exist.html" SelfReg="false"/>
+    <ROW File="package_frame.html_8" Component_="package_frame.html_1" FileName="packag~1.htm|package-frame.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\common\package-frame.html" SelfReg="false"/>
+    <ROW File="package_summary.html_5" Component_="package_summary.html_5" FileName="packag~1.htm|package-summary.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\service\package-summary.html" SelfReg="false"/>
+    <ROW File="Branch.html" Component_="package_summary.html" FileName="Branch~1.htm|Branch.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\common\Branch.html" SelfReg="false"/>
+    <ROW File="BranchTest.html" Component_="package_summary.html_6" FileName="Branch~1.htm|BranchTest.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\test\BranchTest.html" SelfReg="false"/>
+    <ROW File="TableLayout.jar" Component_="TableLayout.jar" FileName="TableL~1.jar|TableLayout.jar" Version="" Language="" Attributes="" SourcePath="..\lib\TableLayout.jar" SelfReg="false"/>
+    <ROW File="config.properties" Component_="config.properties.1.2" FileName="config~1.pro|config.properties" Version="" Language="" Attributes="" SourcePath="..\config\config.properties" SelfReg="false"/>
+    <ROW File="iso_lat1.ent" Component_="ISOgrk1.ent" FileName="iso-lat1.ent" Version="" Language="" Attributes="" SourcePath="..\exist\entities\entities\iso-lat1.ent" SelfReg="false"/>
+    <ROW File="package_frame.html_9" Component_="package_frame.html_2" FileName="packag~1.htm|package-frame.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\web\package-frame.html" SelfReg="false"/>
+    <ROW File="package_summary.html_6" Component_="package_summary.html_6" FileName="packag~1.htm|package-summary.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\test\package-summary.html" SelfReg="false"/>
+    <ROW File="AuthenticationException.html" Component_="package_summary.html_1" FileName="Authen~1.htm|AuthenticationException.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\exception\AuthenticationException.html" SelfReg="false"/>
+    <ROW File="ImportForm.html" Component_="package_frame.html" FileName="Import~1.htm|ImportForm.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\ImportForm.html" SelfReg="false"/>
+    <ROW File="PrintPreview.html" Component_="package_frame.html" FileName="PrintP~1.htm|PrintPreview.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\PrintPreview.html" SelfReg="false"/>
+    <ROW File="TimeTest.html" Component_="package_summary.html_6" FileName="TimeTe~1.htm|TimeTest.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\test\TimeTest.html" SelfReg="false"/>
+    <ROW File="iso_lat2.ent" Component_="ISOgrk1.ent" FileName="iso-lat2.ent" Version="" Language="" Attributes="" SourcePath="..\exist\entities\entities\iso-lat2.ent" SelfReg="false"/>
+    <ROW File="package_summary.html_7" Component_="package_frame.html" FileName="packag~2.htm|package-summary.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\package-summary.html" SelfReg="false"/>
+    <ROW File="user.roles" Component_="catalog" FileName="user~1.rol|user.roles" Version="" Language="" Attributes="" SourcePath="..\exist\user.roles" SelfReg="false"/>
+    <ROW File="ISOgrk3.pen" Component_="ISOgrk1.ent" FileName="ISOgrk3.pen" Version="" Language="" Attributes="" SourcePath="..\exist\entities\entities\ISOgrk3.pen" SelfReg="false"/>
+    <ROW File="ListForm.html" Component_="package_frame.html" FileName="ListFo~1.htm|ListForm.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\ListForm.html" SelfReg="false"/>
+    <ROW File="package_summary.html_8" Component_="package_frame.html_1" FileName="packag~2.htm|package-summary.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\common\package-summary.html" SelfReg="false"/>
+    <ROW File="ISOgrk4.pen" Component_="ISOgrk1.ent" FileName="ISOgrk4.pen" Version="" Language="" Attributes="" SourcePath="..\exist\entities\entities\ISOgrk4.pen" SelfReg="false"/>
+    <ROW File="User_Guide.pdf" Component_="part.tex" FileName="User-G~1.pdf|User-Guide.pdf" Version="" Language="" Attributes="" SourcePath="..\doc\guides\userguide\User-Guide.pdf" SelfReg="false"/>
+    <ROW File="allclasses_frame.html" Component_="overview_tree.html" FileName="allcla~1.htm|allclasses-frame.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\allclasses-frame.html" SelfReg="false"/>
+    <ROW File="package_summary.html_9" Component_="package_frame.html_2" FileName="packag~2.htm|package-summary.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\web\package-summary.html" SelfReg="false"/>
+    <ROW File="ServerTimeSoapBindingStub.html" Component_="package_summary.html" FileName="Server~6.htm|ServerTimeSoapBindingStub.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\common\ServerTimeSoapBindingStub.html" SelfReg="false"/>
+    <ROW File="ServiceNotAvailableException.html" Component_="package_summary.html_1" FileName="Servic~1.htm|ServiceNotAvailableException.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\exception\ServiceNotAvailableException.html" SelfReg="false"/>
+    <ROW File="Signature.html" Component_="package_summary.html" FileName="Signat~1.htm|Signature.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\common\Signature.html" SelfReg="false"/>
+    <ROW File="symbols.dbx" Component_="data.zip" FileName="symbols.dbx" Version="" Language="" Attributes="" SourcePath="..\exist\data\symbols.dbx" SelfReg="false"/>
+    <ROW File="ToolBar.html" Component_="package_frame.html" FileName="ToolBa~1.htm|ToolBar.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\ToolBar.html" SelfReg="false"/>
+    <ROW File="axis_jaxrpc_1.1.jar" Component_="TableLayout.jar" FileName="axis-j~1.jar|axis-jaxrpc-1.1.jar" Version="" Language="" Attributes="" SourcePath="..\lib\axis-jaxrpc-1.1.jar" SelfReg="false"/>
+    <ROW File="Library.html" Component_="package_summary.html_3" FileName="Librar~1.htm|Library.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\registry\Library.html" SelfReg="false"/>
+    <ROW File="Menu.html" Component_="package_frame.html" FileName="Menu~1.htm|Menu.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\Menu.html" SelfReg="false"/>
+    <ROW File="exist.jar" Component_="catalog" FileName="exist.jar" Version="" Language="" Attributes="" SourcePath="..\exist\exist.jar" SelfReg="false"/>
+    <ROW File="javax.servlet.jar" Component_="antlr.jar" FileName="javaxs~1.jar|javax.servlet.jar" Version="" Language="" Attributes="" SourcePath="..\exist\lib\core\javax.servlet.jar" SelfReg="false"/>
+    <ROW File="core.log" Component_="access.log" FileName="core.log" Version="" Language="" Attributes="" SourcePath="..\exist\logs\core.log" SelfReg="false"/>
+    <ROW File="jxl.jar" Component_="TableLayout.jar" FileName="jxl.jar" Version="" Language="" Attributes="" SourcePath="..\lib\jxl.jar" SelfReg="false"/>
+    <ROW File="package_frame.html" Component_="package_summary.html" FileName="packag~3.htm|package-frame.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\common\package-frame.html" SelfReg="false"/>
+    <ROW File="ServerTimeService.html" Component_="package_summary.html" FileName="Server~2.htm|ServerTimeService.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\common\ServerTimeService.html" SelfReg="false"/>
+    <ROW File="error.log" Component_="access.log" FileName="error.log" Version="" Language="" Attributes="" SourcePath="..\exist\logs\error.log" SelfReg="false"/>
+    <ROW File="Developer_Guide.pdf" Component_="Developer_Guide.pdf" FileName="Develo~1.pdf|Developer-Guide.pdf" Version="" Language="" Attributes="" SourcePath="..\doc\guides\developerguide\Developer-Guide.pdf" SelfReg="false"/>
+    <ROW File="MergingException.html" Component_="package_summary.html_1" FileName="Mergin~1.htm|MergingException.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\exception\MergingException.html" SelfReg="false"/>
+    <ROW File="ResultTableModel.html" Component_="package_frame.html" FileName="Result~1.htm|ResultTableModel.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\ResultTableModel.html" SelfReg="false"/>
+    <ROW File="catalog" Component_="catalog" FileName="catalog" Version="" Language="" Attributes="" SourcePath="..\exist\catalog" SelfReg="false"/>
+    <ROW File="index.html" Component_="overview_tree.html" FileName="index~1.htm|index.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\index.html" SelfReg="false"/>
+    <ROW File="jakarta_oro_2.0.6.jar_1" Component_="TableLayout.jar" FileName="jakart~1.jar|jakarta-oro-2.0.6.jar" Version="" Language="" Attributes="" SourcePath="..\lib\jakarta-oro-2.0.6.jar" SelfReg="false"/>
+    <ROW File="jgoethe.ent" Component_="ISOgrk1.ent" FileName="jgoethe.ent" Version="" Language="" Attributes="" SourcePath="..\exist\entities\entities\jgoethe.ent" SelfReg="false"/>
+    <ROW File="log4j.jar_1" Component_="TableLayout.jar" FileName="log4j.jar" Version="" Language="" Attributes="" SourcePath="..\lib\log4j.jar" SelfReg="false"/>
+    <ROW File="words.dbx" Component_="data.zip" FileName="words.dbx" Version="" Language="" Attributes="" SourcePath="..\exist\data\words.dbx" SelfReg="false"/>
+    <ROW File="AllTest.html" Component_="package_summary.html_6" FileName="AllTes~1.htm|AllTest.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\test\AllTest.html" SelfReg="false"/>
+    <ROW File="DefaultForm.html" Component_="package_frame.html_1" FileName="Defaul~2.htm|DefaultForm.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\common\DefaultForm.html" SelfReg="false"/>
+    <ROW File="Location.html" Component_="package_summary.html" FileName="Locati~1.htm|Location.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\common\Location.html" SelfReg="false"/>
+    <ROW File="README.txt" Component_="README.txt" FileName="README.txt" Version="" Language="" Attributes="" SourcePath="..\log\README.txt" SelfReg="false"/>
+    <ROW File="Registry.html" Component_="package_summary.html_3" FileName="Regist~1.htm|Registry.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\registry\Registry.html" SelfReg="false"/>
+    <ROW File="RegistrySoapBindingImpl.html" Component_="package_summary.html_3" FileName="Regist~5.htm|RegistrySoapBindingImpl.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\registry\RegistrySoapBindingImpl.html" SelfReg="false"/>
+    <ROW File="RegistryTest.html" Component_="package_summary.html_6" FileName="Regist~1.htm|RegistryTest.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\test\RegistryTest.html" SelfReg="false"/>
+    <ROW File="ServerTimeSoapBindingSkeleton.html" Component_="package_summary.html" FileName="Server~5.htm|ServerTimeSoapBindingSkeleton.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\common\ServerTimeSoapBindingSkeleton.html" SelfReg="false"/>
+    <ROW File="SignatureGenerator.html" Component_="package_summary.html" FileName="Signat~2.htm|SignatureGenerator.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\common\SignatureGenerator.html" SelfReg="false"/>
+    <ROW File="StatusBar.html" Component_="package_frame.html" FileName="Status~1.htm|StatusBar.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\StatusBar.html" SelfReg="false"/>
+    <ROW File="antlr.jar_1" Component_="TableLayout.jar" FileName="antlr.jar" Version="" Language="" Attributes="" SourcePath="..\lib\antlr.jar" SelfReg="false"/>
+    <ROW File="aufgaben.html" Component_="package_frame.html_1" FileName="aufgab~1.htm|aufgaben.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\common\aufgaben.html" SelfReg="false"/>
+    <ROW File="commons_logging_1.0.3.jar" Component_="TableLayout.jar" FileName="common~2.jar|commons-logging-1.0.3.jar" Version="" Language="" Attributes="" SourcePath="..\lib\commons-logging-1.0.3.jar" SelfReg="false"/>
+    <ROW File="constant_values.html" Component_="overview_tree.html" FileName="consta~1.htm|constant-values.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\constant-values.html" SelfReg="false"/>
+    <ROW File="package_summary.html" Component_="package_summary.html" FileName="packag~1.htm|package-summary.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\common\package-summary.html" SelfReg="false"/>
+    <ROW File="ImportTableRenderer.html" Component_="package_frame.html_1" FileName="Import~2.htm|ImportTableRenderer.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\common\ImportTableRenderer.html" SelfReg="false"/>
+    <ROW File="MDSearchResultForm.html" Component_="package_frame.html" FileName="MDSear~1.htm|MDSearchResultForm.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\MDSearchResultForm.html" SelfReg="false"/>
+    <ROW File="MessageReceiver.html" Component_="package_summary.html" FileName="Messag~1.htm|MessageReceiver.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\common\MessageReceiver.html" SelfReg="false"/>
+    <ROW File="web.xml" Component_="catalog" FileName="web.xml" Version="" Language="" Attributes="" SourcePath="..\exist\web.xml" SelfReg="false"/>
+    <ROW File="Admin_Guide.pdf" Component_="Admin_Guide.pdf" FileName="Admin-~1.pdf|Admin-Guide.pdf" Version="" Language="" Attributes="" SourcePath="..\doc\guides\adminguide\Admin-Guide.pdf" SelfReg="false"/>
+    <ROW File="Authenticity.html" Component_="package_summary.html" FileName="Authen~1.htm|Authenticity.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\common\Authenticity.html" SelfReg="false"/>
+    <ROW File="EditMetadataForm.html" Component_="package_frame.html" FileName="EditMe~1.htm|EditMetadataForm.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\EditMetadataForm.html" SelfReg="false"/>
+    <ROW File="package_tree.html" Component_="package_summary.html" FileName="packag~2.htm|package-tree.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\common\package-tree.html" SelfReg="false"/>
+    <ROW File="BackupFileFilter.html" Component_="package_frame.html_1" FileName="Backup~1.htm|BackupFileFilter.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\common\BackupFileFilter.html" SelfReg="false"/>
+    <ROW File="MediaTypesEditor.html" Component_="package_frame.html_1" FileName="MediaT~1.htm|MediaTypesEditor.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\common\MediaTypesEditor.html" SelfReg="false"/>
+    <ROW File="NoConnectionException.html" Component_="package_summary.html_1" FileName="NoConn~1.htm|NoConnectionException.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\exception\NoConnectionException.html" SelfReg="false"/>
+    <ROW File="User_Guide.lnk" Component_="Liabolo_eine_teuflisch_gute_Literaturverwaltung.lnk" FileName="User-G~1.lnk|User-Guide.lnk" Version="" Language="" Attributes="" SourcePath="User-Guide.lnk" SelfReg="false"/>
+    <ROW File="commons_pool_1.1.jar_1" Component_="TableLayout.jar" FileName="common~3.jar|commons-pool-1.1.jar" Version="" Language="" Attributes="" SourcePath="..\lib\commons-pool-1.1.jar" SelfReg="false"/>
+    <ROW File="log4j.xml" Component_="catalog" FileName="log4j.xml" Version="" Language="" Attributes="" SourcePath="..\exist\log4j.xml" SelfReg="false"/>
+    <ROW File="gui.properties" Component_="config.properties.1.2" FileName="gui~1.pro|gui.properties" Version="" Language="" Attributes="" SourcePath="..\config\gui.properties" SelfReg="false"/>
+    <ROW File="resolver_20030708.jar_1" Component_="TableLayout.jar" FileName="resolv~1.jar|resolver-20030708.jar" Version="" Language="" Attributes="" SourcePath="..\lib\resolver-20030708.jar" SelfReg="false"/>
+    <ROW File="stylesheet.css" Component_="overview_tree.html" FileName="styles~1.css|stylesheet.css" Version="" Language="" Attributes="" SourcePath="..\javadoc\stylesheet.css" SelfReg="false"/>
+    <ROW File="xmlrpc_1.2.jar_1" Component_="TableLayout.jar" FileName="xmlrpc~1.jar|xmlrpc-1.2.jar" Version="" Language="" Attributes="" SourcePath="..\lib\xmlrpc-1.2.jar" SelfReg="false"/>
+    <ROW File="UnknownException.html" Component_="package_summary.html_1" FileName="Unknow~1.htm|UnknownException.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\exception\UnknownException.html" SelfReg="false"/>
+    <ROW File="access.log" Component_="access.log" FileName="access.log" Version="" Language="" Attributes="" SourcePath="..\exist\logs\access.log" SelfReg="false"/>
+    <ROW File="serialized_form.html" Component_="overview_tree.html" FileName="serial~1.htm|serialized-form.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\serialized-form.html" SelfReg="false"/>
+    <ROW File="Logger.html" Component_="package_summary.html" FileName="Logger~1.htm|Logger.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\common\Logger.html" SelfReg="false"/>
+    <ROW File="OptionsForm.html" Component_="package_frame.html" FileName="Option~1.htm|OptionsForm.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\OptionsForm.html" SelfReg="false"/>
+    <ROW File="RegistrationServlet.html" Component_="package_summary.html_3" FileName="Regist~3.htm|RegistrationServlet.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\registry\RegistrationServlet.html" SelfReg="false"/>
+    <ROW File="XMLException.html" Component_="package_summary.html_1" FileName="XMLExc~1.htm|XMLException.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\exception\XMLException.html" SelfReg="false"/>
+    <ROW File="saaj_api.jar" Component_="TableLayout.jar" FileName="saaj-api.jar" Version="" Language="" Attributes="" SourcePath="..\lib\saaj-api.jar" SelfReg="false"/>
+    <ROW File="sitemap.log" Component_="access.log" FileName="sitemap.log" Version="" Language="" Attributes="" SourcePath="..\exist\logs\sitemap.log" SelfReg="false"/>
+    <ROW File="overview_frame.html" Component_="overview_tree.html" FileName="overvi~3.htm|overview-frame.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\overview-frame.html" SelfReg="false"/>
+    <ROW File="BranchForm.html" Component_="package_frame.html" FileName="Branch~1.htm|BranchForm.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\BranchForm.html" SelfReg="false"/>
+    <ROW File="BrowseConnection.html" Component_="package_frame.html" FileName="Browse~2.htm|BrowseConnection.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\BrowseConnection.html" SelfReg="false"/>
+    <ROW File="PreferencesDialog.html" Component_="package_frame.html" FileName="Prefer~1.htm|PreferencesDialog.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\PreferencesDialog.html" SelfReg="false"/>
+    <ROW File="conf.xml" Component_="catalog" FileName="conf.xml" Version="" Language="" Attributes="" SourcePath="..\exist\conf.xml" SelfReg="false"/>
+    <ROW File="ClientServlet.html" Component_="package_frame.html_2" FileName="Client~1.htm|ClientServlet.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\web\ClientServlet.html" SelfReg="false"/>
+    <ROW File="Language.html" Component_="package_summary.html_2" FileName="Langua~1.htm|Language.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\languages\Language.html" SelfReg="false"/>
+    <ROW File="libreadline_java.jar" Component_="antlr.jar" FileName="librea~1.jar|libreadline-java.jar" Version="" Language="" Attributes="" SourcePath="..\exist\lib\core\libreadline-java.jar" SelfReg="false"/>
+    <ROW File="overview_summary.html" Component_="overview_tree.html" FileName="overvi~2.htm|overview-summary.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\overview-summary.html" SelfReg="false"/>
+    <ROW File="package_list" Component_="overview_tree.html" FileName="packag~1|package-list" Version="" Language="" Attributes="" SourcePath="..\javadoc\package-list" SelfReg="false"/>
+    <ROW File="Gui.html" Component_="package_frame.html" FileName="Gui~1.htm|Gui.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\Gui.html" SelfReg="false"/>
+    <ROW File="IndividualList.html" Component_="package_summary.html" FileName="Indivi~1.htm|IndividualList.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\common\IndividualList.html" SelfReg="false"/>
+    <ROW File="IndividualListTest.html" Component_="package_summary.html_6" FileName="Indivi~1.htm|IndividualListTest.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\test\IndividualListTest.html" SelfReg="false"/>
+    <ROW File="flow.log" Component_="access.log" FileName="flow.log" Version="" Language="" Attributes="" SourcePath="..\exist\logs\flow.log" SelfReg="false"/>
+    <ROW File="ServerTime.html" Component_="package_summary.html" FileName="Server~1.htm|ServerTime.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\common\ServerTime.html" SelfReg="false"/>
+    <ROW File="ServerTimeSoapBindingImpl.html" Component_="package_summary.html" FileName="Server~4.htm|ServerTimeSoapBindingImpl.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\common\ServerTimeSoapBindingImpl.html" SelfReg="false"/>
+    <ROW File="elements.dbx" Component_="data.zip" FileName="elements.dbx" Version="" Language="" Attributes="" SourcePath="..\exist\data\elements.dbx" SelfReg="false"/>
+    <ROW File="overview_tree.html" Component_="overview_tree.html" FileName="overvi~1.htm|overview-tree.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\overview-tree.html" SelfReg="false"/>
+    <ROW File="start.jar_1" Component_="TableLayout.jar" FileName="start.jar" Version="" Language="" Attributes="" SourcePath="..\lib\start.jar" SelfReg="false"/>
+    <ROW File="Dispatcher.html" Component_="package_summary.html_5" FileName="Dispat~1.htm|Dispatcher.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\service\Dispatcher.html" SelfReg="false"/>
+    <ROW File="TextExport.html" Component_="package_summary.html" FileName="TextEx~1.htm|TextExport.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\common\TextExport.html" SelfReg="false"/>
+    <ROW File="plastic_1.2.1.jar" Component_="TableLayout.jar" FileName="plasti~1.jar|plastic-1.2.1.jar" Version="" Language="" Attributes="" SourcePath="..\lib\plastic-1.2.1.jar" SelfReg="false"/>
+    <ROW File="collections.dbx" Component_="data.zip" FileName="collec~1.dbx|collections.dbx" Version="" Language="" Attributes="" SourcePath="..\exist\data\collections.dbx" SelfReg="false"/>
+    <ROW File="jakarta_oro_2.0.6.jar" Component_="antlr.jar" FileName="jakart~1.jar|jakarta-oro-2.0.6.jar" Version="" Language="" Attributes="" SourcePath="..\exist\lib\core\jakarta-oro-2.0.6.jar" SelfReg="false"/>
+    <ROW File="Help.html" Component_="package_frame.html" FileName="Help~1.htm|Help.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\Help.html" SelfReg="false"/>
+    <ROW File="antlr.jar" Component_="antlr.jar" FileName="antlr.jar" Version="" Language="" Attributes="" SourcePath="..\exist\lib\core\antlr.jar" SelfReg="false"/>
+    <ROW File="BackupForm.html" Component_="package_frame.html" FileName="Backup~1.htm|BackupForm.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\BackupForm.html" SelfReg="false"/>
+    <ROW File="commons_discovery_0.2.jar" Component_="TableLayout.jar" FileName="common~1.jar|commons-discovery-0.2.jar" Version="" Language="" Attributes="" SourcePath="..\lib\commons-discovery-0.2.jar" SelfReg="false"/>
+    <ROW File="MetadataSearchForm.html" Component_="package_frame.html" FileName="Metada~2.htm|MetadataSearchForm.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\MetadataSearchForm.html" SelfReg="false"/>
+    <ROW File="ServerTimeServiceLocator.html" Component_="package_summary.html" FileName="Server~3.htm|ServerTimeServiceLocator.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\common\ServerTimeServiceLocator.html" SelfReg="false"/>
+    <ROW File="SplashScreen.html" Component_="package_frame.html" FileName="Splash~1.htm|SplashScreen.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\SplashScreen.html" SelfReg="false"/>
+    <ROW File="package_tree.html_1" Component_="package_summary.html_1" FileName="packag~2.htm|package-tree.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\exception\package-tree.html" SelfReg="false"/>
+    <ROW File="Info.html" Component_="package_frame.html" FileName="Info~1.htm|Info.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\Info.html" SelfReg="false"/>
+    <ROW File="excalibur_cli_1.0.jar" Component_="antlr.jar" FileName="excali~1.jar|excalibur-cli-1.0.jar" Version="" Language="" Attributes="" SourcePath="..\exist\lib\core\excalibur-cli-1.0.jar" SelfReg="false"/>
+    <ROW File="package_tree.html_2" Component_="package_summary.html_2" FileName="packag~2.htm|package-tree.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\languages\package-tree.html" SelfReg="false"/>
+    <ROW File="LocationForm.html" Component_="package_frame.html" FileName="Locati~1.htm|LocationForm.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\LocationForm.html" SelfReg="false"/>
+    <ROW File="package_tree.html_3" Component_="package_summary.html_3" FileName="packag~2.htm|package-tree.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\registry\package-tree.html" SelfReg="false"/>
+    <ROW File="resolver_20030708.jar" Component_="antlr.jar" FileName="resolv~1.jar|resolver-20030708.jar" Version="" Language="" Attributes="" SourcePath="..\exist\lib\core\resolver-20030708.jar" SelfReg="false"/>
+    <ROW File="BrowseList.html" Component_="package_frame.html" FileName="Browse~3.htm|BrowseList.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\BrowseList.html" SelfReg="false"/>
+    <ROW File="LICENSE.txt" Component_="project" FileName="LICENSE.txt" Version="" Language="" Attributes="" SourcePath="..\LICENSE.txt" SelfReg="false"/>
+    <ROW File="allclasses_noframe.html" Component_="overview_tree.html" FileName="allcla~2.htm|allclasses-noframe.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\allclasses-noframe.html" SelfReg="false"/>
+    <ROW File="package_tree.html_4" Component_="package_summary.html_4" FileName="packag~2.htm|package-tree.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\repository\package-tree.html" SelfReg="false"/>
+    <ROW File="xmlrpc_1.2.jar" Component_="antlr.jar" FileName="xmlrpc~1.jar|xmlrpc-1.2.jar" Version="" Language="" Attributes="" SourcePath="..\exist\lib\core\xmlrpc-1.2.jar" SelfReg="false"/>
+    <ROW File="package_tree.html_5" Component_="package_summary.html_5" FileName="packag~2.htm|package-tree.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\service\package-tree.html" SelfReg="false"/>
+    <ROW File="teixlite.dtd" Component_="play.dtd" FileName="teixlite.dtd" Version="" Language="" Attributes="" SourcePath="..\exist\entities\teixlite.dtd" SelfReg="false"/>
+    <ROW File="xmldb.jar_1" Component_="TableLayout.jar" FileName="xmldb.jar" Version="" Language="" Attributes="" SourcePath="..\lib\xmldb.jar" SelfReg="false"/>
+    <ROW File="Connection.html" Component_="package_summary.html" FileName="Connec~1.htm|Connection.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\common\Connection.html" SelfReg="false"/>
+    <ROW File="index_all.html" Component_="overview_tree.html" FileName="index-~1.htm|index-all.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\index-all.html" SelfReg="false"/>
+    <ROW File="package_tree.html_6" Component_="package_summary.html_6" FileName="packag~2.htm|package-tree.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\test\package-tree.html" SelfReg="false"/>
+    <ROW File="ExcelTest.html" Component_="package_summary.html_6" FileName="ExcelT~1.htm|ExcelTest.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\test\ExcelTest.html" SelfReg="false"/>
+    <ROW File="package_tree.html_7" Component_="package_frame.html" FileName="packag~3.htm|package-tree.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\package-tree.html" SelfReg="false"/>
+    <ROW File="ISOgrk1.ent" Component_="ISOgrk1.ent" FileName="ISOgrk1.ent" Version="" Language="" Attributes="" SourcePath="..\exist\entities\entities\ISOgrk1.ent" SelfReg="false"/>
+    <ROW File="junit.jar" Component_="TableLayout.jar" FileName="junit.jar" Version="" Language="" Attributes="" SourcePath="..\lib\junit.jar" SelfReg="false"/>
+    <ROW File="package_tree.html_8" Component_="package_frame.html_1" FileName="packag~3.htm|package-tree.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\common\package-tree.html" SelfReg="false"/>
+    <ROW File="xerces.jar" Component_="TableLayout.jar" FileName="xerces.jar" Version="" Language="" Attributes="" SourcePath="..\lib\xerces.jar" SelfReg="false"/>
+    <ROW File="xmlform.log" Component_="access.log" FileName="xmlform.log" Version="" Language="" Attributes="" SourcePath="..\exist\logs\xmlform.log" SelfReg="false"/>
+    <ROW File="Configurator.html" Component_="package_summary.html" FileName="Config~1.htm|Configurator.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\common\Configurator.html" SelfReg="false"/>
+    <ROW File="logkit.xconf" Component_="catalog" FileName="logkit~1.xco|logkit.xconf" Version="" Language="" Attributes="" SourcePath="..\exist\logkit.xconf" SelfReg="false"/>
+    <ROW File="package_tree.html_9" Component_="package_frame.html_2" FileName="packag~3.htm|package-tree.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\web\package-tree.html" SelfReg="false"/>
+    <ROW File="AddNewMetadata.html" Component_="package_frame.html" FileName="AddNew~1.htm|AddNewMetadata.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\AddNewMetadata.html" SelfReg="false"/>
+    <ROW File="TextItem.html" Component_="package_summary.html" FileName="TextIt~1.htm|TextItem.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\common\TextItem.html" SelfReg="false"/>
+    <ROW File="TimeServlet.html" Component_="package_summary.html" FileName="TimeSe~1.htm|TimeServlet.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\common\TimeServlet.html" SelfReg="false"/>
+    <ROW File="TimeServletTest.html" Component_="package_summary.html_6" FileName="TimeSe~1.htm|TimeServletTest.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\test\TimeServletTest.html" SelfReg="false"/>
+    <ROW File="inherit.gif" Component_="inherit.gif" FileName="inherit.gif" Version="" Language="" Attributes="" SourcePath="..\javadoc\resources\inherit.gif" SelfReg="false"/>
+    <ROW File="DefaultDialog.html" Component_="package_frame.html_1" FileName="Defaul~1.htm|DefaultDialog.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\common\DefaultDialog.html" SelfReg="false"/>
+    <ROW File="MetadataForm.html" Component_="package_frame.html" FileName="Metada~1.htm|MetadataForm.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\client\offline\MetadataForm.html" SelfReg="false"/>
+    <ROW File="client.properties.1.1" Component_="catalog" FileName="#clien~1.1|.#client.properties.1.1" Version="" Language="" Attributes="" SourcePath="..\exist\.#client.properties.1.1" SelfReg="false"/>
+    <ROW File="Language_en.html" Component_="package_summary.html_2" FileName="Langua~3.htm|Language_en.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\languages\Language_en.html" SelfReg="false"/>
+    <ROW File="Liabolo_eine_teuflisch_gute_Literaturverwaltung.lnk" Component_="Liabolo_eine_teuflisch_gute_Literaturverwaltung.lnk" FileName="Liabol~1.lnk|Liabolo-eine_teuflisch_gute_Literaturverwaltung.lnk" Version="" Language="" Attributes="" SourcePath="Liabolo-eine_teuflisch_gute_Literaturverwaltung.lnk" SelfReg="false"/>
+    <ROW File="start.jar" Component_="catalog" FileName="start.jar" Version="" Language="" Attributes="" SourcePath="..\exist\start.jar" SelfReg="false"/>
+    <ROW File="XMLDB.html" Component_="package_summary.html_4" FileName="XMLDB~1.htm|XMLDB.html" Version="" Language="" Attributes="" SourcePath="..\javadoc\org\liabolo\repository\XMLDB.html" SelfReg="false"/>
+    <ROW File="client.properties" Component_="catalog" FileName="client~1.pro|client.properties" Version="" Language="" Attributes="" SourcePath="..\exist\client.properties" SelfReg="false"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
+    <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
+    <ROW Action="SET_TARGETDIR" Type="307" Source="TARGETDIR" Target="[ProgramFilesFolder][ProductName]"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
+    <ROW Directory_="doc" Component_="doc"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiMediaComponent">
+    <ATTRIBUTE name="InstallationType" value="0"/>
+    <ATTRIBUTE name="MediaSize" value="0"/>
+    <ATTRIBUTE name="Compress" value="1"/>
+    <ATTRIBUTE name="Package" value="1"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiUpgradeComponent">
+    <ROW UpgradeCode="UpgradeCode" VersionMin="" VersionMax="ProductVersion" Language="" Attributes="1025" Remove=""/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
+    <ROW Name="default_banner.bmp" SourcePath="&lt;default-banner.bmp&gt;"/>
+    <ROW Name="default_dialog.bmp" SourcePath="&lt;default-dialog.bmp&gt;"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
+    <ATTRIBUTE name="Start" value="WelcomeDlg FolderDlg VerifyReadyDlg"/>
+    <ATTRIBUTE name="Progress" value="ProgressDlg"/>
+    <ATTRIBUTE name="End" value="ExitDialog"/>
+  </COMPONENT>
+</DOCUMENT>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<individuallist name="XML-Datenbanken" desc="Sammlung einiger Bücher rund um XML und Datenbanken">
+    <item id="inf_CA0071" desc="Gute Einführung in XML-Datenbanken"/>
+    <item id="inf_AB0023" desc="Primärliteratur für Einführungskapitel"/>
+    <item id="inf_EB0213" desc="XPATH-Tutorial"/>
+    <item id="inf_TB3021" desc="XQUERY-Tutorial"/>
+    <item id="inf_AZ0453" desc="eXist Dokumentation"/>
+</individuallist>

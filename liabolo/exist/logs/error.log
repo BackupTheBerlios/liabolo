@@ -1,0 +1,2 @@
+ERROR   (2004-05-04) 08:38.58:302   [sitemap.action.xmldb.login] (/exist/xadmin.xsp) SocketListener-0/XMLDBSessionLoginAction: XMLDBSessionLoginAction: no parameters!
+ERROR   (2004-05-04) 10:05.55:350   [sitemap.action.xmldb.login] (/exist/xadmin.xsp) SocketListener-35/XMLDBSessionLoginAction: XMLDBSessionLoginAction: no parameters!

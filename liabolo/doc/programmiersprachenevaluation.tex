@@ -1,0 +1,167 @@
+        \section{Programmiersprachenevaluation}
+            In dem Projektvorhaben wird eine Standalone-Applikation erstellt. Um die Programmiersprache festzulegen wird ein projektunabhängiger Prototyp in vier verschiedenen Programmiersprachen erstellt. Der Prototyp ist eine GUI-Applikation mit folgenden Eigenschaften :
+            \begin{itemize}
+                \item{Menüleiste mit den Menüs 'Datei'}
+                \begin{itemize}
+                    \item{Öffnen (Dummy)}
+                    \item{Speichern (Dummy)}
+                    \item{Beenden}
+                \end{itemize}
+                \item{und dem Menü 'Hilfe'}
+                \begin{itemize}
+                    \item{Info (Popup-Fenster mit Informationen über Autor etc.)}
+                \end{itemize}
+            \end{itemize}
+            Zur Erleichterung der Auswahl wird jede Applikation dokumentiert und anschließend eine
+            Entscheidung über die Wahl der Programmiersprache getroffen.
+            \subsection{Tcl/Tk}%Stefan
+                \subsubsection{Allgemein}
+                    \index{Tcl}Tcl steht für \textit{Tool Command Language}, wird 'tickle' ausgesprochen und ist eine Skriptsprache, die plattformunabhängig erstellt werden kann. Mittels des Interpreters wish (window shell) wird dann die erstellte Datei mit Endung '.tcl'
+                    interpretiert und gestartet.\\
+                    \index{Tk}Tk steht für \textit{Toolkit} und ist eine Erweiterung zu Tcl um grafische Elemente, wie die Erstellung einer GUI mit den jeweiligen Komponenten. Tk ist als Erweiterung zu verstehen, da es von verschiedenen Skriptsprachen benutzt werden kann (u.a. Perl/Tk).
+                \subsubsection{Systemvoraussetzungen}
+                    Tcl/Tk wird als Bundle kostenlos auf folgender Webseite angeboten : 
+                    \url{http://dev.scriptics.com/software/tcltk/8.4.html}\\
+		\subsubsection{Umsetzung}
+		    Nach erfolgreicher Installation können direkt die mitgelieferten Demos als Argument des \textit{wish}-Interpreters aufgerufen werden. Somit fiel der
+		    Einstieg recht leicht. Da in der Programmiersprache Tcl überhaupt keine Kenntnisse vorlagen, wurde eine einfachen Textausgabe angefangen. Die ersten
+		    Ergebnisse wurden sofort erzielt. Die speziellen Eigenschaften, wie das Action-Handling und die Modifikation von textuellen Elementen während der
+		    Laufzeit erwiesen sich jedoch, auch auf Grund nicht bereit stehender Dokumentation, als gewöhnungsbedürftig. Insgesamt hat das Erstellen des Demos ca.
+		    5-8 Stunden gedauert, Feinheiten wie Shortcuts ausgeschlossen. Zur Betrachtung des Source-Codes sei auf den Anhang \ref{eval_tcl} verwiesen.
+		\subsubsection{Screenshots}
+                    Im Folgenden wird die anfangs beschriebene Funktionalität durch Screenshots belegt Bild(\ref{fig:easyButton_standard}),Bild(\ref{fig:easyButton_buttonpressed}),Bild(\ref{fig:easyButton_info}),Bild(\ref{fig:easyButton_hinweis}).
+                    \begin{figure*}[!htb]
+                        \begin{center}
+                            \includegraphics[scale=0.6]{images/easyButton_1.jpg}
+                        \end{center}
+                        \caption{EasyButton mit aufgeklappten Hilfe-Menü}
+                        \label{fig:easyButton_standard}
+                    \end{figure*}\par
+                    \begin{figure*}[!htb]
+                        \begin{center}
+                            \includegraphics[scale=0.6]{images/easyButton_2.jpg}
+                        \end{center}
+                        \caption{EasyButton nach Betätigung des Buttons}
+                        \label{fig:easyButton_buttonpressed}
+                    \end{figure*}\par
+                    \begin{figure*}[!htb]
+                        \begin{center}
+                            \includegraphics[scale=0.6]{images/easyButton_3.jpg}
+                        \end{center}
+                        \caption{EasyButton mit Info-Dialog}
+                        \label{fig:easyButton_info}
+                    \end{figure*}\par
+                    \begin{figure*}[!hb]
+                        \begin{center}
+                            \includegraphics[scale=0.6]{images/easyButton_4.jpg}
+                        \end{center}
+                        \caption{EasyButton mit Hinweis}
+                        \label{fig:easyButton_hinweis}
+                    \end{figure*}\par
+								\subsubsection{Fazit}
+									Tcl/Tk ist äußerst geeignet, um schnell einfache Gui's(\textit{g}rafical \textit{u}ser \textit{i}nterface) zu erzeugen. Die Anbindung an andere Datenquellen und der unterschiedliche Einsatz (z.B. standalone vs. embedded) wurde hierbei nicht untersucht. Es kann abschliessend also kein Pro oder Contra ausgesprochen werden.
+						\newpage
+            \subsection{Java}%Frank
+                \subsubsection{Allgemein}
+                    Java ist eine plattformunabhängige Programmiersprache der Firma Sun Microsystems. Als
+					Standardwerk zum Thema Java hat sich \cite{goto_java2} einen Namen gemacht.
+                \subsubsection{Voraussetzungen}
+                    Um die Programme ausführen zu können, ist die Installation einer Java Laufzeitumgebung (JRE) notwendig. Für das eigene Erstellen von Programmen wird eine Compilerumgebung benötigt (SDK). Java ist auf sehr vielen Computern bereits installiert und damit weit verbreitet. Die aktuelle Version beider Umgebungen kann kostenlos unter \url{http://java.sun.com/j2se/1.4.2/download.html} heruntergeladen werden.
+                \subsubsection{Implementation}
+                    Das Testprogramm wurde mit Hilfe der Swing-Bibliotheken erstellt. Das Menü enthält die Einträge: Öffnen, Speichern und Beenden. Tooltips erleichtern die Bedienung. Ein Tooltip gibt eine kurze Hilfe aus, wenn der Mauszeiger über einem Objekt (z.B. Knopf) stehen bleibt. Für die Implementation wurde das JDK von Sun in der Version 1.4.2 verwendet. Als Entwicklungsumgebung wurde das freie Softwarepaket
+					Eclipse \url{http://www.eclipse.org}
+					von der Firma IBM eingesetzt. Das kompilierte Programm wurde erfolgreich unter Windows, Linux und FreeBSD getestet.
+				\subsubsection{Bewertung}
+				Die Programmierung gelang zügig aufgrund der Einfachheit von Java und der ausgereiften
+				Entwicklungsumgebung Eclipse. Durch die Plattformunabhängigkeit von Java war das Testprogramm
+				ohne Anpassungen auf verschiedenen Betriebssystemen sofort lauffähig. Java ist daher ein 						geeigneter Kandidat für die	Implementierung.
+                \subsubsection{Screenshots}
+                    \begin{figure*}[!htb]
+                        \begin{center}
+                            \includegraphics[scale=0.5]{images/java-guitest-screenshot-linux.jpg}
+                        \end{center}
+                        \caption{Die HalloWelt-Oberfl\"ache mit  Java unter Linux}
+                        \label{fig:hallo_standard_1}
+                    \end{figure*}\par
+
+            \subsection{C\# mit Mono und GTK\#}%Thorsten
+                \subsubsection{Allgemein}
+                    C\# wurde von Microsoft entwickelt und ist eine halb compilierte, halb interpretierte Programmiersprache \"ahnlich wie Java. Als Entwicklungsvoraussetzung wird das .Net-Framework von Microsoft benötigt. Es gibt allerdings mit einem Projekt namens "`\textit{Mono}"' eine Open-Source Implementation des .Net-Frameworks. \textit{Mono} wurde f\"ur diesen C\# Test verwendet.
+                \subsubsection{Systemvoraussetzungen}
+                    \textit{Mono} enth\"alt alle Developmenttools, die f\"ur die C\# Programmierung benötigt werden, insbesondere den Compiler und die Laufzeitumgebung. Des weiteren wird in diesem Test GTK\# zur Erstellung der grafischen Oberfl\"ache verwendet.\\
+                    \noindent \url{http://www.go-mono.com/} \\
+                    \url{http://gtk-sharp.sourceforge.net/}
+                \paragraph{Umsetzung}
+                    \begin{itemize}
+                        \item{Windows} \\
+                            F\"ur Windows existiert ein Installationsprogramm mit dem sich \textit{Mono} problemlos installieren lie\ss. C\# verwendet standardm\"a{\ss}ig das
+			    "`Windows.Forms"' Toolkit, das aber Windows-nativ ist und da dieser Test auch auf Linux-Systemen laufen soll, wurde das GTK\# verwendet, welches f\"ur
+			    beide Plattformen erh\"altlich ist. GTK\# lie\ss sich ebenfalls reibungslos installieren, allerdings ist die Dokumentation (noch) nicht vollst\"andig, was zu m\"uhseligem Ausprobieren ("`Trial \& Error"') der bereitgestellten Methoden f\"uhrte.
+                        \item{Linux(Debian)}\\
+                            Da f\"ur \textit{Mono} ein Debian-Paket vorhanden war, verlief die Installation ebenfalls unkompliziert. GTK\# ben\"otigt allerding GTK 2.0 (auf dem Testsystem war nur 1.3 vorhanden), und dieses verlangte wiederum weitere Pakete, was eine langwierige Installation mit leichten Hindernissen zur Folge hatte. Der bereits unter Windows erstellte Quellcode lies sich dann aber problemlos compilieren und ausf\"uhren.
+                    \end{itemize}
+
+                    \begin{figure*}[!htb]
+                        \begin{center}
+                            \includegraphics[scale=0.6]{images/c-sharp_gtk_linux_pic1.jpg}
+                        \end{center}
+                        \caption{Die HalloWelt-Oberfl\"ache mit C\# unter Linux}
+                        \label{fig:hallo_standard_2}
+                    \end{figure*}\par
+
+                    \begin{figure*}[!htb]
+                        \begin{center}
+                            \includegraphics[scale=0.6]{images/c-sharp_gtk_linux_pic2.jpg}
+                        \end{center}
+                        \caption{Die HalloWelt-Oberfl\"ache mit aufgeklappten Datei-Men\"u}
+                        \label{fig:hallo_menu}
+                    \end{figure*}\par   
+
+            \subsection{PHP-Gtk}%Jurij,Maxim
+            \subsubsection*{Allgemein}
+             PHP (Akronym für "`PHP: Hypertext Preprocessor"')\index{PHP} ist eine weit verbreitete und für den allgemeinen Gebrauch bestimmte Open Source Skriptsprache, welche speziell für die Webprogrammierung geeignet ist, und in HTML eingebettet werden kann. PHP-GTK ist eine PHP-Erweiterung zur Programmierung und Erstellung von GUI-Oberflächen (Graphical User Interface) mit der GTK+-Bibliothek bereit.\cite{PHP01}
+             \subsubsection*{Systemvoraussetzungen}
+             PHP gibt es sowohl für Unix als auch für die Windows{95/98/NT}-Plattformen, sehr verbreitet ist die Integration von PHP als Modul in den Apache-Webserver
+	     (\url{http://www.apache.org}), des weiteren ist die Ausführung über CGI möglich. Die Adressen des PHP-Projektes: \url{http://www.php.net}, \url{http://www.php3.de}
+	     oder auch \url{http://de.php.net}. Dort befindet sich PHP selbst (als vorkompilierte Version oder Quelltext), die englischsprachige Dokumentation sowie weitere
+	     Informationen zu englischsprachigen Mailinglisten, etc..
+	     
+	       \subsubsection{Umsetzung}%Jurij
+	      Die \index{phpGTK} phpGTK-Bibliothek stellt eine Reihe an objekt-orientierten Schnittstellen zu den GTK+ Klassen und Funktion und soll so die Entwicklung von clientseitigen GUI-Anwendungen. \cite{PHPGTK01}
+	    Die GTK+-Bibliothek wurde noch kürzlich in der der neuen 1.0.0er Version(davor v0.5.1) zum Download freigegeben. Sie soll in erster Linie möglichst größte Kompatibilität zu PHP4 gewährleisten und ein Fülle an Bugs der Vorversion beseitigen.\\
+
+	   Das Download-Archiv ist etwas über drei Megabyte groß und enthält die Funktionsbibliotheken sowohl für die Windows als auch für die Linux/Unix Plattformen. Installation ist nicht notwendig, das Archiv lässt sich problemlos entpacken. Lediglich  die Konfigurationsdatei der PHP-Umgebung muss angepasst werden. Entsprechende vorkonfigurierte Dateien werden aber mitgeliefert. \\
+	   
+	   Im Paket sind  zahlreiche, zum Teil ausreichend kommentierte, Skriptbespiele vorhanden, die sich unproblematisch Ausführen lassen. Mit deren Hilfe lassen sich die meisten wichtige Funktionen schnell erlernen. Die Programmierung erfolgt stets mit der PHP-Syntax, was die Arbeit für erfahrene PHP-Programmierer sicherlich erleitert. Der cose-seitige Prinzip des GUI-Layouts ist leicht mit dem von den bekannten Java-Layoutmanagern verwandt, erreicht allerdings bei weitem nicht deren Flexibilität. Daher sind die erreichbaren Ergebnisse optisch nicht sehr ansprechend.\\
+	   
+	   Der mitgelieferte ausführbare \index{phpGTK-Interpreter} Interpreter nimmt  GTK-konforme PHP-Skipte  als Argumente per eine Shell-Komandozeile auf, hat jedoch einen sehr gravierenden Mangel. Es gibt keinen aus dem Web-PHP bekannten Pre-Parser. Bei den geringsten Fehlern, wie zum Beispiel dem fehlenden Semikolon, wird die Skriptabarbeitung ohne einzige (Fehler-)Meldung abgebrochen. Bei einem anspruchsvollen und umfangreichen Projekt wäre dies ein festes KO-Kriterium. Das Gleiche passiert auch, wenn ein Laufzeitfehler auftritt. Die Anwendung an sich ist nicht besonders performant und kann sogar als leicht träge bezeichnet werden. Die Performanz der PHP-GTK-Anwendungen kann zweifelsfall mit den von Javaanwendungen verglichen werden, ohne dass die aus Java bekannte Funktionsvielfallt zur Verfügung steht.\\
+	   
+	   Die Dokumentation ist zwar vorhanden und zum Teil auch hilfreich, allerdings ist sie nach wie vor auch in der englischen Originalfassung unvollständig. Die deutsch-sparachige Dokumentation ist unbrauchbar, da sie nur zu einem geringen Prozentsatz übersetz wurde. Die restlichen Passagen wurden der Originalfassung entnommen.
+	\newpage
+	     \subsubsection{Screenshots}
+						
+                    \begin{figure*}[!htb]
+                        \begin{center}
+                            \includegraphics[scale=0.6]{images/shot1.jpg}
+                        \end{center}
+                        \caption{Die HalloWelt-Oberfl\"ache mit PHP-GTK}
+                        \label{fig:hallo_standard_3}
+                    \end{figure*}\par
+                    
+
+                    \begin{figure*}[!htb]
+                        \begin{center}
+                            \includegraphics[scale=0.6]{images/shot3.jpg}
+                        \end{center}
+                        \caption{Die HalloWelt-Oberfl\"ache mit aufgeklappten Datei-Men\"u}
+                        \label{fig:hallo_standard_4}
+                    \end{figure*}\par
+                    
+
+                    \begin{figure*}[!htb]
+                        \begin{center}
+                            \includegraphics[scale=0.6]{images/shot2.jpg}
+                        \end{center}
+                        \caption{Die HalloWelt-Oberfl\"ache mit aufgeklappten Info-Menü}
+                        \label{fig:hallo_standard_5}
+                    \end{figure*}\par

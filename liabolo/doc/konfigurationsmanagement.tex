@@ -1,0 +1,166 @@
+          \section{Konfigurationsmanagement}%Stefan
+            \subsection{Buildmanagement}
+                        \subsubsection{Allgemeines}
+                            \paragraph{Was bedeutet Buildmanagement?}
+                                Unter dem Stichwort \textit{Buildmanagement} ist der Prozess zwischen Entwicklung und Einsatz eines Softwareproduktes zu verstehen. Unter Einsatz eines Produktes ist hierbei nicht ausschließlich der Kundeneinsatz gemeint, vielmehr unterstützt dieser Prozess den stetigen Einsatz während der Entwicklung, z.B. zu Testzwecken.
+                                Bestandteile dieses Prozesses sind u.a.
+                                \begin{itemize}
+                                    \item{Generierung von Kompilaten}
+                                    \item{Strukturierung und Gewährleistung der Einsatzfähigkeit (Deployment)}
+                                \end{itemize}           
+                                In kleinen recht überschaubaren Projekten wird diese Aufgabe sozusagen von den zur Entwicklung bereitgestellten Tools schon mitübernommen. In umfangreicheren Projekten ist es jedoch notwendig, zur Erhaltung einer bestimmten Struktur und der    Handhabbarkeit, Werkzeuge einzusetzen, die es ermöglichen sehr detailiert und umfangreich das Erstellen eines Softwareproduktes zu übernehmen. Im folgenden werden zwei Varianten von Build-Management Werkzeugen vorgestellt. Das erste, recht verbreitete und ältere Werkzeug kommt aus der UNIX-Welt mit Namen \textit{make}. \\
+                        \subsubsection{make}
+                            \textbf{make : maintain, update, and regenerate related programs and files}\cite{make_doc}\\
+                            Das \index{make}make Utility ist in der Hinsicht programmiersprachenunabhängig, solange ein Kompiler für die Konsole zur Verfügung steht. Die weiteste
+			    Verbreitung wurde durch die Programmiersprache 'C' und 'C++' geleistet. Make ist eine Konsolenanwendung , die als Argument ein \textit{makefile}
+			    erhält, das die genauen Instruktionen beinhaltet. Ein \index{makefile} makefile dient häufig der Angabe, wie bestimmte Sourcen kompiliert und gelinkt
+			    werden sollen. Da make als Buildmanagement Werkzeug nur der Vollständigkeit halber aufgeführt wird, wird nun direkt zu einem abschließenden Beispiel übergegangen.
+                            \begin{figure*}[!htb]
+                                \begin{center}
+                                    \begin{Verbatim}[tabsize=2,frame=leftline,label=build.xml,numbers=left]
+edit : main.o kbd.o command.o display.o \
+   insert.o search.o files.o utils.o
+    cc -o edit main.o kbd.o command.o display.o \
+               insert.o search.o files.o utils.o
+main.o : main.c defs.h
+    cc -c main.c
+kbd.o : kbd.c defs.h command.h
+    cc -c kbd.c
+command.o : command.c defs.h command.h
+    cc -c command.c
+display.o : display.c defs.h buffer.h
+    cc -c display.c
+insert.o : insert.c defs.h buffer.h
+    cc -c insert.c
+search.o : search.c defs.h buffer.h
+    cc -c search.c
+files.o : files.c defs.h buffer.h command.h
+    cc -c files.c
+utils.o : utils.c defs.h
+    cc -c utils.c
+clean :
+    rm edit main.o kbd.o command.o display.o \
+       insert.o search.o files.o utils.o            
+                                    \end{Verbatim}                  
+                        \end{center}
+                            \caption{Einfaches make-file}
+                        \label{makefile}
+                            \end{figure*}\par                   
+                            Diese Datei besteht aus mehreren Regeln, die nach folgender Struktur aufgebaut sind:\\
+                            \textit{targets : prerequisites ; command command ...}\\
+                            Das Beispiel \ref{makefile} soll verdeutlichen, daß das Erstellen einer ausführbaren Datei namens 'edit' von 8 Objekt-Dateien abhängt, die wiederum von 8 C-Dateien und 3 Header-Dateien abhängen.
+    
+                        \subsubsection{ant}
+                            \paragraph{Vorgehensweise/Systemvoraussetzungen}
+                                Voraussetzungen für den Einsatz von Ant ist eine Java-Installation. Näheres unter \url{http://ant.apache.org/}. Wichtig im Anschluss ist das
+				Setzen der Umgebungsvariablen \\
+				\textit{ANT\_HOME=[Pfad zur Ant-Installation]} und Erweiterung der Variablen \textit{PATH}, um die ausführbaren Ant-Dateien verfügbar zu
+				machen. Das Starten geschieht dann mittels des Aufrufes der ausführbaren Datei \textit{ant}. Falls ant nicht im Verzeichnis, welches die build.xml
+				enthält aufgerufen wird, so muss als Argument der Pfad zur build.xml angefügt werden. Ansonsten reicht der alleinige Aufruf von 'ant'.
+                    
+                            \paragraph{Einführung}  
+                                Ein wesentlich jüngeres Buildmanagement Werkzeug als 'make' kommt aus der Java-Welt und wird von der Apache-Group\cite{ant_doc} entwickelt und gepflegt. \index{ant} Ant ist ein java-basiertes Build-tool ähnlich dem Vorgestellten 'make'. Ant beseitigt die Abhängigkeit von der Konsole, ist XML-basiert und kann plattformunabhängig eingesetzt werden. Gerade bei der Entwicklung von Java-Applikationen ist Ant zu empfehlen, da es in erster Linie für diesen Einsatz entwickelt wurde. Da es auf XML basiert, ist es leicht, Ant-Skripte programmleserlich zu machen. XML als plattformunabhängiges Datenaustausch-/Beschreibungsformat ist zudem von denselben Grundsätzen wie Java geprägt. Es handelt sich also um offensichtlich gut zusammenpassendes Duo, das im praktischen Einsatz seid Jahren bewährt ist.\\
+                                Da Ant in dem angehenden Projekt verwendet wird, soll hier nun eine etwas ausführlichere Einführung gegeben werden, als es bei make geschah. Als Beispiel, das anschliessend beschrieben werden soll, dient das build-Skript des Projektes. Es ist im Anhang \ref{ant_code} zu finden
+
+                            Angefangen mit der Deklaration, daß es sich um eine XML-Datei handelt, wird der Parser angeleitet, das Dokument zu verarbeiten. Die Root-Node \textit{Project} definiert das Arbeitsverzeichnis '.' und das default-target, welches aufgerufen wird, falls kein anderes target spezifiziert wird. Targets definieren also Tätigkeiten, die zumindest anfänglich vom Benutzer vorgegeben werden. Im Folgenden werden die wichtigsten targets beschrieben :\\
+                        \begin{itemize}
+                            \item{usage: Das default-target, welches Auskunft über Namen und Beschreibung der 
+                            anderen targets gibt}
+                            \item{init: Im wesentlichen Variableninitialisierung, die von anfolgenden targets 
+                            benutzt werden können}
+                            \item{prepare: Dient der strukurellen Initialisierung, d.h. im wesentlichen 
+                            Verzeichnisse anlegen etc.}
+                            \item{do\_p30: Target, das alle wesentlichen Tätigkeiten ausführt. Es leitet den Kompiliervorgang und das anschließende Deployment ein.}
+                            \item{start\_tooliban:  Startet die Clientanwendung, mittels der die implementierte Funktionalität bereitgestellt wird.}
+                            \item{p30\_projektbericht: Zuständig für die Erstellung dieses Projektberichts}
+                            \item{alle anderen: Spezielle targets, die bestimmte Aufgaben erledigen sollen}
+                            \begin{itemize}
+                                \item{p30\_compile: Kompilieren des src-Verzeichnisse}
+                                \item{p30\_deploy: Erstellen eines Jar-Files mit Kopieroptionen}
+                                \item{p30\_javadoc: Erstellung der Java-Dokumentation der Sourcen}
+                                \item{start\_exist: Startet die eXist-Datenbank}
+                                \item{stop\_exist: Stoppt die eXist-Datenbank}
+                                \item{extract\_exist: Wird verwendet, um nach dem erstmaligen Checkout eine initiale Verzeichnisstruktur zu erstellen.}
+                            \end{itemize}
+                        \end{itemize}
+                        Jedes target besitzt besondere Optionen, wobei folgende generell gültig sind:
+                        \begin{itemize}
+                            \item{depends : Gibt Abhängigkeiten zu anderen targets an, die dann automatisch 
+                            aufgelöst werden}
+                            \item{description : Beschreibung des anstehenden targets}
+                        \end{itemize}
+    
+                \paragraph{Projektbezogenes Vorgehen}
+                	Eine detailierte Beschreibung, wie das Buildmanagement im Projekt eingesetzt wird erfolgt im Anhang \ref{build_p30}.
+        \subsection{Versionsmanagement}
+                \subsubsection{CVS}
+                    \paragraph{Was ist CVS?}
+                        CVS\cite{cvs_doc} \index{cvs} steht für "`Concurrent Version Control"'. Es handelt sich hierbei also um ein System zur \textit{Versionskontrolle}
+			beliebiger Daten. Angefangen mit einer initialen Version eines Datums werden im Laufe der Zeit Änderungen an diesem Datum vorgenommen, die zu einer neuen Version führen. Diese Änderungen werden mittels CVS verwaltet, so daß zu beliebiger Zeit jede Version anhand einer bestimmten Kennung wiederherstellbar ist. Der Begriff Version hat im Kontext CVS eine besondere Bedeutung, auf die später detailierter eingegangen wird (siehe \ref{cvs_version}). Der gerade beschriebene Ablauf lässt sich nun auf eine Vielzahl von Dateien anwenden, die z.B. im Laufe eines Projektes von Bedeutung sind.\\
+			Das CVS-System wird in eine Server- und eine Clientschicht unterteilt. Auf der Serverseite liegen in einem sogenannten \textit{Repository} \index{Repository} u.a. alle Informationen über die zeitliche Änderung einer Datei. Da die Arbeit auf den Daten des Repositories immer nur auf einer Kopie stattfindet, wird der Zugriff auf das Repository über einen Client ermöglicht. Der Client dient dem Zugriff und der Abgabe gewisser Kommandos bzgl. einer Datei.\\
+                        Eine wichtige Eigenschaft stellt weiterhin die Konkurrenz dar. Sie verdeutlicht die Möglichkeit des konkurrierenden Arbeitens auf den Daten des
+			Repositories. Es ist also ein Mehrbenutzerbetrieb vorgesehen. Mögliche Konflikte, die bei der Bearbeitung einer Datei von mehreren Personen zur gleichen
+			Zeit auftreten können, werden prinzipiell als unwahrscheinlich angesehen. Diese Annahme bezeichnet den Vorgang des \textit{optimistischen Sperrens}\index{Optimistisches Sperren}. Es wird also davon ausgegangen, das immer nur eine Person eine Datei gleichzeitig bearbeitet. Falls dennoch ein
+			Konflikt auftritt, wird serverseitig versucht, den Konflikt zu lösen (\textit{merge}). Diese serverseitige Konfliktlösung funktioniert solange bis mehrere
+			Änderungen in derselben Zeile vorgenommen wurden. Einzig in diesem Fall wird die Konfliktlösung an den jeweiligen Client weitergegeben, der dann manuell
+			entscheiden muss, wie weiter vorgegangen werden soll.
+                    \paragraph{Allgemeiner Umgang}
+                        Es soll nun ein Umgang mit CVS beschrieben werden, z.B. im Einsatz eines Projektes. Die Beschreibung beschränkt sich jedoch auf die Benutzersicht. Jegliche administrativen Vorgänge, wie Einrichtung, Benutzermanagement, etc. werden außer Acht gelassen.\\
+                        Vorab sollen folgende wichtige Funktionen erklärt werden, bevor ein Beispielszenario vorgestellt wird:
+                            \subparagraph{cvs login}
+                                Um den Zugang zu einem bestimmten Repository zu erlangen, wird eine Authentifizierung vorangestellt, in der das Repository mit Benutzernamen und
+				Passwort verlangt werden.\\
+                                Folgender Aufruf ist hierbei üblich :\\
+                                \begin{Verbatim}[tabsize=2,frame=leftline,label=build.xml]
+cvs -d:pserver:[username]@[servername]:[repository_path] login
+                                \end{Verbatim}
+                            \subparagraph{cvs checkout}
+                                Nach einem erfolgreichen erstmaligen Einloggen wird eine Kopie des zu bearbeitenden Repositories angefordert.\\
+                                Folgender Aufruf ist hierbei üblich :\\
+                                \begin{Verbatim}[tabsize=2,frame=leftline,label=build.xml]
+cvs -d:pserver:[username]@[servername]:[repository_path] checkout [module_name]
+                                \end{Verbatim}
+                            \subparagraph{cvs update}
+                                Um Änderungen anderer Personen lokal auf eine bestehende Kopie zu erhalten wird ein Update-Prozeß gestartet. Dieser Prozeß kann rekursiv an jeder Stelle des Projekt-Verzeichnisbaumes durchgeführt werden. Es muss also nicht immer das komplette Projekt untersucht werden. Dateiangaben sind ebenso möglich wie Verzeichnisangaben. Ein Update-Prozeß beinhaltet auch immer ein Abgleich der eigenen Änderungen mit denen anderer.\\
+                                Folgender Aufruf ist hierbei üblich :\\
+                                \begin{Verbatim}[tabsize=2,frame=leftline,label=build.xml]
+cvs -d:pserver:[username]@[servername]:[repository_path] update [local_path]
+                                \end{Verbatim}
+                            \subparagraph{cvs add}
+                                Im Laufe eines Projektes ist es nötig neben Änderungen auch neue initiale Dateien einzustellen.\\
+                                Folgender Aufruf ist hierbei üblich :\\
+                                \begin{Verbatim}[tabsize=2,frame=leftline,label=build.xml]
+cvs -d:pserver:[username]@[servername]:[repository_path] add [file_path]
+                                \end{Verbatim}
+                            \subparagraph{cvs remove}
+                                Ebenso das Löschen von nicht mehr benötiger Dateien ist sinnvoll, da z.B. keine Umbenennung-Funktionen von Dateien bereitgestellt wird. Wichtig hierbei ist, daß Dateien serverseitig nur als gelöscht markiert werden, so daß der explizite Zugriff möglich bleibt. Weiterhin ist es nicht möglich, Verzeichnisse zu löschen bzw. als gelöscht zu markieren.\\
+                                Folgender Aufruf ist hierbei üblich :\\
+                                \begin{Verbatim}[tabsize=2,frame=leftline,label=build.xml]
+cvs -d:pserver:[username]@[servername]:[repository_path] remove [file_path]
+                                \end{Verbatim}
+                            \subparagraph{cvs commit}
+                                Jede bisherige Änderungsoperation wird erst global geprüft(siehe cvs update) nachdem eine Bestätigung erfolgt. Diese Bestätigung wird wiederum rekursiv an beliebiger Stelle im Projektpfad gestellt. Dieser Schritt ist also der Entscheidende bei einer Änderung .\\
+                                Folgender Aufruf ist hierbei üblich :\\
+                                \begin{Verbatim}[tabsize=2,frame=leftline,label=build.xml]
+cvs -d:pserver:[username]@[servername]:[repository_path] commit
+                                \end{Verbatim}
+	
+			\paragraph{Version - Revision - Variante - Release}
+		    \label{cvs_version}
+		    \subparagraph{Version}
+		    	Unter einer Version wird im CVS-Kontext eine Ausprägung eines Datums verstanden, das sich von anderen unterscheidet. Abweichungen zwischen Versionen entstehen z.B.
+			durch funktionale Erweiterung, Fehlerbehebung u.a..
+		    \subparagraph{Revision vs. Variante}
+		    	Eine Revision stellt das Ergebnis einer Überarbeitung einer Version dar. Es handelt sich hierbei also um eine evolutionäre Entwicklung. Eine Variante dagegen teilt die evolutionäre eindeutige Entwicklung in mehrere Richtungen (z.B. Parallelentwicklungen Betriebssystemabhängig). Bei verschiedenen Varianten sind nicht-funktionale Abweichungen festzustellen, wobei eine funktionale Identität gewährleistet werden sollte. Folgendes Bild (\ref{fig:cvs_variante_revision}) veranschaulicht den Zusammenhang
+			nochmals, wobei auch die Revisionsnummern angegeben sind - zum Vergleich.
+                        \begin{figure*}[!htb]
+                            \begin{center}
+                                \includegraphics[scale=0.7]{images/cvs_revisionen.png}
+                            \end{center}
+                            \caption{Variante/Revision}
+                            \label{fig:cvs_variante_revision}
+                        \end{figure*}\par
+		    \subparagraph{Release}
+		    	Im Falle eines Softwareproduktes, welches durch CVS gehalten wird, wird jede Ausbringung des Produktes an den Kunden als Release bezeichnet. Ein Release kann somit eine einsatzbereite funktionale Erweiterung eines Softwareproduktes darstellen. Allgemein ist hierbei der Kundenbezug prägend.
+			\paragraph{Projektbezogenes Vorgehen}
+				Eine detaillierte Beschreibung, wie konkret CVS im Projekt genutzt wird, findet sich im Anhang \ref{cvs_p30}. 
