@@ -22,6 +22,8 @@ package org.liabolo.service;
 
 
 import org.liabolo.common.*;
+import org.liabolo.common.amazon.AmazonSearchServiceLocator;
+import org.liabolo.common.amazon.ProductInfo;
 import org.liabolo.client.offline.Gui;
 
 import org.liabolo.exception.*;
@@ -34,6 +36,7 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.io.File;
+import java.rmi.RemoteException;
 
 import org.xmldb.api.base.XMLDBException;
 
@@ -89,7 +92,7 @@ public class Dispatcher {
             Configurator.setProperty("connectionDbURI" + connectionCountInt, newConnection.getDbURI(), "connections");
             Configurator.setProperty("connectionUsername" + connectionCountInt, newConnection.getUsername(), "connections");
             Configurator.setProperty("connectionPassword" + connectionCountInt, newConnection.getPassword(), "connections");
-			Configurator.setProperty("connectionActive" + connectionCountInt, String.valueOf(newConnection.isActive()) ,"connections");
+            Configurator.setProperty("connectionActive" + connectionCountInt, String.valueOf(newConnection.isActive()), "connections");
 
             Configurator.setProperty("connectionCount", Integer.toString(connectionCountInt), "connections");
             if (Configurator.store()) {
@@ -127,7 +130,7 @@ public class Dispatcher {
                 Configurator.removeProperty("connectionDbURI" + a, "connections");
                 Configurator.removeProperty("connectionUsername" + a, "connections");
                 Configurator.removeProperty("connectionPassword" + a, "connections");
-				Configurator.removeProperty("connectionActive" + a, "connections");
+                Configurator.removeProperty("connectionActive" + a, "connections");
 
                 int newConCount = Configurator.getIntProperty("connectionCount", 0, "connections");
                 newConCount--;
@@ -149,8 +152,8 @@ public class Dispatcher {
         connectionCountInt = Configurator.getIntProperty("connectionCount", 0, "connections");
 
         Iterator conNamesIter = connectionNames.iterator();
-        while(conNamesIter.hasNext()){
-            connectionName = (String)conNamesIter.next();
+        while (conNamesIter.hasNext()) {
+            connectionName = (String) conNamesIter.next();
             for (int a = 1; a <= connectionCountInt; a++) {
                 if (connectionName.equals(Configurator.getProperty("connectionName" + a, "", "connections"))) {
                     Configurator.removeProperty("connectionName" + a, "connections");
@@ -163,7 +166,7 @@ public class Dispatcher {
                     int newConCount = Configurator.getIntProperty("connectionCount", 0, "connections");
                     newConCount--;
                     Configurator.setProperty("connectionCount", Integer.toString(newConCount), "connections");
-                    log.debug("Connection '"+connectionName+"' is prepared for removing",6);
+                    log.debug("Connection '" + connectionName + "' is prepared for removing", 6);
                 }
             }
         }
@@ -180,7 +183,7 @@ public class Dispatcher {
     public Connection getConnection(String connectionName) {
         //local lib settings
         if (connectionName.equals(Configurator.getProperty("localName", "", "connections"))) {
-            return new Connection(Configurator.getProperty("localName", "", "connections"), Configurator.getProperty("localDbURI", "", "connections"), Configurator.getProperty("localUsername", "", "connections"), Configurator.getProperty("localPassword", "", "connections"), Configurator.getProperty("localDriver", "", "connections"),Boolean.getBoolean(Configurator.getProperty("localActive", "true", "connections")));
+            return new Connection(Configurator.getProperty("localName", "", "connections"), Configurator.getProperty("localDbURI", "", "connections"), Configurator.getProperty("localUsername", "", "connections"), Configurator.getProperty("localPassword", "", "connections"), Configurator.getProperty("localDriver", "", "connections"), Boolean.getBoolean(Configurator.getProperty("localActive", "true", "connections")));
         }
         //all other connections
         String connectionCount = Configurator.getProperty("connectionCount", "", "connections");
@@ -193,7 +196,7 @@ public class Dispatcher {
                             Configurator.getProperty("connectionUsername" + a, "", "connections"),
                             Configurator.getProperty("connectionPassword" + a, "", "connections"),
                             Configurator.getProperty("connectionDriver" + a, "", "connections"),
-							new Boolean(Configurator.getProperty("connectionActive" + a, "true", "connections")).booleanValue());
+                            new Boolean(Configurator.getProperty("connectionActive" + a, "true", "connections")).booleanValue());
                 }
             }
         }
@@ -230,8 +233,8 @@ public class Dispatcher {
         if (connectionCount != null && !connectionCount.equals("")) {
             int connectionCountInt = Integer.parseInt(connectionCount);
             for (int a = 1; a <= connectionCountInt; a++) {
-            	//TODO System.out.println("vor:"+Configurator.getProperty("connectionActive" + a, "", "connections"));
-            	// TODO System.out.println("nach:"+new Boolean(Configurator.getProperty("connectionActive" + a, "", "connections")).booleanValue());
+                //TODO System.out.println("vor:"+Configurator.getProperty("connectionActive" + a, "", "connections"));
+                // TODO System.out.println("nach:"+new Boolean(Configurator.getProperty("connectionActive" + a, "", "connections")).booleanValue());
                 boolean activStatus = new Boolean(Configurator.getProperty("connectionActive" + a, "", "connections")).booleanValue();
                 allConnections.add(
                         new Connection(Configurator.getProperty("connectionName" + a, "", "connections"),
@@ -239,7 +242,7 @@ public class Dispatcher {
                                 Configurator.getProperty("connectionUsername" + a, "", "connections"),
                                 Configurator.getProperty("connectionPassword" + a, "", "connections"),
                                 Configurator.getProperty("connectionDriver" + a, "", "connections"),
-								new Boolean(Configurator.getProperty("connectionActive" + a, "true", "connections")).booleanValue()));
+                                new Boolean(Configurator.getProperty("connectionActive" + a, "true", "connections")).booleanValue()));
             }
         }
         return allConnections;
@@ -368,14 +371,14 @@ public class Dispatcher {
         while (libitemsIter.hasNext()) {
             actSignature = ((LibItem) libitemsIter.next()).getMetaData().getLiabolo_signature().toString();
 
-            if(!actSignature.endsWith(Configurator.getProperty("localURLAlias"))){
+            if (!actSignature.endsWith(Configurator.getProperty("localURLAlias"))) {
                 LibItem getLibItemResult = getLibItem(actSignature);
                 if (getLibItemResult != null) {
                     result.add(getLibItemResult);
                     log.debug("Item by signature '" + actSignature + "' found on lib '" + actSignature + "'", 5);
                 } else
                     log.debug("Item by signature '" + actSignature + "' could not be found on lib '" + actSignature + "'", 5);
-            }else{
+            } else {
                 log.info("Local LibItems could not checked out!");
             }
         }
@@ -761,7 +764,7 @@ public class Dispatcher {
             while (connectedLibsIter.hasNext()) {
                 actLib = (Library) connectedLibsIter.next();
                 //only for local workspace
-                if (actLib.getDbURI().equals(local.getDbURI())){
+                if (actLib.getDbURI().equals(local.getDbURI())) {
                     actLibSearchResults = actLib.search(types, pattern, true);
                     log.debug("Search results for pattern '" + pattern + "' from workspace on lib:" + actLib.getDbURI() + " = " + actLibSearchResults.size(), 5);
                     addAll = result.addAll(actLibSearchResults);
@@ -770,7 +773,7 @@ public class Dispatcher {
                     else
                         log.debug(actLibSearchResults.size() + " search results from '" + actLib.getDbURI() + "' added!", 4);
                 }
-                 //for all databases
+                //for all databases
                 actLibSearchResults = actLib.search(types, pattern, false);
                 log.debug("Search results for pattern '" + pattern + "' from lib:" + actLib.getDbURI() + " = " + actLibSearchResults.size(), 5);
                 addAll = result.addAll(actLibSearchResults);
@@ -788,6 +791,88 @@ public class Dispatcher {
         }
 
         return result;
+    }
+
+    /**
+     *  Search for pattern on amazon.com</br>
+     * @param type : 0=keyword,1=author
+     * @param pattern pattern to search for
+     * @return Collection of LibItems
+     */
+    public Collection searchAmazon(short type, String pattern) {
+        int MAXRESULT = 10;
+
+        Collection searchResult = new HashSet();
+        org.liabolo.common.amazon.AmazonSearchPort amzSearchPt;
+
+        ProductInfo pi = null;
+
+        //pattern has to be in correct
+        if (pattern != null && !pattern.equals("")) {
+
+            AmazonSearchServiceLocator locator = new AmazonSearchServiceLocator();
+            try {
+                amzSearchPt = locator.getAmazonSearchPort();
+
+                log.info("Contacting Amazon");
+                //KeywordRequest Fields
+                if (type == 0) {
+                    org.liabolo.common.amazon.KeywordRequest kwReq = new org.liabolo.common.amazon.KeywordRequest();
+                    kwReq.setKeyword(pattern);
+                    kwReq.setPage("1");
+                    kwReq.setMode("Books");
+                    kwReq.setTag("associates");
+                    kwReq.setType("lite");
+                    kwReq.setDevtag(Configurator.getProperty("AmazonSubScriptionId", "", "amazon"));
+                    //        kwReq.setSort("+daterank");
+
+                    pi = amzSearchPt.keywordSearchRequest(kwReq);
+                }
+
+                if (type == 1) {
+                    org.liabolo.common.amazon.AuthorRequest authReq = new org.liabolo.common.amazon.AuthorRequest();
+                    authReq.setAuthor(pattern);
+                    authReq.setPage("1");
+                    authReq.setMode("Books");
+                    authReq.setTag("associates");
+                    authReq.setType("lite");
+                    authReq.setDevtag(Configurator.getProperty("AmazonSubScriptionId", "", "amazon"));
+
+                    pi = amzSearchPt.authorSearchRequest(authReq);
+                }
+
+                log.info("Total Results " + pi.getTotalResults());
+
+                int results = Integer.parseInt(pi.getTotalResults());
+//                System.out.println("results is " + results);
+                for (int i = 0; i < results && i < MAXRESULT; i++) {
+                    MetaData metaData = new MetaData("-1");
+                    metaData.setLiabolo_signature(new Signature("search", "result", "amazon.com"));
+                    metaData.setDc_identifier(pi.getDetails()[i].getIsbn() == null ? "" : pi.getDetails()[i].getIsbn());
+                    metaData.setDc_format("Book");
+                    metaData.setDc_description(pi.getDetails()[i].getProductDescription() == null ? "" : pi.getDetails()[i].getProductDescription());
+                    metaData.setDc_title(pi.getDetails()[i].getProductName() == null ? "" : pi.getDetails()[i].getProductName());
+                    metaData.setDc_creator(arrayToString(pi.getDetails()[i].getAuthors()));
+                    metaData.setDc_publisher(pi.getDetails()[i].getPublisher() == null ? "" : pi.getDetails()[i].getPublisher());
+                    metaData.setDc_subject(arrayToString(pi.getDetails()[i].getKeyPhrases()));
+                    metaData.setDc_date(pi.getDetails()[i].getReleaseDate() == null ? null : MetaData.convertDate(pi.getDetails()[i].getReleaseDate().substring(pi.getDetails()[i].getReleaseDate().length() - 4)));
+                    metaData.setDc_subject(arrayToString(pi.getDetails()[i].getArtists()));
+
+                    LibItem actItem = new LibItem();
+                    actItem.setMetaData(metaData);
+                    searchResult.add(actItem);
+                }
+            } catch (javax.xml.rpc.ServiceException e) {
+                log.error("Connection error, while processing amazon request");
+                log.debug(e);
+                e.printStackTrace();
+            } catch (RemoteException e) {
+                log.error("Connection error, while processing amazon request");
+                log.debug(e);
+                e.printStackTrace();
+            }
+        }
+        return searchResult;
     }
 
     /**
@@ -912,42 +997,42 @@ public class Dispatcher {
             while (tok.hasMoreTokens())
                 serverDbUri = tok.nextToken();
 
-            if(serverDbUri.equals("localhost") || item.getMetaData().isInWorkspace()){
+            if (serverDbUri.equals("localhost") || item.getMetaData().isInWorkspace()) {
                 lib = local;
-            }else{
-                lib = Gui.dispatcher.getConnectedLibraryByDbURI("exist://"+serverDbUri);
+            } else {
+                lib = Gui.dispatcher.getConnectedLibraryByDbURI("exist://" + serverDbUri);
             }
 
-            if(lib!=null){//OK
+            if (lib != null) {//OK
                 removed = lib.removeLibItem(item);
 
-                if(removed){
+                if (removed) {
                     //check, if removed item was stored in an individual list, then remove it from list
                     String signature = item.getMetaData().getLiabolo_signature();
                     Collection allLists = getAllIndividualLists();
                     Iterator allListsIter = allLists.iterator();
-                    while(allListsIter.hasNext()){
+                    while (allListsIter.hasNext()) {
                         IndividualList actList = (IndividualList) allListsIter.next();
                         Hashtable allListItems = actList.getItems();
 
-                        if(allListItems.containsKey(signature)){
+                        if (allListItems.containsKey(signature)) {
                             actList.removeItem(signature);
-                            if(!local.storeIndividualList(actList)){
+                            if (!local.storeIndividualList(actList)) {
                                 removed = false; //because the list reference could not be removed
-                                log.error("Libitem reference "+signature+" could not be removed from Individuallist "+actList.getListName()+".");
-                            }else
-                                log.debug("Libitem "+signature+" is removed from Individuallist "+actList.getListName()+".",5);
+                                log.error("Libitem reference " + signature + " could not be removed from Individuallist " + actList.getListName() + ".");
+                            } else
+                                log.debug("Libitem " + signature + " is removed from Individuallist " + actList.getListName() + ".", 5);
 
                         }
                     }
-                }else{
+                } else {
                     log.error("LibItem could not be removed!");
                 }
 
-            }else{//signature is not valid or not connected
+            } else {//signature is not valid or not connected
                 log.info("No library found or invalid signature..");
-                log.debug("Signature is :"+item.getMetaData().getLiabolo_signature(),6);
-                log.debug("ServerDbURI is :"+serverDbUri,6);
+                log.debug("Signature is :" + item.getMetaData().getLiabolo_signature(), 6);
+                log.debug("ServerDbURI is :" + serverDbUri, 6);
                 return false;
             }
 
@@ -973,22 +1058,22 @@ public class Dispatcher {
             while (tok.hasMoreTokens())
                 serverDbUri = tok.nextToken();
 
-            if(serverDbUri.equals("localhost") || item.getMetaData().isInWorkspace()){
+            if (serverDbUri.equals("localhost") || item.getMetaData().isInWorkspace()) {
                 lib = local;
-            }else{
-                lib = Gui.dispatcher.getConnectedLibraryByDbURI("exist://"+serverDbUri);
+            } else {
+                lib = Gui.dispatcher.getConnectedLibraryByDbURI("exist://" + serverDbUri);
             }
 
-            if(lib!=null){//signature is not valid or not connected
+            if (lib != null) {//signature is not valid or not connected
                 if (lib.editLibItem(item, false) == null) {//OK
                     log.info("LibItem '" + item.getMetaData().getLiabolo_signature() + "' sucessfully in '" + lib.getDbURI() + "' stored!");
                     return true;
                 } else
                     return false;
-            }else{
+            } else {
                 log.info("No library found or invalid signature..");
-                log.debug("Signature is :"+item.getMetaData().getLiabolo_signature(),6);
-                log.debug("ServerDbURI is :"+serverDbUri,6);
+                log.debug("Signature is :" + item.getMetaData().getLiabolo_signature(), 6);
+                log.debug("ServerDbURI is :" + serverDbUri, 6);
                 return false;
             }
         } catch (MergingException e) {
@@ -1014,12 +1099,12 @@ public class Dispatcher {
                 serverDbUri = tok.nextToken();
 
             Library lib;
-            if(serverDbUri.equals(Configurator.getProperty("localURLAlias")))
+            if (serverDbUri.equals(Configurator.getProperty("localURLAlias")))
                 lib = local;
             else
                 lib = getConnectedLibraryByDbURI("exist://" + serverDbUri);
 
-            if(lib!=null)
+            if (lib != null)
                 return lib.getLibItem(signature);
             else
                 return null;
@@ -1029,7 +1114,7 @@ public class Dispatcher {
         }
     }
 
-    public int countAllLibItemsFromBranch(String branch){
+    public int countAllLibItemsFromBranch(String branch) {
         return local.countAllLibItemsFromType("branch", branch);
     }
 
@@ -1309,7 +1394,7 @@ public class Dispatcher {
         return removed;
     }
 
-    public int countAllLibItemsFromLocation(String location){
+    public int countAllLibItemsFromLocation(String location) {
         return local.countAllLibItemsFromType("coverage", location);
     }
 
@@ -1322,7 +1407,7 @@ public class Dispatcher {
         Collection allLocations = new HashSet();
         try {
             allLocations = lib.getAllLocations();
-            log.debug(allLocations.size() + " locations found on lib '" + lib.getDbURI() + "'!",5);
+            log.debug(allLocations.size() + " locations found on lib '" + lib.getDbURI() + "'!", 5);
         } catch (ServiceNotAvailableException e) {
             log.error("Error while retrieving all locations from db '" + lib.getDbURI() + "'!");
         }
@@ -1567,17 +1652,27 @@ public class Dispatcher {
     public void export(Collection listnames, String filename, String format) {
 
 
-		File f = new File(filename);
-		if (f.exists()) f.delete();
-    	Iterator it = listnames.iterator();
-    	while (it.hasNext()) {
-    		String name = it.next().toString();
-    		Collection allItems = getAllItemsFromIndividualList(name);
+        File f = new File(filename);
+        if (f.exists()) f.delete();
+        Iterator it = listnames.iterator();
+        while (it.hasNext()) {
+            String name = it.next().toString();
+            Collection allItems = getAllItemsFromIndividualList(name);
 
- 
 
-    		XslExport.export(allItems,filename,format);
-    	}
+            XslExport.export(allItems, filename, format);
+        }
+    }
+
+    private static String arrayToString(Object[] array) {
+        String content = "";
+        if (array != null) {
+            for (int a = 0; a < array.length - 1; a++)
+                content = content.concat(array[a] + ", ");
+            if (array.length > 0)
+                content = content.concat(array[array.length - 1].toString());
+        }
+        return content;
     }
 
 }
