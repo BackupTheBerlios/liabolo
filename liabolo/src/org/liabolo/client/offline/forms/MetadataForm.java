@@ -232,7 +232,7 @@ public class MetadataForm extends DefaultForm implements ActionListener, KeyList
 
         this.type = metaData.getDc_type();
 
-        System.out.println("TYPE:" + this.type);
+        //System.out.println("TYPE:" + this.type);
         this.isEdit = true;
         //this.mediaTypes = null;
 
@@ -678,7 +678,7 @@ public class MetadataForm extends DefaultForm implements ActionListener, KeyList
 
             String branchToSave = ((Branch) branchList[branches.getSelectedIndex() - 1]).getAbbreviation(); // ;)
 
-            System.out.println(actLib.getDbURI());
+            //System.out.println(actLib.getDbURI());
             metaData = MetaData.createNewMetaData(branchToSave, actLib.getDbURI());
             if (metaData != null) {
                 metaData.setDc_type(this.type);
