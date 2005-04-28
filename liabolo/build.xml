@@ -261,7 +261,25 @@
 		</exec>
 		<exec dir="${p30.whitepapers.src}/ergonomie" executable="pdflatex">
 		    <arg line="Ergonomie"/>
-	        </exec>
+	    </exec>
+    	
+    	<!-- Distribution -->
+    		<exec dir="${p30.whitepapers.src}/distribution" executable="pdflatex">
+    		    <arg line="distribution"/>
+    		</exec>
+    		<exec dir="${p30.whitepapers.src}/distribution" executable="bibtex">
+    		    <arg line="distribution"/>
+    		</exec>
+    		<exec dir="${p30.whitepapers.src}/distribution" executable="makeindex">
+    		    <arg line="distribution"/>
+    		</exec>
+    		<exec dir="${p30.whitepapers.src}/distribution" executable="pdflatex">
+    		    <arg line="distribution"/>
+    		</exec>
+    		<exec dir="${p30.whitepapers.src}/distribution" executable="pdflatex">
+    		    <arg line="distribution"/>
+    		</exec>
+    	
     	
     	<!-- Vision -->
 		<exec dir="${p30.whitepapers.src}/vision" executable="pdflatex">
