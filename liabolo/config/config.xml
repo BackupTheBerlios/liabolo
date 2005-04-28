@@ -47,9 +47,9 @@
     <property name="editMetadata" value="6"/>
   </category>
   <category name="export-formats">
-    <property name="format1" value="CVS"/>
-    <property name="desc1" value="Comma Separated String"/>
-    <property name="formatCount" value="1"/>
+    <property name="format1" value="csv"/>
+    <property name="desc1" value="Comma Separated Values"/>
+    <property name="formatCount" value="0"/>
   </category>
   <category name="gui-options">
     <property name="connect" value="1"/>
@@ -58,6 +58,9 @@
     <property name="confirmations" value="0"/>
     <property name="update" value="1"/>
     <property name="language" value="german"/>
+  </category>
+  <category name="amazon">
+    <property name="AmazonSubScriptionId" value="YOUR KEY HERE"/>
   </category>
   <category name="general">
     <property name="stackTraceLevel" value="9"/>
@@ -73,8 +76,5 @@
     <property name="defaultDBURI" value="exist://"/>
     <property name="defaultMainHome" value="home"/>
     <property name="defaultRootCollection" value="db"/>
-  </category>
-  <category name="amazon">
-      <property name="AmazonSubScriptionId" value="YOUR KEY HERE"/>
   </category>
 </properties>

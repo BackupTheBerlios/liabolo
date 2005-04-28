@@ -10,13 +10,13 @@
     <xsl:template match="/">
         <xsl:choose>
             <xsl:when test="$outputId = 0">
-                <xsl:call-template name="cvsOutput"/>
+                <xsl:call-template name="csvOutput"/>
             </xsl:when>
         </xsl:choose>
     </xsl:template>
 
     <!-- Hier das csv-Format-->
-    <xsl:template name="cvsOutput">
+    <xsl:template name="csvOutput">
         <xsl:for-each select="/mediatype/title"><xsl:value-of select="."/>,</xsl:for-each>
         <xsl:for-each select="/mediatype/creator"><xsl:value-of select="."/>,</xsl:for-each>
         <xsl:for-each select="/mediatype/subject"><xsl:value-of select="."/>,</xsl:for-each>
