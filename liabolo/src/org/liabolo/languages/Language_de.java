@@ -39,7 +39,7 @@ public class Language_de extends ListResourceBundle {
 
 
 				// LoginWnd.java
-				{"liabolo", "Liab'o'lo - Die teuflisch gute Literaturverwaltung"},
+				{"liabolo", "Liab\u2035o\u2032lo - Die teuflisch gute Literaturverwaltung"},
 				{"ok", "OK"},
 				{"cancel", "Abbrechen"},
 				{"login", "Login"},
@@ -125,8 +125,8 @@ public class Language_de extends ListResourceBundle {
 
 				{"switch_to_audio", "Wollen Sie wirklich zum Audio-Formular wechseln?"},
 
-				{"exit_liabolo", "Liabolo beenden"},
-				{"exit_liabolo2", "Wollen Sie die Anwendung wirklich beenden?"},
+				{"exit_liabolo", "Liab\u2035o\u2032lo beenden"},
+				{"exit_liabolo2", "Wollen Sie Liab\u2035o\u2032lo wirklich beenden?"},
 
 				// MetadataForm.java
 
@@ -474,7 +474,7 @@ public class Language_de extends ListResourceBundle {
 				{"please_wait2","Bitte warten, die Daten werden geladen"},
 
 				//Help.java
-				{"liabolo_help","Liab'o'lo Hilfe"},
+				{"liabolo_help","Liab\u2035o\u2032lo Hilfe"},
 				{"index","Inhalt"},
 
 
