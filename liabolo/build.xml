@@ -80,10 +80,13 @@
     </target>
 
     <target name="usage">
-        <echo message="projektbericht        : Translate projektbericht.tex into .pdf file"/>
+        <!-- <echo message="projektbericht        : Translate projektbericht.tex into .pdf file"/> -->
         <echo message="do_liabolo            : compile and deploy all source files"/>
         <echo message="liabolo               : Starts the offline client"/>
+        <echo message="make_nightly_build    : Generates a nightly build from liabolo"/>
         <echo message="javadoc               : creates java documention from all p30 source files"/>
+        <echo message="deploy_whitepapers    : Translate whitepapers to pdf and copies them to the doc/pdf-dir"/>
+        <echo message="nutzerhandbuch        : Translate nutzerhandbuch to pdf"/>
         <echo message="start_junit_test      : Starts the junit tests in a separate window."/>
         <echo message="extract_exist         : Not for local use! Only for server."/>
         <echo message="exist_server          : Starts the exist standalone server. Only for testing."/>
@@ -108,7 +111,7 @@
     <target name="deploy" depends="init" description="builds a jar-file and copies it into bin-dir">
         <jar basedir="${p30.build.dest}" jarfile="${p30.deploy.dest}/${p30.deploy.file}">
             <manifest>
-                <attribute name="Build-By" value="Jurij Henne"/>
+                <attribute name="Build-By" value="Liabolo Project"/>
                 <attribute name="Main-Class" value="org/liabolo/client/offline/Gui"/>
 
                 <attribute name="Class-Path" value="../lib/crimson.jar ../lib/exist.jar ../lib/javax_servlet.jar ../lib/xmldb.jar ../lib/xmlrpc-1.2.jar ../lib/commons-pool-1.1.jar ../lib/TableLayout.jar  ../lib/plastic-1.2.1.jar ../lib/axis-jaxrpc-1.1.jar ../lib/axis-1.1.jar ../lib/commons-logging-1.0.3.jar ../lib/commons-discovery-0.2.jar ../lib/saaj-api.jar ../lib/jxl.jar ../lib/wsdl4j.jar ../lib/log4j.jar ../lib/jakarta-oro-2.0.6.jar ../lib/resolver-20030708.jar ../lib/antlr.jar ../lib/jconfig.jar ../lib/jaxp.jar ../lib/jaxp.jar ../lib/jmxri.jar"/>
@@ -135,6 +138,7 @@
 
     <target name="do_liabolo" depends="compile,deploy" description="compile and deploy all source files"/>
 
+	<!-- durch whitepapers obsolet?
     <target name="projektbericht" depends="init,prepare" description="Translate projektbericht.tex into .pdf file">
         <exec dir="${p30.doc.src}" executable="pdflatex">
             <arg line="projektbericht"/>
@@ -152,9 +156,10 @@
             <arg line="projektbericht"/>
         </exec>
     </target>
+    -->
     
     <target name="whitepapers" depends="init,prepare" description="Translate all whitepapers into .pdf file">
-        <!-- Architektur-->
+        <!-- Architektur -->
         <exec dir="${p30.whitepapers.src}/architekur" executable="pdflatex">
             <arg line="Architekur"/>
         </exec>
@@ -171,7 +176,7 @@
             <arg line="Architekur"/>
         </exec>
 
-        <!-- Nutzerhandbuch-->
+        <!-- Nutzerhandbuch -->
         <exec dir="${p30.whitepapers.src}/nutzerhandbuch" executable="pdflatex">
             <arg line="nutzerhandbuch"/>
         </exec>
@@ -189,7 +194,7 @@
         </exec>
 
         
-        <!-- Synchronisation-->
+        <!-- Synchronisation -->
         <exec dir="${p30.whitepapers.src}/synchronisation" executable="pdflatex">
             <arg line="Synchronisation"/>
         </exec>
@@ -206,7 +211,7 @@
             <arg line="Synchronisation"/>
         </exec>
         
-        <!-- XML-Datenbanken-->
+        <!-- XML-Datenbanken -->
         <exec dir="${p30.whitepapers.src}/xml-datenbanken" executable="pdflatex">
             <arg line="XML-Datenbanken"/>
         </exec>
@@ -223,7 +228,7 @@
             <arg line="XML-Datenbanken"/>
         </exec>        
         
-	<!-- GUI Architektur-->
+	<!-- GUI Architektur -->
 	<exec dir="${p30.whitepapers.src}/gui_architektur" executable="pdflatex">
 	    <arg line="Gui_architektur"/>
 	</exec>
@@ -241,7 +246,7 @@
         </exec>     
       
 	
-	<!-- Ergonomie-->
+	<!-- Ergonomie -->
 		<exec dir="${p30.whitepapers.src}/ergonomie" executable="pdflatex">
 		    <arg line="Ergonomie"/>
 		</exec>
@@ -258,7 +263,7 @@
 		    <arg line="Ergonomie"/>
 	        </exec>
     	
-    	<!-- Ergonomie-->
+    	<!-- Vision -->
 		<exec dir="${p30.whitepapers.src}/vision" executable="pdflatex">
 		    <arg line="Vision"/>
 		</exec>
@@ -276,7 +281,25 @@
 	        </exec>          
 	    </target>   
     
-     <target name="deploy_whitepapers" depends="init,prepare" description="Copies all whitepapers pdf-dir">
+	<target name="nutzerhandbuch" depends="init,prepare" description="Translate Nutzerhandbuch into .pdf file">
+	        <exec dir="${p30.whitepapers.src}/nutzerhandbuch" executable="pdflatex">
+	            <arg line="nutzerhandbuch"/>
+	        </exec>
+	        <exec dir="${p30.whitepapers.src}/nutzerhandbuch" executable="bibtex">
+	            <arg line="nutzerhandbuch"/>
+	        </exec>
+	        <exec dir="${p30.whitepapers.src}/nutzerhandbuch" executable="makeindex">
+	            <arg line="nutzerhandbuch"/>
+	        </exec>
+	        <exec dir="${p30.whitepapers.src}/nutzerhandbuch" executable="pdflatex">
+	            <arg line="nutzerhandbuch"/>
+	        </exec>
+	        <exec dir="${p30.whitepapers.src}/nutzerhandbuch" executable="pdflatex">
+	            <arg line="nutzerhandbuch"/>
+	        </exec>
+	</target>
+	
+     <target name="deploy_whitepapers" depends="init,prepare,whitepapers" description="Copies all whitepapers pdf-dir">
 	 	<mkdir dir="${p30.whitepapers.dest}"/>
 		<copy overwrite="true" flatten="yes" todir="${p30.whitepapers.dest}">        
 			<fileset dir="${p30.whitepapers.src}" casesensitive="yes">
@@ -296,8 +319,13 @@
         </java>
     </target>
 
-    <target name="make_nightly_build" depends="init,prepare,compile,deploy" description="Generates a nightly build from liabolo">
-        <zip zipfile="${p30.nightlybuild.dir}/${p30.nightlybuild.file}" basedir="." includes="build_files">
+    <target name="make_nightly_build" depends="init,prepare,compile,deploy,nutzerhandbuch" description="Generates a nightly build from liabolo">
+    		<copy overwrite="true" flatten="yes" todir=".">        
+    			<fileset dir="${p30.whitepapers.src}/nutzerhandbuch" casesensitive="yes">
+    	  				<include name="**/*.pdf"/>  			
+    			</fileset>
+    		</copy>
+    		<zip zipfile="${p30.nightlybuild.dir}/${p30.nightlybuild.file}" basedir="." includes="build_files">
             <fileset id="build_files" dir=".">
                 <include name="bin/**/*.*"/>
                 <include name="config/**/*.*"/>
@@ -307,7 +335,8 @@
                 <include name="exist/**/*.*"/>
                 <include name="start.bat"/>
                 <include name="start.sh"/>		
-                <include name="start.command"/>
+			   <include name="start.command"/>
+ 			   <include name="nutzerhandbuch.pdf"/>
             </fileset>
         </zip>
     </target>
