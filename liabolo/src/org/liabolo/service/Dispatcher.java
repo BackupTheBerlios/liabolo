@@ -1466,16 +1466,20 @@ public class Dispatcher {
      * @return restored gives information about success or failure
      */
     public boolean restore(String filePath, String rootCollection) {
+log.info("RESTORE is not implemented yet!");
+/*
+        log.debug("FilePath="+filePath,7);
+        log.debug("RootCollection="+rootCollection,7);
         boolean restored = false;
         try {
-            local.restore(new File(filePath), rootCollection);
-            restored = true;
+            restored = local.restore(new File(filePath), "xmldb:exist://db");//rootCollection);
             log.info("Restore of " + filePath + " created!");
         } catch (ServiceNotAvailableException e) {
             log.error("Restore of " + filePath + " failed!");
         }
 
         return restored;
+*/ return true;
     }
 
 /*####################################################################################
