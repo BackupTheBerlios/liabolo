@@ -115,8 +115,8 @@ public class XslExport {
 
 	}
 
-	public static void export(Collection col, String filename, String format) {
-		XSL_Document_PATH = Configurator.configMainDir+"/"+format+".xsl";
+	public static void export(Collection col, String filename, String f_filename) {
+		XSL_Document_PATH = Configurator.configMainDir+"/"+f_filename;
 		
 		File tempExportFile = new File("tempExportFile.txt");
 		File tempXml = new File("tempXMLFile.xml");

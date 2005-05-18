@@ -11,13 +11,13 @@
     <property name="connectionCount" value="1"/>
     <property name="localDriver" value="org.exist.xmldb.DatabaseImpl"/>
     <property name="localDbURI" value="exist://"/>
-    <property name="connectionDriver1" value="org.exist.xmldb.DatabaseImpl"/>
     <property name="signatureGenerator1" value="http://p30srv.wiwi.uni-oldenburg.de:8091/axis/services/SignatureSender"/>
+    <property name="connectionDriver1" value="org.exist.xmldb.DatabaseImpl"/>
     <property name="connectionActive1" value="true"/>
   </category>
   <category name="signature">
-    <property name="signatureNumber" value="0000"/>
     <property name="signatureLetters" value="CB"/>
+    <property name="signatureNumber" value="0004"/>
   </category>
   <category name="gui-forms">
     <property name="helpContent" value="19"/>
@@ -37,27 +37,37 @@
     <property name="importMetadata" value="3"/>
     <property name="editList" value="15"/>
     <property name="preferences" value="1"/>
-    <property name="newLocation" value="10"/>
     <property name="searchMetadataResult" value="5"/>
+    <property name="newLocation" value="10"/>
     <property name="browseList" value="14"/>
     <property name="browseClipboard" value="23"/>
     <property name="browseLocation" value="11"/>
     <property name="editLocation" value="12"/>
-    <property name="printMetadata" value="22"/>
     <property name="editMetadata" value="6"/>
-  </category>
-  <category name="export-formats">
-    <property name="format1" value="csv"/>
-    <property name="desc1" value="Comma Separated Values"/>
-    <property name="formatCount" value="0"/>
+    <property name="printMetadata" value="22"/>
   </category>
   <category name="gui-options">
     <property name="connect" value="1"/>
     <property name="warnings" value="0"/>
     <property name="toolbar" value="1"/>
     <property name="confirmations" value="0"/>
-    <property name="update" value="1"/>
     <property name="language" value="german"/>
+    <property name="update" value="1"/>
+  </category>
+  <category name="export-formats">
+    <property name="format1" value="csv"/>
+    <property name="desc1" value="Comma Separated String"/>
+    <property name="filename1" value="csv.xsl"/>  
+    <property name="format2" value="xml"/>  
+    <property name="desc2" value="Xtensible Markup Language"/>
+    <property name="filename2" value="xml.xsl"/>  
+     <property name="format3" value="html"/>  
+     <property name="desc3" value="Hypertext Markup Language"/>
+    <property name="filename3" value="html.xsl"/>  
+    <property name="formatCount" value="3"/>
+  </category>
+  <category name="amazon">
+    <property name="AmazonSubScriptionId" value="YOUR KEY HERE"/>
   </category>
   <category name="amazon">
     <property name="AmazonSubScriptionId" value="YOUR KEY HERE"/>

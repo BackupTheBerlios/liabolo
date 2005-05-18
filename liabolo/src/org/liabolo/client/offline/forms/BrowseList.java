@@ -91,7 +91,8 @@ public class BrowseList extends DefaultForm implements ActionListener, KeyListen
 	/** For export purposes only */
 	private JFileChooser fcs;
 	//private int selectedList;
-
+	/** Helps to associate selected filter descrition with its file extension*/
+	private String [][] filters;
 	/**
 	 * Creates a new "browse individual lists" form
 	 * @param index specifies a unique 'position' of  the form in form holder-array 
@@ -422,6 +423,7 @@ public class BrowseList extends DefaultForm implements ActionListener, KeyListen
 		//this.selectedList = selectedRow;
 		fcs = new JFileChooser();
 		int formatCount = Configurator.getIntProperty("formatCount", 0, "export-formats");
+		filters = new String[formatCount][3];
 		if (formatCount != 0)
 		{	
 			for (int i = 1; i <= formatCount; i++) 
@@ -429,7 +431,11 @@ public class BrowseList extends DefaultForm implements ActionListener, KeyListen
 				//System.out.println("FILE ENDING:"+Configurator.getProperty("format" + i, "", "export-formats"));
 				//System.out.println("FILE DESC:"+Configurator.getProperty("desc" + i, "", "export-formats"));
 				String fileEnding = Configurator.getProperty("format" + i, "", "export-formats");
-				String description = Configurator.getProperty("desc" + i, "", "export-formats");
+				String description = Configurator.getProperty("desc" + i, "", "export-formats");		
+				String filename = Configurator.getProperty("filename" + i, "", "export-formats");
+				filters[i-1][0] = description ;
+				filters[i-1][1] = fileEnding;
+				filters[i-1][2] = filename;
 				ExportFileFilter ff = new ExportFileFilter(fileEnding,description);
 				fcs.addChoosableFileFilter(ff);
 
@@ -648,9 +654,20 @@ public class BrowseList extends DefaultForm implements ActionListener, KeyListen
 		if(actionCmd.equals(JFileChooser.APPROVE_SELECTION))
 		{
 			FileFilter ff= fcs.getFileFilter(); 
-			String test = ff.getDescription();
-			System.out.println("TEST: FILTER DESCR"+test);
-			Gui.dispatcher.export(this.listsToExport,  fcs.getSelectedFile().getPath(), "csv");
+			String f_description = ff.getDescription();
+			String f_filename="";
+			String output_file_extension="";
+			for(int i=0; i<filters.length;i++)
+			{
+				if(filters[i][0]==f_description)
+				{
+					f_filename = filters[i][2];
+					output_file_extension = filters[i][1];
+				}
+				
+			}
+			System.out.println("Selected filename for export:"+f_filename);
+			Gui.dispatcher.export(this.listsToExport,  fcs.getSelectedFile().getPath()+"."+output_file_extension , f_filename);
 
 		}
 	
