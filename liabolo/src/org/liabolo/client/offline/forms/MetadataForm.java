@@ -597,6 +597,7 @@ public class MetadataForm extends DefaultForm implements ActionListener, KeyList
                     break;
 
             }
+            System.out.println("I"+i+":"+act_field);
 
             switch (((TextItem) items.get(i)).getDCid()) {
                 case 0:
@@ -608,11 +609,13 @@ public class MetadataForm extends DefaultForm implements ActionListener, KeyList
                 case 2:
                     metaData.setDc_publisher(act_field);
                     break;
+
                     case 3: String dateInput = date_year.getText();
                     		metaData.setDc_date(MetaData.convertDate(dateInput)); break;
                 //case 3:
                    // metaData.setDc_date(MetaData.convertDate(act_field));
                     //break;
+
                 case 4:
                     metaData.setDc_relation(act_field);
                     break;
@@ -678,6 +681,7 @@ public class MetadataForm extends DefaultForm implements ActionListener, KeyList
 
             String branchToSave = ((Branch) branchList[branches.getSelectedIndex() - 1]).getAbbreviation(); // ;)
 
+
             //System.out.println(actLib.getDbURI());
             metaData = MetaData.createNewMetaData(branchToSave, actLib.getDbURI());
             if (metaData != null) {
@@ -696,6 +700,7 @@ public class MetadataForm extends DefaultForm implements ActionListener, KeyList
                     AddToList tolist = new AddToList(myLists, itemsToAdd, this);
                 }
 
+                // add to lists
                 if ((this.addToList.isSelected() && isAddedToList()) || !this.addToList.isSelected()) {
                     if (Gui.dispatcher.addLibItem(newItem, actLib, false)) {
                         Point location = Gui.my_forms[index].getLocation();

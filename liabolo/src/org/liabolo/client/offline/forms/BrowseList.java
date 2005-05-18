@@ -51,6 +51,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
+import javax.swing.filechooser.FileFilter;
 import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
@@ -646,7 +647,9 @@ public class BrowseList extends DefaultForm implements ActionListener, KeyListen
 		
 		if(actionCmd.equals(JFileChooser.APPROVE_SELECTION))
 		{
-
+			FileFilter ff= fcs.getFileFilter(); 
+			String test = ff.getDescription();
+			System.out.println("TEST: FILTER DESCR"+test);
 			Gui.dispatcher.export(this.listsToExport,  fcs.getSelectedFile().getPath(), "csv");
 
 		}
