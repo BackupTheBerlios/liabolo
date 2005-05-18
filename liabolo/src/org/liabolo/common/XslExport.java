@@ -23,7 +23,6 @@ package org.liabolo.common;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -32,7 +31,6 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Iterator;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -59,7 +57,7 @@ import org.w3c.dom.Document;
 public class XslExport {
 
 
-	private static String XSL_Document_PATH = Configurator.configMainDir+"/liabolo.xsl";
+	private static String XSL_Document_PATH;
 	
 
 	private static DOMSource XML_DOMSource;
@@ -118,6 +116,12 @@ public class XslExport {
 	}
 
 	public static void export(Collection col, String filename, String format) {
+		XSL_Document_PATH = Configurator.configMainDir+"/"+format+".xsl";
+		
+		File tempExportFile = new File("tempExportFile.txt");
+		File tempXml = new File("tempXMLFile.xml");
+		boolean first = true; // needed for writing before the first element
+		boolean last = false; // and after the last element
 		try {
 
 			//		Get Document Builder Factory
@@ -147,12 +151,12 @@ public class XslExport {
 			// loop through items
 			while (it.hasNext()) {
 				item = (LibItem) it.next();
-
+				if (!it.hasNext()) last = true;
 				// Generate temp XML File for transformation
 				convertToXml(item);
 
 				// read XML file
-				XML_Document = builder.parse(new File("tempXMLFile.xml"));
+				XML_Document = builder.parse(tempXml);
 				//parser.parse(new InputSource(new FileInputStream("tempXMLFile.xml")));;
 
 				//				Document XML_Document = parser.getDocument();
@@ -166,26 +170,33 @@ public class XslExport {
 				TransformerFactory tFactory = TransformerFactory.newInstance();
 				Transformer transformer;
 				transformer = tFactory.newTransformer(XSL_DOMSource);
-				transformer.setParameter("outputId", "0");
+				if (first) {
+					transformer.setParameter("prolog", "true");
+					first = false;
+				}
+				if (last) {
+					transformer.setParameter("epilog", "true");
+				}
 				// Output format: csv
 				// create xml file
 				transformer.transform(
 					XML_DOMSource,
-					new StreamResult("tempCSVFile.txt"));
+					new StreamResult(tempExportFile));
 
-				// add single CVSFile to export file
+				// add single File to export file
 				// open file for reading
 
-				FileReader file1 = new FileReader("tempCSVFile.txt");
+				FileReader file1 = new FileReader(tempExportFile);
 				BufferedReader fileInput = new BufferedReader(file1);
 
-				String text;
+				// Read temp file and append it to output file
+				
+				String text = fileInput.readLine();
 
-				// Read file and append it to output file
-
-				while ((text = fileInput.readLine()) != null) {
-					text = fileInput.readLine();
+								
+				while ((text) != null) {
 					writeExport.println(text);
+					text = fileInput.readLine();
 				}
 
 			}
@@ -194,21 +205,9 @@ public class XslExport {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		tempExportFile.deleteOnExit(); // for unknown reason instant delete doesn't work!?
+		tempXml.delete();
+		
 	}
 
-	public static void main(String[] args) throws IOException {
-
-		Collection col = new HashSet();
-		try {
-			col.add(new FileInputStream("src/org/liabolo/test/liabolo.xml"));
-		} catch (FileNotFoundException e) {
-
-			e.printStackTrace();
-		}
-
-		export(col, "", "");
-		System.out.println("Fertig!");
-
-	}
 }
